@@ -24,20 +24,22 @@ class UserAccountVC: UITableViewController{
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 350
-        refresh()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshPortfolio), name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
+        refreshPortfolio()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        refresh()
-    }
-    //May put in view did load due to calling the data everytime switching tabs^
+//    override func viewDidAppear(_ animated: Bool) {
+//        refresh()
+//    }
     
     //MARK: FETCH DATA
     var user: User?
     //We will reuse this VC when we want to look at someone else's profile
     //use did select row at to pass the user uid to this controller
     //if we didn't click on anything when the view appears, use the current user uid
-    func refresh(){
+    @objc func refreshPortfolio(){
+        print("refreshed")
         if let uid = Auth.auth().currentUser?.uid { //^
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
@@ -111,6 +113,8 @@ class UserAccountVC: UITableViewController{
         cell.postCaptionLabel.text = portfolioPosts[row].caption
         cell.postMoreButton.tag = row
         
+        //show white space before the image can download, so we don't get flashing
+        cell.postContainerView.addPhoto(imageContent: UIImage(named: "blankSpace")!)
         
         if portfolioPosts[row].isImage {
             
@@ -157,7 +161,7 @@ class UserAccountVC: UITableViewController{
         let deletePostAction = UIAlertAction(title: "Delete Post", style: .default) { (buttonTapped) in
             DataService.instance.deleteDBPortfolioPosts(uid: self.user!.uid, postID: self.portfolioPosts[row].getid())
             self.portfolioPosts.remove(at: row)
-            self.refresh()
+            self.refreshPortfolio()
         }
         let cancelPostAction = UIAlertAction(title: "Cancel", style: .default) { (buttonTapped) in
             print("operation aborted")

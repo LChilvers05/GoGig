@@ -187,12 +187,12 @@ class PortfolioPostVC: AutoComplete {
     
     @IBAction func postComplete(_ sender: Any) {
         
-        let range = imageID.index(imageID.endIndex, offsetBy: -4)..<imageID.endIndex
-        imageID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
-        //postID needed for deletion
-        postID = imageID
-        
         if imageAdded || videoAdded {
+            
+            let range = imageID.index(imageID.endIndex, offsetBy: -4)..<imageID.endIndex
+            imageID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
+            //postID needed for deletion
+            postID = imageID
             
             //Get date and time posted (for feed sort)
             let timestamp = NSDate().timeIntervalSince1970
