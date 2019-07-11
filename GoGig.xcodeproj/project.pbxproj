@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		A02A9B66AE00541F0237AA90 /* Pods_GoGig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */; };
 		FE46A31522D75D0C008294E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46A31422D75D0C008294E1 /* Constants.swift */; };
-		FE46A31722D75D71008294E1 /* Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46A31622D75D71008294E1 /* Test.swift */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBB22D74A5400DCE58B /* FindGigVC.swift */; };
 		FE639DC622D74A5600DCE58B /* TitleDateCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBC22D74A5400DCE58B /* TitleDateCGVC.swift */; };
@@ -41,6 +40,7 @@
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
 		FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */; };
 		FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */ = {isa = PBXBuildFile; fileRef = FE701C0522D737EC00FC06CE /* LogInVCUI */; };
+		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,7 +48,6 @@
 		794909069523DA50B9948C74 /* Pods-GoGig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoGig.debug.xcconfig"; path = "Target Support Files/Pods-GoGig/Pods-GoGig.debug.xcconfig"; sourceTree = "<group>"; };
 		DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoGig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE46A31422D75D0C008294E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = GoGig/Sort/Constants.swift; sourceTree = SOURCE_ROOT; };
-		FE46A31622D75D71008294E1 /* Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Test.swift; path = GoGig/Test.swift; sourceTree = SOURCE_ROOT; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE639DBB22D74A5400DCE58B /* FindGigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindGigVC.swift; sourceTree = "<group>"; };
@@ -82,6 +81,7 @@
 		FE701BFA22D7364600FC06CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE701BFD22D7364600FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE701C0522D737EC00FC06CE /* LogInVCUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogInVCUI; path = "../../../../Documents/Swift Applications/GoGig6/LogInVCUI"; sourceTree = "<group>"; };
+		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,6 @@
 			isa = PBXGroup;
 			children = (
 				FE46A31422D75D0C008294E1 /* Constants.swift */,
-				FE46A31622D75D71008294E1 /* Test.swift */,
 			);
 			path = "Utilities ";
 			sourceTree = "<group>";
@@ -205,6 +204,7 @@
 			children = (
 				FE701BF722D7364300FC06CE /* Main.storyboard */,
 				FE701BF322D7364300FC06CE /* AppDelegate.swift */,
+				FECCACBE22D75DED00D617CB /* Constants.swift */,
 				FE639D7722D73B9700DCE58B /* Utilities  */,
 				FE639D7822D73BB900DCE58B /* Extensions */,
 				FE639D7922D73BCA00DCE58B /* Services */,
@@ -366,13 +366,13 @@
 				FE639DC922D74A5600DCE58B /* PortfolioPostVC.swift in Sources */,
 				FE639DE822D74B4F00DCE58B /* DataService.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
+				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FE46A31522D75D0C008294E1 /* Constants.swift in Sources */,
 				FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */,
 				FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */,
 				FE639DDC22D74B2200DCE58B /* AutoComplete.swift in Sources */,
 				FE639DD722D74B2200DCE58B /* MyTextView.swift in Sources */,
 				FE639DEC22D74B5E00DCE58B /* UserAccountTableView.swift in Sources */,
-				FE46A31722D75D71008294E1 /* Test.swift in Sources */,
 				FE639DD922D74B2200DCE58B /* AccountHeaderCell.swift in Sources */,
 				FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */,
 				FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */,
