@@ -19,14 +19,6 @@
 		FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC222D74A5500DCE58B /* CreateGigVC.swift */; };
 		FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC322D74A5500DCE58B /* CreateAccountVC.swift */; };
 		FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC422D74A5500DCE58B /* InfoContactCGVC.swift */; };
-		FE639DD722D74B2200DCE58B /* MyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DCF22D74B2100DCE58B /* MyTextView.swift */; };
-		FE639DD822D74B2200DCE58B /* LoginField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD022D74B2100DCE58B /* LoginField.swift */; };
-		FE639DD922D74B2200DCE58B /* AccountHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD122D74B2200DCE58B /* AccountHeaderCell.swift */; };
-		FE639DDA22D74B2200DCE58B /* AccountPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD222D74B2200DCE58B /* AccountPostCell.swift */; };
-		FE639DDB22D74B2200DCE58B /* PostContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD322D74B2200DCE58B /* PostContainerView.swift */; };
-		FE639DDC22D74B2200DCE58B /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD422D74B2200DCE58B /* AutoComplete.swift */; };
-		FE639DDD22D74B2200DCE58B /* RefreshSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD522D74B2200DCE58B /* RefreshSpinner.swift */; };
-		FE639DDE22D74B2200DCE58B /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DD622D74B2200DCE58B /* TabBarController.swift */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
@@ -40,6 +32,14 @@
 		FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC822D75FA000D617CB /* GigEvent.swift */; };
 		FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACCA22D75FEC00D617CB /* PortfolioPost.swift */; };
 		FECCACCD22D7601700D617CB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACCC22D7601700D617CB /* User.swift */; };
+		FECCACCF22D7605E00D617CB /* AccountHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACCE22D7605E00D617CB /* AccountHeaderCell.swift */; };
+		FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD022D7609100D617CB /* AccountPostCell.swift */; };
+		FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD222D760CD00D617CB /* AutoComplete.swift */; };
+		FECCACD522D760FF00D617CB /* LoginField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD422D760FF00D617CB /* LoginField.swift */; };
+		FECCACD722D7614500D617CB /* MyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD622D7614500D617CB /* MyTextView.swift */; };
+		FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD822D7617800D617CB /* PostContainerView.swift */; };
+		FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDA22D761A600D617CB /* RefreshSpinner.swift */; };
+		FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDC22D761D700D617CB /* TabBarController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -58,14 +58,6 @@
 		FE639DC222D74A5500DCE58B /* CreateGigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
 		FE639DC322D74A5500DCE58B /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
 		FE639DC422D74A5500DCE58B /* InfoContactCGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContactCGVC.swift; sourceTree = "<group>"; };
-		FE639DCF22D74B2100DCE58B /* MyTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTextView.swift; sourceTree = "<group>"; };
-		FE639DD022D74B2100DCE58B /* LoginField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginField.swift; sourceTree = "<group>"; };
-		FE639DD122D74B2200DCE58B /* AccountHeaderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountHeaderCell.swift; sourceTree = "<group>"; };
-		FE639DD222D74B2200DCE58B /* AccountPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountPostCell.swift; sourceTree = "<group>"; };
-		FE639DD322D74B2200DCE58B /* PostContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostContainerView.swift; sourceTree = "<group>"; };
-		FE639DD422D74B2200DCE58B /* AutoComplete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AutoComplete.swift; sourceTree = "<group>"; };
-		FE639DD522D74B2200DCE58B /* RefreshSpinner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RefreshSpinner.swift; sourceTree = "<group>"; };
-		FE639DD622D74B2200DCE58B /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +72,14 @@
 		FECCACC822D75FA000D617CB /* GigEvent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigEvent.swift; path = GoGig/GigEvent.swift; sourceTree = SOURCE_ROOT; };
 		FECCACCA22D75FEC00D617CB /* PortfolioPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PortfolioPost.swift; path = GoGig/PortfolioPost.swift; sourceTree = SOURCE_ROOT; };
 		FECCACCC22D7601700D617CB /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = User.swift; path = GoGig/User.swift; sourceTree = SOURCE_ROOT; };
+		FECCACCE22D7605E00D617CB /* AccountHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountHeaderCell.swift; path = GoGig/AccountHeaderCell.swift; sourceTree = SOURCE_ROOT; };
+		FECCACD022D7609100D617CB /* AccountPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AccountPostCell.swift; path = GoGig/AccountPostCell.swift; sourceTree = SOURCE_ROOT; };
+		FECCACD222D760CD00D617CB /* AutoComplete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AutoComplete.swift; path = GoGig/AutoComplete.swift; sourceTree = SOURCE_ROOT; };
+		FECCACD422D760FF00D617CB /* LoginField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginField.swift; path = GoGig/LoginField.swift; sourceTree = SOURCE_ROOT; };
+		FECCACD622D7614500D617CB /* MyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextView.swift; path = GoGig/MyTextView.swift; sourceTree = SOURCE_ROOT; };
+		FECCACD822D7617800D617CB /* PostContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostContainerView.swift; path = GoGig/PostContainerView.swift; sourceTree = SOURCE_ROOT; };
+		FECCACDA22D761A600D617CB /* RefreshSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshSpinner.swift; path = GoGig/RefreshSpinner.swift; sourceTree = SOURCE_ROOT; };
+		FECCACDC22D761D700D617CB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = GoGig/TabBarController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,14 +157,14 @@
 		FE639D7B22D73BEE00DCE58B /* View */ = {
 			isa = PBXGroup;
 			children = (
-				FE639DD122D74B2200DCE58B /* AccountHeaderCell.swift */,
-				FE639DD222D74B2200DCE58B /* AccountPostCell.swift */,
-				FE639DD422D74B2200DCE58B /* AutoComplete.swift */,
-				FE639DD022D74B2100DCE58B /* LoginField.swift */,
-				FE639DCF22D74B2100DCE58B /* MyTextView.swift */,
-				FE639DD322D74B2200DCE58B /* PostContainerView.swift */,
-				FE639DD522D74B2200DCE58B /* RefreshSpinner.swift */,
-				FE639DD622D74B2200DCE58B /* TabBarController.swift */,
+				FECCACCE22D7605E00D617CB /* AccountHeaderCell.swift */,
+				FECCACD022D7609100D617CB /* AccountPostCell.swift */,
+				FECCACD222D760CD00D617CB /* AutoComplete.swift */,
+				FECCACD422D760FF00D617CB /* LoginField.swift */,
+				FECCACD622D7614500D617CB /* MyTextView.swift */,
+				FECCACD822D7617800D617CB /* PostContainerView.swift */,
+				FECCACDA22D761A600D617CB /* RefreshSpinner.swift */,
+				FECCACDC22D761D700D617CB /* TabBarController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -352,31 +352,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE639DDA22D74B2200DCE58B /* AccountPostCell.swift in Sources */,
 				FE639DC622D74A5600DCE58B /* TitleDateCGVC.swift in Sources */,
 				FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */,
 				FE639DCA22D74A5600DCE58B /* LoginViewController.swift in Sources */,
-				FE639DDE22D74B2200DCE58B /* TabBarController.swift in Sources */,
-				FE639DDD22D74B2200DCE58B /* RefreshSpinner.swift in Sources */,
 				FE639DC822D74A5600DCE58B /* PhotoCGVC.swift in Sources */,
+				FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */,
 				FE639DC922D74A5600DCE58B /* PortfolioPostVC.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
+				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
+				FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */,
 				FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */,
 				FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */,
-				FE639DDC22D74B2200DCE58B /* AutoComplete.swift in Sources */,
 				FECCACC722D75F5300D617CB /* DataService.swift in Sources */,
-				FE639DD722D74B2200DCE58B /* MyTextView.swift in Sources */,
-				FE639DD922D74B2200DCE58B /* AccountHeaderCell.swift in Sources */,
+				FECCACCF22D7605E00D617CB /* AccountHeaderCell.swift in Sources */,
+				FECCACD722D7614500D617CB /* MyTextView.swift in Sources */,
 				FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */,
 				FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
+				FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */,
+				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
 				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
 				FE639DC722D74A5600DCE58B /* LocationPriceCGVC.swift in Sources */,
 				FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */,
-				FE639DDB22D74B2200DCE58B /* PostContainerView.swift in Sources */,
-				FE639DD822D74B2200DCE58B /* LoginField.swift in Sources */,
+				FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */,
 				FECCACC122D75E6300D617CB /* Extensions.swift in Sources */,
 				FECCACC522D75F0000D617CB /* AuthService.swift in Sources */,
 			);
