@@ -9,16 +9,6 @@
 /* Begin PBXBuildFile section */
 		A02A9B66AE00541F0237AA90 /* Pods_GoGig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
-		FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBB22D74A5400DCE58B /* FindGigVC.swift */; };
-		FE639DC622D74A5600DCE58B /* TitleDateCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBC22D74A5400DCE58B /* TitleDateCGVC.swift */; };
-		FE639DC722D74A5600DCE58B /* LocationPriceCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBD22D74A5400DCE58B /* LocationPriceCGVC.swift */; };
-		FE639DC822D74A5600DCE58B /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBE22D74A5500DCE58B /* PhotoCGVC.swift */; };
-		FE639DC922D74A5600DCE58B /* PortfolioPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBF22D74A5500DCE58B /* PortfolioPostVC.swift */; };
-		FE639DCA22D74A5600DCE58B /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC022D74A5500DCE58B /* LoginViewController.swift */; };
-		FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC122D74A5500DCE58B /* UserAccountVC.swift */; };
-		FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC222D74A5500DCE58B /* CreateGigVC.swift */; };
-		FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC322D74A5500DCE58B /* CreateAccountVC.swift */; };
-		FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DC422D74A5500DCE58B /* InfoContactCGVC.swift */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
@@ -40,6 +30,16 @@
 		FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD822D7617800D617CB /* PostContainerView.swift */; };
 		FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDA22D761A600D617CB /* RefreshSpinner.swift */; };
 		FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDC22D761D700D617CB /* TabBarController.swift */; };
+		FECCACDF22D7622200D617CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDE22D7622200D617CB /* LoginViewController.swift */; };
+		FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE022D7625500D617CB /* CreateAccountVC.swift */; };
+		FECCACE322D7628700D617CB /* UserAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE222D7628700D617CB /* UserAccountVC.swift */; };
+		FECCACE522D762BE00D617CB /* PortfolioPostVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE422D762BE00D617CB /* PortfolioPostVC.swift */; };
+		FECCACE722D762F600D617CB /* CreateGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE622D762F600D617CB /* CreateGigVC.swift */; };
+		FECCACE922D7632A00D617CB /* TitleDateCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE822D7632A00D617CB /* TitleDateCGVC.swift */; };
+		FECCACEB22D7635800D617CB /* LocationPriceCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEA22D7635800D617CB /* LocationPriceCGVC.swift */; };
+		FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */; };
+		FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */; };
+		FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACF022D763E900D617CB /* FindGigVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,16 +48,6 @@
 		DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoGig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		FE639DBB22D74A5400DCE58B /* FindGigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindGigVC.swift; sourceTree = "<group>"; };
-		FE639DBC22D74A5400DCE58B /* TitleDateCGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleDateCGVC.swift; sourceTree = "<group>"; };
-		FE639DBD22D74A5400DCE58B /* LocationPriceCGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationPriceCGVC.swift; sourceTree = "<group>"; };
-		FE639DBE22D74A5500DCE58B /* PhotoCGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoCGVC.swift; sourceTree = "<group>"; };
-		FE639DBF22D74A5500DCE58B /* PortfolioPostVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioPostVC.swift; sourceTree = "<group>"; };
-		FE639DC022D74A5500DCE58B /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		FE639DC122D74A5500DCE58B /* UserAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountVC.swift; sourceTree = "<group>"; };
-		FE639DC222D74A5500DCE58B /* CreateGigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateGigVC.swift; sourceTree = "<group>"; };
-		FE639DC322D74A5500DCE58B /* CreateAccountVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateAccountVC.swift; sourceTree = "<group>"; };
-		FE639DC422D74A5500DCE58B /* InfoContactCGVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoContactCGVC.swift; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +70,16 @@
 		FECCACD822D7617800D617CB /* PostContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostContainerView.swift; path = GoGig/PostContainerView.swift; sourceTree = SOURCE_ROOT; };
 		FECCACDA22D761A600D617CB /* RefreshSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshSpinner.swift; path = GoGig/RefreshSpinner.swift; sourceTree = SOURCE_ROOT; };
 		FECCACDC22D761D700D617CB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = GoGig/TabBarController.swift; sourceTree = SOURCE_ROOT; };
+		FECCACDE22D7622200D617CB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = GoGig/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
+		FECCACE022D7625500D617CB /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountVC.swift; path = GoGig/CreateAccountVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACE222D7628700D617CB /* UserAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountVC.swift; path = GoGig/UserAccountVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACE422D762BE00D617CB /* PortfolioPostVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PortfolioPostVC.swift; path = GoGig/PortfolioPostVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACE622D762F600D617CB /* CreateGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateGigVC.swift; path = GoGig/CreateGigVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACE822D7632A00D617CB /* TitleDateCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TitleDateCGVC.swift; path = GoGig/TitleDateCGVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACEA22D7635800D617CB /* LocationPriceCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocationPriceCGVC.swift; path = GoGig/LocationPriceCGVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoContactCGVC.swift; path = GoGig/InfoContactCGVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCGVC.swift; path = GoGig/PhotoCGVC.swift; sourceTree = SOURCE_ROOT; };
+		FECCACF022D763E900D617CB /* FindGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindGigVC.swift; path = GoGig/FindGigVC.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,16 +140,16 @@
 		FE639D7A22D73BE600DCE58B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				FE639DC022D74A5500DCE58B /* LoginViewController.swift */,
-				FE639DC322D74A5500DCE58B /* CreateAccountVC.swift */,
-				FE639DC122D74A5500DCE58B /* UserAccountVC.swift */,
-				FE639DBF22D74A5500DCE58B /* PortfolioPostVC.swift */,
-				FE639DC222D74A5500DCE58B /* CreateGigVC.swift */,
-				FE639DBC22D74A5400DCE58B /* TitleDateCGVC.swift */,
-				FE639DBD22D74A5400DCE58B /* LocationPriceCGVC.swift */,
-				FE639DC422D74A5500DCE58B /* InfoContactCGVC.swift */,
-				FE639DBE22D74A5500DCE58B /* PhotoCGVC.swift */,
-				FE639DBB22D74A5400DCE58B /* FindGigVC.swift */,
+				FECCACDE22D7622200D617CB /* LoginViewController.swift */,
+				FECCACE022D7625500D617CB /* CreateAccountVC.swift */,
+				FECCACE222D7628700D617CB /* UserAccountVC.swift */,
+				FECCACE422D762BE00D617CB /* PortfolioPostVC.swift */,
+				FECCACE622D762F600D617CB /* CreateGigVC.swift */,
+				FECCACE822D7632A00D617CB /* TitleDateCGVC.swift */,
+				FECCACEA22D7635800D617CB /* LocationPriceCGVC.swift */,
+				FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */,
+				FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */,
+				FECCACF022D763E900D617CB /* FindGigVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -352,31 +352,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FE639DC622D74A5600DCE58B /* TitleDateCGVC.swift in Sources */,
+				FECCACE722D762F600D617CB /* CreateGigVC.swift in Sources */,
+				FECCACDF22D7622200D617CB /* LoginViewController.swift in Sources */,
 				FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */,
-				FE639DCA22D74A5600DCE58B /* LoginViewController.swift in Sources */,
-				FE639DC822D74A5600DCE58B /* PhotoCGVC.swift in Sources */,
 				FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */,
-				FE639DC922D74A5600DCE58B /* PortfolioPostVC.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
+				FECCACE322D7628700D617CB /* UserAccountVC.swift in Sources */,
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
+				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
+				FECCACE922D7632A00D617CB /* TitleDateCGVC.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
+				FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */,
+				FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */,
 				FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */,
-				FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */,
-				FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */,
+				FECCACE522D762BE00D617CB /* PortfolioPostVC.swift in Sources */,
 				FECCACC722D75F5300D617CB /* DataService.swift in Sources */,
 				FECCACCF22D7605E00D617CB /* AccountHeaderCell.swift in Sources */,
 				FECCACD722D7614500D617CB /* MyTextView.swift in Sources */,
-				FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */,
-				FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */,
+				FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
 				FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
 				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
-				FE639DC722D74A5600DCE58B /* LocationPriceCGVC.swift in Sources */,
-				FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */,
 				FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */,
+				FECCACEB22D7635800D617CB /* LocationPriceCGVC.swift in Sources */,
 				FECCACC122D75E6300D617CB /* Extensions.swift in Sources */,
 				FECCACC522D75F0000D617CB /* AuthService.swift in Sources */,
 			);
