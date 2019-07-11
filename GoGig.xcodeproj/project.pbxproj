@@ -30,8 +30,6 @@
 		FE639DE222D74B3900DCE58B /* GigEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DDF22D74B3800DCE58B /* GigEvent.swift */; };
 		FE639DE322D74B3900DCE58B /* PortfolioPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE022D74B3900DCE58B /* PortfolioPost.swift */; };
 		FE639DE422D74B3900DCE58B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE122D74B3900DCE58B /* User.swift */; };
-		FE639DE722D74B4F00DCE58B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE522D74B4F00DCE58B /* AuthService.swift */; };
-		FE639DE822D74B4F00DCE58B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE622D74B4F00DCE58B /* DataService.swift */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
@@ -40,6 +38,8 @@
 		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
 		FECCACC122D75E6300D617CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC022D75E6300D617CB /* Extensions.swift */; };
 		FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC222D75EB800D617CB /* UserAccountTableView.swift */; };
+		FECCACC522D75F0000D617CB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC422D75F0000D617CB /* AuthService.swift */; };
+		FECCACC722D75F5300D617CB /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC622D75F5300D617CB /* DataService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,8 +69,6 @@
 		FE639DDF22D74B3800DCE58B /* GigEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigEvent.swift; sourceTree = "<group>"; };
 		FE639DE022D74B3900DCE58B /* PortfolioPost.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PortfolioPost.swift; sourceTree = "<group>"; };
 		FE639DE122D74B3900DCE58B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
-		FE639DE522D74B4F00DCE58B /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
-		FE639DE622D74B4F00DCE58B /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,6 +78,8 @@
 		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
 		FECCACC022D75E6300D617CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GoGig/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		FECCACC222D75EB800D617CB /* UserAccountTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountTableView.swift; path = GoGig/UserAccountTableView.swift; sourceTree = SOURCE_ROOT; };
+		FECCACC422D75F0000D617CB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = GoGig/AuthService.swift; sourceTree = SOURCE_ROOT; };
+		FECCACC622D75F5300D617CB /* DataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataService.swift; path = GoGig/DataService.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,8 +131,8 @@
 		FE639D7922D73BCA00DCE58B /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				FE639DE522D74B4F00DCE58B /* AuthService.swift */,
-				FE639DE622D74B4F00DCE58B /* DataService.swift */,
+				FECCACC422D75F0000D617CB /* AuthService.swift */,
+				FECCACC622D75F5300D617CB /* DataService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -361,24 +361,24 @@
 				FE639DDD22D74B2200DCE58B /* RefreshSpinner.swift in Sources */,
 				FE639DC822D74A5600DCE58B /* PhotoCGVC.swift in Sources */,
 				FE639DC922D74A5600DCE58B /* PortfolioPostVC.swift in Sources */,
-				FE639DE822D74B4F00DCE58B /* DataService.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */,
 				FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */,
 				FE639DDC22D74B2200DCE58B /* AutoComplete.swift in Sources */,
+				FECCACC722D75F5300D617CB /* DataService.swift in Sources */,
 				FE639DD722D74B2200DCE58B /* MyTextView.swift in Sources */,
 				FE639DD922D74B2200DCE58B /* AccountHeaderCell.swift in Sources */,
 				FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */,
 				FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */,
 				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
 				FE639DC722D74A5600DCE58B /* LocationPriceCGVC.swift in Sources */,
-				FE639DE722D74B4F00DCE58B /* AuthService.swift in Sources */,
 				FE639DE222D74B3900DCE58B /* GigEvent.swift in Sources */,
 				FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */,
 				FE639DDB22D74B2200DCE58B /* PostContainerView.swift in Sources */,
 				FE639DD822D74B2200DCE58B /* LoginField.swift in Sources */,
 				FECCACC122D75E6300D617CB /* Extensions.swift in Sources */,
+				FECCACC522D75F0000D617CB /* AuthService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
