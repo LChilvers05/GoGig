@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		A02A9B66AE00541F0237AA90 /* Pods_GoGig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */; };
-		FE46A31522D75D0C008294E1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE46A31422D75D0C008294E1 /* Constants.swift */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBB22D74A5400DCE58B /* FindGigVC.swift */; };
 		FE639DC622D74A5600DCE58B /* TitleDateCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DBC22D74A5400DCE58B /* TitleDateCGVC.swift */; };
@@ -33,21 +32,20 @@
 		FE639DE422D74B3900DCE58B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE122D74B3900DCE58B /* User.swift */; };
 		FE639DE722D74B4F00DCE58B /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE522D74B4F00DCE58B /* AuthService.swift */; };
 		FE639DE822D74B4F00DCE58B /* DataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE622D74B4F00DCE58B /* DataService.swift */; };
-		FE639DEB22D74B5E00DCE58B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DE922D74B5E00DCE58B /* Extensions.swift */; };
-		FE639DEC22D74B5E00DCE58B /* UserAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE639DEA22D74B5E00DCE58B /* UserAccountTableView.swift */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
 		FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */; };
 		FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */ = {isa = PBXBuildFile; fileRef = FE701C0522D737EC00FC06CE /* LogInVCUI */; };
 		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
+		FECCACC122D75E6300D617CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC022D75E6300D617CB /* Extensions.swift */; };
+		FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC222D75EB800D617CB /* UserAccountTableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		247BD3913CFF680B937268F8 /* Pods-GoGig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoGig.release.xcconfig"; path = "Target Support Files/Pods-GoGig/Pods-GoGig.release.xcconfig"; sourceTree = "<group>"; };
 		794909069523DA50B9948C74 /* Pods-GoGig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoGig.debug.xcconfig"; path = "Target Support Files/Pods-GoGig/Pods-GoGig.debug.xcconfig"; sourceTree = "<group>"; };
 		DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoGig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		FE46A31422D75D0C008294E1 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = GoGig/Sort/Constants.swift; sourceTree = SOURCE_ROOT; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE639DBB22D74A5400DCE58B /* FindGigVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FindGigVC.swift; sourceTree = "<group>"; };
@@ -73,8 +71,6 @@
 		FE639DE122D74B3900DCE58B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		FE639DE522D74B4F00DCE58B /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		FE639DE622D74B4F00DCE58B /* DataService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataService.swift; sourceTree = "<group>"; };
-		FE639DE922D74B5E00DCE58B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		FE639DEA22D74B5E00DCE58B /* UserAccountTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserAccountTableView.swift; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +78,8 @@
 		FE701BFD22D7364600FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE701C0522D737EC00FC06CE /* LogInVCUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogInVCUI; path = "../../../../Documents/Swift Applications/GoGig6/LogInVCUI"; sourceTree = "<group>"; };
 		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
+		FECCACC022D75E6300D617CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GoGig/Extensions.swift; sourceTree = SOURCE_ROOT; };
+		FECCACC222D75EB800D617CB /* UserAccountTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountTableView.swift; path = GoGig/UserAccountTableView.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +114,7 @@
 		FE639D7722D73B9700DCE58B /* Utilities  */ = {
 			isa = PBXGroup;
 			children = (
-				FE46A31422D75D0C008294E1 /* Constants.swift */,
+				FECCACBE22D75DED00D617CB /* Constants.swift */,
 			);
 			path = "Utilities ";
 			sourceTree = "<group>";
@@ -124,8 +122,8 @@
 		FE639D7822D73BB900DCE58B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FE639DE922D74B5E00DCE58B /* Extensions.swift */,
-				FE639DEA22D74B5E00DCE58B /* UserAccountTableView.swift */,
+				FECCACC022D75E6300D617CB /* Extensions.swift */,
+				FECCACC222D75EB800D617CB /* UserAccountTableView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -204,7 +202,6 @@
 			children = (
 				FE701BF722D7364300FC06CE /* Main.storyboard */,
 				FE701BF322D7364300FC06CE /* AppDelegate.swift */,
-				FECCACBE22D75DED00D617CB /* Constants.swift */,
 				FE639D7722D73B9700DCE58B /* Utilities  */,
 				FE639D7822D73BB900DCE58B /* Extensions */,
 				FE639D7922D73BCA00DCE58B /* Services */,
@@ -367,22 +364,21 @@
 				FE639DE822D74B4F00DCE58B /* DataService.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
-				FE46A31522D75D0C008294E1 /* Constants.swift in Sources */,
 				FE639DCE22D74A5600DCE58B /* InfoContactCGVC.swift in Sources */,
 				FE639DCB22D74A5600DCE58B /* UserAccountVC.swift in Sources */,
 				FE639DDC22D74B2200DCE58B /* AutoComplete.swift in Sources */,
 				FE639DD722D74B2200DCE58B /* MyTextView.swift in Sources */,
-				FE639DEC22D74B5E00DCE58B /* UserAccountTableView.swift in Sources */,
 				FE639DD922D74B2200DCE58B /* AccountHeaderCell.swift in Sources */,
 				FE639DCD22D74A5600DCE58B /* CreateAccountVC.swift in Sources */,
 				FE639DC522D74A5600DCE58B /* FindGigVC.swift in Sources */,
+				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
 				FE639DC722D74A5600DCE58B /* LocationPriceCGVC.swift in Sources */,
 				FE639DE722D74B4F00DCE58B /* AuthService.swift in Sources */,
 				FE639DE222D74B3900DCE58B /* GigEvent.swift in Sources */,
-				FE639DEB22D74B5E00DCE58B /* Extensions.swift in Sources */,
 				FE639DCC22D74A5600DCE58B /* CreateGigVC.swift in Sources */,
 				FE639DDB22D74B2200DCE58B /* PostContainerView.swift in Sources */,
 				FE639DD822D74B2200DCE58B /* LoginField.swift in Sources */,
+				FECCACC122D75E6300D617CB /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
