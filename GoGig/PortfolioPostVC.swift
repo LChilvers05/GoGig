@@ -169,7 +169,7 @@ class PortfolioPostVC: AutoComplete {
         
         self.videoThumbnail = generateThumbnail(url: url)
         
-        imageID = "\(NSUUID().uuidString).jpg"
+        //imageID = "\(NSUUID().uuidString).jpg"
         
         DataService.instance.updateSTPic(uid: uid, directory: "portfolioThumbnail", imageContent: videoThumbnail!, imageID: imageID, uploadComplete: { (success, error) in
             if error != nil {

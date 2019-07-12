@@ -214,7 +214,7 @@ class DataService {
     func updateSTPic(uid: String, directory: String, imageContent: UIImage, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
         
         //Converting the imageData to JPEG to be stored
-        if let imageData = imageContent.jpegData(compressionQuality: 0.1) {
+        if let imageData = imageContent.jpegData(compressionQuality: 0.000001) {
             
             //Uploading the image with unique string ID
             REF_ST.child(uid).child(directory).child(imageID).putData(imageData, metadata: nil, completion: { (metadata, error) in
@@ -265,7 +265,13 @@ class DataService {
     }
     
     func deleteSTFile(uid: String, directory: String, fileID: String){
-        
+        REF_ST.child(uid).child(directory).child(fileID).delete(completion: { error in
+            if error != nil {
+            
+                print("Couldn't delete image from ST \(error!.localizedDescription)")
+                
+            }
+        })
     }
     
     

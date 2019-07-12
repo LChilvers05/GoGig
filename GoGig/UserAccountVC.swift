@@ -118,18 +118,22 @@ class UserAccountVC: UITableViewController{
         
         if portfolioPosts[row].isImage {
             
-            self.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
-                
-                cell.postContainerView.addPhoto(imageContent: returnedImage)
-                
-            }
+//            self.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
+//
+//                cell.postContainerView.addPhoto(imageContent: returnedImage)
+//
+//            }
+            
+            cell.postContainerView.loadImageCacheToContainerView(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage)
             
         } else {
             
-            self.loadImageCache(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
-                
-                cell.postContainerView.addPhoto(imageContent: returnedImage)
-            }
+//            self.loadImageCache(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
+//
+//                cell.postContainerView.addPhoto(imageContent: returnedImage)
+//            }
+            
+            cell.postContainerView.loadImageCacheToContainerView(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage)
         }
     }
     
@@ -160,6 +164,10 @@ class UserAccountVC: UITableViewController{
         let morePopup = UIAlertController(title: "more", message: "", preferredStyle: .actionSheet)
         let deletePostAction = UIAlertAction(title: "Delete Post", style: .default) { (buttonTapped) in
             DataService.instance.deleteDBPortfolioPosts(uid: self.user!.uid, postID: self.portfolioPosts[row].getid())
+            DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "portfolioPost", fileID: self.portfolioPosts[row].getid())
+            if !(self.portfolioPosts[row].isImage) {
+                DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "portfolioThumbnail", fileID: self.portfolioPosts[row].getid())
+            }
             self.portfolioPosts.remove(at: row)
             self.refreshPortfolio()
         }

@@ -79,4 +79,30 @@ class PostContainerView: UIView {
         avPlayer = nil
         avPlayerLayer.removeFromSuperlayer()
     }
+    
+    func loadImageCacheToContainerView(url: URL, isImage: Bool) {
+        
+        let urlString = url.absoluteString as NSString
+        if let cachedImage = imageCache.object(forKey: urlString) {
+            self.addPhoto(imageContent: cachedImage)
+        } else {
+            let task = URLSession.shared.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    
+                } else {
+                    
+                    DispatchQueue.main.async {
+                        if let downloadedImage = UIImage(data: data!) {
+                            imageCache.setObject(downloadedImage, forKey: urlString)
+                            
+                                self.addPhoto(imageContent: downloadedImage)
+                        }
+                    }
+                }
+            }
+            
+            task.resume()
+        }
+    }
 }
