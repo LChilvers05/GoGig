@@ -101,7 +101,6 @@ class PostContainerView: UIView {
                     }
                 }
             }
-            
             task.resume()
         }
     }

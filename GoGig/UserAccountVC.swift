@@ -79,8 +79,12 @@ class UserAccountVC: UITableViewController{
                 self.displayError(title: "There was an error", message: "Something went wrong, please try again")
             }
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (buttonTapped) in
+            print("operation aborted")
+        }
         
         logoutPopup.addAction(logoutAction)
+        logoutPopup.addAction(cancelAction)
         present(logoutPopup, animated: true, completion: nil)
     }
     
@@ -162,7 +166,9 @@ class UserAccountVC: UITableViewController{
         let row = sender.tag
         
         let morePopup = UIAlertController(title: "more", message: "", preferredStyle: .actionSheet)
-        let deletePostAction = UIAlertAction(title: "Delete Post", style: .default) { (buttonTapped) in
+        let deletePostAction = UIAlertAction(title: "Delete Post", style: .destructive) { (buttonTapped) in
+            
+            //Delete the post from Database and from Storage
             DataService.instance.deleteDBPortfolioPosts(uid: self.user!.uid, postID: self.portfolioPosts[row].getid())
             DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "portfolioPost", fileID: self.portfolioPosts[row].getid())
             if !(self.portfolioPosts[row].isImage) {
