@@ -39,6 +39,7 @@ class PostContainerView: UIView {
         clearView()
         
         imageView = UIImageView(image: imageContent)
+        imageView.isHidden = true
         
         //Get ratio of how much to shrink the image by by using the width of the UIView
         //(width is set using constraints)
@@ -80,12 +81,21 @@ class PostContainerView: UIView {
         avPlayerLayer.removeFromSuperlayer()
     }
     
-    func loadImageCacheToContainerView(url: URL, isImage: Bool) {
+    //Load images from NSCache
+    var imageUrlString: NSString?
+    func loadImageCache(url: URL, isImage: Bool) {
         
         let urlString = url.absoluteString as NSString
+        imageUrlString = urlString
+        
         if let cachedImage = imageCache.object(forKey: urlString) {
             self.addPhoto(imageContent: cachedImage)
+            
         } else {
+            
+            //to avoid flashing of images
+            self.addPhoto(imageContent: UIImage(named: "blankSpace")!)
+            
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -94,9 +104,12 @@ class PostContainerView: UIView {
                     
                     DispatchQueue.main.async {
                         if let downloadedImage = UIImage(data: data!) {
-                            imageCache.setObject(downloadedImage, forKey: urlString)
                             
+                            if self.imageUrlString == urlString {
                                 self.addPhoto(imageContent: downloadedImage)
+                            }
+                            
+                            imageCache.setObject(downloadedImage, forKey: urlString)
                         }
                     }
                 }

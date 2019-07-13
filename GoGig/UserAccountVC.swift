@@ -117,27 +117,13 @@ class UserAccountVC: UITableViewController{
         cell.postCaptionLabel.text = portfolioPosts[row].caption
         cell.postMoreButton.tag = row
         
-        //show white space before the image can download, so we don't get flashing
-        cell.postContainerView.addPhoto(imageContent: UIImage(named: "blankSpace")!)
-        
         if portfolioPosts[row].isImage {
             
-//            self.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
-//
-//                cell.postContainerView.addPhoto(imageContent: returnedImage)
-//
-//            }
-            
-            cell.postContainerView.loadImageCacheToContainerView(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage)
+            cell.postContainerView.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage)
             
         } else {
             
-//            self.loadImageCache(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage) { (returnedImage) in
-//
-//                cell.postContainerView.addPhoto(imageContent: returnedImage)
-//            }
-            
-            cell.postContainerView.loadImageCacheToContainerView(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage)
+            cell.postContainerView.loadImageCache(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage)
         }
     }
     
