@@ -47,7 +47,7 @@ class PostContainerView: UIView {
         let ratio = self.frame.size.width / imageView.frame.size.width
         //Change the height of the UIView by setting it to the new height of the imageView
         self.frame.size.height = imageView.frame.size.height * ratio
-        
+
         //fill the UIView with the imageView
         imageView.frame = self.bounds
         

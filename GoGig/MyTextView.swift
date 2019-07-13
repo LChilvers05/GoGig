@@ -28,18 +28,15 @@ class MyTextView: UITextView {
         font = .systemFont(ofSize: 15)
         
     }
+    
+    func updatePlaceholder(placeholder: String) {
+        textViewDelegate.placeholder = placeholder
+    }
 }
 //To allow access to the editing delegate methods
 class TextViewDelegate: NSObject, UITextViewDelegate {
     
-    let placeholder = """
-Write a description... |
-Things to think about:
-•The style of music wanted
-•How big the event will be
-•The length of their performance
-•Any equipment you cannot supply
-"""
+    var placeholder = ""
     
     //Clear the placeholder
     func textViewDidBeginEditing(_ textView: UITextView) {

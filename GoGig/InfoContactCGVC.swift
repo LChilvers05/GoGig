@@ -31,7 +31,8 @@ Things to think about:
         super.viewDidLoad()
         
         //Setup placeholder of the description text view
-        descriptionTextView.text = descriptionTextView.placeholder
+        descriptionTextView.updatePlaceholder(placeholder: placeholder)
+        descriptionTextView.text = placeholder
         descriptionTextView.textColor = UIColor.lightGray
         
         //Auto-filled

@@ -22,7 +22,7 @@ class PortfolioPostVC: AutoComplete {
     
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postContainerView: PostContainerView!
-    @IBOutlet weak var captionContentView: UITextView!
+    @IBOutlet weak var captionContentView: MyTextView!
     
     var postData: Dictionary<String, Any>?
     
@@ -46,8 +46,14 @@ class PortfolioPostVC: AutoComplete {
     var height: CGFloat?
     var width: CGFloat?
     
+    var placeholder = "Write a caption... |"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        captionContentView.updatePlaceholder(placeholder: placeholder)
+        captionContentView.text = placeholder
+        captionContentView.textColor = UIColor.lightGray
         
         hideKeyboard()
         
