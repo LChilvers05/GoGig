@@ -9,7 +9,7 @@
 //  Profile Pic is distorted
 //  User data does not load quickly
 //  Post image caching is not very quick
-//  hello
+//   hello
 
 //  Constraints in table view cell
 
@@ -173,6 +173,5 @@ class UserAccountVC: UITableViewController{
         morePopup.addAction(cancelPostAction)
         present(morePopup, animated: true, completion: nil)
     }
-    
 }
 
