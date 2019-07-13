@@ -8,6 +8,7 @@
 
 //  Profile Pic is distorted
 //  User data does not load quickly
+//  Post image caching is not very quick
 
 //  Constraints in table view cell
 
