@@ -26,7 +26,6 @@ class MyTextView: UITextView {
         layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
         font = .systemFont(ofSize: 15)
-        
     }
     
     func updatePlaceholder(placeholder: String) {

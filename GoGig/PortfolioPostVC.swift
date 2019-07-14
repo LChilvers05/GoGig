@@ -88,7 +88,7 @@ class PortfolioPostVC: AutoComplete {
         // The info dictionary may contain multiple representations of the image. Use the original.
         if let selectedImage = info[.originalImage] as? UIImage {
             
-            postContainerView.addPhoto(imageContent: selectedImage)
+            postContainerView.addPhoto(imageContent: selectedImage, fit: true)
             
             imageContent = selectedImage
             imageAdded = true
