@@ -11,7 +11,7 @@ import UIKit
 class AccountPostCell: UITableViewCell {
     
     @IBOutlet weak var postLocationLabel: UILabel!
-    @IBOutlet weak var postCaptionLabel: UILabel!
+    @IBOutlet weak var postCaptionTextView: MyTextView!
     @IBOutlet weak var postContainerView: PostContainerView!
     @IBOutlet weak var postMoreButton: UIButton!
     

@@ -116,7 +116,7 @@ class UserAccountVC: UITableViewController{
     func updatePostData(cell: AccountPostCell, row: Int) {
         
         cell.postLocationLabel.text = portfolioPosts[row].location
-        cell.postCaptionLabel.text = portfolioPosts[row].caption
+        cell.postCaptionTextView.text = portfolioPosts[row].caption
         cell.postMoreButton.tag = row
         
         if portfolioPosts[row].isImage {
@@ -141,7 +141,7 @@ class UserAccountVC: UITableViewController{
                 
                 //Remove the thumbnail and play the video
                 
-                tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.row - 1].postURL)
+                tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.row - 1].postURL, fit: false)
                 
                 tappedCell.postContainerView.playPlayer()
                 

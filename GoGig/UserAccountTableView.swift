@@ -38,6 +38,7 @@ extension UserAccountVC {
             let postCell = tableView.dequeueReusableCell(withIdentifier: "AccountPostCell", for: indexPath)
                 as! AccountPostCell
             
+            
             updatePostData(cell: postCell, row: indexPath.row - 1)
             
             return postCell

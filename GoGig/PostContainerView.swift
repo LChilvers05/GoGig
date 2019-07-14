@@ -36,7 +36,7 @@ class PostContainerView: UIView {
         
     }
     
-    func clearView(){
+    func clearView(fit: Bool){
         //Clear the container view if there is anything
         if avPlayer != nil {
             closePlayer()
@@ -45,14 +45,16 @@ class PostContainerView: UIView {
             imageView.removeFromSuperview()
         }
         
-        self.frame.size.height = dimensionHeight
-        self.frame.size.width = dimensionWidth
+        if fit {
+            self.frame.size.height = dimensionHeight
+            self.frame.size.width = dimensionWidth
+        }
     }
     
     func addPhoto(imageContent: UIImage, fit: Bool){
         
         //Clear the container view if there is anything
-        clearView()
+        clearView(fit: fit)
         
         //fit ready for posting
         if fit {
@@ -65,6 +67,7 @@ class PostContainerView: UIView {
         //resize for the feed
         } else {
             imageView = UIImageView(image: imageContent)
+            layer.cornerRadius = 0
         }
         
         imageView.isHidden = true
@@ -83,9 +86,9 @@ class PostContainerView: UIView {
         imageView.isHidden = false
     }
     
-    func addVideo(url: URL){
+    func addVideo(url: URL, fit: Bool){
         
-        clearView()
+        clearView(fit: fit)
         
         avPlayer = AVPlayer(playerItem: AVPlayerItem(url: url))
         avPlayerLayer = AVPlayerLayer(player: avPlayer)

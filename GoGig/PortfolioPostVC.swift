@@ -101,7 +101,7 @@ class PortfolioPostVC: AutoComplete {
         
         if let selectedVideo = info[UIImagePickerController.InfoKey.mediaURL] as? URL {
             
-            postContainerView.addVideo(url: selectedVideo)
+            postContainerView.addVideo(url: selectedVideo, fit: true)
             postContainerView.playPlayer()
             
             videoContent = selectedVideo
