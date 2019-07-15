@@ -15,4 +15,11 @@ class AccountPostCell: UITableViewCell {
     @IBOutlet weak var postContainerView: PostContainerView!
     @IBOutlet weak var postMoreButton: UIButton!
     
+    override func awakeFromNib() {
+        postCaptionTextView.isEditable = false
+        
+        layer.cornerRadius = 0
+        self.backgroundColor = UIColor(white: 1, alpha: 0.5)
+    }
+    
 }

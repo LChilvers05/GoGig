@@ -21,7 +21,21 @@ import FirebaseDatabase
 
 class UserAccountVC: UITableViewController{
     
+    let backgroundImage = UIImage(named: "Background")
+    
+    
     override func viewDidLoad() {
+        
+        let imageView = UIImageView(image: backgroundImage)
+        self.tableView.backgroundView = imageView
+        imageView.contentMode = .scaleAspectFit
+        
+        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
+        let blurView = UIVisualEffectView(effect: blurEffect)
+        blurView.frame = imageView.bounds
+        imageView.addSubview(blurView)
+        
+        
         self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.topItem?.title = "Profile"
         tableView.rowHeight = UITableView.automaticDimension
@@ -132,16 +146,16 @@ class UserAccountVC: UITableViewController{
     //To play a video when cell is tapped
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        if indexPath.row != 0 { //so no crash when profile tapped
+        if indexPath.section != 0 { //so no crash when profile tapped
             
             let tappedCell = tableView.cellForRow(at: indexPath) as! AccountPostCell
             
             //If it's a video and tapped
-            if !portfolioPosts[indexPath.row - 1].isImage {
+            if !portfolioPosts[indexPath.section - 1].isImage {
                 
                 //Remove the thumbnail and play the video
                 
-                tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.row - 1].postURL, fit: false)
+                tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.section - 1].postURL, fit: false)
                 
                 tappedCell.postContainerView.playPlayer()
                 
