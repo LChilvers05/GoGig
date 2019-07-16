@@ -11,8 +11,8 @@ import UIKit
 class LocationPriceCGVC: UIViewController {
     
     
-    @IBOutlet weak var postcodeField: UITextField!
-    @IBOutlet weak var paymentField: UITextField!
+    @IBOutlet weak var postcodeField: MyTextField!
+    @IBOutlet weak var paymentField: MyTextField!
     
     var user: User?
     var eventData: Dictionary<String, Any>?
@@ -21,8 +21,8 @@ class LocationPriceCGVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         hideKeyboard()
+        postcodeField.updateCharacterLimit(limit: 8)
     }
     
     override func viewDidAppear(_ animated: Bool) {

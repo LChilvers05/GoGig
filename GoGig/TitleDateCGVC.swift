@@ -16,7 +16,7 @@ import FirebaseDatabase
 
 class TitleDateCGVC: UIViewController {
     
-    @IBOutlet weak var eventTitleField: UITextField!
+    @IBOutlet weak var eventTitleField: MyTextField!
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var user: User?
@@ -27,6 +27,8 @@ class TitleDateCGVC: UIViewController {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
         hideKeyboard()
+        
+        eventTitleField.updateCharacterLimit(limit: 50)
         
         //Get the user
         if let uid = Auth.auth().currentUser?.uid {
@@ -77,7 +79,7 @@ class TitleDateCGVC: UIViewController {
                 
             } else {
                 // User not added wrote a title
-                displayError(title: "Add a title!", message: "Please add a title of your event to continue")
+                displayError(title: "Add a title", message: "Please add the title of your event to continue")
             }
         }
     }

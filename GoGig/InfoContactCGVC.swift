@@ -11,9 +11,9 @@ import UIKit
 class InfoContactCGVC: UIViewController {
     
     @IBOutlet weak var descriptionTextView: MyTextView!
-    @IBOutlet weak var nameTextField: UITextField!
-    @IBOutlet weak var emailTextField: UITextField!
-    @IBOutlet weak var phoneTextField: UITextField!
+    @IBOutlet weak var nameTextField: MyTextField!
+    @IBOutlet weak var emailTextField: MyTextField!
+    @IBOutlet weak var phoneTextField: MyTextField!
     
     var user: User?
     var eventData: Dictionary<String, Any>?
@@ -34,6 +34,10 @@ Things to think about:
         descriptionTextView.updatePlaceholder(placeholder: placeholder)
         descriptionTextView.text = placeholder
         descriptionTextView.textColor = UIColor.lightGray
+        
+        nameTextField.updateCharacterLimit(limit: 50)
+        emailTextField.updateCharacterLimit(limit: 62)
+        phoneTextField.updateCharacterLimit(limit: 16)
         
         //Auto-filled
         nameTextField.text = user?.name
@@ -63,14 +67,14 @@ Things to think about:
             if let name = nameTextField.text {
                 if let email = emailTextField.text {
                     if let phone = phoneTextField.text {
-                        if name != "" && name.count <= 100 {
+                        if name != "" {
                             if description.count > 10 && !(description.contains("Write a description... |")) {
                                 
                                 eventData!["name"] = name
                                 eventData!["description"] = description
                                 
                                 //add email...
-                                if email.contains("@") && email.contains(".") && email.count >= 5 && email.count <= 62 {
+                                if email.contains("@") && email.contains(".") && email.count >= 5 {
                                     
                                     eventData!["email"] = email
                                     
