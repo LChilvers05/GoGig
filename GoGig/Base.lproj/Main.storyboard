@@ -466,7 +466,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="n54-To-5DT" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="36" width="343" height="205"/>
+                                            <rect key="frame" x="16" y="36" width="343" height="223.5"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" constant="284" identifier="containerHeight" id="Xa6-hv-jse"/>
@@ -519,7 +519,7 @@
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="c2B-Y7-p4A" secondAttribute="trailing" constant="20" symbolic="YES" id="dZ0-Cq-KCP"/>
                                         <constraint firstItem="c2B-Y7-p4A" firstAttribute="top" secondItem="JqI-Z3-PPd" secondAttribute="top" constant="8" id="fxa-Tj-lYe"/>
                                         <constraint firstItem="HiS-Nr-rVe" firstAttribute="trailing" secondItem="JqI-Z3-PPd" secondAttribute="trailingMargin" id="kcB-pb-jX4"/>
-                                        <constraint firstItem="WLg-PI-SZh" firstAttribute="top" secondItem="n54-To-5DT" secondAttribute="bottom" constant="8.5" id="lHZ-wI-Jnz"/>
+                                        <constraint firstItem="WLg-PI-SZh" firstAttribute="top" secondItem="n54-To-5DT" secondAttribute="bottom" constant="-10" id="lHZ-wI-Jnz"/>
                                         <constraint firstAttribute="trailing" secondItem="n54-To-5DT" secondAttribute="trailing" constant="16" id="lxd-BJ-VBo"/>
                                         <constraint firstItem="HiS-Nr-rVe" firstAttribute="top" secondItem="JqI-Z3-PPd" secondAttribute="topMargin" id="wIK-qu-Uzy"/>
                                         <constraint firstItem="n54-To-5DT" firstAttribute="top" secondItem="c2B-Y7-p4A" secondAttribute="bottom" constant="8" id="wYh-5E-Zap"/>
