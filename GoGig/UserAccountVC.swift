@@ -9,7 +9,6 @@
 //  Profile Pic is distorted
 //  User data does not load quickly
 //  Post image caching is not very quick
-//   hello
 
 //  Constraints in table view cell
 
@@ -21,8 +20,8 @@ import FirebaseDatabase
 
 class UserAccountVC: UITableViewController{
     
-    let backgroundImage = UIImage(named: "Background")
-    
+    var user: User?
+    var portfolioPosts = [PortfolioPost]()
     
     override func viewDidLoad() {
         
@@ -37,7 +36,6 @@ class UserAccountVC: UITableViewController{
 //    }
     
     //MARK: FETCH DATA
-    var user: User?
     //We will reuse this VC when we want to look at someone else's profile
     //use did select row at to pass the user uid to this controller
     //if we didn't click on anything when the view appears, use the current user uid
@@ -91,11 +89,8 @@ class UserAccountVC: UITableViewController{
         present(logoutPopup, animated: true, completion: nil)
     }
     
-    var portfolioPosts = [PortfolioPost]()
-    
     //MARK: USER HEADER CELL
     var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
-    
     func updateUserData(cell: AccountHeaderCell){
         
         //Set the navigation bar title
@@ -150,6 +145,7 @@ class UserAccountVC: UITableViewController{
         }
     }
     
+    //MARK: MORE (DELETION)
     @IBAction func postMoreButton(_ sender: UIButton) {
         
         let row = sender.tag

@@ -11,7 +11,7 @@ import UIKit
 extension UserAccountVC {
     
     func setupView() {
-        
+        let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
         imageView.contentMode = .scaleAspectFit

@@ -13,7 +13,8 @@ class GigEvent {
     private var uid: String
     private var id: String
     private var title: String
-    private var time: NSDate
+    private var time: String
+    private var description: String
     //private var location:
     private var postcode: String
     private var payment: Double
@@ -22,11 +23,12 @@ class GigEvent {
     private var phone: String
     private var eventPhotoURL: URL
     
-    init(uid: String, id: String, title: String, time: NSDate, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL) {
+    init(uid: String, id: String, title: String, time: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL) {
         self.uid = uid
         self.id = id
         self.title = title
         self.time = time
+        self.description = description
         //self.location = location
         self.postcode = postcode
         self.payment = payment
@@ -45,8 +47,11 @@ class GigEvent {
     func getTitle() -> String {
         return title
     }
-    func getTime() -> NSDate {
+    func getTime() -> String {
         return time
+    }
+    func getDescription() -> String {
+        return description
     }
     //    func getLocation() -> ... {
     //        return location

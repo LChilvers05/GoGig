@@ -104,7 +104,6 @@ class DataService {
                             if let postURLStr = postData["postURL"] as? String {
                                 if let thumbnailURLStr = postData["thumbnailURL"] as? String {
                                     if let timeInterval = postData["timestamp"] as? TimeInterval {
-                                        
                                         if let postIsImage = postData["isImage"] as? Bool {
                                             if let postCaption = postData["caption"] as? String {
                                                 if let postLocation = postData["location"] as? String {
@@ -166,24 +165,29 @@ class DataService {
                     if let eventData = snap.value as? NSDictionary {
                         
                         if let eventID = eventData["eventID"] as? String {
-                            if let eventTitle = eventData["eventTitle"] as? String {
-                                if let timeInterval = eventData["timestamp"] as? TimeInterval {
-                                    if let eventPostcode = eventData["postcode"] as? String {
-                                        if let eventPayment = eventData["payment"] as? Double {
-                                            if let eventName = eventData["name"] as? String {
-                                                if let eventEmail = eventData["email"] as? String {
-                                                    if let eventPhone = eventData["phone"] as? String {
-                                                        if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
-                                                            
-                                                            let eventPhotoURL = URL(string: eventPhotoURLStr)
-                                                            
-                                                            //Convert time to NSDate
-                                                            let eventTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                            
-                                                            let gigEvent = GigEvent(uid: uid, id: eventID, title: eventTitle, time: eventTime, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!)
-                                                            
-                                                            gigEvents.append(gigEvent)
-                                                            
+                            print("check")
+                            if let eventTitle = eventData["title"] as? String {
+                                if let timeInterval = eventData["timestamp"] as? String {
+                                    if let eventDescription = eventData["description"] as? String {
+                                        if let eventPostcode = eventData["postcode"] as? String {
+                                            if let eventPayment = eventData["payment"] as? Double {
+                                                if let eventOrganiserUid = eventData["uid"] as? String {
+                                                    if let eventName = eventData["name"] as? String {
+                                                        if let eventEmail = eventData["email"] as? String {
+                                                            if let eventPhone = eventData["phone"] as? String {
+                                                                if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
+                                                                    
+                                                                    let eventPhotoURL = URL(string: eventPhotoURLStr)
+                                                                    
+                                                                    //Convert time to NSDate
+//                                                                    let eventTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                                    
+                                                                    let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, time: timeInterval, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!)
+                                                                    
+                                                                    gigEvents.append(gigEvent)
+                                                                    
+                                                                }
+                                                            }
                                                         }
                                                     }
                                                 }

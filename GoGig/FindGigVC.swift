@@ -14,6 +14,32 @@ import FirebaseDatabase
 
 class FindGigVC: UIViewController {
     
+    var user: User?
+    var gigEvents = [GigEvent]()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let uid = Auth.auth().currentUser?.uid {
+            DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
+                self.user = returnedUser
+                DataService.instance.getDBEvents(uid: uid) { (returnedGigEvents) in
+                    self.gigEvents = returnedGigEvents
+                    
+                    self.showEvidence()
+                }
+            }
+        }
+    }
+    
+    func showEvidence() {
+        for gigEvent in gigEvents {
+            print(gigEvent.getTitle() + ":")
+            print("\(gigEvent.getuid()) (\(gigEvent.getName())) has published this event for \(gigEvent.getTime())")
+            print("With the description:")
+            print(gigEvent.getDescription())
+        }
+    }
+        
     //    var user: User?
     //
     //    override func viewDidLoad() {

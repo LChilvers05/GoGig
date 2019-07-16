@@ -354,10 +354,10 @@
             </objects>
             <point key="canvasLocation" x="737" y="-714"/>
         </scene>
-        <!--View Controller-->
+        <!--Find GigVC-->
         <scene sceneID="gGM-Mx-5gY">
             <objects>
-                <viewController id="RZR-t2-qB5" sceneMemberID="viewController">
+                <viewController id="RZR-t2-qB5" customClass="FindGigVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G9O-x2-Zvl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
