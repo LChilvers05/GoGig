@@ -26,20 +26,7 @@ class UserAccountVC: UITableViewController{
     
     override func viewDidLoad() {
         
-        let imageView = UIImageView(image: backgroundImage)
-        self.tableView.backgroundView = imageView
-        imageView.contentMode = .scaleAspectFit
-        
-        let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
-        let blurView = UIVisualEffectView(effect: blurEffect)
-        blurView.frame = imageView.bounds
-        imageView.addSubview(blurView)
-        
-        
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.topItem?.title = "Profile"
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = 350
+        setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPortfolio), name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         refreshPortfolio()
