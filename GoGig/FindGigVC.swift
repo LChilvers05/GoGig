@@ -17,7 +17,7 @@ class FindGigVC: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
-    @IBOutlet weak var gigEventView: GigEventView!
+    @IBOutlet weak var currentGigEventView: GigEventView!
     
     var user: User?
     var gigEvents = [GigEvent]()
@@ -29,8 +29,8 @@ class FindGigVC: UIViewController {
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(self.gigEventWasDragged(gestureRecogniser:)))
         
         //Assign the drag gesture to the view
-        gigEventView.isUserInteractionEnabled = true
-        gigEventView.addGestureRecognizer(dragGesture)
+        currentGigEventView.isUserInteractionEnabled = true
+        currentGigEventView.addGestureRecognizer(dragGesture)
         
         
         if let uid = Auth.auth().currentUser?.uid {
@@ -39,72 +39,110 @@ class FindGigVC: UIViewController {
                 DataService.instance.getDBEvents(uid: uid) { (returnedGigEvents) in
                     self.gigEvents = returnedGigEvents
                     
-                    self.updateView()
+                    self.updateCards()
                 }
             }
         }
     }
     
-    func updateView() {
+    func updateCards() {
         
-        let currentGigEvent = gigEvents.first
-        
-        nameLabel.text = currentGigEvent?.getName()
-        emailLabel.text = currentGigEvent?.getEmail()
-        phoneLabel.text = currentGigEvent?.getPhone()
-        
-        gigEventView.viewLabel.text = currentGigEvent?.getTitle()
+        if gigEvents.count >= 1 {
+            
+            //The gig upfront
+            let currentGigEvent = gigEvents.first
+            nameLabel.text = currentGigEvent?.getName()
+            emailLabel.text = currentGigEvent?.getEmail()
+            phoneLabel.text = currentGigEvent?.getPhone()
+            currentGigEventView.viewLabel.text = currentGigEvent?.getTitle()
+            
+            currentGigEventView.isHidden = false
+            
+            if gigEvents.count > 1 {
+                
+                //The gig behind
+                //let nextGigEvent = gigEvents[1]
+                
+            }
+            
+        } else {
+            //No gigs to apply for
+            nameLabel.text = "No Gigs Around"
+            emailLabel.text = "Share GoGig"
+            currentGigEventView.isHidden = true
+            
+        }
     }
     
+    //swipe right function
+    func applyForGig() {
+        
+        print("the user applied for this gig")
+        
+    }
     
+    //swipe left function
+    func ignoreGig() {
+        
+        print("ignored this job")
+        
+        gigEvents.remove(at: 0)
+        updateCards()
+        
+    }
+    
+    //called method when the gesture is recognised
+    //Pan Gesture - swipe across screen
     @objc func gigEventWasDragged(gestureRecogniser: UIPanGestureRecognizer) {
         
+        //Returns a vector of where user drags to
         let translation = gestureRecogniser.translation(in: view)
         
         let theView = gestureRecogniser.view!
         
+        //move the view to where the user is dragging
         theView.center = CGPoint(x: self.view.bounds.width / 2 + translation.x, y: self.view.bounds.height / 2 + translation.y)
         
+        //calculate distance of view from the centre
         let xFromCenter = theView.center.x - self.view.bounds.width / 2
         
+        //view will rotate more as it moved further from centre (radians)
         var rotation = CGAffineTransform(rotationAngle: xFromCenter / 200)
         
+        //will rotate less the further from centre is goes - view won't go upside down
         let scale = min(abs(100 / xFromCenter), 1)
         
+        //the rotation effect set by the scale
         var stretchAndRotation = rotation.scaledBy(x: scale, y: scale)
         
+        //apply the rotation and stretch to the view
         theView.transform = stretchAndRotation
         
+        //when the user finished dragging
         if gestureRecogniser.state == UIGestureRecognizer.State.ended {
             
+            //the area at which a definite choice has been made:
+            //dragged left
             if theView.center.x < 40 {
                 
-                print("dragged left")
+                ignoreGig()
                 
+                //return the view to the centre
                 rotation = CGAffineTransform(rotationAngle: 0)
-                
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
-                
                 theView.transform = stretchAndRotation
-                
                 theView.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
                 
+            //dragged right
             } else if theView.center.x > self.view.bounds.width - 40 {
                 
-                print("dragged right")
+                applyForGig()
                 
                 rotation = CGAffineTransform(rotationAngle: 0)
-                
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
-                
                 theView.transform = stretchAndRotation
-                
                 theView.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
             }
-            
-            
-            
-            
         }
         
     }

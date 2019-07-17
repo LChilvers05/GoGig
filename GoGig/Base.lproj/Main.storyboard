@@ -408,8 +408,8 @@
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="currentGigEventView" destination="sF0-Vg-uD3" id="0G6-dp-mjx"/>
                         <outlet property="emailLabel" destination="izh-Rw-qD3" id="77A-kn-dQP"/>
-                        <outlet property="gigEventView" destination="sF0-Vg-uD3" id="amI-kQ-Cal"/>
                         <outlet property="nameLabel" destination="MkG-kJ-Exz" id="7qM-uY-veG"/>
                         <outlet property="phoneLabel" destination="Zsu-QO-78w" id="qXq-jE-yAs"/>
                     </connections>
