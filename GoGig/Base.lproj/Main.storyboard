@@ -400,6 +400,23 @@
                                     <outlet property="viewLabel" destination="rDx-An-FRt" id="Por-uY-JRN"/>
                                 </connections>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bvM-l3-HCr" customClass="GigEventView" customModule="GoGig" customModuleProvider="target">
+                                <rect key="frame" x="183" y="197" width="285" height="421"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Stay Here" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e56-0J-TIe">
+                                        <rect key="frame" x="0.0" y="0.0" width="285" height="78"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <outlet property="viewLabel" destination="e56-0J-TIe" id="j6I-Dp-2bR"/>
+                                </connections>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YoL-Zk-6DJ"/>
@@ -411,6 +428,7 @@
                         <outlet property="currentGigEventView" destination="sF0-Vg-uD3" id="0G6-dp-mjx"/>
                         <outlet property="emailLabel" destination="izh-Rw-qD3" id="77A-kn-dQP"/>
                         <outlet property="nameLabel" destination="MkG-kJ-Exz" id="7qM-uY-veG"/>
+                        <outlet property="nextGigEventView" destination="bvM-l3-HCr" id="GHv-PF-5hb"/>
                         <outlet property="phoneLabel" destination="Zsu-QO-78w" id="qXq-jE-yAs"/>
                     </connections>
                 </viewController>

@@ -18,6 +18,7 @@ class FindGigVC: UIViewController {
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var currentGigEventView: GigEventView!
+    @IBOutlet weak var nextGigEventView: GigEventView!
     
     var user: User?
     var gigEvents = [GigEvent]()
@@ -32,6 +33,10 @@ class FindGigVC: UIViewController {
         currentGigEventView.isUserInteractionEnabled = true
         currentGigEventView.addGestureRecognizer(dragGesture)
         
+        nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 20)
+        nextGigEventView.backgroundColor = UIColor.red
+        nextGigEventView.alpha = 0.5
+        self.view.sendSubviewToBack(nextGigEventView)
         
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
@@ -47,6 +52,8 @@ class FindGigVC: UIViewController {
     
     func updateCards() {
         
+        nextGigEventView.isHidden = true
+        
         if gigEvents.count >= 1 {
             
             //The gig upfront
@@ -61,7 +68,9 @@ class FindGigVC: UIViewController {
             if gigEvents.count > 1 {
                 
                 //The gig behind
-                //let nextGigEvent = gigEvents[1]
+                nextGigEventView.isHidden = false
+                let nextGigEvent = gigEvents[1]
+                nextGigEventView.viewLabel.text = nextGigEvent.getTitle()
                 
             }
             
@@ -70,6 +79,7 @@ class FindGigVC: UIViewController {
             nameLabel.text = "No Gigs Around"
             emailLabel.text = "Share GoGig"
             currentGigEventView.isHidden = true
+            nextGigEventView.isHidden = true
             
         }
     }
@@ -131,7 +141,7 @@ class FindGigVC: UIViewController {
                 rotation = CGAffineTransform(rotationAngle: 0)
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
                 theView.transform = stretchAndRotation
-                theView.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
                 
             //dragged right
             } else if theView.center.x > self.view.bounds.width - 40 {
@@ -141,10 +151,9 @@ class FindGigVC: UIViewController {
                 rotation = CGAffineTransform(rotationAngle: 0)
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
                 theView.transform = stretchAndRotation
-                theView.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
             }
         }
-        
     }
 }
 
