@@ -165,7 +165,6 @@ class DataService {
                     if let eventData = snap.value as? NSDictionary {
                         
                         if let eventID = eventData["eventID"] as? String {
-                            print("check")
                             if let eventTitle = eventData["title"] as? String {
                                 if let timeInterval = eventData["timestamp"] as? String {
                                     if let eventDescription = eventData["description"] as? String {

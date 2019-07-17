@@ -42,6 +42,7 @@
 		FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */; };
 		FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */; };
 		FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACF022D763E900D617CB /* FindGigVC.swift */; };
+		FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE922BA22DF5338003E7E69 /* GigEventView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -84,6 +85,7 @@
 		FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoContactCGVC.swift; path = GoGig/InfoContactCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCGVC.swift; path = GoGig/PhotoCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACF022D763E900D617CB /* FindGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindGigVC.swift; path = GoGig/FindGigVC.swift; sourceTree = SOURCE_ROOT; };
+		FEE922BA22DF5338003E7E69 /* GigEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigEventView.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/View/GigEventView.swift"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +171,7 @@
 				FECCACD622D7614500D617CB /* MyTextView.swift */,
 				FE16DBD722DDE6C00005E3AE /* MyTextField.swift */,
 				FECCACD822D7617800D617CB /* PostContainerView.swift */,
+				FEE922BA22DF5338003E7E69 /* GigEventView.swift */,
 				FECCACDA22D761A600D617CB /* RefreshSpinner.swift */,
 				FECCACDC22D761D700D617CB /* TabBarController.swift */,
 			);
@@ -371,6 +374,7 @@
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
 				FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */,
+				FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */,
 				FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */,
 				FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */,
 				FECCACE522D762BE00D617CB /* PortfolioPostVC.swift in Sources */,
