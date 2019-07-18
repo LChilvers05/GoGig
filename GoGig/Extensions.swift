@@ -105,6 +105,31 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         picker.dismiss(animated: true, completion: nil)
     }
     
+    func downloadImage(url: URL, handler: @escaping (_ returnedImage: UIImage) -> ()) {
+        //Get's the data of the URL
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let error = error{
+                
+                print(error.localizedDescription)
+                
+            } else {
+                
+                //So picture if first when UI loads
+                DispatchQueue.main.async() {
+                    
+                    //Converts the image data to a UIImage
+                    if let downloadedImage = UIImage(data: data!) {
+                        
+                        handler(downloadedImage)
+                    }
+                }
+            }
+        }
+        //Resumes the task after image is set
+        task.resume()
+        
+    }
+    
     //Storing images as chache reduces the network usage of the app
     
     func loadImageCache(url: URL, isImage: Bool, handler: @escaping (_ returnedImage: UIImage) -> ()) {

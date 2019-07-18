@@ -166,7 +166,7 @@ class DataService {
                         
                         if let eventID = eventData["eventID"] as? String {
                             if let eventTitle = eventData["title"] as? String {
-                                if let timeInterval = eventData["timestamp"] as? String {
+                                if let timestamp = eventData["timestamp"] as? String {
                                     if let eventDescription = eventData["description"] as? String {
                                         if let eventPostcode = eventData["postcode"] as? String {
                                             if let eventPayment = eventData["payment"] as? Double {
@@ -177,11 +177,8 @@ class DataService {
                                                                 if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
                                                                     
                                                                     let eventPhotoURL = URL(string: eventPhotoURLStr)
-                                                                    
-                                                                    //Convert time to NSDate
-//                                                                    let eventTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                                    
-                                                                    let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, time: timeInterval, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!)
+
+                                                                    let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!)
                                                                     
                                                                     gigEvents.append(gigEvent)
                                                                     

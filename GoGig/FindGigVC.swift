@@ -20,8 +20,6 @@ class FindGigVC: UIViewController {
     @IBOutlet weak var currentGigEventView: GigEventView!
     @IBOutlet weak var nextGigEventView: GigEventView!
     
-    
-    
     var user: User?
     var gigEvents = [GigEvent]()
     
@@ -36,9 +34,17 @@ class FindGigVC: UIViewController {
         currentGigEventView.addGestureRecognizer(dragGesture)
         
         nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
-        nextGigEventView.alpha = 0.5
+        nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
         
+        nextGigEventView.isHidden = true
+        currentGigEventView.isHidden = true
+        
+        refresh()
+        
+    }
+    
+    func refresh() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
@@ -50,6 +56,8 @@ class FindGigVC: UIViewController {
             }
         }
     }
+    
+    var nextEventImage: UIImage?
     
     func updateCards() {
         
@@ -64,12 +72,20 @@ class FindGigVC: UIViewController {
                 emailLabel.text = currentGigEvent.getEmail()
                 phoneLabel.text = currentGigEvent.getPhone()
                 
-                currentGigEventView.numericalDateLabel.text = currentGigEvent.getTime().substring(start: 8, end: 10)
-
-                currentGigEventView.timeLabel.text = currentGigEvent.getTime().substring(start: 11, end: 16)
+                currentGigEventView.dayDateLabel.text = currentGigEvent.getDayDate()
+                currentGigEventView.monthYearDateLabel.text = currentGigEvent.getLongMonthYearDate()
+                currentGigEventView.timeLabel.text = currentGigEvent.getTime()
                 currentGigEventView.titleLabel.text = currentGigEvent.getTitle()
                 currentGigEventView.paymentLabel.text = "For: £\(currentGigEvent.getPayment())"
-                //currentGigEventView.eventPhotoImageView.image = downloadImage(currentGigEvent.getEventPhotoURL)
+                
+                if nextEventImage != nil {
+                    currentGigEventView.eventPhotoImageView.image = nextEventImage
+                } else {
+                    downloadImage(url: currentGigEvent.getEventPhotoURL()) { (returnedImage) in
+                        
+                        self.currentGigEventView.eventPhotoImageView.image = returnedImage
+                    }
+                }
             }
                 
                 currentGigEventView.isHidden = false
@@ -80,12 +96,17 @@ class FindGigVC: UIViewController {
                 nextGigEventView.isHidden = false
                 let nextGigEvent = gigEvents[1]
                 
-                nextGigEventView.numericalDateLabel.text = nextGigEvent.getTime().substring(start: 8, end: 10)
-
-                nextGigEventView.timeLabel.text = nextGigEvent.getTime().substring(start: 11, end: 16)
+                nextGigEventView.dayDateLabel.text = nextGigEvent.getDayDate()
+                nextGigEventView.monthYearDateLabel.text = nextGigEvent.getLongMonthYearDate()
+                nextGigEventView.timeLabel.text = nextGigEvent.getTime()
                 nextGigEventView.titleLabel.text = nextGigEvent.getTitle()
                 nextGigEventView.paymentLabel.text = "For: £\(nextGigEvent.getPayment())"
-                //currentGigEventView.eventPhotoImageView.image = downloadImage(currentGigEvent.getEventPhotoURL)
+                
+                downloadImage(url: nextGigEvent.getEventPhotoURL()) { (returnedImage) in
+                    
+                    self.nextGigEventView.eventPhotoImageView.image = returnedImage
+                    self.nextEventImage = returnedImage
+                }
                 
             }
             
@@ -95,6 +116,8 @@ class FindGigVC: UIViewController {
             emailLabel.text = "Share GoGig"
             currentGigEventView.isHidden = true
             nextGigEventView.isHidden = true
+            
+            refresh()
             
         }
     }

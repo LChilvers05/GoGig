@@ -13,7 +13,7 @@ class GigEvent {
     private var uid: String
     private var id: String
     private var title: String
-    private var time: String
+    private var timestamp: String
     private var description: String
     //private var location:
     private var postcode: String
@@ -23,11 +23,11 @@ class GigEvent {
     private var phone: String
     private var eventPhotoURL: URL
     
-    init(uid: String, id: String, title: String, time: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL) {
+    init(uid: String, id: String, title: String, timestamp: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL) {
         self.uid = uid
         self.id = id
         self.title = title
-        self.time = time
+        self.timestamp = timestamp
         self.description = description
         //self.location = location
         self.postcode = postcode
@@ -47,8 +47,8 @@ class GigEvent {
     func getTitle() -> String {
         return title
     }
-    func getTime() -> String {
-        return time
+    func getTimestamp() -> String {
+        return timestamp
     }
     func getDescription() -> String {
         return description
@@ -73,6 +73,50 @@ class GigEvent {
     }
     func getEventPhotoURL() -> URL {
         return eventPhotoURL
+    }
+    
+    //MARK: timestamp string manipulation for date
+    func getDayDate() -> String {
+        return timestamp.substring(start: 8, end: 10)
+    }
+    func getMonthYearDate() -> String {
+        return timestamp.substring(start: 0, end: 8)
+    }
+    func getTime() -> String {
+        return timestamp.substring(start: 11, end: 16)
+    }
+    func getLongMonthYearDate() -> String {
+        let month = getMonthYearDate().substring(start: 5, end: 7)
+        let year = getMonthYearDate().substring(start: 0, end: 4)
+        
+        switch month {
+        case "01":
+            return "January " + year
+        case "02":
+            return "February " + year
+        case "03":
+            return "March " + year
+        case "04":
+            return "April " + year
+        case "05":
+            return "May " + year
+        case "06":
+            return "June " + year
+        case "07":
+            return "July " + year
+        case "08":
+            return "August " + year
+        case "09":
+            return "September " + year
+        case "10":
+            return "October " + year
+        case "11":
+            return "November" + year
+        case" 12":
+            return "December" + year
+        default:
+            return "error getting month"
+        }
     }
 }
 
