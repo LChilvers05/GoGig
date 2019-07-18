@@ -43,6 +43,7 @@
 		FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */; };
 		FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACF022D763E900D617CB /* FindGigVC.swift */; };
 		FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE922BA22DF5338003E7E69 /* GigEventView.swift */; };
+		FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -86,6 +87,7 @@
 		FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCGVC.swift; path = GoGig/PhotoCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACF022D763E900D617CB /* FindGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindGigVC.swift; path = GoGig/FindGigVC.swift; sourceTree = SOURCE_ROOT; };
 		FEE922BA22DF5338003E7E69 /* GigEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigEventView.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/View/GigEventView.swift"; sourceTree = "<absolute>"; };
+		FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = GoGig/StringExtensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +132,7 @@
 			children = (
 				FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */,
 				FECCACC022D75E6300D617CB /* Extensions.swift */,
+				FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */,
 				FECCACC222D75EB800D617CB /* UserAccountTableView.swift */,
 			);
 			path = Extensions;
@@ -384,6 +387,7 @@
 				FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
 				FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */,
+				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
 				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
 				FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */,
