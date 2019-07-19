@@ -153,10 +153,10 @@ class DataService {
         
         var gigEvents = [GigEvent]()
         
-        //Grab the array full of posts
+        //Grab the array full of events
         REF_EVENTS.observe(.value, with: { (snapshot) in
             
-            //Grab an array of all posts in the database
+            //Grab an array of events in database
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
                 
                 //Loop through them and grab data for instantiation

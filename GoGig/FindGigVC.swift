@@ -57,6 +57,8 @@ class FindGigVC: UIViewController {
         }
     }
     
+    var appearedGigEvent: GigEvent?
+    
     var nextEventImage: UIImage?
     
     func updateCards() {
@@ -67,6 +69,10 @@ class FindGigVC: UIViewController {
             
             //The gig upfront
             if let currentGigEvent = gigEvents.first {
+                
+                //remove it from the front when first used?
+                
+                appearedGigEvent = currentGigEvent
                 
                 nameLabel.text = currentGigEvent.getName()
                 emailLabel.text = currentGigEvent.getEmail()
@@ -88,7 +94,7 @@ class FindGigVC: UIViewController {
                 }
             }
                 
-                currentGigEventView.isHidden = false
+            currentGigEventView.isHidden = false
             
             if gigEvents.count > 1 {
                 
@@ -125,14 +131,21 @@ class FindGigVC: UIViewController {
     //swipe right function
     func applyForGig() {
         
-        print("the user applied for this gig")
+        let interactedGigEvent = appearedGigEvent
         
+        let appliedUsers = [user?.uid]
+        let ignoredUsers = [""]
+        let interactedUsers = ["applied": appliedUsers, "ignored": ignoredUsers]
+        let eventData = ["interactedUsers": interactedUsers]
+        
+        gigEvents.remove(at:0)
+        updateCards()
+        //RESETS THE STACK OF GIGEVENTS really weird...
+        //DataService.instance.updateDBEvents(uid: user!.uid, eventID: id, eventData: eventData)
     }
     
     //swipe left function
     func ignoreGig() {
-        
-        print("ignored this job")
         
         gigEvents.remove(at: 0)
         updateCards()
