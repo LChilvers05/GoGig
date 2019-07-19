@@ -57,7 +57,7 @@ class FindGigVC: UIViewController {
         }
     }
     
-    var appearedGigEvent: GigEvent?
+    var interactedGigEvent: GigEvent?
     
     var nextEventImage: UIImage?
     
@@ -70,9 +70,7 @@ class FindGigVC: UIViewController {
             //The gig upfront
             if let currentGigEvent = gigEvents.first {
                 
-                //remove it from the front when first used?
-                
-                appearedGigEvent = currentGigEvent
+                interactedGigEvent = currentGigEvent
                 
                 nameLabel.text = currentGigEvent.getName()
                 emailLabel.text = currentGigEvent.getEmail()
@@ -120,32 +118,36 @@ class FindGigVC: UIViewController {
             //No gigs to apply for
             nameLabel.text = "No Gigs Around"
             emailLabel.text = "Share GoGig"
+            nextEventImage = nil
             currentGigEventView.isHidden = true
             nextGigEventView.isHidden = true
             
             refresh()
-            
         }
     }
     
     //swipe right function
     func applyForGig() {
         
-        let interactedGigEvent = appearedGigEvent
-        
         let appliedUsers = [user?.uid]
         let ignoredUsers = [""]
         let interactedUsers = ["applied": appliedUsers, "ignored": ignoredUsers]
         let eventData = ["interactedUsers": interactedUsers]
         
+        DataService.instance.updateDBEvents(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: eventData)
+        
         gigEvents.remove(at:0)
         updateCards()
-        //RESETS THE STACK OF GIGEVENTS really weird...
-        //DataService.instance.updateDBEvents(uid: user!.uid, eventID: id, eventData: eventData)
     }
     
     //swipe left function
     func ignoreGig() {
+        
+        let appliedUsers = [""]
+        let ignoredUsers = [user?.uid]
+        let interactedUsers = ["applied": appliedUsers, "ignored": ignoredUsers]
+        let eventData = ["interactedUsers": interactedUsers]
+        DataService.instance.updateDBEvents(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: eventData)
         
         gigEvents.remove(at: 0)
         updateCards()

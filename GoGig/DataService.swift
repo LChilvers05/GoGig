@@ -154,7 +154,7 @@ class DataService {
         var gigEvents = [GigEvent]()
         
         //Grab the array full of events
-        REF_EVENTS.observe(.value, with: { (snapshot) in
+        REF_EVENTS.observeSingleEvent(of: .value, with: { (snapshot) in
             
             //Grab an array of events in database
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
