@@ -73,7 +73,7 @@ class TitleDateCGVC: UIViewController {
             if eventTitle != "" && eventTitle.count <= 60 {
                 
                 
-                eventData = ["uid": self.user?.uid as Any, "eventID": "", "title": eventTitle, "timestamp": timestamp, "location": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": ""]
+                eventData = ["uid": self.user?.uid as Any, "eventID": "", "title": eventTitle, "timestamp": timestamp, "location": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self]
                 
                 performSegue(withIdentifier: TO_LOCATION_PRICING, sender: nil)
                 

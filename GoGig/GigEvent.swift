@@ -23,7 +23,9 @@ class GigEvent {
     private var phone: String
     private var eventPhotoURL: URL
     
-    init(uid: String, id: String, title: String, timestamp: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL) {
+    private var appliedUsers: [String: Bool]
+    
+    init(uid: String, id: String, title: String, timestamp: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {
         self.uid = uid
         self.id = id
         self.title = title
@@ -36,6 +38,8 @@ class GigEvent {
         self.email = email
         self.phone = phone
         self.eventPhotoURL = eventPhotoURL
+        
+        self.appliedUsers = appliedUsers
     }
     
     func getuid() -> String {
@@ -73,6 +77,10 @@ class GigEvent {
     }
     func getEventPhotoURL() -> URL {
         return eventPhotoURL
+    }
+    
+    func getAppliedUsers() -> [String: Bool] {
+        return appliedUsers
     }
     
     //MARK: timestamp string manipulation for date

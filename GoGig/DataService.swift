@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
@@ -144,6 +145,12 @@ class DataService {
         REF_EVENTS.child(eventID).updateChildValues(eventData)
     }
     
+    func updateDBEventsInteractedUsers(uid: String, eventID: String, eventData: Dictionary<String, Bool>){
+        
+        //Set Value because we are updating a new array with all the interacted users, therefore we want the array to replace each time, not update
+        REF_EVENTS.child(eventID).child("appliedUsers").setValue(eventData)
+    }
+    
     func deleteDBEvents(uid: String, eventID: String){
         REF_EVENTS.child(eventID).removeValue()
     }
@@ -164,24 +171,29 @@ class DataService {
                     
                     if let eventData = snap.value as? NSDictionary {
                         
-                        if let eventID = eventData["eventID"] as? String {
-                            if let eventTitle = eventData["title"] as? String {
-                                if let timestamp = eventData["timestamp"] as? String {
-                                    if let eventDescription = eventData["description"] as? String {
-                                        if let eventPostcode = eventData["postcode"] as? String {
-                                            if let eventPayment = eventData["payment"] as? Double {
-                                                if let eventOrganiserUid = eventData["uid"] as? String {
-                                                    if let eventName = eventData["name"] as? String {
-                                                        if let eventEmail = eventData["email"] as? String {
-                                                            if let eventPhone = eventData["phone"] as? String {
-                                                                if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
-                                                                    
-                                                                    let eventPhotoURL = URL(string: eventPhotoURLStr)
+                        if let appliedUsers = eventData["appliedUsers"] as? [String: Bool] {
+                            if self.checkAppliedUsers(appliedUsers: appliedUsers) {
+                                
+                                if let eventID = eventData["eventID"] as? String {
+                                    if let eventTitle = eventData["title"] as? String {
+                                        if let timestamp = eventData["timestamp"] as? String {
+                                            if let eventDescription = eventData["description"] as? String {
+                                                if let eventPostcode = eventData["postcode"] as? String {
+                                                    if let eventPayment = eventData["payment"] as? Double {
+                                                        if let eventOrganiserUid = eventData["uid"] as? String {
+                                                            if let eventName = eventData["name"] as? String {
+                                                                if let eventEmail = eventData["email"] as? String {
+                                                                    if let eventPhone = eventData["phone"] as? String {
+                                                                        if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
+                                                                        
+                                                                            let eventPhotoURL = URL(string: eventPhotoURLStr)
 
-                                                                    let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!)
-                                                                    
-                                                                    gigEvents.append(gigEvent)
-                                                                    
+                                                                            let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
+                                                                        
+                                                                            gigEvents.append(gigEvent)
+                                                                            
+                                                                        }
+                                                                    }
                                                                 }
                                                             }
                                                         }
@@ -199,6 +211,20 @@ class DataService {
             //return it outside the list
             handler(gigEvents)
         })
+    }
+    
+    func checkAppliedUsers(appliedUsers: [String: Bool]) -> Bool {
+        
+        for (uid, _) in appliedUsers {
+            if uid == Auth.auth().currentUser?.uid {
+                
+                print("denied access to gig")
+                return false
+            }
+        }
+        
+        print("granted access to gig")
+        return true
     }
     
     

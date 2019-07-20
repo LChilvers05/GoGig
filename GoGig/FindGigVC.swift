@@ -122,38 +122,22 @@ class FindGigVC: UIViewController {
             currentGigEventView.isHidden = true
             nextGigEventView.isHidden = true
             
-            refresh()
+            //refresh()
         }
     }
     
-    //swipe right function
-    func applyForGig() {
+    var gigEventAppliedUsers: [String: Bool]?
+    
+    func didChoose(applied: Bool){
         
-        let appliedUsers = [user?.uid]
-        let ignoredUsers = [""]
-        let interactedUsers = ["applied": appliedUsers, "ignored": ignoredUsers]
-        let eventData = ["interactedUsers": interactedUsers]
+        gigEventAppliedUsers = interactedGigEvent?.getAppliedUsers()
+        gigEventAppliedUsers![user!.uid] = applied
         
-        DataService.instance.updateDBEvents(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: eventData)
+        DataService.instance.updateDBEventsInteractedUsers(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: gigEventAppliedUsers!)
         
         gigEvents.remove(at:0)
         updateCards()
     }
-    
-    //swipe left function
-    func ignoreGig() {
-        
-        let appliedUsers = [""]
-        let ignoredUsers = [user?.uid]
-        let interactedUsers = ["applied": appliedUsers, "ignored": ignoredUsers]
-        let eventData = ["interactedUsers": interactedUsers]
-        DataService.instance.updateDBEvents(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: eventData)
-        
-        gigEvents.remove(at: 0)
-        updateCards()
-        
-    }
-    
     
     //MARK: GESTURE METHOD
     
@@ -191,7 +175,7 @@ class FindGigVC: UIViewController {
             //dragged left
             if theView.center.x < 40 {
                 
-                ignoreGig()
+                didChoose(applied: false)
                 
                 //return the view to the centre
                 rotation = CGAffineTransform(rotationAngle: 0)
@@ -202,7 +186,7 @@ class FindGigVC: UIViewController {
             //dragged right
             } else if theView.center.x > self.view.bounds.width - 40 {
                 
-                applyForGig()
+                didChoose(applied: true)
                 
                 rotation = CGAffineTransform(rotationAngle: 0)
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)

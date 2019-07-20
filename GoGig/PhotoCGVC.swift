@@ -91,6 +91,8 @@ class PhotoCGVC: UIViewController {
                 
                 self.eventData!["eventPhotoURL"] = returnedURL.absoluteString
                 
+                self.eventData!["appliedUsers"] = ["CREATOR:\(self.user!.uid)": true]
+                
                 //Add the event to the database
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
