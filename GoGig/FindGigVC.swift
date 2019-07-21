@@ -57,14 +57,26 @@ class FindGigVC: UIViewController {
         }
     }
     
-    var interactedGigEvent: GigEvent?
     
+    //MARK: GIG EVENT CARDS
+    
+    var interactedGigEvent: GigEvent?
     var nextEventImage: UIImage?
+    
+    func displayGigEventInfo(gigEventView: GigEventView, gigEvent: GigEvent) {
+        
+        gigEventView.dayDateLabel.text = gigEvent.getDayDate()
+        gigEventView.monthYearDateLabel.text = gigEvent.getLongMonthYearDate()
+        gigEventView.timeLabel.text = gigEvent.getTime()
+        gigEventView.titleLabel.text = gigEvent.getTitle()
+        gigEventView.paymentLabel.text = "For: £\(gigEvent.getPayment())"
+    }
     
     func updateCards() {
         
         nextGigEventView.isHidden = true
         
+        //if there are gigs to apply for
         if gigEvents.count >= 1 {
             
             //The gig upfront
@@ -76,12 +88,16 @@ class FindGigVC: UIViewController {
                 emailLabel.text = currentGigEvent.getEmail()
                 phoneLabel.text = currentGigEvent.getPhone()
                 
-                currentGigEventView.dayDateLabel.text = currentGigEvent.getDayDate()
-                currentGigEventView.monthYearDateLabel.text = currentGigEvent.getLongMonthYearDate()
-                currentGigEventView.timeLabel.text = currentGigEvent.getTime()
-                currentGigEventView.titleLabel.text = currentGigEvent.getTitle()
-                currentGigEventView.paymentLabel.text = "For: £\(currentGigEvent.getPayment())"
+//                currentGigEventView.dayDateLabel.text = currentGigEvent.getDayDate()
+//                currentGigEventView.monthYearDateLabel.text = currentGigEvent.getLongMonthYearDate()
+//                currentGigEventView.timeLabel.text = currentGigEvent.getTime()
+//                currentGigEventView.titleLabel.text = currentGigEvent.getTitle()
+//                currentGigEventView.paymentLabel.text = "For: £\(currentGigEvent.getPayment())"
                 
+                //set the UI for the first in array
+                displayGigEventInfo(gigEventView: currentGigEventView, gigEvent: currentGigEvent)
+                
+                //get image from nextGigEventView or download one
                 if nextEventImage != nil {
                     currentGigEventView.eventPhotoImageView.image = nextEventImage
                 } else {
@@ -94,18 +110,22 @@ class FindGigVC: UIViewController {
                 
             currentGigEventView.isHidden = false
             
+            //if more than one gigEvent
             if gigEvents.count > 1 {
                 
-                //The gig behind
+                //display the nextGigEventView behind with the next gigEvent in line
                 nextGigEventView.isHidden = false
                 let nextGigEvent = gigEvents[1]
                 
-                nextGigEventView.dayDateLabel.text = nextGigEvent.getDayDate()
-                nextGigEventView.monthYearDateLabel.text = nextGigEvent.getLongMonthYearDate()
-                nextGigEventView.timeLabel.text = nextGigEvent.getTime()
-                nextGigEventView.titleLabel.text = nextGigEvent.getTitle()
-                nextGigEventView.paymentLabel.text = "For: £\(nextGigEvent.getPayment())"
+//                nextGigEventView.dayDateLabel.text = nextGigEvent.getDayDate()
+//                nextGigEventView.monthYearDateLabel.text = nextGigEvent.getLongMonthYearDate()
+//                nextGigEventView.timeLabel.text = nextGigEvent.getTime()
+//                nextGigEventView.titleLabel.text = nextGigEvent.getTitle()
+//                nextGigEventView.paymentLabel.text = "For: £\(nextGigEvent.getPayment())"
                 
+                displayGigEventInfo(gigEventView: nextGigEventView, gigEvent: nextGigEvent)
+                
+                //this image is always downloaded
                 downloadImage(url: nextGigEvent.getEventPhotoURL()) { (returnedImage) in
                     
                     self.nextGigEventView.eventPhotoImageView.image = returnedImage
@@ -121,21 +141,26 @@ class FindGigVC: UIViewController {
             nextEventImage = nil
             currentGigEventView.isHidden = true
             nextGigEventView.isHidden = true
-            
-            //refresh()
         }
     }
     
-    var gigEventAppliedUsers: [String: Bool]?
+    
+    //MARK: UPDATE APPLIED USERS
     
     func didChoose(applied: Bool){
         
-        gigEventAppliedUsers = interactedGigEvent?.getAppliedUsers()
+        //Get the interacted users of that event
+        var gigEventAppliedUsers = interactedGigEvent?.getAppliedUsers()
+        //and add a new key with the current users uid
         gigEventAppliedUsers![user!.uid] = applied
         
+        //update the dictionary in the database
         DataService.instance.updateDBEventsInteractedUsers(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: gigEventAppliedUsers!)
         
+        //remove the card from the gigEvent stack
         gigEvents.remove(at:0)
+        
+        //update the UI
         updateCards()
     }
     
