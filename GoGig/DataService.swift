@@ -38,6 +38,8 @@ class DataService {
         return _REF_EVENTS
     }
     
+    //MARK: DATABASE USER PROFILE
+    
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).child("auth").updateChildValues(userData)
     }
@@ -73,6 +75,8 @@ class DataService {
             }
         })
     }
+    
+    //MARK: DATABASE USER PORTFOLIO POSTS
     
     func updateDBPortfolioPosts(uid: String, postID: String, postData: Dictionary<String, Any>){
         //We want to build an array of posts to grab and loop through in table view
@@ -140,6 +144,8 @@ class DataService {
         })
     }
     
+    //MARK: DATABASE EVENTS
+    
     func updateDBEvents(uid: String, eventID: String, eventData: Dictionary<String, Any>){
         //We want to build an array of posts to grab and loop through in table view
         REF_EVENTS.child(eventID).updateChildValues(eventData)
@@ -151,6 +157,7 @@ class DataService {
         REF_EVENTS.child(eventID).child("appliedUsers").setValue(eventData)
     }
     
+    //TODO: delete an event if after refresh the timestamp is less than the current date and time (not relevant)
     func deleteDBEvents(uid: String, eventID: String){
         REF_EVENTS.child(eventID).removeValue()
     }
@@ -227,6 +234,17 @@ class DataService {
         return true
     }
     
+    //MARK: DATABASE USER ACTIVITY
+    
+    func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>){
+        
+        REF_USERS.child(uid).child("activity").child(notificationID).updateChildValues(notificationData)
+    }
+    
+    func deleteDBActivityFeed(uid: String, notificationID: String) {
+        
+        REF_USERS.child(uid).child("activity").child(notificationID).removeValue()
+    }
     
     //MARK: CLOUD STORAGE
     
