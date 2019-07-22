@@ -11,12 +11,12 @@ import UIKit
 
 class RefreshSpinner {
     
-    var refreshControl = UIRefreshControl()
-    
-    func getRefreshControl() -> UIRefreshControl {
-        refreshControl.attributedTitle = NSAttributedString(string: "refreshing portfolio...")
+    //Closure of the refresh spinner
+    let refreshSpinner: UIRefreshControl = {
+        let refreshControl = UIRefreshControl()
+        refreshControl.attributedTitle = NSAttributedString(string: "refreshing....")
         refreshControl.tintColor = UIColor.purple
         
         return refreshControl
-    }
+    }()
 }

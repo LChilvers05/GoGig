@@ -10,6 +10,8 @@
 		A02A9B66AE00541F0237AA90 /* Pods_GoGig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */; };
 		FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */; };
 		FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD722DDE6C00005E3AE /* MyTextField.swift */; };
+		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
+		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
@@ -52,6 +54,8 @@
 		DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoGig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
+		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
+		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,6 +164,7 @@
 				FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */,
 				FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */,
 				FECCACF022D763E900D617CB /* FindGigVC.swift */,
+				FE339C6922E625D200645419 /* ActivityFeedVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -177,6 +182,7 @@
 				FEE922BA22DF5338003E7E69 /* GigEventView.swift */,
 				FECCACDA22D761A600D617CB /* RefreshSpinner.swift */,
 				FECCACDC22D761D700D617CB /* TabBarController.swift */,
+				FE339C6B22E626A400645419 /* ActivityFeedCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -373,10 +379,12 @@
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
 				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
 				FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */,
+				FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */,
 				FECCACE922D7632A00D617CB /* TitleDateCGVC.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
 				FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */,
+				FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */,
 				FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */,
 				FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */,
 				FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */,
