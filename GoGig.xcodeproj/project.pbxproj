@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		A02A9B66AE00541F0237AA90 /* Pods_GoGig.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */; };
+		FE0141DD22E749370012343A /* ActivityFeedCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0141DC22E749370012343A /* ActivityFeedCollectionView.swift */; };
+		FE0141DF22E74A3A0012343A /* ActivityMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */; };
 		FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */; };
 		FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD722DDE6C00005E3AE /* MyTextField.swift */; };
 		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
@@ -52,6 +54,8 @@
 		247BD3913CFF680B937268F8 /* Pods-GoGig.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoGig.release.xcconfig"; path = "Target Support Files/Pods-GoGig/Pods-GoGig.release.xcconfig"; sourceTree = "<group>"; };
 		794909069523DA50B9948C74 /* Pods-GoGig.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GoGig.debug.xcconfig"; path = "Target Support Files/Pods-GoGig/Pods-GoGig.debug.xcconfig"; sourceTree = "<group>"; };
 		DB71A3075EBA9C6F3D6CB118 /* Pods_GoGig.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GoGig.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FE0141DC22E749370012343A /* ActivityFeedCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityFeedCollectionView.swift; path = GoGig/Controller/ActivityFeedCollectionView.swift; sourceTree = SOURCE_ROOT; };
+		FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMenuBar.swift; sourceTree = "<group>"; };
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
@@ -138,6 +142,7 @@
 				FECCACC022D75E6300D617CB /* Extensions.swift */,
 				FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */,
 				FECCACC222D75EB800D617CB /* UserAccountTableView.swift */,
+				FE0141DC22E749370012343A /* ActivityFeedCollectionView.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -172,6 +177,7 @@
 		FE639D7B22D73BEE00DCE58B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				FECCACDC22D761D700D617CB /* TabBarController.swift */,
 				FECCACCE22D7605E00D617CB /* AccountHeaderCell.swift */,
 				FECCACD022D7609100D617CB /* AccountPostCell.swift */,
 				FECCACD222D760CD00D617CB /* AutoComplete.swift */,
@@ -181,7 +187,7 @@
 				FECCACD822D7617800D617CB /* PostContainerView.swift */,
 				FEE922BA22DF5338003E7E69 /* GigEventView.swift */,
 				FECCACDA22D761A600D617CB /* RefreshSpinner.swift */,
-				FECCACDC22D761D700D617CB /* TabBarController.swift */,
+				FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */,
 				FE339C6B22E626A400645419 /* ActivityFeedCell.swift */,
 			);
 			path = View;
@@ -380,6 +386,7 @@
 				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
 				FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */,
 				FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */,
+				FE0141DD22E749370012343A /* ActivityFeedCollectionView.swift in Sources */,
 				FECCACE922D7632A00D617CB /* TitleDateCGVC.swift in Sources */,
 				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
@@ -402,6 +409,7 @@
 				FECCACEB22D7635800D617CB /* LocationPriceCGVC.swift in Sources */,
 				FECCACC122D75E6300D617CB /* Extensions.swift in Sources */,
 				FECCACC522D75F0000D617CB /* AuthService.swift in Sources */,
+				FE0141DF22E74A3A0012343A /* ActivityMenuBar.swift in Sources */,
 				FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

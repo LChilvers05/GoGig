@@ -6,7 +6,6 @@
 //  Copyright © 2019 ChillyDesigns. All rights reserved.
 //
 
-import Foundation
 import UIKit
 import AVKit
 import AVFoundation
