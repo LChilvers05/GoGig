@@ -18,7 +18,7 @@ import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class UserAccountVC: UITableViewController{
+class UserAccountVC: UITableViewController {
     
     var user: User?
     var portfolioPosts = [PortfolioPost]()
