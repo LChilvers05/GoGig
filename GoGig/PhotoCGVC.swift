@@ -14,6 +14,7 @@ class PhotoCGVC: UIViewController {
     
     var user: User?
     var eventData: Dictionary<String, Any>?
+    var notificationData: Dictionary<String, Any>?
     
     var imagePicker: UIImagePickerController?
     
@@ -96,6 +97,8 @@ class PhotoCGVC: UIViewController {
                 //Add the event to the database
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
+                self.updateActivity()
+                
                 //Take user to Activity tab to see their posted event
                 self.tabBarController?.selectedIndex = 2
                 
@@ -107,6 +110,19 @@ class PhotoCGVC: UIViewController {
             
             displayError(title: "Oops", message: "Please take or add a photo of the venue to post event")
         }
+    }
+    
+    func updateActivity() {
+        let notificationID = NSUUID().uuidString
+        let senderUid = user!.uid
+        let recieverUid = senderUid
+        let senderName = "You"
+        let notificationPicURL = user!.picURL.absoluteString
+        let notificationDescription = "created the event: \((eventData!["title"])!)"
+        let timestamp = NSDate().timeIntervalSince1970
+        notificationData = ["notificationID": notificationID, "type": "appliedForGig", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
+        
+        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
     }
 }
 

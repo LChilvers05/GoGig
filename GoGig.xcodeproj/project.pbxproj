@@ -12,6 +12,7 @@
 		FE0141DF22E74A3A0012343A /* ActivityMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */; };
 		FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */; };
 		FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD722DDE6C00005E3AE /* MyTextField.swift */; };
+		FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2B049822EB4EE5001210FD /* ActivityNotification.swift */; };
 		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
 		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
@@ -59,6 +60,7 @@
 		FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMenuBar.swift; sourceTree = "<group>"; };
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
+		FE2B049822EB4EE5001210FD /* ActivityNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityNotification.swift; path = GoGig/ActivityNotification.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
 		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 				FECCACC822D75FA000D617CB /* GigEvent.swift */,
 				FECCACCA22D75FEC00D617CB /* PortfolioPost.swift */,
 				FECCACCC22D7601700D617CB /* User.swift */,
+				FE2B049822EB4EE5001210FD /* ActivityNotification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -381,6 +384,7 @@
 			files = (
 				FECCACE722D762F600D617CB /* CreateGigVC.swift in Sources */,
 				FECCACDF22D7622200D617CB /* LoginViewController.swift in Sources */,
+				FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */,
 				FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */,
 				FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,

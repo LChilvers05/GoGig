@@ -32,6 +32,14 @@ extension ActivityFeedVC {
         guard let collectionViewCell = cell as? ActivityCVCell else { return }
 
         collectionViewCell.setTableViewDataSourceDelegate(dataSourceDelegate: self as UITableViewDataSource & UITableViewDelegate, forRow: indexPath.item)
+        collectionViewCell.tableViewOffset = storedOffsets[indexPath.row] ?? 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        
+        guard let collectionViewCell = cell as? ActivityCVCell else { return }
+        
+        storedOffsets[indexPath.row] = collectionViewCell.tableViewOffset
     }
     
     //MARK: TABLEVIEW METHODS
@@ -58,14 +66,18 @@ extension ActivityFeedVC {
     
     //Change the purple bar position when scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        menuBar.barLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+        if scrollView == self.collectionView {
+            menuBar.barLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+        }
     }
     
     //Change the state of menu bar when we finish dragging the large collection view cells
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        let index = targetContentOffset.pointee.x / view.frame.width
-        let indexPath = NSIndexPath(item: Int(index), section: 0)
-        menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        if scrollView == self.collectionView {
+            let index = targetContentOffset.pointee.x / view.frame.width
+            let indexPath = NSIndexPath(item: Int(index), section: 0)
+            menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: false, scrollPosition: .centeredHorizontally)
+        }
         
     }
     

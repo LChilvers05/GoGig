@@ -14,6 +14,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var storedOffsets = [Int: CGFloat]()
+    
     //Instantiation of menubar in a closure
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()

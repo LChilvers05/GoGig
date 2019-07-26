@@ -22,4 +22,15 @@ class ActivityCVCell: UICollectionViewCell {
         feedTableView.tag = row
         feedTableView.reloadData()
     }
+    
+    
+    var tableViewOffset: CGFloat {
+        get {
+            return feedTableView.contentOffset.x
+        }
+        
+        set {
+            feedTableView.contentOffset.x = newValue
+        }
+    }
 }

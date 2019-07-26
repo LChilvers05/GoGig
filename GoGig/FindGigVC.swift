@@ -22,6 +22,7 @@ class FindGigVC: UIViewController {
     
     var user: User?
     var gigEvents = [GigEvent]()
+    var notificationData: Dictionary<String, Any>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -157,11 +158,29 @@ class FindGigVC: UIViewController {
         //update the dictionary in the database
         DataService.instance.updateDBEventsInteractedUsers(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: gigEventAppliedUsers!)
         
+        if applied {
+            updateActivity()
+        }
+        
+        
         //remove the card from the gigEvent stack
         gigEvents.remove(at:0)
         
         //update the UI
         updateCards()
+    }
+    
+    func updateActivity() {
+        let notificationID = NSUUID().uuidString
+        let senderUid = user!.uid
+        let recieverUid = interactedGigEvent!.getuid()
+        let senderName = user!.name
+        let notificationPicURL = user!.picURL.absoluteString
+        let notificationDescription = "applied for the event: \(interactedGigEvent!.getTitle())"
+        let timestamp = NSDate().timeIntervalSince1970
+        notificationData = ["notificationID": notificationID, "type": "appliedForGig", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
+        
+        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
     }
     
     //MARK: GESTURE METHOD
