@@ -8,28 +8,18 @@
 
 import UIKit
 
-class ActivityCVCell: UICollectionViewCell, UITableViewDelegate, UITableViewDataSource {
+class ActivityCVCell: UICollectionViewCell {
     
-    @IBOutlet weak var feedTableView: UITableView!
+    @IBOutlet private weak var feedTableView: UITableView!
     
-    //Delegate methods for the table view in the collection view cell
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "ActivityFeedCell", for: indexPath) as! ActivityFeedCell
+    //Link the table view datasource and delegate to the view controller rather than the collection view cell with a tag
+    //So that we can stick by the model-view-controller, rather than working from the ActivityCVCell class
+    func setTableViewDataSourceDelegate(dataSourceDelegate: UITableViewDataSource & UITableViewDelegate, forRow row: Int) {
+        feedTableView.delegate = dataSourceDelegate
+        feedTableView.dataSource = dataSourceDelegate
         
-        cell.notificationDescriptionLabel.text = "Hello There From Lee"
-        cell.eventNameButton.setTitle("Hello There", for: .normal)
-        
-        return cell
+        //Tag allows us to distinguish between the table views within the  cv cells for datasource
+        feedTableView.tag = row
+        feedTableView.reloadData()
     }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped a cell")
-    }
-    
-    
 }
