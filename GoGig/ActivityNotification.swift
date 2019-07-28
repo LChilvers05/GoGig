@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ActivityNotification {
+class ActivityNotification: Comparable {
     
     private var id: String
     private var type: String
@@ -53,5 +53,15 @@ class ActivityNotification {
     }
     func getTime() -> NSDate {
         return time
+    }
+    
+    //Quicksort to most recent notification first
+    static func < (lhs: ActivityNotification, rhs: ActivityNotification) -> Bool {
+        //inverse so that quick sort of feed shows most recent first
+        return rhs.getTime().compare(lhs.getTime() as Date) == .orderedAscending
+    }
+    
+    static func == (lhs: ActivityNotification, rhs: ActivityNotification) -> Bool {
+        return lhs.getTime() == rhs.getTime() || lhs.getTime().compare(rhs.getTime() as Date) == .orderedSame
     }
 }

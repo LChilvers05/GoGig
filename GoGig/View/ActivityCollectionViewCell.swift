@@ -10,7 +10,7 @@ import UIKit
 
 class ActivityCVCell: UICollectionViewCell {
     
-    @IBOutlet private weak var feedTableView: UITableView!
+    @IBOutlet weak var feedTableView: UITableView!
     
     //Link the table view datasource and delegate to the view controller rather than the collection view cell with a tag
     //So that we can stick by the model-view-controller, rather than working from the ActivityCVCell class

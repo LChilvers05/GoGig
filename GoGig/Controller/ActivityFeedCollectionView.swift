@@ -19,9 +19,8 @@ extension ActivityFeedVC {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cvCell", for: indexPath) as! ActivityCVCell
         
-        let colors: [UIColor] = [.red, .blue]
-        
-        cell.backgroundColor = colors[indexPath.item]
+        //MAY NOT NEED THIS
+        cell.feedTableView.reloadData()
         
         return cell
     }
@@ -35,6 +34,7 @@ extension ActivityFeedVC {
         collectionViewCell.tableViewOffset = storedOffsets[indexPath.row] ?? 0
     }
     
+    //Called after the UICollectionViewCell dissapears from the view
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let collectionViewCell = cell as? ActivityCVCell else { return }
@@ -43,17 +43,29 @@ extension ActivityFeedVC {
     }
     
     //MARK: TABLEVIEW METHODS
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        
+        if tableView.tag == 0 {
+            return activityNotifications.count
+        } else {
+            return 1
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! ActivityFeedCell
-
-        cell.notificationDescriptionLabel.text = "Hello There From Lee"
-        cell.eventNameButton.setTitle("Hello There", for: .normal)
-        cell.notificationImage.image = UIImage(named: "findGigFilled")!
+        
+        if tableView.tag == 0 {
+            
+            updateNotificationData(cell: cell, row: indexPath.row)
+            
+        } else {
+            
+            cell.notificationDescriptionLabel.text = "Hello There From Lee"
+            cell.eventNameButton.setTitle("Hello There", for: .normal)
+            cell.notificationImage.image = UIImage(named: "findGigFilled")!
+            
+        }
 
         return cell
     }

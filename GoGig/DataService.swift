@@ -220,6 +220,7 @@ class DataService {
         })
     }
     
+    //So that the same gig doesn't appear twice to a musician that has already seen it
     func checkAppliedUsers(appliedUsers: [String: Bool]) -> Bool {
         
         for (uid, _) in appliedUsers {
@@ -244,6 +245,57 @@ class DataService {
     func deleteDBActivityFeed(uid: String, notificationID: String) {
         
         REF_USERS.child(uid).child("activity").child(notificationID).removeValue()
+    }
+    
+    //doObservesingleevent
+    //then have function in view controller which observes newly added childs
+    //Append it to the array
+    func getDBActivityFeed(uid: String, handler: @escaping (_ events: [ActivityNotification]) -> ()) {
+        
+        var activityNotifications = [ActivityNotification]()
+        
+        //Grab the array full of posts
+        REF_USERS.child(uid).child("activity").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            //Grab an array of all posts in the database
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
+                //Loop through them and grab data for instantiation
+                for snap in snapshot {
+                    
+                    if let activityData = snap.value as? NSDictionary {
+                        
+                        if let notificationID = activityData["notificationID"] as? String {
+                            if let notificationType = activityData["type"] as? String {
+                                if let senderUid = activityData["sender"] as? String {
+                                    if let recieverUid = activityData["reciever"] as? String {
+                                        if let senderName = activityData["senderName"] as? String {
+                                            if let notificationPhotoURLStr = activityData["picURL"] as? String {
+                                                if let notificationDescription = activityData["description"] as? String {
+                                                    if let timeInterval = activityData["timestamp"] as? TimeInterval {
+                                                        
+                                                        let notificationPhotoURL = URL(string: notificationPhotoURLStr)
+                                                        
+                                                        let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                        
+                                                        let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                        
+                                                        activityNotifications.append(activityNotification)
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+                
+            handler(activityNotifications)
+        })
+        
     }
     
     //MARK: CLOUD STORAGE
