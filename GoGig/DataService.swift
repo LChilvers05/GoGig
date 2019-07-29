@@ -239,7 +239,9 @@ class DataService {
     
     func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>){
         
-        REF_USERS.child(uid).child("activity").child(notificationID).updateChildValues(notificationData)
+        let priority = notificationData["timestamp"] as! Double
+        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData, andPriority: -1 * priority)
+        
     }
     
     func deleteDBActivityFeed(uid: String, notificationID: String) {
@@ -252,7 +254,7 @@ class DataService {
         var activityNotifications = [ActivityNotification]()
         
         //Grab the array full of posts
-        REF_USERS.child(uid).child("activity").observeSingleEvent(of: .value, with: { (snapshot) in
+        REF_USERS.child(uid).child("activity").queryLimited(toFirst: 2).observeSingleEvent(of: .value, with: { (snapshot) in
             
             //Grab an array of all posts in the database
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {

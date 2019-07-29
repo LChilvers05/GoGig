@@ -64,7 +64,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
                 DataService.instance.getDBActivityFeed(uid: uid) { (returnedActivityNotifications) in
-                    self.activityNotifications = self.quickSort(array: returnedActivityNotifications)
+                    self.activityNotifications = returnedActivityNotifications
                     self.collectionView.reloadData()
                 }
             }
