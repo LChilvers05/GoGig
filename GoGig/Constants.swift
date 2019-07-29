@@ -30,5 +30,11 @@ let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
 
 
+//Gates
+var tabGateOpen = true
+var cardGateOpen = true
+var feedGateOpen = true
+
+
 
 

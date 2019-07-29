@@ -44,10 +44,49 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         super.viewDidLoad()
         setupMenuBar()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshActivityFeed), name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
         refreshActivityFeed()
         
         observeNotifications()
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if feedGateOpen {
+            feedGateOpen = false
+            refreshActivityFeed()
+        }
+    }
+    
+    //MARK: FETCH DATA
+    
+    @objc func refreshActivityFeed() {
+        if let uid = Auth.auth().currentUser?.uid {
+            DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
+                self.user = returnedUser
+                DataService.instance.getDBActivityFeed(uid: uid) { (returnedActivityNotifications) in
+                    self.activityNotifications = self.quickSort(array: returnedActivityNotifications)
+                    self.collectionView.reloadData()
+                }
+            }
+        }
+    }
+    
+    //MARK: NOTIFICATION CELL
+    
+    func updateNotificationData(cell: ActivityFeedCell, row: Int) {
+        
+        cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
+        cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
+        
+        loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
+            cell.notificationImage.image = returnedImage
+        }
+    }
+    
+    //MARK: EVENT CELL
+    
+    
+    //MARK: OBSERVE CHANGES
     
     func observeNotifications() {
         let uid = Auth.auth().currentUser?.uid
@@ -56,7 +95,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             //Grab an array of all posts in the database
             if let activityData = snapshot.value as? NSDictionary {
-                        
+                
                 if let notificationID = activityData["notificationID"] as? String {
                     if let notificationType = activityData["type"] as? String {
                         if let senderUid = activityData["sender"] as? String {
@@ -72,8 +111,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                                 
                                                 let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
                                                 
-                                                self.activityNotifications.append(activityNotification)
-                                                self.activityNotifications = self.quickSort(array: self.activityNotifications)
+                                                self.activityNotifications.insert(activityNotification, at: 0)
                                                 self.collectionView.reloadData()
                                             }
                                         }
@@ -84,34 +122,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     }
                 }
             }
-
+            
         }, withCancel: nil)
-    }
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        refreshActivityFeed()
-//    }
-    
-    func refreshActivityFeed() {
-        if let uid = Auth.auth().currentUser?.uid {
-            DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
-                self.user = returnedUser
-                DataService.instance.getDBActivityFeed(uid: uid) { (returnedActivityNotifications) in
-                    
-                    self.activityNotifications = self.quickSort(array: returnedActivityNotifications)
-                    self.collectionView.reloadData()
-                }
-            }
-        }
-    }
-    
-    func updateNotificationData(cell: ActivityFeedCell, row: Int) {
-        
-        cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
-        cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
-        
-        loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
-            cell.notificationImage.image = returnedImage
-        }
     }
 }

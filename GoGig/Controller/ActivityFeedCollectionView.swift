@@ -55,6 +55,8 @@ extension ActivityFeedVC {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! ActivityFeedCell
         
+        cell.notificationImage.image = UIImage(named: "blankSpace")!
+        
         if tableView.tag == 0 {
             
             updateNotificationData(cell: cell, row: indexPath.row)

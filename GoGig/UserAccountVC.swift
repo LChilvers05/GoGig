@@ -71,6 +71,8 @@ class UserAccountVC: UITableViewController {
                 if let tabBarController = self.tabBarController {
                     tabBarController.viewControllers = tabs
                     tabGateOpen = true
+                    cardGateOpen = true
+                    feedGateOpen = true
                     
                     DEFAULTS.set(nil, forKey: "gigs")
                 }

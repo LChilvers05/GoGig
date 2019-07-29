@@ -38,11 +38,21 @@ class FindGigVC: UIViewController {
         nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
         
+        nameLabel.isHidden = true
+        emailLabel.isHidden = true
+        phoneLabel.isHidden = true
         nextGigEventView.isHidden = true
         currentGigEventView.isHidden = true
         
         refresh()
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if cardGateOpen {
+            cardGateOpen = false
+            refresh()
+        }
     }
     
     func refresh() {
@@ -74,6 +84,10 @@ class FindGigVC: UIViewController {
     }
     
     func updateCards() {
+        
+        nameLabel.isHidden = false
+        emailLabel.isHidden = false
+        phoneLabel.isHidden = false
         
         nextGigEventView.isHidden = true
         
@@ -180,7 +194,13 @@ class FindGigVC: UIViewController {
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "type": "appliedForGig", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
+        //Notify Other User
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
+        
+        //Notify Current User about their action (sender is themself to reciever themself)
+        notificationData!["senderName"] = "You"
+        notificationData!["reciever"] = senderUid
+        DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: notificationData!)
     }
     
     //MARK: GESTURE METHOD

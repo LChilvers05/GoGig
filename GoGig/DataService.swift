@@ -247,9 +247,6 @@ class DataService {
         REF_USERS.child(uid).child("activity").child(notificationID).removeValue()
     }
     
-    //doObservesingleevent
-    //then have function in view controller which observes newly added childs
-    //Append it to the array
     func getDBActivityFeed(uid: String, handler: @escaping (_ events: [ActivityNotification]) -> ()) {
         
         var activityNotifications = [ActivityNotification]()
@@ -295,7 +292,6 @@ class DataService {
                 
             handler(activityNotifications)
         })
-        
     }
     
     //MARK: CLOUD STORAGE
