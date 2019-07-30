@@ -19,4 +19,8 @@ class LoadingCell: UITableViewCell {
         
         return refreshControl
     }()
+    
+    override func awakeFromNib() {
+        <#code#>
+    }
 }

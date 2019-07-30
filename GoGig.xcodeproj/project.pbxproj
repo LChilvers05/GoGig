@@ -36,7 +36,7 @@
 		FECCACD522D760FF00D617CB /* LoginField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD422D760FF00D617CB /* LoginField.swift */; };
 		FECCACD722D7614500D617CB /* MyTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD622D7614500D617CB /* MyTextView.swift */; };
 		FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACD822D7617800D617CB /* PostContainerView.swift */; };
-		FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDA22D761A600D617CB /* RefreshSpinner.swift */; };
+		FECCACDB22D761A600D617CB /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDA22D761A600D617CB /* LoadingCell.swift */; };
 		FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDC22D761D700D617CB /* TabBarController.swift */; };
 		FECCACDF22D7622200D617CB /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACDE22D7622200D617CB /* LoginViewController.swift */; };
 		FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACE022D7625500D617CB /* CreateAccountVC.swift */; };
@@ -86,7 +86,7 @@
 		FECCACD422D760FF00D617CB /* LoginField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginField.swift; path = GoGig/LoginField.swift; sourceTree = SOURCE_ROOT; };
 		FECCACD622D7614500D617CB /* MyTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextView.swift; path = GoGig/MyTextView.swift; sourceTree = SOURCE_ROOT; };
 		FECCACD822D7617800D617CB /* PostContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PostContainerView.swift; path = GoGig/PostContainerView.swift; sourceTree = SOURCE_ROOT; };
-		FECCACDA22D761A600D617CB /* RefreshSpinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = RefreshSpinner.swift; path = GoGig/RefreshSpinner.swift; sourceTree = SOURCE_ROOT; };
+		FECCACDA22D761A600D617CB /* LoadingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoadingCell.swift; path = GoGig/LoadingCell.swift; sourceTree = SOURCE_ROOT; };
 		FECCACDC22D761D700D617CB /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TabBarController.swift; path = GoGig/TabBarController.swift; sourceTree = SOURCE_ROOT; };
 		FECCACDE22D7622200D617CB /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LoginViewController.swift; path = GoGig/LoginViewController.swift; sourceTree = SOURCE_ROOT; };
 		FECCACE022D7625500D617CB /* CreateAccountVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateAccountVC.swift; path = GoGig/CreateAccountVC.swift; sourceTree = SOURCE_ROOT; };
@@ -190,7 +190,7 @@
 				FE16DBD722DDE6C00005E3AE /* MyTextField.swift */,
 				FECCACD822D7617800D617CB /* PostContainerView.swift */,
 				FEE922BA22DF5338003E7E69 /* GigEventView.swift */,
-				FECCACDA22D761A600D617CB /* RefreshSpinner.swift */,
+				FECCACDA22D761A600D617CB /* LoadingCell.swift */,
 				FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */,
 				FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */,
 				FE339C6B22E626A400645419 /* ActivityFeedCell.swift */,
@@ -408,7 +408,7 @@
 				FECCACD722D7614500D617CB /* MyTextView.swift in Sources */,
 				FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
-				FECCACDB22D761A600D617CB /* RefreshSpinner.swift in Sources */,
+				FECCACDB22D761A600D617CB /* LoadingCell.swift in Sources */,
 				FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */,
 				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
