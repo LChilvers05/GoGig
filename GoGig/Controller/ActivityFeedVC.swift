@@ -49,7 +49,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         observeNotifications()
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.topItem?.title = "Activity"
+    }
     override func viewDidAppear(_ animated: Bool) {
         if feedGateOpen {
             //Need to remove all on sign in otherwise it doesn't refresh
@@ -85,6 +87,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
         
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
+        cell.eventNameButton.tag = row
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
         
         loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
@@ -92,8 +95,18 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //MARK: EVENT CELL
+    //MARK: NOTIFICATION CELL ACTIONS
+    var checkUid: String?
+    @IBAction func checkOut(_ sender: UIButton) {
+        
+        let row = sender.tag
+        
+        checkUid = activityNotifications[row].getSenderUid()
+        
+        performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
+    }
     
+    //MARK: EVENT CELL
     
     //MARK: FETCH MORE DATA
     //(Pagination)
@@ -126,6 +139,22 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 self.activityNotifications.insert(returnedActivityNotification, at: 0)
                 self.collectionView.reloadData()
             }
+        }
+    }
+    
+   
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == TO_CHECK_PORTFOLIO {
+            
+            let userAccountVC = segue.destination as! UserAccountVC
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
+            userAccountVC.uid = checkUid!
+            userAccountVC.refreshPortfolio()
         }
     }
 }

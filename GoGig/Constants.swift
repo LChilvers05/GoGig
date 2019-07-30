@@ -21,6 +21,8 @@ let TO_ADD_PHOTO = "toAddPhoto"
 
 let TO_FIND_GIG = "toFindGig"
 
+let TO_CHECK_PORTFOLIO = "toCheckPortfolio"
+
 
 // User Defaults
 

@@ -21,6 +21,7 @@ import FirebaseDatabase
 class UserAccountVC: UITableViewController {
     
     var user: User?
+    var uid: String?
     var portfolioPosts = [PortfolioPost]()
     
     override func viewDidLoad() {
@@ -40,18 +41,21 @@ class UserAccountVC: UITableViewController {
     //use did select row at to pass the user uid to this controller
     //if we didn't click on anything when the view appears, use the current user uid
     @objc func refreshPortfolio(){
-        print("refreshed")
-        if let uid = Auth.auth().currentUser?.uid { //^
-            DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
-                self.user = returnedUser
-                self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
-                    self.profilePic = returnedProfileImage
-                    DataService.instance.getDBPortfolioPosts(uid: uid) { (returnedPosts) in
-                        self.portfolioPosts = self.quickSort(array:returnedPosts)
-                        //print(self.portfolioPosts)
-                        //self.portfolioPosts = returnedPosts
-                        self.tableView.reloadData()
-                    }
+        
+        //User is looking at themself
+        if uid == nil {
+            uid = Auth.auth().currentUser?.uid //^
+        }
+        
+        DataService.instance.getDBUserProfile(uid: uid!) { (returnedUser) in
+            self.user = returnedUser
+            self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
+                self.profilePic = returnedProfileImage
+                DataService.instance.getDBPortfolioPosts(uid: self.uid!) { (returnedPosts) in
+                    self.portfolioPosts = self.quickSort(array:returnedPosts)
+                    //print(self.portfolioPosts)
+                    //self.portfolioPosts = returnedPosts
+                    self.tableView.reloadData()
                 }
             }
         }
@@ -94,6 +98,10 @@ class UserAccountVC: UITableViewController {
     //MARK: USER HEADER CELL
     var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
     func updateUserData(cell: AccountHeaderCell){
+        if uid != Auth.auth().currentUser?.uid {
+            cell.addToPortfolioButton.isHidden = true
+            cell.signOutButton.isHidden = true
+        }
         
         //Set the navigation bar title
         self.navigationController?.navigationBar.topItem?.title = user?.name
@@ -107,11 +115,13 @@ class UserAccountVC: UITableViewController {
         }
         
         cell.profilePicView.image = profilePic
-        
     }
     
     //MARK: PORTFOLIO POST CELLS
     func updatePostData(cell: AccountPostCell, row: Int) {
+        if uid != Auth.auth().currentUser?.uid {
+            cell.postMoreButton.isHidden = true
+        }
         
         cell.postLocationLabel.text = portfolioPosts[row].location
         cell.postCaptionTextView.text = portfolioPosts[row].caption

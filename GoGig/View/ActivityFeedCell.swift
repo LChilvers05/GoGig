@@ -23,7 +23,4 @@ class ActivityFeedCell: UITableViewCell {
         self.backgroundColor = UIColor(white: 1, alpha: 0.75)
     }
     
-    @IBAction func checkout(_ sender: Any) {
-    }
-    
 }
