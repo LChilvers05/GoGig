@@ -239,8 +239,8 @@ class DataService {
     
     func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>){
         
-        let priority = notificationData["timestamp"] as! Double
-        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData, andPriority: -1 * priority)
+        //let priority = notificationData["timestamp"] as! Double
+        REF_USERS.child(uid).child("activity").child(notificationID).updateChildValues(notificationData)
         
     }
     
@@ -249,12 +249,25 @@ class DataService {
         REF_USERS.child(uid).child("activity").child(notificationID).removeValue()
     }
     
-    func getDBActivityFeed(uid: String, handler: @escaping (_ events: [ActivityNotification]) -> ()) {
+    func getDBActivityFeed(uid: String, currentActivity: [ActivityNotification], handler: @escaping (_ events: [ActivityNotification]) -> ()) {
         
+        let lastActivity = currentActivity.last
+        var queryRef: DatabaseQuery
+        
+        if lastActivity == nil {
+            //Fetch first 10 if the initial query
+            //(Now order the query by timestamp rather than using priority when storing)
+            queryRef = REF_USERS.child(uid).child("activity").queryOrdered(byChild: "timestamp").queryLimited(toLast: 10)
+        } else {
+            let lastTimestamp = lastActivity?.getTime().timeIntervalSince1970
+            //fetch another 10 starting at the last one in the array, progressing another 10
+            queryRef = REF_USERS.child(uid).child("activity").queryOrdered(byChild: "timestamp").queryEnding(atValue: lastTimestamp).queryLimited(toLast: 10)
+        }
+        
+        //This contents of this array is appended when returned to display in table
         var activityNotifications = [ActivityNotification]()
         
-        //Grab the array full of posts
-        REF_USERS.child(uid).child("activity").queryLimited(toFirst: 2).observeSingleEvent(of: .value, with: { (snapshot) in
+        queryRef.observeSingleEvent(of: .value, with: { (snapshot) in
             
             //Grab an array of all posts in the database
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
@@ -265,21 +278,26 @@ class DataService {
                     if let activityData = snap.value as? NSDictionary {
                         
                         if let notificationID = activityData["notificationID"] as? String {
-                            if let notificationType = activityData["type"] as? String {
-                                if let senderUid = activityData["sender"] as? String {
-                                    if let recieverUid = activityData["reciever"] as? String {
-                                        if let senderName = activityData["senderName"] as? String {
-                                            if let notificationPhotoURLStr = activityData["picURL"] as? String {
-                                                if let notificationDescription = activityData["description"] as? String {
-                                                    if let timeInterval = activityData["timestamp"] as? TimeInterval {
-                                                        
-                                                        let notificationPhotoURL = URL(string: notificationPhotoURLStr)
-                                                        
-                                                        let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                        
-                                                        let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
-                                                        
-                                                        activityNotifications.append(activityNotification)
+                            
+                            if notificationID != lastActivity?.getId() {
+                                
+                                if let notificationType = activityData["type"] as? String {
+                                    if let senderUid = activityData["sender"] as? String {
+                                        if let recieverUid = activityData["reciever"] as? String {
+                                            if let senderName = activityData["senderName"] as? String {
+                                                if let notificationPhotoURLStr = activityData["picURL"] as? String {
+                                                    if let notificationDescription = activityData["description"] as? String {
+                                                        if let timeInterval = activityData["timestamp"] as? TimeInterval {
+                                                            
+                                                            let notificationPhotoURL = URL(string: notificationPhotoURLStr)
+                                                            
+                                                            let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                            
+                                                            let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                            
+                                                            //Insert at 0 (not append) to be in correct order
+                                                            activityNotifications.insert(activityNotification, at: 0)
+                                                        }
                                                     }
                                                 }
                                             }
@@ -293,6 +311,41 @@ class DataService {
             }
                 
             handler(activityNotifications)
+        })
+    }
+    
+    func observeDBActivityFeed(uid: String, handler: @escaping (_ events: ActivityNotification) -> ()) {
+        
+        REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
+            
+            //Grab an array of all posts in the database
+            if let activityData = snapshot.value as? NSDictionary {
+                
+                if let notificationID = activityData["notificationID"] as? String {
+                    if let notificationType = activityData["type"] as? String {
+                        if let senderUid = activityData["sender"] as? String {
+                            if let recieverUid = activityData["reciever"] as? String {
+                                if let senderName = activityData["senderName"] as? String {
+                                    if let notificationPhotoURLStr = activityData["picURL"] as? String {
+                                        if let notificationDescription = activityData["description"] as? String {
+                                            if let timeInterval = activityData["timestamp"] as? TimeInterval {
+                                                
+                                                let notificationPhotoURL = URL(string: notificationPhotoURLStr)
+                                                
+                                                let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                
+                                                let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                
+                                                handler(activityNotification)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         })
     }
     

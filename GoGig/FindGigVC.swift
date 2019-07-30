@@ -26,6 +26,7 @@ class FindGigVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        cardGateOpen = false
         
         //Function is called when gesture is recognised
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(self.gigEventWasDragged(gestureRecogniser:)))

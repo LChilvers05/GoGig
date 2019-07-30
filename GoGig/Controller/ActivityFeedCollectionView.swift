@@ -43,10 +43,24 @@ extension ActivityFeedVC {
     }
     
     //MARK: TABLEVIEW METHODS
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        //Section 1 - Activity
+        //Section 2 - Loading Cell
+        return 2
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if tableView.tag == 0 {
-            return activityNotifications.count
+            //notifications section
+            if section == 0 {
+                return activityNotifications.count
+            //loading more section
+            } else {
+                //if we are fetching more then return an extra cell (loading cell)
+                return fetchingMore ? 1 : 0
+            }
         } else {
             return 1
         }
@@ -80,8 +94,22 @@ extension ActivityFeedVC {
     
     //Change the purple bar position when scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        //Scrolled the collection view horizontally
         if scrollView == self.collectionView {
             menuBar.barLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
+        
+        //Scrolled the table view vertically
+        } else {
+            let offsetY = scrollView.contentOffset.y
+            let contentHeight = scrollView.contentSize.height
+            if offsetY > contentHeight - scrollView.frame.size.height * leadingScreensForBatching {
+                
+                //If there is more activity to fetch
+                if !fetchingMore && !endReached {
+                    getMoreNotifications()
+                }
+            }
+            
         }
     }
     

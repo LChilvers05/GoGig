@@ -43,8 +43,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMenuBar()
+        feedGateOpen = false
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshActivityFeed), name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
         refreshActivityFeed()
         
         observeNotifications()
@@ -63,8 +63,14 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
-                DataService.instance.getDBActivityFeed(uid: uid) { (returnedActivityNotifications) in
+                
+                self.fetchingMore = true
+                DataService.instance.getDBActivityFeed(uid: uid, currentActivity: self.activityNotifications) { (returnedActivityNotifications) in
                     self.activityNotifications = returnedActivityNotifications
+                    
+                    self.endReached = (returnedActivityNotifications.count == 0)
+                    self.fetchingMore = false
+                    
                     self.collectionView.reloadData()
                 }
             }
@@ -86,43 +92,37 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: EVENT CELL
     
     
+    //MARK: FETCH MORE DATA
+    //(Pagination)
+    
+    var fetchingMore = false
+    //If reached the end, don't bother fetching anymore posts
+    var endReached = false
+    //Start loading notifications 2 cells in advance
+    var leadingScreensForBatching: CGFloat = 2.0
+    
+    func getMoreNotifications(){
+        fetchingMore = true
+        
+        DataService.instance.getDBActivityFeed(uid: user!.uid, currentActivity: activityNotifications) { (returnedActivityNotifications) in
+            //We are appending the contents of the array, not the array itself
+            self.activityNotifications.append(contentsOf: returnedActivityNotifications)
+            
+            //If no more notifications, we have reached the end
+            self.endReached = (returnedActivityNotifications.count == 0)
+            self.fetchingMore = false
+            self.collectionView.reloadData()
+        }
+    }
+    
     //MARK: OBSERVE CHANGES
     
-    func observeNotifications() {
-        let uid = Auth.auth().currentUser?.uid
-        let ref = Database.database().reference().child("users").child(uid!).child("activity")
-        ref.observe(.childAdded, with: { (snapshot) in
-            
-            //Grab an array of all posts in the database
-            if let activityData = snapshot.value as? NSDictionary {
-                
-                if let notificationID = activityData["notificationID"] as? String {
-                    if let notificationType = activityData["type"] as? String {
-                        if let senderUid = activityData["sender"] as? String {
-                            if let recieverUid = activityData["reciever"] as? String {
-                                if let senderName = activityData["senderName"] as? String {
-                                    if let notificationPhotoURLStr = activityData["picURL"] as? String {
-                                        if let notificationDescription = activityData["description"] as? String {
-                                            if let timeInterval = activityData["timestamp"] as? TimeInterval {
-                                                
-                                                let notificationPhotoURL = URL(string: notificationPhotoURLStr)
-                                                
-                                                let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                
-                                                let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
-                                                
-                                                self.activityNotifications.insert(activityNotification, at: 0)
-                                                self.collectionView.reloadData()
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+    func observeNotifications(){
+        if let uid = Auth.auth().currentUser?.uid {
+            DataService.instance.observeDBActivityFeed(uid: uid) { (returnedActivityNotification) in
+                self.activityNotifications.insert(returnedActivityNotification, at: 0)
+                self.collectionView.reloadData()
             }
-            
-        }, withCancel: nil)
+        }
     }
 }
