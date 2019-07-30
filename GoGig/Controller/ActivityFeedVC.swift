@@ -52,6 +52,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidAppear(_ animated: Bool) {
         if feedGateOpen {
+            //Need to remove all on sign in otherwise it doesn't refresh
+            //what has been 'observed' since view did load
+            activityNotifications.removeAll()
             feedGateOpen = false
             refreshActivityFeed()
         }

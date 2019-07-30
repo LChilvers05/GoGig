@@ -239,8 +239,8 @@ class DataService {
     
     func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>){
         
-        //let priority = notificationData["timestamp"] as! Double
-        REF_USERS.child(uid).child("activity").child(notificationID).updateChildValues(notificationData)
+        let priority = notificationData["timestamp"] as! Double
+        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData, andPriority: -1 * priority)
         
     }
     
@@ -256,7 +256,6 @@ class DataService {
         
         if lastActivity == nil {
             //Fetch first 10 if the initial query
-            //(Now order the query by timestamp rather than using priority when storing)
             queryRef = REF_USERS.child(uid).child("activity").queryOrdered(byChild: "timestamp").queryLimited(toLast: 10)
         } else {
             let lastTimestamp = lastActivity?.getTime().timeIntervalSince1970
@@ -297,6 +296,7 @@ class DataService {
                                                             
                                                             //Insert at 0 (not append) to be in correct order
                                                             activityNotifications.insert(activityNotification, at: 0)
+
                                                         }
                                                     }
                                                 }
