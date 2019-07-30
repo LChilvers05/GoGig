@@ -65,7 +65,7 @@ extension ActivityFeedVC {
             return 1
         }
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! ActivityFeedCell
         
@@ -100,16 +100,19 @@ extension ActivityFeedVC {
         
         //Scrolled the table view vertically
         } else {
-            let offsetY = scrollView.contentOffset.y
-            let contentHeight = scrollView.contentSize.height
-            if offsetY > contentHeight - scrollView.frame.size.height * leadingScreensForBatching {
+            //This is needed incase user has no data, causes a crash!
+            if activityNotifications.count != 0 {
                 
-                //If there is more activity to fetch
-                if !fetchingMore && !endReached {
-                    getMoreNotifications()
+                let offsetY = scrollView.contentOffset.y
+                let contentHeight = scrollView.contentSize.height
+                if offsetY > contentHeight - scrollView.frame.size.height * leadingScreensForBatching {
+                    
+                    //If there is more activity to fetch
+                    if !fetchingMore && !endReached {
+                        getMoreNotifications()
+                    }
                 }
             }
-            
         }
     }
     

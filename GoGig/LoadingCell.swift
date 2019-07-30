@@ -11,16 +11,24 @@ import UIKit
 
 class LoadingCell: UITableViewCell {
     
-    //Closure of the refresh spinner
-    let refreshSpinner: UIRefreshControl = {
-        let refreshControl = UIRefreshControl()
-        refreshControl.attributedTitle = NSAttributedString(string: "refreshing....")
-        refreshControl.tintColor = UIColor.purple
-        
-        return refreshControl
+    //Closure of the loading spinner
+    let loadingSpinner: UIActivityIndicatorView = {
+        let loadingSpinner = UIActivityIndicatorView(style: .white)
+        loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
+        loadingSpinner.hidesWhenStopped = true
+        return loadingSpinner
     }()
     
     override func awakeFromNib() {
-        <#code#>
+        setupLoadingSpinner()
+    }
+    
+    func setupLoadingSpinner() {
+        
+        addSubview(loadingSpinner)
+        loadingSpinner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        loadingSpinner.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        loadingSpinner.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        loadingSpinner.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
     }
 }

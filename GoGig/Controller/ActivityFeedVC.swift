@@ -99,7 +99,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //If reached the end, don't bother fetching anymore posts
     var endReached = false
     //Start loading notifications 2 cells in advance
-    var leadingScreensForBatching: CGFloat = 2.0
+    var leadingScreensForBatching: CGFloat = 3.0
     
     func getMoreNotifications(){
         fetchingMore = true
