@@ -235,6 +235,47 @@ class DataService {
         return true
     }
     
+    //Get a single GigEvent upon request rather than array of GigEvents
+    func getDBSingleEvent(uid: String, eventID: String, handler: @escaping (_ events: GigEvent) -> ()) {
+        
+        REF_EVENTS.child(eventID).observeSingleEvent(of: .value, with: { (snapshot) in
+
+            if let eventData = snapshot.value as? NSDictionary {
+                
+                if let appliedUsers = eventData["appliedUsers"] as? [String: Bool] {
+                    if let eventID = eventData["eventID"] as? String {
+                        if let eventTitle = eventData["title"] as? String {
+                            if let timestamp = eventData["timestamp"] as? String {
+                                if let eventDescription = eventData["description"] as? String {
+                                    if let eventPostcode = eventData["postcode"] as? String {
+                                        if let eventPayment = eventData["payment"] as? Double {
+                                            if let eventOrganiserUid = eventData["uid"] as? String {
+                                                if let eventName = eventData["name"] as? String {
+                                                    if let eventEmail = eventData["email"] as? String {
+                                                        if let eventPhone = eventData["phone"] as? String {
+                                                            if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
+                                                                
+                                                                let eventPhotoURL = URL(string: eventPhotoURLStr)
+                                                                
+                                                                let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
+                                                                
+                                                                handler(gigEvent)
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    }
+    
     //MARK: DATABASE USER ACTIVITY
     
     //Using a completion handler now so the feed updates correctly
@@ -286,23 +327,25 @@ class DataService {
                             
                             if notificationID != lastActivity?.getId() {
                                 
-                                if let notificationType = activityData["type"] as? String {
-                                    if let senderUid = activityData["sender"] as? String {
-                                        if let recieverUid = activityData["reciever"] as? String {
-                                            if let senderName = activityData["senderName"] as? String {
-                                                if let notificationPhotoURLStr = activityData["picURL"] as? String {
-                                                    if let notificationDescription = activityData["description"] as? String {
-                                                        if let timeInterval = activityData["timestamp"] as? TimeInterval {
-                                                            
-                                                            let notificationPhotoURL = URL(string: notificationPhotoURLStr)
-                                                            
-                                                            let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                            
-                                                            let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
-                                                            
-                                                            //Insert at 0 (not append) to be in correct order
-                                                            activityNotifications.insert(activityNotification, at: 0)
+                                if let relatedEventID = activityData["relatedEventID"] as? String {
+                                    if let notificationType = activityData["type"] as? String {
+                                        if let senderUid = activityData["sender"] as? String {
+                                            if let recieverUid = activityData["reciever"] as? String {
+                                                if let senderName = activityData["senderName"] as? String {
+                                                    if let notificationPhotoURLStr = activityData["picURL"] as? String {
+                                                        if let notificationDescription = activityData["description"] as? String {
+                                                            if let timeInterval = activityData["timestamp"] as? TimeInterval {
+                                                                
+                                                                let notificationPhotoURL = URL(string: notificationPhotoURLStr)
+                                                                
+                                                                let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                                
+                                                                let activityNotification = ActivityNotification(id: notificationID, relatedEventId: relatedEventID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                                
+                                                                //Insert at 0 (not append) to be in correct order
+                                                                activityNotifications.insert(activityNotification, at: 0)
 
+                                                            }
                                                         }
                                                     }
                                                 }
@@ -328,21 +371,23 @@ class DataService {
             if let activityData = snapshot.value as? NSDictionary {
                 
                 if let notificationID = activityData["notificationID"] as? String {
-                    if let notificationType = activityData["type"] as? String {
-                        if let senderUid = activityData["sender"] as? String {
-                            if let recieverUid = activityData["reciever"] as? String {
-                                if let senderName = activityData["senderName"] as? String {
-                                    if let notificationPhotoURLStr = activityData["picURL"] as? String {
-                                        if let notificationDescription = activityData["description"] as? String {
-                                            if let timeInterval = activityData["timestamp"] as? TimeInterval {
-                                                
-                                                let notificationPhotoURL = URL(string: notificationPhotoURLStr)
-                                                
-                                                let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                
-                                                let activityNotification = ActivityNotification(id: notificationID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
-                                                
-                                                handler(activityNotification)
+                    if let relatedEventID = activityData["relatedEventID"] as? String {
+                        if let notificationType = activityData["type"] as? String {
+                            if let senderUid = activityData["sender"] as? String {
+                                if let recieverUid = activityData["reciever"] as? String {
+                                    if let senderName = activityData["senderName"] as? String {
+                                        if let notificationPhotoURLStr = activityData["picURL"] as? String {
+                                            if let notificationDescription = activityData["description"] as? String {
+                                                if let timeInterval = activityData["timestamp"] as? TimeInterval {
+                                                    
+                                                    let notificationPhotoURL = URL(string: notificationPhotoURLStr)
+                                                    
+                                                    let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
+                                                    
+                                                    let activityNotification = ActivityNotification(id: notificationID, relatedEventId: relatedEventID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                    
+                                                    handler(activityNotification)
+                                                }
                                             }
                                         }
                                     }

@@ -11,6 +11,7 @@ import Foundation
 class ActivityNotification: Comparable {
     
     private var id: String
+    private var relatedEventId: String
     private var type: String
     private var senderUid: String
     private var recieverUid: String
@@ -19,8 +20,9 @@ class ActivityNotification: Comparable {
     private var description: String
     private var time: NSDate
     
-    init(id: String, type: String, senderUid: String, recieverUid: String, senderName: String, picURL: URL, description: String, time: NSDate) {
+    init(id: String, relatedEventId: String, type: String, senderUid: String, recieverUid: String, senderName: String, picURL: URL, description: String, time: NSDate) {
         self.id = id
+        self.relatedEventId = relatedEventId
         self.type = type
         self.senderUid = senderUid
         self.recieverUid = recieverUid
@@ -32,6 +34,9 @@ class ActivityNotification: Comparable {
     
     func getId() -> String {
         return id
+    }
+    func getRelatedEventId() -> String {
+        return relatedEventId
     }
     func getType() -> String {
         return type

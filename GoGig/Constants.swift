@@ -22,6 +22,7 @@ let TO_ADD_PHOTO = "toAddPhoto"
 let TO_FIND_GIG = "toFindGig"
 
 let TO_CHECK_PORTFOLIO = "toCheckPortfolio"
+let TO_CHECK_PORTFOLIO_2 = "toCheckPortfolio2"
 let TO_REVIEW_APPLICATION = "toReviewApplication"
 
 

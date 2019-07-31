@@ -125,9 +125,9 @@ class PhotoCGVC: UIViewController {
         let recieverUid = senderUid
         let senderName = "You"
         let notificationPicURL = user!.picURL.absoluteString
-        let notificationDescription = "created the event: \((eventData!["title"])!)"
+        let notificationDescription = "Created the event: \((eventData!["title"])!)"
         let timestamp = NSDate().timeIntervalSince1970
-        notificationData = ["notificationID": notificationID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
+        notificationData = ["notificationID": notificationID, "relatedEventID": eventID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
     }
 }
 

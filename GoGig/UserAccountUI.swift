@@ -21,9 +21,8 @@ extension UserAccountVC {
         blurView.frame = imageView.bounds
         imageView.addSubview(blurView)
         
-        
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        self.navigationController?.navigationBar.topItem?.title = "Profile"
+        //self.navigationController?.navigationBar.topItem?.title = "Profile"
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 350
     }

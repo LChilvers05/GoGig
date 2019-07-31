@@ -154,7 +154,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-   
+    var selectedApplication: ActivityNotification?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == TO_CHECK_PORTFOLIO {
@@ -173,6 +173,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             let reviewApplicationVC = segue.destination as! ReviewApplicationVC
             
             reviewApplicationVC.uid = checkUid!
+            reviewApplicationVC.application = selectedApplication
             reviewApplicationVC.refresh()
         }
     }

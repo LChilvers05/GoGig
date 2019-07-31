@@ -91,6 +91,7 @@ extension ActivityFeedVC {
         if selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
             
             checkUid = activityNotifications[indexPath.row].getSenderUid()
+            selectedApplication = activityNotifications[indexPath.row]
             performSegue(withIdentifier: TO_REVIEW_APPLICATION, sender: nil)
         }
     }
