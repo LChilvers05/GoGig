@@ -193,7 +193,7 @@ class FindGigVC: UIViewController {
         let notificationPicURL = user!.picURL.absoluteString
         let notificationDescription = "applied for the event: \(interactedGigEvent!.getTitle())"
         let timestamp = NSDate().timeIntervalSince1970
-        notificationData = ["notificationID": notificationID, "type": "appliedForGig", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
+        notificationData = ["notificationID": notificationID, "type": "applied", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
         //Notify Other User
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
@@ -201,6 +201,7 @@ class FindGigVC: UIViewController {
         //Notify Current User about their action (sender is themself to reciever themself)
         notificationData!["senderName"] = "You"
         notificationData!["reciever"] = senderUid
+        notificationData!["type"] = "personal"
         DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: notificationData!)
     }
     

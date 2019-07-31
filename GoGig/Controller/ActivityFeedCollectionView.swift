@@ -87,7 +87,12 @@ extension ActivityFeedVC {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print("You tapped a cell")
+        let selectedNotification = activityNotifications[indexPath.row]
+        if selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
+            
+            checkUid = activityNotifications[indexPath.row].getSenderUid()
+            performSegue(withIdentifier: TO_REVIEW_APPLICATION, sender: nil)
+        }
     }
     
     //MARK: MENUBAR METHODS

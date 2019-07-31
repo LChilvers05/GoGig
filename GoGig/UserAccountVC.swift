@@ -43,7 +43,9 @@ class UserAccountVC: UITableViewController {
     @objc func refreshPortfolio(){
         
         //User is looking at themself
-        if uid == nil {
+        //Gate is needed incase user signs in and signs out again
+        if uid == nil || accountGateOpen {
+            accountGateOpen = false
             uid = Auth.auth().currentUser?.uid //^
         }
         
@@ -75,6 +77,7 @@ class UserAccountVC: UITableViewController {
                 if let tabBarController = self.tabBarController {
                     tabBarController.viewControllers = tabs
                     tabGateOpen = true
+                    accountGateOpen = true
                     cardGateOpen = true
                     feedGateOpen = true
                     

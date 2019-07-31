@@ -22,6 +22,7 @@ let TO_ADD_PHOTO = "toAddPhoto"
 let TO_FIND_GIG = "toFindGig"
 
 let TO_CHECK_PORTFOLIO = "toCheckPortfolio"
+let TO_REVIEW_APPLICATION = "toReviewApplication"
 
 
 // User Defaults
@@ -34,6 +35,7 @@ let USER_EMAIL = "userEmail"
 
 //Gates
 var tabGateOpen = true
+var accountGateOpen = true
 var cardGateOpen = true
 var feedGateOpen = true
 

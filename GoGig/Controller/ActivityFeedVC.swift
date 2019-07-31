@@ -42,12 +42,10 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMenuBar()
         feedGateOpen = false
-        
+        setupMenuBar()
         refreshActivityFeed()
         
-        observeNotifications()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.topItem?.title = "Activity"
@@ -64,7 +62,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: FETCH DATA
     
-    @objc func refreshActivityFeed() {
+    func refreshActivityFeed() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
@@ -80,6 +78,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 }
             }
         }
+        
+        //We have done initial refresh, now observe any additions
+        observeNotifications()
     }
     
     //MARK: NOTIFICATION CELL
@@ -114,11 +115,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     var fetchingMore = false
     //If reached the end, don't bother fetching anymore posts
     var endReached = false
-    //Start loading notifications 2 cells in advance
+    //Start loading notifications 3 cells in advance
     var leadingScreensForBatching: CGFloat = 3.0
     
     func getMoreNotifications(){
         fetchingMore = true
+        
+        print(self.activityNotifications.count)
         
         DataService.instance.getDBActivityFeed(uid: user!.uid, currentActivity: activityNotifications) { (returnedActivityNotifications) in
             //We are appending the contents of the array, not the array itself
@@ -128,15 +131,20 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             self.endReached = (returnedActivityNotifications.count == 0)
             self.fetchingMore = false
             self.collectionView.reloadData()
+            
+            print(self.activityNotifications.count)
         }
     }
     
     //MARK: OBSERVE CHANGES
     
     func observeNotifications(){
+        
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.observeDBActivityFeed(uid: uid) { (returnedActivityNotification) in
-                self.activityNotifications.insert(returnedActivityNotification, at: 0)
+                if self.activityNotifications.contains(returnedActivityNotification) == false {
+                    self.activityNotifications.insert(returnedActivityNotification, at: 0)
+                }
                 self.collectionView.reloadData()
             }
         }
@@ -155,6 +163,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             userAccountVC.uid = checkUid!
             userAccountVC.refreshPortfolio()
+            
+        } else if segue.identifier == TO_REVIEW_APPLICATION {
+            
+            let reviewApplicationVC = segue.destination as! ReviewApplicationVC
+            
+            reviewApplicationVC.uid = checkUid!
+            reviewApplicationVC.refresh()
         }
     }
 }

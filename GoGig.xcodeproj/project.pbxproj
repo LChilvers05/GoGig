@@ -48,6 +48,7 @@
 		FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */; };
 		FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */; };
 		FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACF022D763E900D617CB /* FindGigVC.swift */; };
+		FED01F1222F1CB9400E7CB4F /* ReviewApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED01F1122F1CB9400E7CB4F /* ReviewApplicationVC.swift */; };
 		FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE922BA22DF5338003E7E69 /* GigEventView.swift */; };
 		FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
@@ -98,6 +99,7 @@
 		FECCACEC22D7638900D617CB /* InfoContactCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = InfoContactCGVC.swift; path = GoGig/InfoContactCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCGVC.swift; path = GoGig/PhotoCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACF022D763E900D617CB /* FindGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindGigVC.swift; path = GoGig/FindGigVC.swift; sourceTree = SOURCE_ROOT; };
+		FED01F1122F1CB9400E7CB4F /* ReviewApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewApplicationVC.swift; sourceTree = "<group>"; };
 		FEE922BA22DF5338003E7E69 /* GigEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigEventView.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/View/GigEventView.swift"; sourceTree = "<absolute>"; };
 		FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = GoGig/StringExtensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -163,6 +165,7 @@
 		FE639D7A22D73BE600DCE58B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				FED01F1122F1CB9400E7CB4F /* ReviewApplicationVC.swift */,
 				FECCACDE22D7622200D617CB /* LoginViewController.swift */,
 				FECCACE022D7625500D617CB /* CreateAccountVC.swift */,
 				FECCACE222D7628700D617CB /* UserAccountVC.swift */,
@@ -391,6 +394,7 @@
 				FECCACE322D7628700D617CB /* UserAccountVC.swift in Sources */,
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
 				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
+				FED01F1222F1CB9400E7CB4F /* ReviewApplicationVC.swift in Sources */,
 				FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */,
 				FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */,
 				FE0141DD22E749370012343A /* ActivityFeedCollectionView.swift in Sources */,

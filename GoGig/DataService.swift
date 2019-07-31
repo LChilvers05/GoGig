@@ -239,9 +239,7 @@ class DataService {
     
     func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>){
         
-        let priority = notificationData["timestamp"] as! Double
-        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData, andPriority: -1 * priority)
-        
+        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData)
     }
     
     func deleteDBActivityFeed(uid: String, notificationID: String) {

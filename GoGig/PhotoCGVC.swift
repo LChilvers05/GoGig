@@ -100,7 +100,7 @@ class PhotoCGVC: UIViewController {
                 self.updateActivity()
                 
                 //Take user to Activity tab to see their posted event
-                self.tabBarController?.selectedIndex = 2
+                self.tabBarController?.selectedIndex = 1
                 
                 //clear the event creation and pop to root of the navigation stack
                 self.navigationController?.popToRootViewController(animated: true)
@@ -120,7 +120,7 @@ class PhotoCGVC: UIViewController {
         let notificationPicURL = user!.picURL.absoluteString
         let notificationDescription = "created the event: \((eventData!["title"])!)"
         let timestamp = NSDate().timeIntervalSince1970
-        notificationData = ["notificationID": notificationID, "type": "appliedForGig", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
+        notificationData = ["notificationID": notificationID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
     }
