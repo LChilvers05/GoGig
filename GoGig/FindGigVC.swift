@@ -196,13 +196,16 @@ class FindGigVC: UIViewController {
         notificationData = ["notificationID": notificationID, "type": "applied", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
         //Notify Other User
-        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
-            
-        //Notify Current User about their action (sender is themself to reciever themself)
-        notificationData!["senderName"] = "You"
-        notificationData!["reciever"] = senderUid
-        notificationData!["type"] = "personal"
-        DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: notificationData!)
+        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!) { (complete) in
+            if complete {
+                //Notify Current User about their action (sender is themself to reciever themself)
+                self.notificationData!["senderName"] = "You"
+                self.notificationData!["reciever"] = senderUid
+                self.notificationData!["type"] = "personal"
+                DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: self.notificationData!) { (complete) in
+                }
+            }
+        }
     }
     
     //MARK: GESTURE METHOD

@@ -238,9 +238,16 @@ class DataService {
     //MARK: DATABASE USER ACTIVITY
     
     //Using a completion handler now so the feed updates correctly
-    func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>) {
+    func updateDBActivityFeed(uid: String, notificationID: String, notificationData: Dictionary<String, Any>, handler: @escaping (_ completion: Bool) -> ()) {
         
-        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData)
+        REF_USERS.child(uid).child("activity").child(notificationID).setValue(notificationData) {
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                handler(false)
+            } else {
+                handler(true)
+            }
+        }
     }
     
     func deleteDBActivityFeed(uid: String, notificationID: String) {

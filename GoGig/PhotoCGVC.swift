@@ -97,14 +97,20 @@ class PhotoCGVC: UIViewController {
                 //Add the event to the database
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
-                
                 self.updateActivity()
-
-                //Take user to Activity tab to see their posted event
-                self.tabBarController?.selectedIndex = 1
                 
-                //clear the event creation and pop to root of the navigation stack
-                self.navigationController?.popToRootViewController(animated: true)
+                //Update the activity feed in a completion handler so it updates correctly
+                DataService.instance.updateDBActivityFeed(uid: self.notificationData!["reciever"] as! String, notificationID: self.notificationData!["notificationID"] as! String, notificationData: self.notificationData!) { (complete) in
+                    
+                    if complete {
+                        //Take user to Activity tab to see their posted event
+                        //Without completion handler we were jumping to the view controller before the activity had updated
+                        self.tabBarController?.selectedIndex = 2
+                        
+                        //clear the event creation and pop to root of the navigation stack
+                        self.navigationController?.popToRootViewController(animated: true)
+                    }
+                }
             }
             
         } else {
@@ -122,9 +128,6 @@ class PhotoCGVC: UIViewController {
         let notificationDescription = "created the event: \((eventData!["title"])!)"
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
-        
-        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: self.notificationData!)
-        
     }
 }
 
