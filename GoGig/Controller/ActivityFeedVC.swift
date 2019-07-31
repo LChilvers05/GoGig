@@ -42,8 +42,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        feedGateOpen = false
         setupMenuBar()
+        feedGateOpen = false
         refreshActivityFeed()
         
     }
@@ -61,7 +61,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     //MARK: FETCH DATA
-    
+    var observeGate = true
     func refreshActivityFeed() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
@@ -80,7 +80,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
         
         //We have done initial refresh, now observe any additions
-        observeNotifications()
+        //Need gate to refresh properly on sign out and in
+        if observeGate {
+            observeGate = false
+            observeNotifications()
+        }
     }
     
     //MARK: NOTIFICATION CELL

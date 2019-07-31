@@ -97,8 +97,9 @@ class PhotoCGVC: UIViewController {
                 //Add the event to the database
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
-                self.updateActivity()
                 
+                self.updateActivity()
+
                 //Take user to Activity tab to see their posted event
                 self.tabBarController?.selectedIndex = 1
                 
@@ -122,7 +123,8 @@ class PhotoCGVC: UIViewController {
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
-        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
+        DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: self.notificationData!)
+        
     }
 }
 

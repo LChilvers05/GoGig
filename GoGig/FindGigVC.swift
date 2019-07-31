@@ -197,7 +197,7 @@ class FindGigVC: UIViewController {
         
         //Notify Other User
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!)
-        
+            
         //Notify Current User about their action (sender is themself to reciever themself)
         notificationData!["senderName"] = "You"
         notificationData!["reciever"] = senderUid
