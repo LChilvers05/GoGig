@@ -192,6 +192,7 @@ class PortfolioPostVC: AutoComplete {
     //MARK: STAGE 3: UPLOAD POST
     
     @IBAction func postComplete(_ sender: Any) {
+        self.view.isUserInteractionEnabled = false
         
         if imageAdded || videoAdded {
             
@@ -225,11 +226,13 @@ class PortfolioPostVC: AutoComplete {
                     //Add the vid theumbnail if there is one
                     DataService.instance.updateDBPortfolioPosts(uid: uid, postID: self.postID, postData: self.postData!)
                     
+                    self.view.isUserInteractionEnabled = true
                     self.dismiss(animated: true, completion: nil)
                 }
             }
             
         } else {
+            self.view.isUserInteractionEnabled = true
             
             // User not added a photo
             displayError(title: "Oops", message: "Please add a photo or video to post")
