@@ -110,12 +110,11 @@ class ReviewApplicationVC: UIViewController {
                 self.notificationData!["description"] = "Hired \(self.user!.name) for the event: \(relatedEventTitle)"
                 DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: self.notificationData!) { (complete) in
                     if complete {
-                        
-                        self.view.isUserInteractionEnabled = true
-                        self.navigationController?.popToRootViewController(animated: true)
                     }
                 }
             }
         }
+        self.view.isUserInteractionEnabled = true
+        self.navigationController?.popToRootViewController(animated: true)
     }
 }

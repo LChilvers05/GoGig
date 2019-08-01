@@ -20,12 +20,14 @@ class FindGigVC: UIViewController {
     @IBOutlet weak var currentGigEventView: GigEventView!
     @IBOutlet weak var nextGigEventView: GigEventView!
     
+    
     var user: User?
     var gigEvents = [GigEvent]()
     var notificationData: Dictionary<String, Any>?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         cardGateOpen = false
         
         //Function is called when gesture is recognised
@@ -48,7 +50,9 @@ class FindGigVC: UIViewController {
         refresh()
         
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+    }
     override func viewDidAppear(_ animated: Bool) {
         if cardGateOpen {
             cardGateOpen = false
@@ -161,6 +165,11 @@ class FindGigVC: UIViewController {
     }
     
     
+    @IBAction func checkEvent(_ sender: Any) {
+        performSegue(withIdentifier: TO_EVENT_DESCRIPTION, sender: nil)
+    }
+    
+    
     //MARK: UPDATE APPLIED USERS
     
     func didChoose(applied: Bool){
@@ -176,7 +185,6 @@ class FindGigVC: UIViewController {
         if applied {
             updateActivity()
         }
-        
         
         //remove the card from the gigEvent stack
         gigEvents.remove(at:0)
@@ -263,6 +271,16 @@ class FindGigVC: UIViewController {
                 theView.transform = stretchAndRotation
                 theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 40)
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == TO_EVENT_DESCRIPTION {
+            
+            let eventDescriptionVC = segue.destination as! EventDescriptionVC
+            
+            eventDescriptionVC.gigEvent = interactedGigEvent
         }
     }
 }

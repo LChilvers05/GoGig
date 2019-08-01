@@ -20,9 +20,12 @@ let TO_INFO_CONTACT = "toInfoContact"
 let TO_ADD_PHOTO = "toAddPhoto"
 
 let TO_FIND_GIG = "toFindGig"
+let TO_EVENT_DESCRIPTION = "toEventDescription"
+let TO_EVENT_DESCRIPTION_2 = "toEventDescription2"
 
 let TO_CHECK_PORTFOLIO = "toCheckPortfolio"
 let TO_CHECK_PORTFOLIO_2 = "toCheckPortfolio2"
+let TO_CHECK_PORTFOLIO_3 = "toCheckPortfolio3"
 let TO_REVIEW_APPLICATION = "toReviewApplication"
 
 
