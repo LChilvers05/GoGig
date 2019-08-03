@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+//TODO: AFTER CAMP, ADD LOCATION SERVICES TO SORT GIGS WHEN PRESENTED TO THE MUSICIAN
+
 class LocationPriceCGVC: UIViewController {
     
     
