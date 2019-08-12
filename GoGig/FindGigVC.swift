@@ -8,7 +8,6 @@
 
 import UIKit
 import CoreLocation
-import AVFoundation
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase

@@ -417,6 +417,16 @@ class DataService {
         })
     }
     
+    //MARK: USERS EVENTS
+    //Simply keep record of which events this user has interacted with to list in the 'My Events' section
+    func updateDBUserEvents(uid: String, eventID: String) {
+        REF_USERS.child("events").setValue(eventID)
+    }
+    func deleteDBUserEvents(uid: String, eventID: String) {
+        REF_USERS.child("events").child(eventID).removeValue()
+    }
+    
+    
     //MARK: CLOUD STORAGE
     
     private var _REF_ST = ST_BASE
