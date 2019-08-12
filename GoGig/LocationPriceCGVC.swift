@@ -7,53 +7,92 @@
 //
 
 import UIKit
-
+import CoreLocation
 
 //TODO: AFTER CAMP, ADD LOCATION SERVICES TO SORT GIGS WHEN PRESENTED TO THE MUSICIAN
 
-class LocationPriceCGVC: UIViewController {
+class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     
-    
+    @IBOutlet weak var confirmationImageView: UIImageView!
+    @IBOutlet weak var locationNameField: MyTextField!
     @IBOutlet weak var postcodeField: MyTextField!
     @IBOutlet weak var paymentField: MyTextField!
     
     var user: User?
     var eventData: Dictionary<String, Any>?
-    
-    var location = "home"
+    let locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        //To nearest hundred metres, to save battery
+        lm.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
         postcodeField.updateCharacterLimit(limit: 8)
+        locationNameField.updateCharacterLimit(limit: 64)
+        
+        locationNameField.text = "Location_Name"
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+        //stop updating when view dissapears to conserve battery life
+        locationManager.stopUpdatingLocation()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        print(eventData!)
+    //MARK: GET LOCATION
+    @IBAction func useCurrentLocation(_ sender: Any) {
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+    }
+    
+    var eventLatitude =  0.00
+    var eventLongitude = 0.00
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        eventLatitude = userLocation.coordinate.latitude
+        eventLongitude = userLocation.coordinate.longitude
+    }
+    
+    @IBAction func searchLocationName(_ sender: Any) {
+        presentAutocompleteVC()
+        locationNameField.text = locationResult
     }
     
     @IBAction func continueButton(_ sender: Any) {
         
-        if let postcode = postcodeField.text {
-            if let strPayment = paymentField.text {
-                
-                if (postcode.count == 7 || postcode.count == 8) {
-                    if let payment = Double(strPayment) {
-                        
-                        self.eventData!["location"] = ""
-                        self.eventData!["postcode"] = postcode
-                        self.eventData!["payment"] = payment
-                        
-                        performSegue(withIdentifier: TO_INFO_CONTACT, sender: nil)
+        if let locationName = locationNameField.text {
+            if let postcode = postcodeField.text {
+                if let strPayment = paymentField.text {
+                    
+                    if locationName.count > 2 {
+                        if (postcode.count == 7 || postcode.count == 8) {
+                            if let payment = Double(strPayment) {
+                                
+                                self.eventData!["latitude"] = eventLatitude
+                                self.eventData!["longitude"] = eventLongitude
+                                self.eventData!["locationName"] = locationName
+                                self.eventData!["postcode"] = postcode
+                                self.eventData!["payment"] = payment
+                                
+                                performSegue(withIdentifier: TO_INFO_CONTACT, sender: nil)
+                                
+                            } else {
+                                
+                                displayError(title: "Payment", message: "Please enter the chosen amount in a suitable format")
+                            }
+                            
+                        } else {
+                            
+                            displayError(title: "Postcode", message: "Please enter the correct 7 character postcode of the event")
+                        }
                         
                     } else {
                         
-                        displayError(title: "Payment", message: "Please enter the chosen amount in a suitable format")
+                        displayError(title: "Location", message: "Please search for or type in a location")
                     }
-                    
-                } else {
-                    
-                    displayError(title: "Postcode", message: "Please enter the correct 7 character postcode of the event")
                 }
             }
         }

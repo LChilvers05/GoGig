@@ -185,20 +185,29 @@ class DataService {
                                     if let eventTitle = eventData["title"] as? String {
                                         if let timestamp = eventData["timestamp"] as? String {
                                             if let eventDescription = eventData["description"] as? String {
-                                                if let eventPostcode = eventData["postcode"] as? String {
-                                                    if let eventPayment = eventData["payment"] as? Double {
-                                                        if let eventOrganiserUid = eventData["uid"] as? String {
-                                                            if let eventName = eventData["name"] as? String {
-                                                                if let eventEmail = eventData["email"] as? String {
-                                                                    if let eventPhone = eventData["phone"] as? String {
-                                                                        if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
-                                                                        
-                                                                            let eventPhotoURL = URL(string: eventPhotoURLStr)
+                                                
+                                                //
+                                                if let eventLatitude = eventData["latitude"] as? Double {
+                                                    if let eventLongitude = eventData["longitude"] as? Double {
+                                                        if let eventLocationName = eventData["locationName"] as? String {
+                                                        
+                                                            if let eventPostcode = eventData["postcode"] as? String {
+                                                                if let eventPayment = eventData["payment"] as? Double {
+                                                                    if let eventOrganiserUid = eventData["uid"] as? String {
+                                                                        if let eventName = eventData["name"] as? String {
+                                                                            if let eventEmail = eventData["email"] as? String {
+                                                                                if let eventPhone = eventData["phone"] as? String {
+                                                                                    if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
+                                                                                    
+                                                                                        let eventPhotoURL = URL(string: eventPhotoURLStr)
 
-                                                                            let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
-                                                                        
-                                                                            gigEvents.append(gigEvent)
-                                                                            
+                                                                                        let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, latitude: eventLatitude, longitude: eventLongitude, locationName: eventLocationName, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
+                                                                                    
+                                                                                        gigEvents.append(gigEvent)
+                                                                                        
+                                                                                    }
+                                                                                }
+                                                                            }
                                                                         }
                                                                     }
                                                                 }
@@ -247,19 +256,27 @@ class DataService {
                         if let eventTitle = eventData["title"] as? String {
                             if let timestamp = eventData["timestamp"] as? String {
                                 if let eventDescription = eventData["description"] as? String {
-                                    if let eventPostcode = eventData["postcode"] as? String {
-                                        if let eventPayment = eventData["payment"] as? Double {
-                                            if let eventOrganiserUid = eventData["uid"] as? String {
-                                                if let eventName = eventData["name"] as? String {
-                                                    if let eventEmail = eventData["email"] as? String {
-                                                        if let eventPhone = eventData["phone"] as? String {
-                                                            if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
-                                                                
-                                                                let eventPhotoURL = URL(string: eventPhotoURLStr)
-                                                                
-                                                                let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
-                                                                
-                                                                handler(gigEvent)
+                                    
+                                    if let eventLatitude = eventData["latitude"] as? Double {
+                                        if let eventLongitude = eventData["longitude"] as? Double {
+                                            if let eventLocationName = eventData["locationName"] as? String {
+                                            
+                                                if let eventPostcode = eventData["postcode"] as? String {
+                                                    if let eventPayment = eventData["payment"] as? Double {
+                                                        if let eventOrganiserUid = eventData["uid"] as? String {
+                                                            if let eventName = eventData["name"] as? String {
+                                                                if let eventEmail = eventData["email"] as? String {
+                                                                    if let eventPhone = eventData["phone"] as? String {
+                                                                        if let eventPhotoURLStr = eventData["eventPhotoURL"] as? String {
+                                                                            
+                                                                            let eventPhotoURL = URL(string: eventPhotoURLStr)
+                                                                            
+                                                                            let gigEvent = GigEvent(uid: eventOrganiserUid, id: eventID, title: eventTitle, timestamp: timestamp, description: eventDescription, latitude: eventLatitude, longitude: eventLongitude, locationName: eventLocationName, postcode: eventPostcode, payment: eventPayment, name: eventName, email: eventEmail, phone: eventPhone, eventPhotoURL: eventPhotoURL!, appliedUsers: appliedUsers)
+                                                                            
+                                                                            handler(gigEvent)
+                                                                        }
+                                                                    }
+                                                                }
                                                             }
                                                         }
                                                     }

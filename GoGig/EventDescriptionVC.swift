@@ -38,7 +38,7 @@ class EventDescriptionVC: UIViewController {
         dayDateLabel.text = gigEvent?.getDayDate()
         monthYearDateLabel.text = gigEvent?.getLongMonthYearDate()
         timeLabel.text = gigEvent?.getTime()
-        //locationLabel.text = gigEvent?.getLocation()
+        locationLabel.text = gigEvent!.getLocationName() + " " + gigEvent!.getPostcode()
         paymentLabel.text = "For: £\(gigEvent!.getPayment())"
         descriptionTextView.text = gigEvent?.getDescription()
     }

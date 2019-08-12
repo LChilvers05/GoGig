@@ -7,15 +7,19 @@
 //
 
 import Foundation
+import CoreLocation
 
-class GigEvent {
+class GigEvent: Comparable {
     
     private var uid: String
     private var id: String
     private var title: String
     private var timestamp: String
     private var description: String
-    //private var location:
+    private var latitude: Double
+    private var longitude: Double
+    private var distance: Double
+    private var locationName: String
     private var postcode: String
     private var payment: Double
     private var name: String
@@ -25,20 +29,22 @@ class GigEvent {
     
     private var appliedUsers: [String: Bool]
     
-    init(uid: String, id: String, title: String, timestamp: String, description: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {
+    init(uid: String, id: String, title: String, timestamp: String, description: String, latitude: Double, longitude: Double, locationName: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {
         self.uid = uid
         self.id = id
         self.title = title
         self.timestamp = timestamp
         self.description = description
-        //self.location = location
+        self.locationName = locationName
+        self.latitude = latitude
+        self.longitude = longitude
         self.postcode = postcode
         self.payment = payment
         self.name = name
         self.email = email
         self.phone = phone
         self.eventPhotoURL = eventPhotoURL
-        
+        self.distance = 0.00
         self.appliedUsers = appliedUsers
     }
     
@@ -57,9 +63,21 @@ class GigEvent {
     func getDescription() -> String {
         return description
     }
-    //    func getLocation() -> ... {
-    //        return location
-    //    }
+    func getLocationName() -> String {
+        return locationName
+    }
+    func getLatitude() -> Double {
+        return latitude
+    }
+    func getLongitude() -> Double {
+        return longitude
+    }
+    func getDistance() -> Double {
+        return distance
+    }
+    func setDistance(distanceFromUser: Double) {
+        self.distance = distanceFromUser
+    }
     func getPostcode() -> String {
         return postcode
     }
@@ -125,6 +143,22 @@ class GigEvent {
         default:
             return "error getting month"
         }
+    }
+    
+    //MARK: get exact point location using the latitude and the longitude
+    func getGigEventLocation() -> CLLocation {
+        let gigEventLocation = CLLocation(latitude: latitude, longitude: longitude)
+        return gigEventLocation
+    }
+    
+    ///Quicksort based on location - nearest is first
+    static func < (lhs: GigEvent, rhs: GigEvent) -> Bool {
+
+        return lhs.getDistance() < rhs.getDistance()
+    }
+    
+    static func == (lhs: GigEvent, rhs: GigEvent) -> Bool {
+        return lhs.getDistance() == rhs.getDistance()
     }
 }
 

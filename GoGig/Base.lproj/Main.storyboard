@@ -132,9 +132,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cew-jY-YT8">
-                                <rect key="frame" x="19" y="206" width="171" height="30"/>
+                                <rect key="frame" x="19" y="191" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Use My Current Location"/>
+                                <connections>
+                                    <action selector="useCurrentLocation:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="DnT-ml-8LX"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="THj-Fp-FMo">
                                 <rect key="frame" x="166" y="183" width="0.0" height="0.0"/>
@@ -178,17 +181,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" textContentType="postal-code"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-Fu-owu">
-                                <rect key="frame" x="248" y="206" width="111" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search Location"/>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UKD-eJ-EFk">
                                 <rect key="frame" x="128" y="528" width="124" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Next" image="continueButton-1"/>
                                 <connections>
                                     <action selector="continueButton:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="gcW-Gt-3SC"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="acceptUser" translatesAutoresizingMaskIntoConstraints="NO" id="qC0-Lr-PhK">
+                                <rect key="frame" x="329" y="191" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQl-lZ-C6E" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
+                                <rect key="frame" x="262" y="228" width="97" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-Fu-owu">
+                                <rect key="frame" x="19" y="228" width="111" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Search Location"/>
+                                <connections>
+                                    <action selector="searchLocationName:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="I1v-EL-Wm6"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -200,6 +217,8 @@
                     </tabBarItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
+                        <outlet property="confirmationImageView" destination="qC0-Lr-PhK" id="m22-iA-bGC"/>
+                        <outlet property="locationNameField" destination="RQl-lZ-C6E" id="PkR-vp-LpU"/>
                         <outlet property="paymentField" destination="gyY-9x-36f" id="biX-lz-BMd"/>
                         <outlet property="postcodeField" destination="QdM-wA-wLR" id="ngL-6d-RUf"/>
                         <segue destination="kh1-1W-972" kind="show" identifier="toInfoContact" id="s2L-t3-kUA"/>
@@ -207,7 +226,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bKK-UV-0CZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2926" y="-716"/>
+            <point key="canvasLocation" x="2925.5999999999999" y="-716.49175412293857"/>
         </scene>
         <!--Tell me more...-->
         <scene sceneID="z8F-G0-1Rf">

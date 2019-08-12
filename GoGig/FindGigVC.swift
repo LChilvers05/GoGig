@@ -7,12 +7,13 @@
 //
 
 import UIKit
+import CoreLocation
 import AVFoundation
 import FirebaseAuth
 import FirebaseStorage
 import FirebaseDatabase
 
-class FindGigVC: UIViewController {
+class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
@@ -24,6 +25,14 @@ class FindGigVC: UIViewController {
     var user: User?
     var gigEvents = [GigEvent]()
     var notificationData: Dictionary<String, Any>?
+    
+    let locationManager: CLLocationManager = {
+        let lm = CLLocationManager()
+        //To nearest hundred metres, to save battery
+        lm.desiredAccuracy = kCLLocationAccuracyBest
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,13 +68,23 @@ class FindGigVC: UIViewController {
             refresh()
         }
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        locationManager.stopUpdatingLocation()
+    }
     
     func refresh() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
                 DataService.instance.getDBEvents(uid: uid) { (returnedGigEvents) in
-                    self.gigEvents = returnedGigEvents
+                    //self.gigEvents = returnedGigEvents
+                    self.gigEvents = self.setGigEventDistances(gigs: returnedGigEvents)
+                    
+                    for gig in self.gigEvents {
+                        print(gig.getLatitude())
+                        print(gig.getLongitude())
+                        print("===============================")
+                    }
                     
                     self.updateCards()
                 }
@@ -73,6 +92,33 @@ class FindGigVC: UIViewController {
         }
     }
     
+    //MARK: SORT GIGS BY LOCATION
+    var userLatitude =  0.00
+    var userLongitude = 0.00
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        
+        let userLocation: CLLocation = locations[0]
+        userLatitude = userLocation.coordinate.latitude
+        userLongitude = userLocation.coordinate.longitude
+    }
+    
+    func setGigEventDistances(gigs: [GigEvent]) -> [GigEvent] {
+        
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
+        
+        let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
+        
+        for gig in gigs {
+            
+            let gigEventLocation = gig.getGigEventLocation()
+            let distance = gigEventLocation.distance(from: userLocation) as Double
+            
+            gig.setDistance(distanceFromUser: distance)
+        }
+        
+        return quickSort(array: gigs)
+    }
     
     //MARK: GIG EVENT CARDS
     
