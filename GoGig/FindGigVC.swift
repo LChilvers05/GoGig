@@ -80,12 +80,6 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
                     //self.gigEvents = returnedGigEvents
                     self.gigEvents = self.setGigEventDistances(gigs: returnedGigEvents)
                     
-                    for gig in self.gigEvents {
-                        print(gig.getLatitude())
-                        print(gig.getLongitude())
-                        print("===============================")
-                    }
-                    
                     self.updateCards()
                 }
             }
@@ -102,6 +96,9 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         userLongitude = userLocation.coordinate.longitude
     }
     
+    //We compare the two coordinates of the gig and the user
+    //update the distance attrribute
+    //then use the distance to do a quick sort
     func setGigEventDistances(gigs: [GigEvent]) -> [GigEvent] {
         
         locationManager.delegate = self

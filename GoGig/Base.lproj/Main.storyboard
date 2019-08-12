@@ -189,19 +189,19 @@
                                     <action selector="continueButton:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="gcW-Gt-3SC"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="acceptUser" translatesAutoresizingMaskIntoConstraints="NO" id="qC0-Lr-PhK">
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="acceptUser" translatesAutoresizingMaskIntoConstraints="NO" id="qC0-Lr-PhK">
                                 <rect key="frame" x="329" y="191" width="30" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQl-lZ-C6E" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                <rect key="frame" x="262" y="228" width="97" height="30"/>
+                                <rect key="frame" x="201" y="228" width="158" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-Fu-owu">
-                                <rect key="frame" x="19" y="228" width="111" height="30"/>
+                                <rect key="frame" x="19" y="228" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Search Location"/>
                                 <connections>

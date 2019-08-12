@@ -42,9 +42,21 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     }
     
     //MARK: GET LOCATION
+    var currentLocationOn = false
     @IBAction func useCurrentLocation(_ sender: Any) {
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
+        if currentLocationOn == false  {
+            currentLocationOn = true
+            locationManager.delegate = self
+            locationManager.startUpdatingLocation()
+            confirmationImageView.image = UIImage(named: "acceptUser")
+            confirmationImageView.isHidden = false
+        } else {
+            currentLocationOn = false
+            locationManager.stopUpdatingLocation()
+            eventLatitude = 0.00
+            eventLongitude = 0.00
+            confirmationImageView.image = UIImage(named: "rejectUser")
+        }
     }
     
     var eventLatitude =  0.00
