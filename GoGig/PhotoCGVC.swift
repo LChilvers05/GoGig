@@ -97,6 +97,9 @@ class PhotoCGVC: UIViewController {
                 //Add the event to the database
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
+                //Add the event under user to the database
+                DataService.instance.updateDBUserEvents(uid: self.user!.uid, eventID: self.eventID)
+                
                 self.updateActivity()
                 
                 //Update the activity feed in a completion handler so it updates correctly

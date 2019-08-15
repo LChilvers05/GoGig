@@ -5,6 +5,7 @@
 //  Created by Lee Chilvers on 12/05/2019.
 //  Copyright © 2019 ChillyDesigns. All rights reserved.
 //
+//  TODO: WHAT IF USER DOES NOT OPT FOR LOCATION SERVICES?
 
 import UIKit
 import CoreLocation
@@ -225,6 +226,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         DataService.instance.updateDBEventsInteractedUsers(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: gigEventAppliedUsers!)
         
         if applied {
+            
+            //Add the event under user to the database
+            DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: interactedGigEvent!.getid())
+            
             updateActivity()
         }
         

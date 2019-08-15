@@ -293,6 +293,46 @@ class DataService {
         })
     }
     
+    //MARK: USERS EVENTS
+    
+    //Simply keep record of which events this user has interacted with to list in the 'My Events' section
+    func updateDBUserEvents(uid: String, eventID: String) {
+        //Get the current array of user's events
+        //And append to it to update the database with
+        getDBUserEvents(uid: uid) { (returnedEvents) in
+            var recordedEvents = returnedEvents
+            recordedEvents.append(eventID)
+            
+            self.REF_USERS.child(uid).child("events").setValue(recordedEvents)
+        }
+    }
+    func deleteDBUserEvents(uid: String, eventID: String) {
+        //REF_USERS.child(uid).child("events").child(eventID).removeValue()
+        
+        //This will also trigger the deletion of the event publicly available to musicians
+    }
+    func getDBUserEvents(uid: String, handler: @escaping (_ events: [String]) -> ()) {
+        
+        var recordedEvents = [String]()
+        
+        //Grab the array full of events
+        REF_USERS.child(uid).child("events").observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                
+                for snap in snapshot {
+                    
+                    if let recordedEvent = snap.value as? String {
+                        print("reached")
+                        recordedEvents.append(recordedEvent)
+                    }
+                }
+            }
+            handler(recordedEvents)
+        })
+    }
+
+    
     //MARK: DATABASE USER ACTIVITY
     
     //Using a completion handler now so the feed updates correctly
@@ -416,16 +456,6 @@ class DataService {
             }
         })
     }
-    
-    //MARK: USERS EVENTS
-    //Simply keep record of which events this user has interacted with to list in the 'My Events' section
-    func updateDBUserEvents(uid: String, eventID: String) {
-        REF_USERS.child("events").setValue(eventID)
-    }
-    func deleteDBUserEvents(uid: String, eventID: String) {
-        REF_USERS.child("events").child(eventID).removeValue()
-    }
-    
     
     //MARK: CLOUD STORAGE
     
