@@ -47,7 +47,8 @@ extension ActivityFeedVC {
     func numberOfSections(in tableView: UITableView) -> Int {
         //Section 1 - Activity
         //Section 2 - Loading Cell
-        return 2
+        //MAY NEED TO BE TWO
+        return 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -56,13 +57,16 @@ extension ActivityFeedVC {
             //notifications section
             if section == 0 {
                 return activityNotifications.count
+                
+            //DON'T THINK THIS IS NEEDED
             //loading more section
             } else {
                 //if we are fetching more then return an extra cell (loading cell)
                 return fetchingMore ? 1 : 0
             }
         } else {
-            return 1
+            //event listing section
+            return eventListings.count
         }
     }
     
@@ -77,9 +81,11 @@ extension ActivityFeedVC {
             
         } else {
             
-            cell.notificationDescriptionLabel.text = "Hello There From Lee"
-            cell.eventNameButton.setTitle("Hello There", for: .normal)
-            cell.notificationImage.image = UIImage(named: "findGigFilled")!
+            updateEventListingData(cell: cell, row: indexPath.row)
+            
+//            cell.notificationDescriptionLabel.text = "Hello There From Lee"
+//            cell.eventNameButton.setTitle("Hello There", for: .normal)
+//            cell.notificationImage.image = UIImage(named: "findGigFilled")!
             
         }
 
@@ -87,12 +93,21 @@ extension ActivityFeedVC {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedNotification = activityNotifications[indexPath.row]
-        if selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
+        
+        //activity notifications
+        if tableView.tag == 0 {
+            let selectedNotification = activityNotifications[indexPath.row]
+            if selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
+                
+                checkUid = activityNotifications[indexPath.row].getSenderUid()
+                selectedApplication = activityNotifications[indexPath.row]
+                performSegue(withIdentifier: TO_REVIEW_APPLICATION, sender: nil)
+            }
             
-            checkUid = activityNotifications[indexPath.row].getSenderUid()
-            selectedApplication = activityNotifications[indexPath.row]
-            performSegue(withIdentifier: TO_REVIEW_APPLICATION, sender: nil)
+        //event listings
+        } else {
+            selectedListing = eventListings[indexPath.row]
+            performSegue(withIdentifier: TO_EVENT_DESCRIPTION_2, sender: nil)
         }
     }
     
@@ -137,5 +152,4 @@ extension ActivityFeedVC {
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
     }
-    
 }

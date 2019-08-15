@@ -301,7 +301,7 @@ class DataService {
         //And append to it to update the database with
         getDBUserEvents(uid: uid) { (returnedEvents) in
             var recordedEvents = returnedEvents
-            recordedEvents.append(eventID)
+            recordedEvents.insert(eventID, at: 0)
             
             self.REF_USERS.child(uid).child("events").setValue(recordedEvents)
         }
@@ -324,7 +324,7 @@ class DataService {
                     
                     if let recordedEvent = snap.value as? String {
                         print("reached")
-                        recordedEvents.append(recordedEvent)
+                        recordedEvents.insert(recordedEvent, at: 0)
                     }
                 }
             }

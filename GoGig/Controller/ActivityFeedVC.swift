@@ -39,6 +39,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var user: User?
     var activityNotifications = [ActivityNotification]()
+    var eventListings = [GigEvent]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +56,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             //Need to remove all on sign in otherwise it doesn't refresh
             //what has been 'observed' since view did load
             activityNotifications.removeAll()
+            eventListings.removeAll()
             feedGateOpen = false
             refreshActivityFeed()
         }
@@ -74,6 +76,15 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     self.endReached = (returnedActivityNotifications.count == 0)
                     self.fetchingMore = false
                     
+                    //GET THE USERS EVENTS
+                    DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
+                        
+                        for eventID in returnedEventIDs {
+                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
+                                self.eventListings.append(returnedGigEvent)
+                            }
+                        }
+                    }
                     self.collectionView.reloadData()
                 }
             }
@@ -90,7 +101,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL
     
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
-        
+        cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
         cell.eventNameButton.tag = row
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
@@ -110,8 +121,6 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
     }
-    
-    //MARK: EVENT CELL
     
     //MARK: FETCH MORE DATA
     //(Pagination)
@@ -154,7 +163,19 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    
+    //MARK: EVENT CELL
+    
+    func updateEventListingData(cell: ActivityFeedCell, row: Int) {
+        cell.notificationImage.isHidden = true
+        cell.eventNameButton.setTitle("\(eventListings[row].getMonthYearDate())\(eventListings[row].getDayDate())", for: .normal)
+        cell.eventNameButton.tag = row
+        cell.notificationDescriptionLabel.text = "\(eventListings[row].getTitle())"
+    }
+    
+    
     var selectedApplication: ActivityNotification?
+    var selectedListing: GigEvent?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == TO_CHECK_PORTFOLIO {
@@ -175,6 +196,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             reviewApplicationVC.uid = checkUid!
             reviewApplicationVC.application = selectedApplication
             reviewApplicationVC.refresh()
+            
+        } else if segue.identifier == TO_EVENT_DESCRIPTION_2 {
+            
+            let eventDescriptionVC = segue.destination as! EventDescriptionVC
+            eventDescriptionVC.gigEvent = selectedListing
         }
     }
 }

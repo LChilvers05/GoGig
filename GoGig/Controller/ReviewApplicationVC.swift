@@ -44,6 +44,7 @@ class ReviewApplicationVC: UIViewController {
                         DataService.instance.getDBSingleEvent(uid: returnedCurrentUser.uid, eventID: self.application!.getRelatedEventId()) { (returnedGigEvent) in
                             
                             self.relatedEvent = returnedGigEvent
+                            self.eventLabel.text = "Wants to play for \(returnedGigEvent.getTitle())"
                         }
                     }
                 }
@@ -58,9 +59,14 @@ class ReviewApplicationVC: UIViewController {
     
     @IBAction func rejectUser(_ sender: Any) {
         updateActivity(accepted: false)
+        //Don't delete the notification on rejection because user may change their mind
     }
     @IBAction func acceptUser(_ sender: Any) {
         updateActivity(accepted: true)
+        //Need to delete the notification so that you cannot accept the user again and again
+        //MAY NEED TO OBSERVE THE DELETION SO THAT IT REMOVES THE ROW
+        
+        DataService.instance.deleteDBActivityFeed(uid: currentUser!.uid, notificationID: application!.getId())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
