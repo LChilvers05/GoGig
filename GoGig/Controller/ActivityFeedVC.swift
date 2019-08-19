@@ -40,6 +40,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     var user: User?
     var activityNotifications = [ActivityNotification]()
     var eventListings = [GigEvent]()
+    var eventIDs = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,13 +80,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     //GET THE USERS EVENTS
                     DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
                         
+                        self.eventIDs = returnedEventIDs
+                        
                         for eventID in returnedEventIDs {
                             DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
+                                
+                                //Appending to array because we need the index for deletion
                                 self.eventListings.append(returnedGigEvent)
+                                
+                                //check to see if the event is out of date
+                                if self.compareTime(gigEventToCompare: returnedGigEvent) {
+                                    self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
+                                }
                             }
                         }
                     }
                     self.collectionView.reloadData()
+                    
                 }
             }
         }
@@ -173,6 +184,43 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.notificationDescriptionLabel.text = "\(eventListings[row].getTitle())"
     }
     
+    //MARK: COMPARE TIME AND DATE
+    
+    func compareTime(gigEventToCompare: GigEvent) -> Bool {
+        let dateObject = Date()
+        let currentDate = dateObject.addingTimeInterval(3600) //hour behind
+        
+        //if the date of the GigEvent is old (less than the current date)
+        if gigEventToCompare.getDate() < currentDate {
+            return true
+        }
+        return false
+    }
+    
+    //MARK: DELETE EVENTS
+    
+    //We cannot just delete from an array in firebase,
+    //We need to upload a new modified array
+    func deleteGigEvent(gigEventForDeletion: GigEvent) {
+        //Check to see if it is their list of events
+        //authorised to delete them
+        if user!.gigs == false {
+            //Delete the public event object
+            DataService.instance.deleteDBEvents(uid: user!.uid, eventID: gigEventForDeletion.getid())
+            //Delete the private event listing under user (with an index)
+            
+            let index = eventListings.firstIndex(of: gigEventForDeletion)
+            
+            eventListings.remove(at: index!)
+            eventIDs.remove(at: index!)
+            DataService.instance.deleteDBUserEvents(uid: user!.uid, eventIDs: eventIDs)
+            
+            //Delete the picture file that goes with the event
+            DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEventForDeletion.getid())
+        }
+    }
+    
+    //MARK: SEGUES
     
     var selectedApplication: ActivityNotification?
     var selectedListing: GigEvent?

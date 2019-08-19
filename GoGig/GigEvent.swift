@@ -102,6 +102,13 @@ class GigEvent: Comparable {
     }
     
     //MARK: timestamp string manipulation for date
+    //Get the actual date of data type Date
+    func getDate() -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss Z"
+        let date = dateFormatter.date(from: timestamp)!
+        return date
+    }
     func getDayDate() -> String {
         return timestamp.substring(start: 8, end: 10)
     }

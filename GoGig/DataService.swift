@@ -306,10 +306,9 @@ class DataService {
             self.REF_USERS.child(uid).child("events").setValue(recordedEvents)
         }
     }
-    func deleteDBUserEvents(uid: String, eventID: String) {
-        //REF_USERS.child(uid).child("events").child(eventID).removeValue()
-        
-        //This will also trigger the deletion of the event publicly available to musicians
+    //We delete by updating with a new array without the value to be deleted
+    func deleteDBUserEvents(uid: String, eventIDs: [String]) {
+        self.REF_USERS.child(uid).child("events").setValue(eventIDs)
     }
     func getDBUserEvents(uid: String, handler: @escaping (_ events: [String]) -> ()) {
         
@@ -331,7 +330,17 @@ class DataService {
             handler(recordedEvents)
         })
     }
-
+    
+    //To observe when an event recording is added under user in DB
+//    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
+//
+//        REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
+//
+//            if let recordedEvent = snapshot.value as? String {
+//                handler(recordedEvent)
+//            }
+//        })
+//    }
     
     //MARK: DATABASE USER ACTIVITY
     
