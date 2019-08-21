@@ -97,7 +97,7 @@ extension ActivityFeedVC {
         //activity notifications
         if tableView.tag == 0 {
             let selectedNotification = activityNotifications[indexPath.row]
-            if selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
+            if user!.gigs == false && selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
                 
                 checkUid = activityNotifications[indexPath.row].getSenderUid()
                 selectedApplication = activityNotifications[indexPath.row]

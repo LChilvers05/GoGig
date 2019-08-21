@@ -102,11 +102,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             }
         }
         
-        //We have done initial refresh, now observe any additions
-        //Need gate to refresh properly on sign out and in
+//        //We have done initial refresh, now observe any additions
+//        //Need gate to refresh properly on sign out and in
         if observeGate {
             observeGate = false
-            observeNotifications()
+            observeActivityNotifications()
+            //observeEventListings()
         }
     }
     
@@ -163,17 +164,36 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: OBSERVE CHANGES
     
-    func observeNotifications(){
-        
+    func observeActivityNotifications(){
         if let uid = Auth.auth().currentUser?.uid {
+            //Observe Activity Notfications
             DataService.instance.observeDBActivityFeed(uid: uid) { (returnedActivityNotification) in
                 if self.activityNotifications.contains(returnedActivityNotification) == false {
                     self.activityNotifications.insert(returnedActivityNotification, at: 0)
+                    print("observed notification")
                 }
                 self.collectionView.reloadData()
             }
         }
     }
+    
+//    func observeEventListings(){
+//        //if let uid = Auth.auth().currentUser?.uid {
+//            //Observe Event Listings
+//            DataService.instance.observeDBUserEvents(uid: user!.uid) { (returnedEventID) in
+//                if self.eventIDs.contains(returnedEventID) == false {
+//                    self.eventIDs.insert(returnedEventID, at: 0)
+//                    DataService.instance.getDBSingleEvent(uid: self.user!.uid, eventID: returnedEventID) { (returnedGigEvent) in
+//                        if self.eventListings.contains(returnedGigEvent) == false {
+//                            self.eventListings.insert(returnedGigEvent, at: 0)
+//                            print("observed listing")
+//                        }
+//                        self.collectionView.reloadData()
+//                    }
+//                }
+//            }
+//        //}
+//    }
     
     
     //MARK: EVENT CELL

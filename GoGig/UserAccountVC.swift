@@ -80,6 +80,7 @@ class UserAccountVC: UITableViewController {
                     accountGateOpen = true
                     cardGateOpen = true
                     feedGateOpen = true
+                    observeGateOpen = true
                     
                     DEFAULTS.set(nil, forKey: "gigs")
                 }

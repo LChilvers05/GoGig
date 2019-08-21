@@ -42,6 +42,7 @@ var tabGateOpen = true
 var accountGateOpen = true
 var cardGateOpen = true
 var feedGateOpen = true
+var observeGateOpen = true
 
 
 

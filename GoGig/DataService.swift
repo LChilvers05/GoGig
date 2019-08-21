@@ -322,7 +322,6 @@ class DataService {
                 for snap in snapshot {
                     
                     if let recordedEvent = snap.value as? String {
-                        print("reached")
                         recordedEvents.insert(recordedEvent, at: 0)
                     }
                 }
@@ -331,7 +330,6 @@ class DataService {
         })
     }
     
-    //AFTER LUNCH
     //To observe when an event recording is added under user in DB
     func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
 
