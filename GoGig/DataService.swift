@@ -331,16 +331,17 @@ class DataService {
         })
     }
     
+    //AFTER LUNCH
     //To observe when an event recording is added under user in DB
-//    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
-//
-//        REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
-//
-//            if let recordedEvent = snapshot.value as? String {
-//                handler(recordedEvent)
-//            }
-//        })
-//    }
+    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
+
+        REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
+
+            if let recordedEvent = snapshot.value as? String {
+                handler(recordedEvent)
+            }
+        })
+    }
     
     //MARK: DATABASE USER ACTIVITY
     
