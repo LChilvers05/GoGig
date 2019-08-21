@@ -58,6 +58,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             //what has been 'observed' since view did load
             activityNotifications.removeAll()
             eventListings.removeAll()
+            eventIDs.removeAll()
             feedGateOpen = false
             refreshActivityFeed()
         }
@@ -202,18 +203,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //We cannot just delete from an array in firebase,
     //We need to upload a new modified array
     func deleteGigEvent(gigEventForDeletion: GigEvent) {
-        //Check to see if it is their list of events
-        //authorised to delete them
+        
+        //IMPROVE: The listings will not delete under the musician in database
+        // if the organiser deleted them first
+        
+        //Delete all local recordings of the events in the database
+        let index = eventListings.firstIndex(of: gigEventForDeletion)
+        
+        eventListings.remove(at: index!)
+        eventIDs.remove(at: index!)
+        DataService.instance.deleteDBUserEvents(uid: user!.uid, eventIDs: eventIDs)
+        
+        //Check to see if it is an organiser
+        //authorised to delete the public events
         if user!.gigs == false {
             //Delete the public event object
             DataService.instance.deleteDBEvents(uid: user!.uid, eventID: gigEventForDeletion.getid())
             //Delete the private event listing under user (with an index)
-            
-            let index = eventListings.firstIndex(of: gigEventForDeletion)
-            
-            eventListings.remove(at: index!)
-            eventIDs.remove(at: index!)
-            DataService.instance.deleteDBUserEvents(uid: user!.uid, eventIDs: eventIDs)
             
             //Delete the picture file that goes with the event
             DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEventForDeletion.getid())

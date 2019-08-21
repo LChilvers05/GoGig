@@ -228,7 +228,9 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         if applied {
             
             //Add the event under user to the database
-            DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: interactedGigEvent!.getid())
+            //THIS ISNT RIGHT
+            //This should only happen when an organiser accepts a users application
+            //DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: interactedGigEvent!.getid())
             
             updateActivity()
         }

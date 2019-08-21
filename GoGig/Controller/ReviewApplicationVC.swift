@@ -67,6 +67,9 @@ class ReviewApplicationVC: UIViewController {
         //MAY NEED TO OBSERVE THE DELETION SO THAT IT REMOVES THE ROW
         
         DataService.instance.deleteDBActivityFeed(uid: currentUser!.uid, notificationID: application!.getId())
+        
+        //The user has been accepted, so add that to their 'My Events List'
+        DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: application!.getRelatedEventId())
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
