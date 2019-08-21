@@ -80,19 +80,31 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     
                     //GET THE USERS EVENTS
                     DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
-                        
+
                         self.eventIDs = returnedEventIDs
-                        
+
                         for eventID in returnedEventIDs {
                             DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
-                                
+
                                 //Appending to array because we need the index for deletion
                                 self.eventListings.append(returnedGigEvent)
-                                
+
                                 //check to see if the event is out of date
                                 if self.compareTime(gigEventToCompare: returnedGigEvent) {
                                     self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
                                 }
+                                
+                                
+                                
+                                //
+                                if self.observeGate {
+                                    self.observeGate = false
+                                    self.observeActivityNotifications()
+                                    //self.observeEventListings()
+                                }
+                                
+                                //
+                                
                             }
                         }
                     }
@@ -104,11 +116,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
 //        //We have done initial refresh, now observe any additions
 //        //Need gate to refresh properly on sign out and in
-        if observeGate {
-            observeGate = false
-            observeActivityNotifications()
-            //observeEventListings()
-        }
+//        if observeGate {
+//            observeGate = false
+//            observeActivityNotifications()
+//            //observeEventListings()
+//        }
     }
     
     //MARK: NOTIFICATION CELL

@@ -38,6 +38,18 @@ class DataService {
         return _REF_EVENTS
     }
     
+    //MARK: OBSERVERS
+    
+    var postsHandle: DatabaseHandle?
+    var activityHandle: DatabaseHandle?
+    var eventsHandle: DatabaseHandle?
+    
+    func removeObservers(uid: String) {
+        REF_USERS.child(uid).child("posts").removeObserver(withHandle: postsHandle!)
+//        REF_USERS.child(uid).child("activity").removeObserver(withHandle: activityHandle!)
+//        REF_USERS.child(uid).child("events").removeObserver(withHandle: eventsHandle!)
+    }
+    
     //MARK: DATABASE USER PROFILE
     
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
@@ -94,7 +106,7 @@ class DataService {
         var porfolioPosts = [PortfolioPost]()
         
         //Grab the array full of posts
-        REF_USERS.child(uid).child("posts").observe(.value, with: { (snapshot) in
+        postsHandle = REF_USERS.child(uid).child("posts").observe(.value, with: { (snapshot) in
             
             //Grab an array of all posts in the database
             if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
@@ -333,7 +345,7 @@ class DataService {
     //To observe when an event recording is added under user in DB
     func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
 
-        REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
+        eventsHandle = REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
 
             if let recordedEvent = snapshot.value as? String {
                 handler(recordedEvent)
@@ -430,7 +442,7 @@ class DataService {
     
     func observeDBActivityFeed(uid: String, handler: @escaping (_ events: ActivityNotification) -> ()) {
         
-        REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
+        activityHandle = REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
             
             //Grab an array of all posts in the database
             if let activityData = snapshot.value as? NSDictionary {

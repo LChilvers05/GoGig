@@ -69,6 +69,11 @@ class UserAccountVC: UITableViewController {
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
             do {
                 
+                //So does not update account which is not theirs
+                if let uid = Auth.auth().currentUser?.uid {
+                    DataService.instance.removeObservers(uid: uid)
+                }
+                
                 try Auth.auth().signOut()
                 let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
                 self.present(loginVC!, animated: true, completion: nil)
@@ -80,8 +85,7 @@ class UserAccountVC: UITableViewController {
                     accountGateOpen = true
                     cardGateOpen = true
                     feedGateOpen = true
-                    observeGateOpen = true
-                    
+                
                     DEFAULTS.set(nil, forKey: "gigs")
                 }
                 
