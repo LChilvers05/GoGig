@@ -65,7 +65,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     //MARK: FETCH DATA
-    var observeGate = true
+    //var observeGate = true
     func refreshActivityFeed() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
@@ -93,34 +93,21 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                 if self.compareTime(gigEventToCompare: returnedGigEvent) {
                                     self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
                                 }
-                                
-                                
-                                
-                                //
-                                if self.observeGate {
-                                    self.observeGate = false
-                                    self.observeActivityNotifications()
-                                    //self.observeEventListings()
-                                }
-                                
-                                //
-                                
                             }
+                        }
+                        
+                        //We have done initial refresh, now observe any additions
+                        //Need gate to refresh properly on sign out and in
+                        if observeGateOpen {
+                            observeGateOpen = false
+                            self.observeActivityNotifications()
+                            self.observeEventListings()
                         }
                     }
                     self.collectionView.reloadData()
-                    
                 }
             }
         }
-        
-//        //We have done initial refresh, now observe any additions
-//        //Need gate to refresh properly on sign out and in
-//        if observeGate {
-//            observeGate = false
-//            observeActivityNotifications()
-//            //observeEventListings()
-//        }
     }
     
     //MARK: NOTIFICATION CELL
@@ -184,28 +171,42 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     self.activityNotifications.insert(returnedActivityNotification, at: 0)
                     print("observed notification")
                 }
+                //
+                DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
+                    if self.eventIDs.contains(returnedEventID) == false {
+                        self.eventIDs.insert(returnedEventID, at: 0)
+                        print("observed ID: \(self.eventIDs.count) \(self.eventIDs)")
+                        DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
+                            if self.eventListings.contains(returnedGigEvent) == false {
+                                self.eventListings.insert(returnedGigEvent, at: 0)
+                                print("observed Listings: \(self.eventListings.count) \(self.eventListings)")
+                            }
+                        }
+                    }
+                }
                 self.collectionView.reloadData()
             }
         }
     }
     
-//    func observeEventListings(){
-//        //if let uid = Auth.auth().currentUser?.uid {
-//            //Observe Event Listings
-//            DataService.instance.observeDBUserEvents(uid: user!.uid) { (returnedEventID) in
-//                if self.eventIDs.contains(returnedEventID) == false {
-//                    self.eventIDs.insert(returnedEventID, at: 0)
-//                    DataService.instance.getDBSingleEvent(uid: self.user!.uid, eventID: returnedEventID) { (returnedGigEvent) in
-//                        if self.eventListings.contains(returnedGigEvent) == false {
-//                            self.eventListings.insert(returnedGigEvent, at: 0)
-//                            print("observed listing")
-//                        }
-//                        self.collectionView.reloadData()
-//                    }
-//                }
-//            }
-//        //}
-//    }
+    func observeEventListings(){
+        if let uid = Auth.auth().currentUser?.uid {
+            //Observe Event Listings
+            DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
+                if self.eventIDs.contains(returnedEventID) == false {
+                    self.eventIDs.insert(returnedEventID, at: 0)
+                    print("observed ID: \(self.eventIDs.count) \(self.eventIDs)")
+                    DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
+                        if self.eventListings.contains(returnedGigEvent) == false {
+                            self.eventListings.insert(returnedGigEvent, at: 0)
+                            print("observed Listings: \(self.eventListings.count) \(self.eventListings)")
+                        }
+                    }
+                }
+                self.collectionView.reloadData()
+            }
+        }
+    }
     
     
     //MARK: EVENT CELL

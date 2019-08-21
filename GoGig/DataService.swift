@@ -14,6 +14,10 @@ import FirebaseStorage
 let DB_BASE = Database.database().reference()
 let ST_BASE = Storage.storage().reference()
 
+var postsHandle: DatabaseHandle?
+var activityHandle: DatabaseHandle?
+var eventsHandle: DatabaseHandle?
+
 class DataService {
     
     static let instance = DataService()
@@ -40,14 +44,13 @@ class DataService {
     
     //MARK: OBSERVERS
     
-    var postsHandle: DatabaseHandle?
-    var activityHandle: DatabaseHandle?
-    var eventsHandle: DatabaseHandle?
-    
     func removeObservers(uid: String) {
         REF_USERS.child(uid).child("posts").removeObserver(withHandle: postsHandle!)
-//        REF_USERS.child(uid).child("activity").removeObserver(withHandle: activityHandle!)
-//        REF_USERS.child(uid).child("events").removeObserver(withHandle: eventsHandle!)
+        if eventsHandle != nil && activityHandle != nil {
+            print("handle reached")
+            REF_USERS.child(uid).child("events").removeObserver(withHandle: eventsHandle!)
+            REF_USERS.child(uid).child("activity").removeObserver(withHandle: activityHandle!)
+        }
     }
     
     //MARK: DATABASE USER PROFILE

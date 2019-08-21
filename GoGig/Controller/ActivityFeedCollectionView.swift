@@ -121,6 +121,7 @@ extension ActivityFeedVC {
         
         //Scrolled the table view vertically
         } else {
+            
             //This is needed incase user has no data, causes a crash!
             if activityNotifications.count != 0 {
                 
