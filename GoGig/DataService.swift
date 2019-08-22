@@ -153,7 +153,6 @@ class DataService {
                     }
                 }
             }
-            
             //return it outside the list
             handler(porfolioPosts)
         })
@@ -316,7 +315,8 @@ class DataService {
         //And append to it to update the database with
         getDBUserEvents(uid: uid) { (returnedEvents) in
             var recordedEvents = returnedEvents
-            recordedEvents.insert(eventID, at: 0)
+            //recordedEvents.insert(eventID, at: 0)
+            recordedEvents.append(eventID)
             
             self.REF_USERS.child(uid).child("events").setValue(recordedEvents)
         }
@@ -345,16 +345,32 @@ class DataService {
         })
     }
     
-    //To observe when an event recording is added under user in DB
-    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
-
-        eventsHandle = REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
-
-            if let recordedEvent = snapshot.value as? String {
-                handler(recordedEvent)
+    func observeDBUserEvents(uid: String, handler: @escaping (_ events: [String]) -> ()) {
+        var recordedEvents = [String]()
+        REF_USERS.child(uid).child("events").observe(.value, with: { (snapshot) in
+            
+            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
+                for snap in snapshot {
+                    if let recordedEvent = snap.value as? String {
+                        recordedEvents.append(recordedEvent)
+                    }
+                }
             }
+            handler(recordedEvents)
         })
     }
+    
+//    //To observe when an event recording is added under user in DB
+//    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
+//
+//        eventsHandle = REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
+//
+//            if let recordedEvent = snapshot.value as? String {
+//                print(recordedEvent)
+//                handler(recordedEvent)
+//            }
+//        })
+//    }
     
     //MARK: DATABASE USER ACTIVITY
     
@@ -444,12 +460,12 @@ class DataService {
     }
     
     func observeDBActivityFeed(uid: String, handler: @escaping (_ events: ActivityNotification) -> ()) {
-        
+
         activityHandle = REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
-            
+
             //Grab an array of all posts in the database
             if let activityData = snapshot.value as? NSDictionary {
-                
+
                 if let notificationID = activityData["notificationID"] as? String {
                     if let relatedEventID = activityData["relatedEventID"] as? String {
                         if let notificationType = activityData["type"] as? String {
@@ -459,13 +475,13 @@ class DataService {
                                         if let notificationPhotoURLStr = activityData["picURL"] as? String {
                                             if let notificationDescription = activityData["description"] as? String {
                                                 if let timeInterval = activityData["timestamp"] as? TimeInterval {
-                                                    
+
                                                     let notificationPhotoURL = URL(string: notificationPhotoURLStr)
-                                                    
+
                                                     let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
-                                                    
+
                                                     let activityNotification = ActivityNotification(id: notificationID, relatedEventId: relatedEventID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
-                                                    
+
                                                     handler(activityNotification)
                                                 }
                                             }

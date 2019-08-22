@@ -64,9 +64,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    //Handles!!!
+    
     //MARK: FETCH DATA
-    //var observeGate = true
     func refreshActivityFeed() {
+        //
+        
+        //self.observeActivityNotifications()
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
@@ -78,34 +82,50 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     self.endReached = (returnedActivityNotifications.count == 0)
                     self.fetchingMore = false
                     
-                    //GET THE USERS EVENTS
-                    DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
-
+                    DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventIDs) in
                         self.eventIDs = returnedEventIDs
-
-                        for eventID in returnedEventIDs {
-                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
-
-                                //Appending to array because we need the index for deletion
-                                self.eventListings.append(returnedGigEvent)
-
-                                //check to see if the event is out of date
-                                if self.compareTime(gigEventToCompare: returnedGigEvent) {
-                                    self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
-                                }
-                            }
-                        }
                         
-                        //We have done initial refresh, now observe any additions
-                        //Need gate to refresh properly on sign out and in
-                        if observeGateOpen {
-                            observeGateOpen = false
-                            self.observeActivityNotifications()
-                            self.observeEventListings()
-                        }
                     }
-                    self.collectionView.reloadData()
+                    
+                    //GET THE USERS EVENTS
+//                    DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
+//
+//                        self.eventIDs = returnedEventIDs
+//
+//                        for eventID in returnedEventIDs {
+//                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
+//
+//                                //Appending to array because we need the index for deletion
+//                                self.eventListings.append(returnedGigEvent)
+//
+//                                //check to see if the event is out of date
+//                                if self.compareTime(gigEventToCompare: returnedGigEvent) {
+//                                    self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
+//                                }
+//
+//                                self.collectionView.reloadData()
+//
+//                            }
+//                        }
+//                    }
+                    
+                    
+                        
+                    
+
+//                    //We have done initial refresh, now observe any additions
+//                    //Need gate to refresh properly on sign out and in
+//                    if observeGateOpen {
+//                        observeGateOpen = false
+//                        self.observeActivityNotifications()
+//                        //self.observeEventListings()
+//                    }
+                    
+                    
+                    
                 }
+                
+
             }
         }
     }
@@ -171,42 +191,28 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                     self.activityNotifications.insert(returnedActivityNotification, at: 0)
                     print("observed notification")
                 }
-                //
-                DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
-                    if self.eventIDs.contains(returnedEventID) == false {
-                        self.eventIDs.insert(returnedEventID, at: 0)
-                        print("observed ID: \(self.eventIDs.count) \(self.eventIDs)")
-                        DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
-                            if self.eventListings.contains(returnedGigEvent) == false {
-                                self.eventListings.insert(returnedGigEvent, at: 0)
-                                print("observed Listings: \(self.eventListings.count) \(self.eventListings)")
-                            }
-                        }
-                    }
-                }
+
                 self.collectionView.reloadData()
             }
         }
     }
-    
-    func observeEventListings(){
-        if let uid = Auth.auth().currentUser?.uid {
-            //Observe Event Listings
-            DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
-                if self.eventIDs.contains(returnedEventID) == false {
-                    self.eventIDs.insert(returnedEventID, at: 0)
-                    print("observed ID: \(self.eventIDs.count) \(self.eventIDs)")
-                    DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
-                        if self.eventListings.contains(returnedGigEvent) == false {
-                            self.eventListings.insert(returnedGigEvent, at: 0)
-                            print("observed Listings: \(self.eventListings.count) \(self.eventListings)")
-                        }
-                    }
-                }
-                self.collectionView.reloadData()
-            }
-        }
-    }
+
+//    func observeEventListings(){
+//        if let uid = Auth.auth().currentUser?.uid {
+//            //Observe Event Listings
+//            DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
+//                if self.eventIDs.contains(returnedEventID) == false {
+//                    self.eventIDs.insert(returnedEventID, at: 0)
+//                    DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
+//
+//                        self.eventListings.insert(returnedGigEvent, at: 0)
+//
+//                        self.collectionView.reloadData()
+//                    }
+//                }
+//            }
+//        }
+//    }
     
     
     //MARK: EVENT CELL
@@ -235,29 +241,30 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //We cannot just delete from an array in firebase,
     //We need to upload a new modified array
-    func deleteGigEvent(gigEventForDeletion: GigEvent) {
-        
-        //IMPROVE: The listings will not delete under the musician in database
-        // if the organiser deleted them first
-        
-        //Delete all local recordings of the events in the database
-        let index = eventListings.firstIndex(of: gigEventForDeletion)
-        
-        eventListings.remove(at: index!)
-        eventIDs.remove(at: index!)
-        DataService.instance.deleteDBUserEvents(uid: user!.uid, eventIDs: eventIDs)
-        
-        //Check to see if it is an organiser
-        //authorised to delete the public events
-        if user!.gigs == false {
-            //Delete the public event object
-            DataService.instance.deleteDBEvents(uid: user!.uid, eventID: gigEventForDeletion.getid())
-            //Delete the private event listing under user (with an index)
-            
-            //Delete the picture file that goes with the event
-            DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEventForDeletion.getid())
-        }
-    }
+//    func deleteGigEvent(gigEventForDeletion: GigEvent) {
+//        print("Delete called")
+//
+//        //IMPROVE: The listings will not delete under the musician in database
+//        // if the organiser deleted them first
+//
+//        //Delete all local recordings of the events in the database
+//        let index = eventListings.firstIndex(of: gigEventForDeletion)
+//
+//        eventListings.remove(at: index!)
+//        eventIDs.remove(at: index!)
+//        DataService.instance.deleteDBUserEvents(uid: user!.uid, eventIDs: eventIDs)
+//
+//        //Check to see if it is an organiser
+//        //authorised to delete the public events
+//        if user!.gigs == false {
+//            //Delete the public event object
+//            DataService.instance.deleteDBEvents(uid: user!.uid, eventID: gigEventForDeletion.getid())
+//            //Delete the private event listing under user (with an index)
+//
+//            //Delete the picture file that goes with the event
+//            DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEventForDeletion.getid())
+//        }
+//    }
     
     //MARK: SEGUES
     

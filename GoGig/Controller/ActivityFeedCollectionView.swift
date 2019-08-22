@@ -47,8 +47,12 @@ extension ActivityFeedVC {
     func numberOfSections(in tableView: UITableView) -> Int {
         //Section 1 - Activity
         //Section 2 - Loading Cell
-        //MAY NEED TO BE TWO
-        return 1
+        if tableView.tag == 0 {
+            return 2
+        } else {
+            //Don't need loading cell on the event listings
+            return 1
+        }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
