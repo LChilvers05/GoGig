@@ -345,21 +345,6 @@ class DataService {
         })
     }
     
-    func observeDBUserEvents(uid: String, handler: @escaping (_ events: [String]) -> ()) {
-        var recordedEvents = [String]()
-        REF_USERS.child(uid).child("events").observe(.value, with: { (snapshot) in
-            
-            if let snapshot = snapshot.children.allObjects as? [DataSnapshot] {
-                for snap in snapshot {
-                    if let recordedEvent = snap.value as? String {
-                        recordedEvents.append(recordedEvent)
-                    }
-                }
-            }
-            handler(recordedEvents)
-        })
-    }
-    
 //    //To observe when an event recording is added under user in DB
 //    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
 //
@@ -393,7 +378,7 @@ class DataService {
     }
     
     func getDBActivityFeed(uid: String, currentActivity: [ActivityNotification], handler: @escaping (_ events: [ActivityNotification]) -> ()) {
-        
+        print(currentActivity)
         let lastActivity = currentActivity.last
         var queryRef: DatabaseQuery
         

@@ -62,7 +62,6 @@ extension ActivityFeedVC {
             if section == 0 {
                 return activityNotifications.count
                 
-            //DON'T THINK THIS IS NEEDED
             //loading more section
             } else {
                 //if we are fetching more then return an extra cell (loading cell)
@@ -70,7 +69,7 @@ extension ActivityFeedVC {
             }
         } else {
             //event listing section
-            return eventListings.count
+            return usersEvents.count
         }
     }
     
@@ -110,7 +109,7 @@ extension ActivityFeedVC {
             
         //event listings
         } else {
-            selectedListing = eventListings[indexPath.row]
+            selectedListing = usersEvents[indexPath.row]
             performSegue(withIdentifier: TO_EVENT_DESCRIPTION_2, sender: nil)
         }
     }

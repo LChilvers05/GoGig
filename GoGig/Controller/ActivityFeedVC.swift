@@ -11,6 +11,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+//NOT UPDATING PROPERLY ON SIGN IN 
 
 class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
     
@@ -39,7 +40,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     var user: User?
     var activityNotifications = [ActivityNotification]()
-    var eventListings = [GigEvent]()
+    var usersEvents = [GigEvent]()
     var eventIDs = [String]()
     
     override func viewDidLoad() {
@@ -53,79 +54,56 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         navigationController?.navigationBar.topItem?.title = "Activity"
     }
     override func viewDidAppear(_ animated: Bool) {
+        if observeGateOpen {
+            observeGateOpen = false
+            observeActivityNotifications()
+        }
         if feedGateOpen {
             //Need to remove all on sign in otherwise it doesn't refresh
             //what has been 'observed' since view did load
             activityNotifications.removeAll()
-            eventListings.removeAll()
+            print(activityNotifications)
+            usersEvents.removeAll()
             eventIDs.removeAll()
             feedGateOpen = false
             refreshActivityFeed()
         }
     }
     
-    //Handles!!!
-    
     //MARK: FETCH DATA
     func refreshActivityFeed() {
-        //
-        
-        //self.observeActivityNotifications()
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
                 
+                //Get the Activity Notifications
                 self.fetchingMore = true
+                print(self.activityNotifications)
                 DataService.instance.getDBActivityFeed(uid: uid, currentActivity: self.activityNotifications) { (returnedActivityNotifications) in
                     self.activityNotifications = returnedActivityNotifications
                     
                     self.endReached = (returnedActivityNotifications.count == 0)
                     self.fetchingMore = false
                     
-                    DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventIDs) in
-                        self.eventIDs = returnedEventIDs
-                        
-                    }
-                    
-                    //GET THE USERS EVENTS
-//                    DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
-//
-//                        self.eventIDs = returnedEventIDs
-//
-//                        for eventID in returnedEventIDs {
-//                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
-//
-//                                //Appending to array because we need the index for deletion
-//                                self.eventListings.append(returnedGigEvent)
-//
-//                                //check to see if the event is out of date
-//                                if self.compareTime(gigEventToCompare: returnedGigEvent) {
-//                                    self.deleteGigEvent(gigEventForDeletion: returnedGigEvent)
-//                                }
-//
-//                                self.collectionView.reloadData()
-//
-//                            }
-//                        }
-//                    }
-                    
-                    
-                        
-                    
-
-//                    //We have done initial refresh, now observe any additions
-//                    //Need gate to refresh properly on sign out and in
-//                    if observeGateOpen {
-//                        observeGateOpen = false
-//                        self.observeActivityNotifications()
-//                        //self.observeEventListings()
-//                    }
-                    
-                    
+                    self.collectionView.reloadData()
                     
                 }
-                
-
+                    
+                //Get and Observe the User Event Recordings
+                eventsHandle = DataService.instance.REF_USERS.child(uid).child("events").observe(.value) { (snapshot) in
+                    DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
+                        var eventListings = [GigEvent]()
+                        for eventID in returnedEventIDs {
+                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
+                                
+                                eventListings.insert(returnedGigEvent, at: 0)
+                                self.usersEvents = eventListings
+                                self.collectionView.reloadData()
+                            }
+                        }
+                        self.eventIDs = returnedEventIDs
+                    }
+                }
             }
         }
     }
@@ -161,7 +139,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //If reached the end, don't bother fetching anymore posts
     var endReached = false
     //Start loading notifications 3 cells in advance
-    var leadingScreensForBatching: CGFloat = 3.0
+    var leadingScreensForBatching: CGFloat = 2.0
     
     func getMoreNotifications(){
         fetchingMore = true
@@ -181,7 +159,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //MARK: OBSERVE CHANGES
+    //MARK: OBSERVE ACTIVITY CHANGES
     
     func observeActivityNotifications(){
         if let uid = Auth.auth().currentUser?.uid {
@@ -189,39 +167,20 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             DataService.instance.observeDBActivityFeed(uid: uid) { (returnedActivityNotification) in
                 if self.activityNotifications.contains(returnedActivityNotification) == false {
                     self.activityNotifications.insert(returnedActivityNotification, at: 0)
-                    print("observed notification")
                 }
-
                 self.collectionView.reloadData()
             }
         }
     }
-
-//    func observeEventListings(){
-//        if let uid = Auth.auth().currentUser?.uid {
-//            //Observe Event Listings
-//            DataService.instance.observeDBUserEvents(uid: uid) { (returnedEventID) in
-//                if self.eventIDs.contains(returnedEventID) == false {
-//                    self.eventIDs.insert(returnedEventID, at: 0)
-//                    DataService.instance.getDBSingleEvent(uid: uid, eventID: returnedEventID) { (returnedGigEvent) in
-//
-//                        self.eventListings.insert(returnedGigEvent, at: 0)
-//
-//                        self.collectionView.reloadData()
-//                    }
-//                }
-//            }
-//        }
-//    }
     
     
     //MARK: EVENT CELL
     
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
         cell.notificationImage.isHidden = true
-        cell.eventNameButton.setTitle("\(eventListings[row].getMonthYearDate())\(eventListings[row].getDayDate())", for: .normal)
+        cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tag = row
-        cell.notificationDescriptionLabel.text = "\(eventListings[row].getTitle())"
+        cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
     }
     
     //MARK: COMPARE TIME AND DATE
