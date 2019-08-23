@@ -6,12 +6,9 @@
 //  Copyright © 2019 ChillyDesigns. All rights reserved.
 //
 
-//Can't get table view to connect to the collection view delgate data source?
-
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
-//NOT UPDATING PROPERLY ON SIGN IN 
 
 class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
     
