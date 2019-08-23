@@ -382,7 +382,9 @@ class DataService {
         let lastActivity = currentActivity.last
         var queryRef: DatabaseQuery
         
-        if lastActivity == nil {
+        if lastActivity == nil || paginationGateOpen {
+            //Needed as doesn't refresh properly on sign in and sign out, fetches incorrect starting 10
+            paginationGateOpen = false
             //Fetch first 10 if the initial query
             queryRef = REF_USERS.child(uid).child("activity").queryOrdered(byChild: "timestamp").queryLimited(toLast: 10)
         } else {

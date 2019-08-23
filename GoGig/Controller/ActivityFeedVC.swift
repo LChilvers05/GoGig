@@ -62,7 +62,6 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             //Need to remove all on sign in otherwise it doesn't refresh
             //what has been 'observed' since view did load
             activityNotifications.removeAll()
-            print(activityNotifications)
             usersEvents.removeAll()
             eventIDs.removeAll()
             feedGateOpen = false
@@ -78,9 +77,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 
                 //Get the Activity Notifications
                 self.fetchingMore = true
-                print(self.activityNotifications)
                 DataService.instance.getDBActivityFeed(uid: uid, currentActivity: self.activityNotifications) { (returnedActivityNotifications) in
                     self.activityNotifications = returnedActivityNotifications
+                    print("Got back \(self.activityNotifications.count)")
                     
                     self.endReached = (returnedActivityNotifications.count == 0)
                     self.fetchingMore = false
@@ -139,7 +138,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //If reached the end, don't bother fetching anymore posts
     var endReached = false
     //Start loading notifications 3 cells in advance
-    var leadingScreensForBatching: CGFloat = 2.0
+    var leadingScreensForBatching: CGFloat = 3.0
     
     func getMoreNotifications(){
         fetchingMore = true

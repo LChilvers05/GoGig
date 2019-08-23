@@ -37,12 +37,13 @@ let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
 
 
-//Gates
+//Sign In/Out Gates
 var tabGateOpen = true
 var accountGateOpen = true
 var cardGateOpen = true
 var feedGateOpen = true
 var observeGateOpen = true
+var paginationGateOpen = true
 
 
 

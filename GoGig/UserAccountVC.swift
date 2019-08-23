@@ -86,6 +86,7 @@ class UserAccountVC: UITableViewController {
                     cardGateOpen = true
                     feedGateOpen = true
                     observeGateOpen = true
+                    paginationGateOpen = true
                 
                     DEFAULTS.set(nil, forKey: "gigs")
                 }
