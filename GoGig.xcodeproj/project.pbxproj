@@ -63,6 +63,7 @@
 		FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityMenuBar.swift; sourceTree = "<group>"; };
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
+		FE1A544A2310416A00B95AE1 /* GoGig.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoGig.entitlements; sourceTree = "<group>"; };
 		FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewApplicationUI.swift; path = GoGig/Controller/ReviewApplicationUI.swift; sourceTree = SOURCE_ROOT; };
 		FE2B049822EB4EE5001210FD /* ActivityNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityNotification.swift; path = GoGig/ActivityNotification.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
@@ -239,6 +240,7 @@
 		FE701BF222D7364300FC06CE /* GoGig */ = {
 			isa = PBXGroup;
 			children = (
+				FE1A544A2310416A00B95AE1 /* GoGig.entitlements */,
 				FE701BF722D7364300FC06CE /* Main.storyboard */,
 				FE701BF322D7364300FC06CE /* AppDelegate.swift */,
 				FE639D7722D73B9700DCE58B /* Utilities  */,
@@ -291,6 +293,14 @@
 				TargetAttributes = {
 					FE701BEF22D7364300FC06CE = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -577,6 +587,7 @@
 			baseConfigurationReference = 794909069523DA50B9948C74 /* Pods-GoGig.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
@@ -597,6 +608,7 @@
 			baseConfigurationReference = 247BD3913CFF680B937268F8 /* Pods-GoGig.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;

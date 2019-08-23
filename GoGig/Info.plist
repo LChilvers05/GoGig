@@ -22,14 +22,18 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>This will let you to take photos for posts</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>This will make gigs and events more relevant to you and other users</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This will let you choose photos from your library for posts</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>remote-notification</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>This will make gigs and events more relevant to you and other users</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
