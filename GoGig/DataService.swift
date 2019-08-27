@@ -78,8 +78,11 @@ class DataService {
                                 
                                 let currentUserPicURL = URL(string: currentUserPicURLStr)
                                 
+                                guard let currentUserFCMToken = profileData?["FCMToken"] as? String else { return }
+                                
+                                
                                 //instansiate a new user object from the data grabbed
-                                let currentUser = User(uid: uid, name: currentUserName, email: currentUserEmail, bio: currentUserBio, gigs: currentUserGigs, picURL: currentUserPicURL!)
+                                let currentUser = User(uid: uid, name: currentUserName, email: currentUserEmail, bio: currentUserBio, gigs: currentUserGigs, picURL: currentUserPicURL!, fcmToken: currentUserFCMToken)
                                 
                                 //return the user
                                 handler(currentUser)
@@ -591,6 +594,40 @@ class DataService {
     //    }
     
     
+    //MARK: CLOUD MESSAGING
+    //(and database)
     
+    func updateDBUserFCMToken(uid: String, token: String) {
+        REF_USERS.child(uid).child("profile").child("FCMToken").setValue(token)
+    }
+    
+    //Send a notification from a device to another device
+    func sendPushNotification(to token: String, title: String, body: String) {
+        let urlString = "https://fcm.googleapis.com/fcm/send"
+        let url = NSURL(string: urlString)!
+        let paramString: [String : Any] = ["to" : token,
+                                           "notification" : ["title" : title, "body" : body],
+                                           "data" : ["user" : "test_id"]
+        ]
+        let request = NSMutableURLRequest(url: url as URL)
+        request.httpMethod = "POST"
+        request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.setValue("key=AAAAjb8BHzs:APA91bEBkZ3IfE6dU4xclXlP4qGVqyFhMLQEuCTA8NtFjKC7WGN_L8LeuaH_t7142RWGLbuYqjSHozuiz7HtmAADhGEz67yMOjN416Z-EdbIE9FXJ-0uyI37mcQ6bcMzbohxSzF4nCUJ", forHTTPHeaderField: "Authorization")
+        let task =  URLSession.shared.dataTask(with: request as URLRequest)  { (data, response, error) in
+            do {
+                if let jsonData = data {
+                    if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
+                        NSLog("Received data:\n\(jsonDataDict))")
+                    }
+                }
+            } catch let err as NSError {
+                print(err.debugDescription)
+            }
+        }
+        task.resume()
+    }
+    
+    //FCM Server key: AAAAjb8BHzs:APA91bEBkZ3IfE6dU4xclXlP4qGVqyFhMLQEuCTA8NtFjKC7WGN_L8LeuaH_t7142RWGLbuYqjSHozuiz7HtmAADhGEz67yMOjN416Z-EdbIE9FXJ-0uyI37mcQ6bcMzbohxSzF4nCUJ
 }
 

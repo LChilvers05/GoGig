@@ -79,4 +79,3 @@ class TabBarController: UITabBarController {
 
 //Tab Bar Original State
 var tabs = [UIViewController]()
-

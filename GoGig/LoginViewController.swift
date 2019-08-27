@@ -9,6 +9,8 @@
 import UIKit
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseMessaging
+import FirebaseInstanceID
 
 class LoginViewController: UIViewController {
     
@@ -94,6 +96,17 @@ class LoginViewController: UIViewController {
                                 
                                 //Dismiss the LoginVC showing UserAccountVC
                                 self.dismiss(animated: true, completion: nil)
+                                
+                                
+                                //
+                                InstanceID.instanceID().instanceID { (result, error) in
+                                    if let error = error {
+                                        print("Error fetching remote instance ID: \(error)")
+                                    } else if let result = result {
+                                        print("Remote instance ID token: \(result.token)")
+                                        deviceFCMToken = result.token
+                                    }
+                                }
                                 
                             }
                         })

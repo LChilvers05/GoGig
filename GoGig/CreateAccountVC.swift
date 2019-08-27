@@ -12,6 +12,8 @@ import UIKit
 import FirebaseStorage
 import FirebaseAuth
 import FirebaseDatabase
+import FirebaseMessaging
+import FirebaseInstanceID
 
 class CreateAccountVC: UIViewController {
     
@@ -154,6 +156,17 @@ class CreateAccountVC: UIViewController {
                                     DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!)
                                     
                                     self.performSegue(withIdentifier: TO_MAIN, sender: nil)
+                                    
+                                    
+                                    //
+                                    InstanceID.instanceID().instanceID { (result, error) in
+                                        if let error = error {
+                                            print("Error fetching remote instance ID: \(error)")
+                                        } else if let result = result {
+                                            print("Remote instance ID token: \(result.token)")
+                                            deviceFCMToken = result.token
+                                        }
+                                    }
                                 }
                             }
                         }

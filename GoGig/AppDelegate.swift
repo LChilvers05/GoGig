@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         }
         
         //Push Notifications
+        //Get a new FCM Token everytime the user signs out
         registerForPushNotifications()
         Messaging.messaging().delegate = self
         
@@ -85,11 +86,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
 
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
+                //Triggers the registration to get device token
                 UIApplication.shared.registerForRemoteNotifications()
             }
         }
     }
-
+    
+    //Sets the new device FCM token
     func application(
         _ application: UIApplication,
         didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data
@@ -104,19 +107,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     }
     //Team ID: SCZ5X2T8PZ
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let dict = userInfo["aps"] as! NSDictionary
-        let message = dict["alert"]
-        print("%@", message)
-    }
-    
+    //Recieves the new device FCM token, whenever it is refreshed
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String) {
         print("Firebase registration token: \(fcmToken)")
         
         let dataDict:[String: String] = ["token": fcmToken]
         NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: dataDict)
+        
+        deviceFCMToken = fcmToken
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        let dict = userInfo["aps"] as! NSDictionary
+        let message = dict["alert"]
+        print("%@", message)
     }
 }
 

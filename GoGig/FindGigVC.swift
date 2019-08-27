@@ -253,6 +253,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "relatedEventID": relatedEventID, "type": "applied", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
+        //Send a push notification to other user
+        DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
+            DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "Application pending", body: "\(senderName) has applied for your event")
+        }
         //Notify Other User
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!) { (complete) in
             if complete {

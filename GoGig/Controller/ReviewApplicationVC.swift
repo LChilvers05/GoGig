@@ -103,6 +103,11 @@ class ReviewApplicationVC: UIViewController {
         var notificationDescription: String?
         if accepted {
             notificationDescription = "Hired you for the event: \(relatedEventTitle)"
+            
+            //Send a push notification to other user
+            DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
+                DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "You got the gig!", body: "\(senderName) hired you for the event \(relatedEventTitle)")
+            }
         } else {
             notificationDescription = "Declined you for the event: \(relatedEventTitle)"
         }

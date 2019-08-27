@@ -32,9 +32,14 @@ class UserAccountVC: UITableViewController {
         refreshPortfolio()
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        refresh()
-//    }
+    override func viewDidAppear(_ animated: Bool) {
+        //Refresh the FCM token in the database for push notifications
+        if deviceFCMToken != nil {
+            if let uid = Auth.auth().currentUser?.uid {
+                DataService.instance.updateDBUserFCMToken(uid: uid, token: deviceFCMToken!)
+            }
+        }
+    }
     
     //MARK: FETCH DATA
     //We will reuse this VC when we want to look at someone else's profile
@@ -193,4 +198,6 @@ class UserAccountVC: UITableViewController {
         present(morePopup, animated: true, completion: nil)
     }
 }
+
+var deviceFCMToken: String?
 

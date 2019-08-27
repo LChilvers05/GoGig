@@ -19,16 +19,20 @@ class User {
     var bio: String
     var gigs: Bool
     var picURL: URL
-    //var interestedGigs: [AnyObject]
+    private var fcmToken: String
     
-    init(uid: String, name: String, email: String, bio: String, gigs: Bool, picURL: URL) {
+    init(uid: String, name: String, email: String, bio: String, gigs: Bool, picURL: URL, fcmToken: String) {
         self.uid = uid
         self.name = name
         self.email = email
         self.bio = bio
         self.gigs = gigs
         self.picURL = picURL
-        //self.interestedGigs = interestedGigs
+        self.fcmToken = fcmToken
+    }
+    
+    func getFCMToken() -> String {
+        return fcmToken
     }
     
 }
