@@ -44,7 +44,9 @@ var cardGateOpen = true
 var feedGateOpen = true
 var observeGateOpen = true
 var paginationGateOpen = true
+var pushNotificationGateOpen = true
 
+var launchedFromNotification = false
 
 
 

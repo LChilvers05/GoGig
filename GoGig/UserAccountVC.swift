@@ -34,9 +34,10 @@ class UserAccountVC: UITableViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         //Refresh the FCM token in the database for push notifications
-        if deviceFCMToken != nil {
+        if deviceFCMToken != nil && pushNotificationGateOpen == true {
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.updateDBUserFCMToken(uid: uid, token: deviceFCMToken!)
+                pushNotificationGateOpen = false
             }
         }
     }
@@ -74,9 +75,11 @@ class UserAccountVC: UITableViewController {
         let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
             do {
                 
-                //So does not update account which is not theirs
                 if let uid = Auth.auth().currentUser?.uid {
+                    //So does not update account which is not theirs
                     DataService.instance.removeObservers(uid: uid)
+                    //Change the FCM token so the iPhone stops receiving notifications
+                    DataService.instance.updateDBUserFCMToken(uid: uid, token: "empty_token")
                 }
                 
                 try Auth.auth().signOut()
@@ -92,6 +95,7 @@ class UserAccountVC: UITableViewController {
                     feedGateOpen = true
                     observeGateOpen = true
                     paginationGateOpen = true
+                    pushNotificationGateOpen = true
                 
                     DEFAULTS.set(nil, forKey: "gigs")
                 }

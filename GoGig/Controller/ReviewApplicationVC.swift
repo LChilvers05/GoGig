@@ -106,7 +106,7 @@ class ReviewApplicationVC: UIViewController {
             
             //Send a push notification to other user
             DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
-                DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "You got the gig!", body: "\(senderName) hired you for the event \(relatedEventTitle)")
+                DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "You got the gig!", body: "\(senderName) hired you for the event: \(relatedEventTitle)")
             }
         } else {
             notificationDescription = "Declined you for the event: \(relatedEventTitle)"

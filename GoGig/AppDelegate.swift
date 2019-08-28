@@ -39,6 +39,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         registerForPushNotifications()
         Messaging.messaging().delegate = self
         
+        // Check if launched from notification
+        let notificationOption = launchOptions?[.remoteNotification]
+        // Check if user has said its allowed to launch from notification
+        if let notification = notificationOption as? [String: AnyObject] {
+            // Go to the activity tab
+            launchedFromNotification = true
+            //(window?.rootViewController as? UITabBarController)?.selectedIndex = 0
+        }
+        
         return true
     }
     
@@ -119,10 +128,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
     
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        let dict = userInfo["aps"] as! NSDictionary
-        let message = dict["alert"]
-        print("%@", message)
-    }
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable : Any], fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        //let dict = userInfo["aps"] as! NSDictionary
+//        //let message = dict["alert"]
+//        //print("%@", message)
+//    }
 }
 

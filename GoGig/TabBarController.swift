@@ -38,7 +38,12 @@ class TabBarController: UITabBarController {
 
                 tabGateOpen = false
                 //Makes the initial tab the profile tab
-                self.selectedIndex = 1;
+                if launchedFromNotification == false {
+                    self.selectedIndex = 1;
+                } else {
+                    //If launched from a notification open the activity tab first
+                    self.selectedIndex = 2;
+                }
             }
 
         } else {
@@ -66,7 +71,11 @@ class TabBarController: UITabBarController {
 
                         tabGateOpen = false
                         //Makes the initial tab the profile tab
-                        self.selectedIndex = 1;
+                        if launchedFromNotification == false {
+                            self.selectedIndex = 1;
+                        } else {
+                            self.selectedIndex = 2;
+                        }
                     }
                 }
             }
