@@ -24,6 +24,7 @@
 		FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */; };
 		FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */ = {isa = PBXBuildFile; fileRef = FE701C0522D737EC00FC06CE /* LogInVCUI */; };
 		FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */; };
+		FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */; };
 		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
 		FECCACC122D75E6300D617CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC022D75E6300D617CB /* Extensions.swift */; };
 		FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC222D75EB800D617CB /* UserAccountTableView.swift */; };
@@ -78,6 +79,7 @@
 		FE701BFD22D7364600FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FE701C0522D737EC00FC06CE /* LogInVCUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogInVCUI; path = "../../../../Documents/Swift Applications/GoGig6/LogInVCUI"; sourceTree = "<group>"; };
 		FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
+		FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationExtensions.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Extensions/ApplicationExtensions.swift"; sourceTree = "<absolute>"; };
 		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
 		FECCACC022D75E6300D617CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GoGig/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		FECCACC222D75EB800D617CB /* UserAccountTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountTableView.swift; path = GoGig/UserAccountTableView.swift; sourceTree = SOURCE_ROOT; };
@@ -149,6 +151,7 @@
 		FE639D7822D73BB900DCE58B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */,
 				FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */,
 				FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */,
 				FECCACC022D75E6300D617CB /* Extensions.swift */,
@@ -431,6 +434,7 @@
 				FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
 				FECCACDB22D761A600D617CB /* LoadingCell.swift in Sources */,
+				FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */,
 				FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */,
 				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,

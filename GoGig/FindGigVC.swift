@@ -209,6 +209,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     
     @IBAction func checkEvent(_ sender: Any) {
+//        UIApplication.tryURL(urls: [
+//            "fb://profile/1837812439827573", // App
+//            "http://www.facebook.com/1837812439827573" // Website if app fails
+//            ])
         performSegue(withIdentifier: TO_EVENT_DESCRIPTION, sender: nil)
     }
     
