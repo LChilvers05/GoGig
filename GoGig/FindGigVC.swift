@@ -213,6 +213,23 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
 //            "fb://profile/1837812439827573", // App
 //            "http://www.facebook.com/1837812439827573" // Website if app fails
 //            ])
+//        let Username =  "l_chilvers" // Your Instagram Username here
+//        let appURL = URL(string: "instagram://user?username=\(Username)")!
+//        let application = UIApplication.shared
+//
+//        if application.canOpenURL(appURL) {
+//            application.open(appURL)
+//        }
+//        } else {
+//            // if Instagram app is not installed, open URL inside Safari
+//            let webURL = URL(string: "https://instagram.com/\(Username)")!
+//            application.open(webURL)
+//        }
+        
+        //Instagram
+        //let appURL = URL(string: "instagram://user?username=\(Username)")!
+        //Twitter
+        //let appURL = URL(string: "twitter://user?screen_name=\(Username)")!
         performSegue(withIdentifier: TO_EVENT_DESCRIPTION, sender: nil)
     }
     
