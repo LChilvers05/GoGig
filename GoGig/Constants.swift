@@ -10,8 +10,11 @@ import Foundation
 
 //Segues
 
-let TO_CREATE_ACCOUNT = "toCreateAccount"
+let TO_CREATE_PROFILE = "toCreateProfile"
+let TO_SOCIAL_LINKS = "toSocialLinks"
+let TO_MUSIC_LINKS = "toMusicLinks"
 let TO_MAIN = "toMain"
+let TO_MAIN_2 = "toMain2"
 
 let TO_CREATE_GIG = "toCreateGig"
 let TO_TITLE_DATE = "toTitleDate"
