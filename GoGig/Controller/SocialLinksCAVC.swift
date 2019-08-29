@@ -117,7 +117,7 @@ class SocialLinksCAVC: UIViewController {
         if continueFine {
             if userGigs! {
                 
-                //segue to music setup
+                self.performSegue(withIdentifier: TO_MUSIC_LINKS, sender: nil)
                 
             //Organiser is done
             } else {
@@ -141,17 +141,21 @@ class SocialLinksCAVC: UIViewController {
                                     
                                     self.userData!["picURL"] = returnedURL.absoluteString
                                     
-                                    DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!)
-                                    
-                                    //self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                                    
-                                    //Update FCM Token for push notifications
-                                    InstanceID.instanceID().instanceID { (result, error) in
-                                        if let error = error {
-                                            print("Error fetching remote instance ID: \(error)")
-                                        } else if let result = result {
-                                            print("Remote instance ID token: \(result.token)")
-                                            deviceFCMToken = result.token
+                                    DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
+                                        
+                                        if complete {
+                                            
+                                            self.performSegue(withIdentifier: TO_MAIN, sender: nil)
+                                            
+                                            //Update FCM Token for push notifications
+                                            InstanceID.instanceID().instanceID { (result, error) in
+                                                if let error = error {
+                                                    print("Error fetching remote instance ID: \(error)")
+                                                } else if let result = result {
+                                                    print("Remote instance ID token: \(result.token)")
+                                                    deviceFCMToken = result.token
+                                                }
+                                            }
                                         }
                                     }
                                 }
@@ -165,7 +169,7 @@ class SocialLinksCAVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "" {
+        if segue.identifier == TO_MUSIC_LINKS {
             
             //Need this line to pass information between view controllers
             let musicLinksCAVC = segue.destination as! MusicLinksCAVC

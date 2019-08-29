@@ -55,8 +55,8 @@ class LoginSignupVC: UIViewController {
             
             confirmPasswordField.isHidden = true
             
-            topLSButton.setImage(UIImage(named: "loginButton-1"), for: .normal)
-            bottomLSButton.setImage(UIImage(named: "SignupButton"), for: .normal)
+            topLSButton.setImage(UIImage(named: "loginButton"), for: .normal)
+            bottomLSButton.setImage(UIImage(named: "signupButton"), for: .normal)
             
             switchPrompt.text = "New to GoGig? Create an account"
             
@@ -68,13 +68,13 @@ class LoginSignupVC: UIViewController {
             
             emailField.text = ""
             passwordField.text = ""
-            passwordField.placeholder = "create Password"
+            passwordField.placeholder = "create password"
             confirmPasswordField.text = ""
             
             confirmPasswordField.isHidden = false
             
-            topLSButton.setImage(UIImage(named: "SignupButton"), for: .normal)
-            bottomLSButton.setImage(UIImage(named: "loginButton-1"), for: .normal)
+            topLSButton.setImage(UIImage(named: "signupButton"), for: .normal)
+            bottomLSButton.setImage(UIImage(named: "loginButton"), for: .normal)
             
             switchPrompt.text = "Already have an account?"
             
@@ -99,9 +99,9 @@ class LoginSignupVC: UIViewController {
                                 if let confirmUserPassword = confirmPasswordField.text {
                                     if confirmUserPassword != "" && confirmUserPassword == userPassword {
                                         
-                                        userData = ["email": userEmail, "bio": "", "gigs": true, "name": "", "picURL": "", "website": "", "phone": "", "instagram": "", "twitter": "", "facebook": ""]
+                                        userData = ["email": userEmail, "bio": "", "gigs": true, "name": "", "picURL": "", "website": "", "phone": "", "instagram": "", "twitter": "", "facebook": "", "appleMusic": "", "spotify": ""]
                                         
-                                        //self.clearForSegue(segueID: )
+                                        self.performSegue(withIdentifier: TO_CREATE_PROFILE, sender: nil)
                                         
                                     } else {
                                         displayError(title: "Passwords", message: "The password confirmation does not match")
@@ -123,7 +123,7 @@ class LoginSignupVC: UIViewController {
                                 } else {
                                     
                                     //Dismiss the LoginVC showing UserAccountVC
-                                    //self.dismiss(animated: true, completion: nil)
+                                    self.dismiss(animated: true, completion: nil)
                                     
                                     InstanceID.instanceID().instanceID { (result, error) in
                                         if let error = error {
@@ -151,21 +151,10 @@ class LoginSignupVC: UIViewController {
         logInMode = switchMode(logInMode: logInMode)
     }
     
-    func clearForSegue(segueID: String){
-        
-        self.performSegue(withIdentifier: segueID, sender: nil)
-        
-        self.emailField.text = ""
-        self.passwordField.text = ""
-        self.emailField.placeholder = "Let's Go Gig!"
-        self.passwordField.placeholder = "Woo!"
-        
-    }
-    
     //So prepare for CreateProfileCAVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "" {
+        if segue.identifier == TO_CREATE_PROFILE {
             
             //Need this line to pass information between view controllers
             let createProfileCAVC = segue.destination as! CreateProfileCAVC

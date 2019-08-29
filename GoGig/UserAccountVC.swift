@@ -31,15 +31,8 @@ class UserAccountVC: UITableViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPortfolio), name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         refreshPortfolio()
     }
-    
     override func viewDidAppear(_ animated: Bool) {
-        //Refresh the FCM token in the database for push notifications
-        if deviceFCMToken != nil && pushNotificationGateOpen == true {
-            if let uid = Auth.auth().currentUser?.uid {
-                DataService.instance.updateDBUserFCMToken(uid: uid, token: deviceFCMToken!)
-                pushNotificationGateOpen = false
-            }
-        }
+        refreshFCMToken()
     }
     
     //MARK: FETCH DATA
@@ -83,7 +76,7 @@ class UserAccountVC: UITableViewController {
                 }
                 
                 try Auth.auth().signOut()
-                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginViewController") as? LoginViewController
+                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSignupVC") as? LoginSignupVC
                 self.present(loginVC!, animated: true, completion: nil)
                 
                 //When the user logs out we need to return the tab bar to its original state ready for either type of user to log in
@@ -201,7 +194,16 @@ class UserAccountVC: UITableViewController {
         morePopup.addAction(cancelPostAction)
         present(morePopup, animated: true, completion: nil)
     }
+    
+    //Refresh the FCM Token for push notifications
+    func refreshFCMToken() {
+        if deviceFCMToken != nil && pushNotificationGateOpen == true {
+            if let uid = Auth.auth().currentUser?.uid {
+                DataService.instance.updateDBUserFCMToken(uid: uid, token: deviceFCMToken!)
+                pushNotificationGateOpen = false
+            }
+        }
+    }
 }
-
 var deviceFCMToken: String?
 

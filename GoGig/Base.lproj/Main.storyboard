@@ -1141,7 +1141,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="11"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="tel"/>
                             </textView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ucj-6O-EhJ">
                                 <rect key="frame" x="126" y="617" width="123" height="30"/>
@@ -1212,7 +1212,7 @@
                                     <action selector="addProfilePhoto:" destination="drN-xZ-O1L" eventType="touchUpInside" id="2uq-ip-SDw"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-pH-H4e">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-pH-H4e">
                                 <rect key="frame" x="100" y="420" width="175" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1229,6 +1229,8 @@
                     </view>
                     <connections>
                         <outlet property="hireMusiciansButton" destination="BMY-ZA-nd9" id="FPU-Tw-AGQ"/>
+                        <outlet property="musicianIcon" destination="1m2-U6-Sod" id="bzU-EA-HiP"/>
+                        <outlet property="organiserIcon" destination="L6c-Er-J4P" id="7CF-38-48e"/>
                         <outlet property="playGigsButton" destination="iwH-1E-h6W" id="cUo-97-xTf"/>
                         <outlet property="profileImageView" destination="Vyx-pH-H4e" id="m7S-lC-Gqs"/>
                         <outlet property="userBioTextView" destination="MqP-aQ-Icm" id="jDe-wK-S23"/>
@@ -1281,35 +1283,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="name"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Website (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gk4-mb-Jix" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                 <rect key="frame" x="43" y="199" width="289" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Instagram username (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jmg-7z-eUj" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                 <rect key="frame" x="43" y="306" width="289" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter username (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SYk-JN-025" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                 <rect key="frame" x="43" y="410" width="289" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" textContentType="username"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Facebook page ID (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Al4-h3-gVe" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                 <rect key="frame" x="43" y="513" width="289" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZSm-ag-3S9">
                                 <rect key="frame" x="126" y="617" width="123" height="30"/>
@@ -1640,7 +1642,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                             </textField>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="appleMusicIcon" translatesAutoresizingMaskIntoConstraints="NO" id="yLz-l3-6uv">
                                 <rect key="frame" x="137" y="157" width="100" height="100"/>
@@ -1671,7 +1673,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                             </textField>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1690,7 +1692,7 @@
         <!--Login SignupVC-->
         <scene sceneID="Ogz-Id-q3T">
             <objects>
-                <viewController storyboardIdentifier="LoginViewController" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSignupVC" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SWT-Fj-wto" customClass="LoginView" customModule="GoGig" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1715,19 +1717,19 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="295" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XbA-eX-A8A" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="49" width="295" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-Wx-kpn" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="98" width="295" height="30"/>
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" textContentType="name"/>
+                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
@@ -1739,10 +1741,9 @@
                                     <constraint firstAttribute="width" constant="100" id="HUM-5o-icG"/>
                                     <constraint firstAttribute="height" constant="40" id="fad-i0-go9"/>
                                 </constraints>
-                                <state key="normal" image="SignupButton"/>
+                                <state key="normal" image="loginButton"/>
                                 <connections>
-                                    <action selector="topLS:" destination="zxw-op-RHA" eventType="touchUpInside" id="KSy-Xu-42A"/>
-                                    <action selector="topLSButton:" destination="zxw-op-RHA" eventType="touchUpInside" id="uxg-8J-nYO"/>
+                                    <action selector="topLSButton:" destination="zxw-op-RHA" eventType="touchUpInside" id="b2E-tQ-qJt"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9Q-xb-2qa">
@@ -1751,10 +1752,9 @@
                                     <constraint firstAttribute="height" constant="40" id="k0x-3Z-7hF"/>
                                     <constraint firstAttribute="width" constant="100" id="tec-7h-ddy"/>
                                 </constraints>
-                                <state key="normal" image="loginButton-1"/>
+                                <state key="normal" image="signupButton"/>
                                 <connections>
-                                    <action selector="bottomLS:" destination="zxw-op-RHA" eventType="touchUpInside" id="9d3-nm-Nw1"/>
-                                    <action selector="bottomLSButton:" destination="zxw-op-RHA" eventType="touchUpInside" id="G0z-V2-xOm"/>
+                                    <action selector="bottomLSButton:" destination="zxw-op-RHA" eventType="touchUpInside" id="rOH-5c-i3e"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to GoGig?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qm-at-6SB">
@@ -1808,7 +1808,6 @@
         <image name="Background.png" width="156.5" height="225"/>
         <image name="FBButton.png" width="173" height="28"/>
         <image name="GoogleButton.png" width="147" height="35"/>
-        <image name="SignupButton" width="113" height="29.666666030883789"/>
         <image name="acceptUser" width="100" height="100"/>
         <image name="activity" width="40" height="40"/>
         <image name="activityFilled" width="50" height="50"/>
@@ -1824,20 +1823,20 @@
         <image name="hireMusiciansButton-1" width="123" height="29.666666030883789"/>
         <image name="icons8-add" width="16" height="16"/>
         <image name="instaIcon" width="40" height="40"/>
-        <image name="loginButton" width="300" height="100"/>
-        <image name="loginButton-1" width="113" height="29.666666030883789"/>
+        <image name="loginButton" width="113" height="29.666666030883789"/>
         <image name="moreButton" width="100" height="100"/>
         <image name="playGigsButton" width="123" height="29.666666030883789"/>
         <image name="profile" width="40" height="40"/>
         <image name="profileFilled" width="40" height="40"/>
         <image name="rejectUser" width="100" height="100"/>
         <image name="signinButton" width="300" height="100"/>
+        <image name="signupButton" width="113" height="29.666666030883789"/>
         <image name="spotifyIcon" width="50" height="50"/>
         <image name="twitterIcon" width="40" height="40"/>
         <image name="websiteIcon" width="40" height="40"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="TR9-Xq-362"/>
+        <segue reference="iWv-Aw-Vme"/>
         <segue reference="XjZ-0d-5Zh"/>
         <segue reference="viQ-FR-Ahs"/>
     </inferredMetricsTieBreakers>

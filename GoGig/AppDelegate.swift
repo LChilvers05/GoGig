@@ -27,11 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         
         //If we are logged out, then present the LoginVC
         if Auth.auth().currentUser == nil {
+            print("No current user")
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginSignupVC")
             window?.makeKeyAndVisible()
             window?.rootViewController?.present(loginVC, animated: true, completion: nil)
-            
         }
         
         //Push Notifications

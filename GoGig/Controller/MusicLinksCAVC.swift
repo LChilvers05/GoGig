@@ -101,17 +101,20 @@ class MusicLinksCAVC: UIViewController {
                                 
                                 self.userData!["picURL"] = returnedURL.absoluteString
                                 
-                                DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!)
-                                
-                                //self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                                
-                                //Update FCM Token for push notifications
-                                InstanceID.instanceID().instanceID { (result, error) in
-                                    if let error = error {
-                                        print("Error fetching remote instance ID: \(error)")
-                                    } else if let result = result {
-                                        print("Remote instance ID token: \(result.token)")
-                                        deviceFCMToken = result.token
+                                DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
+                                    
+                                    if complete {
+                                        self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
+                                        
+                                        //Update FCM Token for push notifications
+                                        InstanceID.instanceID().instanceID { (result, error) in
+                                            if let error = error {
+                                                print("Error fetching remote instance ID: \(error)")
+                                            } else if let result = result {
+                                                print("Remote instance ID token: \(result.token)")
+                                                deviceFCMToken = result.token
+                                            }
+                                        }
                                     }
                                 }
                             }

@@ -19,6 +19,8 @@ class CreateProfileCAVC: UIViewController {
     @IBOutlet weak var usernameField: MyTextField!
     @IBOutlet weak var userBioTextView: MyTextView!
     @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var musicianIcon: UIImageView!
+    @IBOutlet weak var organiserIcon: UIImageView!
     
     var editingProfile = false
     
@@ -44,6 +46,12 @@ class CreateProfileCAVC: UIViewController {
         userBioTextView.textColor = UIColor.lightGray
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
+        
+        profileImageView.layer.borderWidth = 0.1
+        profileImageView.layer.masksToBounds = false
+        profileImageView.layer.cornerRadius = profileImageView.frame.height/2
+        profileImageView.clipsToBounds = true
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -51,28 +59,26 @@ class CreateProfileCAVC: UIViewController {
     
     //MARK: STAGE 1: TYPE OF USER
     
-    func formatGigHireButtons(ignoredButton: UIButton){
-        //CHECK THIS
-        if ignoredButton.isEnabled {
-            ignoredButton.isEnabled = false
-            ignoredButton.isOpaque = true
-            
+    func formatGigHireButtons(chosenButton: UIButton, ignoredButton: UIButton){
+        
+        chosenButton.alpha = 1
+        ignoredButton.alpha = 0.5
+        if chosenButton == playGigsButton {
+            musicianIcon.alpha = 1
+            organiserIcon.alpha = 0.5
         } else {
-            
-            ignoredButton.isEnabled = true
-            ignoredButton.isOpaque = false
-            
-            userGigs = nil
+            musicianIcon.alpha = 0.5
+            organiserIcon.alpha = 1
         }
     }
     
     @IBAction func userGigs(_ sender: Any) {
         userGigs = true
-        formatGigHireButtons(ignoredButton: hireMusiciansButton)
+        formatGigHireButtons(chosenButton: playGigsButton, ignoredButton: hireMusiciansButton)
     }
     @IBAction func userHires(_ sender: Any) {
         userGigs = false
-        formatGigHireButtons(ignoredButton: playGigsButton)
+        formatGigHireButtons(chosenButton: hireMusiciansButton, ignoredButton: playGigsButton)
     }
     
     //MARK: STAGE 2: ADD PROFILE PICTURE
@@ -108,8 +114,11 @@ class CreateProfileCAVC: UIViewController {
             if userName.count >= 2 {
                 
                 //check bio
-                if let userBio = userBioTextView.text {
-                    
+                if let userBiography = userBioTextView.text {
+                    var userBio = userBiography
+                    if userBiography == "Write a bio... |" {
+                        userBio = ""
+                    }
                     //check necessary data
                     if imageAdded && userGigs != nil {
                         
@@ -117,6 +126,8 @@ class CreateProfileCAVC: UIViewController {
                         self.userData!["name"] = userName
                         self.userData!["bio"] = userBio
                         self.userData!["gigs"] = userGigs
+                        
+                        self.performSegue(withIdentifier: TO_SOCIAL_LINKS, sender: nil)
                         
                     } else {
                         displayError(title: "Oops", message: "Please provide all necessary information")
@@ -131,7 +142,7 @@ class CreateProfileCAVC: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == "" {
+        if segue.identifier == TO_SOCIAL_LINKS {
             
             //Need this line to pass information between view controllers
             let socialLinksCAVC = segue.destination as! SocialLinksCAVC

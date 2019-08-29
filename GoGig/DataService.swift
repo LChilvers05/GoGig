@@ -59,8 +59,15 @@ class DataService {
         REF_USERS.child(uid).child("auth").updateChildValues(userData)
     }
     
-    func updateDBUserProfile(uid: String, userData: Dictionary<String, Any>){
-        REF_USERS.child(uid).child("profile").updateChildValues(userData)
+    func updateDBUserProfile(uid: String, userData: Dictionary<String, Any>, handler: @escaping (_ completion: Bool) -> ()) {
+        REF_USERS.child(uid).child("profile").updateChildValues(userData) {
+            (error:Error?, ref:DatabaseReference) in
+            if error != nil {
+                handler(false)
+            } else {
+                handler(true)
+            }
+        }
     }
     
     func getDBUserProfile(uid: String, handler: @escaping (_ user: User) -> ()) {
