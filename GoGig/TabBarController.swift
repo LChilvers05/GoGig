@@ -17,20 +17,16 @@ class TabBarController: UITabBarController {
     }
 
     //view did appear here means that view did appear in the profile view does not work
-
-    var user: User?
+    var userGigs: Bool?
 
     override func viewDidAppear(_ animated: Bool) {
-        print("reached 1")
         //Set the original state of the tabs (all four)
         if tabGateOpen {
             tabs = self.viewControllers!
         }
         
-        //Save on the device the set of tabs that should appear if the user is logged in
-        //if not logged in, then query the database to find out the user type
+        //IF USER IS RESUMING
         if let userGigs = DEFAULTS.object(forKey: "gigs") as? Bool {
-            print("reached 2")
 
             //Remove the tabs that shouldn't be seen by musician/organiser
             if tabGateOpen {
@@ -51,32 +47,18 @@ class TabBarController: UITabBarController {
             if tabGateOpen {
             //Remove the tabs that shouldn't be seen by musician/organiser
                 if let uid = Auth.auth().currentUser?.uid {
-                    print("reached 3")
-                    DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
-                        self.user = returnedUser
-                        
-                        print("reached 4")
-                        //doesn't reach for, maybe do a recursion tactic with the completion handler if returns false?
-
-                        if returnedUser.gigs == true {
-                            //remove the create tab and view
-                            self.viewControllers?.remove(at: 0)
-
-                            //write value to device
-                            DEFAULTS.set(true, forKey: "gigs")
-
-                        } else {
-                            //remove the find tab and view
-                            self.viewControllers?.remove(at: 1)
-
-                            //write value to device
-                            DEFAULTS.set(false, forKey: "gigs")
+                    
+                    //IF USER IS LOGGING IN
+                    if userGigs == nil {
+                        DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
+                            
+                            self.setDefaults(userGigsCondition: returnedUser.gigs)
                         }
-
-                        tabGateOpen = false
                         
-                        //Makes the initial tab the profile tab
-                        self.selectedIndex = 1;
+                    //IF THE USER IS SIGNING UP FOR THE FIRST TIME
+                    } else {
+                        
+                        self.setDefaults(userGigsCondition: userGigs!)
                     }
                 }
             }
@@ -84,6 +66,28 @@ class TabBarController: UITabBarController {
         
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
+    }
+    
+    func setDefaults(userGigsCondition: Bool) {
+        if userGigsCondition == true {
+            //remove the create tab and view
+            self.viewControllers?.remove(at: 0)
+            
+            //write value to device
+            DEFAULTS.set(true, forKey: "gigs")
+            
+        } else {
+            //remove the find tab and view
+            self.viewControllers?.remove(at: 1)
+            
+            //write value to device
+            DEFAULTS.set(false, forKey: "gigs")
+        }
+        
+        tabGateOpen = false
+        
+        //Makes the initial tab the profile tab
+        self.selectedIndex = 1;
     }
 }
 

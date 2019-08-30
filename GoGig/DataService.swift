@@ -72,12 +72,8 @@ class DataService {
     
     func getDBUserProfile(uid: String, handler: @escaping (_ user: User) -> ()) {
         
-        print("reached 5")
-        
         //Grab user profile data from the database...
         REF_USERS.child(uid).child("profile").observeSingleEvent(of: .value, with: { (profileSnapshot) in
-            
-            print("reached 6")
             
             //... and cast as a NSDictionary
             let profileData = profileSnapshot.value as? NSDictionary
@@ -96,7 +92,6 @@ class DataService {
                                 let currentUser = User(uid: uid, name: currentUserName, email: currentUserEmail, bio: currentUserBio, gigs: currentUserGigs, picURL: currentUserPicURL!, fcmToken: currentUserFCMToken)
                                 
                                 //return the user
-                                print("reached 7")
                                 handler(currentUser)
                             }
                         }

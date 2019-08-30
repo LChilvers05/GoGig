@@ -182,6 +182,12 @@ class SocialLinksCAVC: UIViewController {
             musicLinksCAVC.imageID = self.imageID
             musicLinksCAVC.profileImage = self.profileImage
             musicLinksCAVC.editingProfile = self.editingProfile
+            
+        } else if segue.identifier == TO_MAIN {
+            
+            let tabBarController = segue.destination as! TabBarController
+            tabBarController.userGigs = self.userGigs
+            
         }
     }
 }

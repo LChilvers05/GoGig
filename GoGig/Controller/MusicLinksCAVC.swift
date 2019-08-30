@@ -104,6 +104,7 @@ class MusicLinksCAVC: UIViewController {
                                 DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
                                     
                                     if complete {
+                                        
                                         self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
                                         
                                         //Update FCM Token for push notifications
@@ -122,6 +123,16 @@ class MusicLinksCAVC: UIViewController {
                     }
                 })
             }
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+            
+        if segue.identifier == TO_MAIN_2 {
+            
+            let tabBarController = segue.destination as! TabBarController
+            tabBarController.userGigs = self.userGigs
+            
         }
     }
 }
