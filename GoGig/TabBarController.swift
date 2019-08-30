@@ -89,6 +89,7 @@ class TabBarController: UITabBarController {
         //Makes the initial tab the profile tab
         self.selectedIndex = 1;
     }
+    //
 }
 
 //Tab Bar Original State
