@@ -83,16 +83,32 @@ class DataService {
                         if let currentUserBio = profileData?["bio"] as? String {
                             if let currentUserPicURLStr = profileData?["picURL"] as? String {
                                 
-                                let currentUserPicURL = URL(string: currentUserPicURLStr)
-                                
-                                guard let currentUserFCMToken = profileData?["FCMToken"] as? String else { return }
-                                
-                                
-                                //instansiate a new user object from the data grabbed
-                                let currentUser = User(uid: uid, name: currentUserName, email: currentUserEmail, bio: currentUserBio, gigs: currentUserGigs, picURL: currentUserPicURL!, fcmToken: currentUserFCMToken)
-                                
-                                //return the user
-                                handler(currentUser)
+                                if let currentUserPhone = profileData?["phone"] as? String {
+                                    if let currentUserFacebook = profileData?["facebook"] as? String {
+                                        if let currentUserTwitter = profileData?["twitter"] as? String {
+                                            if let currentUserInstagram = profileData?["instagram"] as? String {
+                                                if let currentUserWebsiteURLStr = profileData?["website"] as? String {
+                                                    if let currentUserAppleMusicURLStr = profileData?["appleMusic"] as? String {
+                                                        if let currentUserSpotifyURLStr = profileData?["spotify"] as? String {
+                                                            
+
+                                                            let currentUserPicURL = URL(string: currentUserPicURLStr)
+                                                            
+                                                            guard let currentUserFCMToken = profileData?["FCMToken"] as? String else { return }
+                                                            
+                                                            
+                                                            //instansiate a new user object from the data grabbed
+                                                            let currentUser = User(uid: uid, name: currentUserName, email: currentUserEmail, phone: currentUserPhone, bio: currentUserBio, gigs: currentUserGigs, picURL: currentUserPicURL!, facebook: currentUserFacebook, twitter: currentUserTwitter, instagram: currentUserInstagram, website: currentUserWebsiteURLStr, appleMusic: currentUserAppleMusicURLStr, spotify: currentUserSpotifyURLStr, fcmToken: currentUserFCMToken)
+                                                            
+                                                            //return the user
+                                                            handler(currentUser)
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

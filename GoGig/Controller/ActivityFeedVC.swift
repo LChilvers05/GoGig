@@ -231,6 +231,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             let userAccountVC = segue.destination as! UserAccountVC
             
+            //userAccountVC.settingsButton.isHidden = true
             let backItem = UIBarButtonItem()
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem

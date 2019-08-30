@@ -118,14 +118,35 @@ class UserAccountVC: UITableViewController {
         self.navigationController?.navigationBar.topItem?.title = user?.name
         
         //Set UI
-        cell.bioLabel.text = user?.bio
+        cell.userBioTextView.text = user?.bio
         if user?.gigs == true {
             cell.userTypeLabel.text = "Looking to play"
         } else {
-            cell.userTypeLabel.text = "Hiring"
+            cell.userTypeLabel.text = "Hiring entertainment"
         }
         
         cell.profilePicView.image = profilePic
+        cell.userEmailLabel.text = user?.email
+        cell.userPhoneLabel.text = user?.phone
+        
+        if user?.getFacebook() == "" {
+            cell.facebookLinkButton.isHidden = true
+        }
+        if user?.getTwitter() == "" {
+            cell.twitterLinkButton.isHidden = true
+        }
+        if user?.getInstagram() == "" {
+            cell.instagramLinkButton.isHidden = true
+        }
+        if user?.getWebsite() == "" {
+            cell.websiteLinkButton.isHidden = true
+        }
+        if user?.getAppleMusic() == "" {
+            cell.appleMusicLinkButton.isHidden = true
+        }
+        if user?.getSpotify() == "" {
+            cell.spotifyLinkButton.isHidden = true
+        }
     }
     
     //MARK: PORTFOLIO POST CELLS
@@ -203,6 +224,60 @@ class UserAccountVC: UITableViewController {
             }
         }
     }
+    
+    //MARK: SOCIAL LINKS
+    @IBAction func facebookLink(_ sender: Any) {
+//        UIApplication.tryURL(urls: [
+//            "fb://profile/1837812439827573", // App
+//            "http://www.facebook.com/1837812439827573" // Website if app fails
+//            ])
+    }
+    @IBAction func twitterLink(_ sender: Any) {
+        let username =  user?.getTwitter()
+        if let appURL = URL(string: "twitter://user?screen_name=\(username!)") {
+            let application = UIApplication.shared
+
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                // if Instagram app is not installed, open URL inside Safari
+                let webURL = URL(string: "https://instagram.com/\(username!)")!
+                application.open(webURL)
+            }
+        }
+    }
+    @IBAction func instagramLink(_ sender: Any) {
+        let username =  user?.getInstagram()
+        if let appURL = URL(string: "instagram://user?username=\(username!)") {
+            let application = UIApplication.shared
+            
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                // if Instagram app is not installed, open URL inside Safari
+                let webURL = URL(string: "https://instagram.com/\(username!)")!
+                application.open(webURL)
+            }
+        }
+    }
+    @IBAction func websiteLink(_ sender: Any) {
+        let userWebsite = user?.getWebsite()
+        if let webURL = URL(string: userWebsite!) {
+            let application = UIApplication.shared
+            if application.canOpenURL(webURL) {
+                application.open(webURL)
+            }
+        } else {
+            displayError(title: "", message: "Couldn't find website")
+        }
+    }
+    @IBAction func appleMusicLink(_ sender: Any) {
+        //Look into
+    }
+    @IBAction func spotifyLink(_ sender: Any) {
+        //Look into
+    }
+    
 }
 var deviceFCMToken: String?
 

@@ -667,55 +667,112 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="214.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="This is the user bio" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MZj-F2-Mlv">
-                                            <rect key="frame" x="16" y="163.5" width="345" height="20.5"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Searching for ..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOt-CN-WqG">
-                                            <rect key="frame" x="149" y="61" width="212" height="16"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-Xk-GjJ">
-                                            <rect key="frame" x="16" y="11" width="125" height="125"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="125" id="7gN-yD-s7J"/>
-                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="125" id="BuT-ar-Xhx"/>
-                                                <constraint firstAttribute="width" constant="125" id="brP-sY-9LL"/>
-                                                <constraint firstAttribute="height" constant="125" id="xZy-r5-BIQ"/>
-                                            </constraints>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-Xk-GjJ">
+                                            <rect key="frame" x="16" y="11" width="100" height="100"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISZ-JJ-aF4">
-                                            <rect key="frame" x="301" y="174" width="60" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISZ-JJ-aF4">
+                                            <rect key="frame" x="282" y="110" width="60" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <state key="normal" title="Sign Out"/>
                                             <connections>
                                                 <action selector="tempSignOut:" destination="VvL-iR-0b6" eventType="touchUpInside" id="BrI-Wa-3GW"/>
                                             </connections>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kgI-bQ-CWk" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
+                                            <rect key="frame" x="149" y="42" width="210" height="69"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="12"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                                        </textView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Looking to _______" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NOt-CN-WqG">
+                                            <rect key="frame" x="149" y="11" width="212" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="john.appleseed@icloud.com" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cw6-kJ-1zp">
+                                            <rect key="frame" x="16" y="119" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="W2q-1F-ZCJ">
+                                            <rect key="frame" x="16" y="174" width="345" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xRG-ls-uHb">
+                                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="facebookLink"/>
+                                                    <connections>
+                                                        <action selector="facebookLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="LqX-Ud-jjp"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fJ5-g8-i5l">
+                                                    <rect key="frame" x="63" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="twitterLink"/>
+                                                    <connections>
+                                                        <action selector="twitterLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="t9i-WN-g8h"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ops-X1-UfZ">
+                                                    <rect key="frame" x="126" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="instagramLink"/>
+                                                    <connections>
+                                                        <action selector="instagramLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="pJm-NE-H7N"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f47-oL-rn1">
+                                                    <rect key="frame" x="189" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="websiteLink"/>
+                                                    <connections>
+                                                        <action selector="websiteLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="HPP-ho-4iz"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3AI-iu-gg6">
+                                                    <rect key="frame" x="252" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="appleMusicLink"/>
+                                                    <connections>
+                                                        <action selector="appleMusicLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="MdF-i2-8S2"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Rm-L3-4Yk">
+                                                    <rect key="frame" x="315" y="0.0" width="30" height="30"/>
+                                                    <state key="normal" image="spotifyLink"/>
+                                                    <connections>
+                                                        <action selector="spotifyLink:" destination="VvL-iR-0b6" eventType="touchUpInside" id="ybF-eC-NEF"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="+44 1234 567890" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRt-7C-VFY">
+                                            <rect key="frame" x="16" y="145" width="343" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstItem="l6n-Xk-GjJ" firstAttribute="leading" secondItem="WyA-t8-Jf3" secondAttribute="leadingMargin" id="0w0-X8-H9K"/>
-                                        <constraint firstAttribute="bottom" secondItem="ISZ-JJ-aF4" secondAttribute="bottom" constant="10.5" id="2Od-3z-aOs"/>
-                                        <constraint firstItem="NOt-CN-WqG" firstAttribute="leading" secondItem="l6n-Xk-GjJ" secondAttribute="trailing" constant="8" id="B4o-tI-t3z"/>
-                                        <constraint firstAttribute="trailing" secondItem="ISZ-JJ-aF4" secondAttribute="trailing" constant="14" id="DD1-Qi-zap"/>
-                                        <constraint firstAttribute="bottom" secondItem="MZj-F2-Mlv" secondAttribute="bottom" constant="30.5" id="FXg-ed-Qjn"/>
-                                        <constraint firstAttribute="trailing" secondItem="NOt-CN-WqG" secondAttribute="trailing" constant="14" id="KtI-bN-kXO"/>
-                                        <constraint firstItem="l6n-Xk-GjJ" firstAttribute="top" secondItem="WyA-t8-Jf3" secondAttribute="topMargin" id="MjK-Ey-gln"/>
-                                        <constraint firstAttribute="trailing" secondItem="MZj-F2-Mlv" secondAttribute="trailing" constant="14" id="NiS-Ri-KWn"/>
-                                        <constraint firstItem="MZj-F2-Mlv" firstAttribute="top" secondItem="l6n-Xk-GjJ" secondAttribute="bottom" constant="27.5" id="QTX-gb-gKs"/>
-                                        <constraint firstItem="l6n-Xk-GjJ" firstAttribute="top" secondItem="WyA-t8-Jf3" secondAttribute="topMargin" id="fxn-UY-pJl"/>
-                                        <constraint firstItem="MZj-F2-Mlv" firstAttribute="leading" secondItem="WyA-t8-Jf3" secondAttribute="leading" constant="16" id="ySu-9y-TD6"/>
-                                    </constraints>
                                 </tableViewCellContentView>
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <connections>
-                                    <outlet property="bioLabel" destination="MZj-F2-Mlv" id="pNh-z3-Hoa"/>
+                                    <outlet property="appleMusicLinkButton" destination="3AI-iu-gg6" id="Ksr-58-1xB"/>
+                                    <outlet property="facebookLinkButton" destination="xRG-ls-uHb" id="VDO-gj-lIh"/>
+                                    <outlet property="instagramLinkButton" destination="Ops-X1-UfZ" id="fiV-ok-qq3"/>
                                     <outlet property="profilePicView" destination="l6n-Xk-GjJ" id="h4G-4i-uue"/>
                                     <outlet property="signOutButton" destination="ISZ-JJ-aF4" id="V3u-bb-qHk"/>
+                                    <outlet property="spotifyLinkButton" destination="7Rm-L3-4Yk" id="g2M-9M-obd"/>
+                                    <outlet property="twitterLinkButton" destination="fJ5-g8-i5l" id="MqO-G7-12a"/>
+                                    <outlet property="userBioTextView" destination="kgI-bQ-CWk" id="qlR-Zx-yJA"/>
+                                    <outlet property="userEmailLabel" destination="cw6-kJ-1zp" id="5a3-tf-Ztw"/>
+                                    <outlet property="userPhoneLabel" destination="LRt-7C-VFY" id="Kcd-6H-iE7"/>
                                     <outlet property="userTypeLabel" destination="NOt-CN-WqG" id="iJ9-zA-vPQ"/>
+                                    <outlet property="websiteLinkButton" destination="f47-oL-rn1" id="wqA-6F-4lb"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="AccountPostCell" rowHeight="315" id="Gdh-VW-Jpl" customClass="AccountPostCell" customModule="GoGig" customModuleProvider="target">
@@ -814,7 +871,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieL-nt-n0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2214" y="0.0"/>
+            <point key="canvasLocation" x="2213.5999999999999" y="-0.44977511244377816"/>
         </scene>
         <!--Portfolio PostVC-->
         <scene sceneID="eDW-YH-bxA">
@@ -1811,16 +1868,19 @@
         <image name="addButton" width="170" height="178"/>
         <image name="addToPortfolio" width="30" height="30"/>
         <image name="appleMusicIcon" width="115.66666412353516" height="40"/>
+        <image name="appleMusicLink" width="30" height="30"/>
         <image name="continueButton-1" width="123" height="29.666666030883789"/>
         <image name="createEvent" width="40" height="40"/>
         <image name="createEventFilled" width="40" height="40"/>
         <image name="emptyProfile" width="200" height="200"/>
         <image name="facebookIcon" width="40" height="40"/>
+        <image name="facebookLink" width="30" height="30"/>
         <image name="findGig" width="40" height="40"/>
         <image name="findGigFilled" width="40" height="40"/>
         <image name="hireMusiciansButton-1" width="123" height="29.666666030883789"/>
         <image name="icons8-add" width="16" height="16"/>
         <image name="instaIcon" width="40" height="40"/>
+        <image name="instagramLink" width="30" height="30"/>
         <image name="loginButton" width="113" height="29.666666030883789"/>
         <image name="moreButton" width="100" height="100"/>
         <image name="playGigsButton" width="123" height="29.666666030883789"/>
@@ -1830,12 +1890,15 @@
         <image name="signinButton" width="300" height="100"/>
         <image name="signupButton" width="113" height="29.666666030883789"/>
         <image name="spotifyIcon" width="50" height="50"/>
+        <image name="spotifyLink" width="30" height="30"/>
         <image name="twitterIcon" width="40" height="40"/>
+        <image name="twitterLink" width="30" height="30"/>
         <image name="websiteIcon" width="40" height="40"/>
+        <image name="websiteLink" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
-        <segue reference="XjZ-0d-5Zh"/>
+        <segue reference="jCN-0Y-7KK"/>
         <segue reference="viQ-FR-Ahs"/>
     </inferredMetricsTieBreakers>
 </document>
