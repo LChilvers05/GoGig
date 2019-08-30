@@ -13,7 +13,6 @@ class AccountHeaderCell: UITableViewCell {
     @IBOutlet weak var userTypeLabel: UILabel!
     @IBOutlet weak var profilePicView: UIImageView!
     @IBOutlet weak var bioLabel: UILabel!
-    @IBOutlet weak var addToPortfolioButton: UIButton!
     @IBOutlet weak var signOutButton: UIButton!
     
     override func awakeFromNib() {

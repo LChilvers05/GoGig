@@ -111,7 +111,6 @@ class UserAccountVC: UITableViewController {
     var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
     func updateUserData(cell: AccountHeaderCell){
         if uid != Auth.auth().currentUser?.uid {
-            cell.addToPortfolioButton.isHidden = true
             cell.signOutButton.isHidden = true
         }
         
