@@ -671,14 +671,6 @@
                                             <rect key="frame" x="16" y="11" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
-                                        <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ISZ-JJ-aF4">
-                                            <rect key="frame" x="282" y="110" width="60" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Sign Out"/>
-                                            <connections>
-                                                <action selector="tempSignOut:" destination="VvL-iR-0b6" eventType="touchUpInside" id="BrI-Wa-3GW"/>
-                                            </connections>
-                                        </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="kgI-bQ-CWk" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
                                             <rect key="frame" x="149" y="42" width="210" height="69"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -765,7 +757,6 @@
                                     <outlet property="facebookLinkButton" destination="xRG-ls-uHb" id="VDO-gj-lIh"/>
                                     <outlet property="instagramLinkButton" destination="Ops-X1-UfZ" id="fiV-ok-qq3"/>
                                     <outlet property="profilePicView" destination="l6n-Xk-GjJ" id="h4G-4i-uue"/>
-                                    <outlet property="signOutButton" destination="ISZ-JJ-aF4" id="V3u-bb-qHk"/>
                                     <outlet property="socialLinkStackView" destination="W2q-1F-ZCJ" id="fbC-Ee-IB5"/>
                                     <outlet property="spotifyLinkButton" destination="7Rm-L3-4Yk" id="g2M-9M-obd"/>
                                     <outlet property="twitterLinkButton" destination="fJ5-g8-i5l" id="MqO-G7-12a"/>
@@ -860,6 +851,9 @@
                         <barButtonItem key="backBarButtonItem" title="Activity" id="S96-Tj-K2U"/>
                         <barButtonItem key="leftBarButtonItem" title="Settings" id="QR8-uA-njX">
                             <color key="tintColor" red="0.4942619800567627" green="0.18054446578025818" blue="0.59615033864974976" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="settingsButton:" destination="VvL-iR-0b6" id="MQ6-65-o5D"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" image="addToPortfolio" id="Wm5-Mf-Kp6">
                             <color key="tintColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

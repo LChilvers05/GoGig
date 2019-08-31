@@ -71,49 +71,54 @@ class UserAccountVC: UITableViewController {
         }
     }
     
-    @IBAction func tempSignOut(_ sender: Any) {
-        
-        let logoutPopup = UIAlertController(title: "Logout?", message: "Are you sure you want to sign out of your account?", preferredStyle: .actionSheet)
-        let logoutAction = UIAlertAction(title: "Logout", style: .destructive) { (buttonTapped) in
-            do {
-                
-                if let uid = Auth.auth().currentUser?.uid {
-                    //So does not update account which is not theirs
-                    DataService.instance.removeObservers(uid: uid)
-                    //Change the FCM token so the iPhone stops receiving notifications
-                    DataService.instance.updateDBUserFCMToken(uid: uid, token: "empty_token")
-                }
-                
-                try Auth.auth().signOut()
-                let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSignupVC") as? LoginSignupVC
-                self.present(loginVC!, animated: true, completion: nil)
-                
-                //When the user logs out we need to return the tab bar to its original state ready for either type of user to log in
-                if let tabBarController = self.tabBarController {
-                    tabBarController.viewControllers = tabs
-                    tabGateOpen = true
-                    accountGateOpen = true
-                    cardGateOpen = true
-                    feedGateOpen = true
-                    observeGateOpen = true
-                    paginationGateOpen = true
-                    pushNotificationGateOpen = true
-                
-                    DEFAULTS.set(nil, forKey: "gigs")
-                }
-                
-            } catch {
-                
-                self.displayError(title: "There was an error", message: "Something went wrong, please try again")
-            }
+    @IBAction func settingsButton(_ sender: Any) {
+        let settingsPopup = UIAlertController(title: "Settings", message: "What would you like to do?", preferredStyle: .actionSheet)
+        let editProfileAction = UIAlertAction(title: "Edit profile", style: .default) { (buttonTapped) in
+            print("user edits profile")
         }
-        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { (buttonTapped) in
-            print("operation aborted")
+        let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { (buttonTapped) in
+            let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out of your account?", preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
+            alertController.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (buttonPressed) in
+                do {
+                    
+                    if let uid = Auth.auth().currentUser?.uid {
+                        //So does not update account which is not theirs
+                        DataService.instance.removeObservers(uid: uid)
+                        //Change the FCM token so the iPhone stops receiving notifications
+                        DataService.instance.updateDBUserFCMToken(uid: uid, token: "empty_token")
+                    }
+                    
+                    try Auth.auth().signOut()
+                    let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSignupVC") as? LoginSignupVC
+                    self.present(loginVC!, animated: true, completion: nil)
+                    
+                    //When the user logs out we need to return the tab bar to its original state ready for either type of user to log in
+                    if let tabBarController = self.tabBarController {
+                        tabBarController.viewControllers = tabs
+                        tabGateOpen = true
+                        accountGateOpen = true
+                        cardGateOpen = true
+                        feedGateOpen = true
+                        observeGateOpen = true
+                        paginationGateOpen = true
+                        pushNotificationGateOpen = true
+                        
+                        DEFAULTS.set(nil, forKey: "gigs")
+                    }
+                    
+                } catch {
+                    self.displayError(title: "There was an error", message: "Something went wrong, please try again")
+                }
+            }))
+            self.present(alertController, animated: true, completion: nil)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         
-        logoutPopup.addAction(logoutAction)
-        logoutPopup.addAction(cancelAction)
-        present(logoutPopup, animated: true, completion: nil)
+        settingsPopup.addAction(editProfileAction)
+        settingsPopup.addAction(logoutAction)
+        settingsPopup.addAction(cancelAction)
+        present(settingsPopup, animated: true, completion: nil)
     }
     
     //MARK: USER HEADER CELL
