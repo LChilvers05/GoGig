@@ -17,7 +17,7 @@ class MusicLinksCAVC: UIViewController {
     @IBOutlet weak var appleMusicField: MyTextField!
     @IBOutlet weak var spotifyField: MyTextField!
     
-    var editingProfile: Bool?
+    //var editingProfile: Bool?
     var user: User?
     
     var userData: Dictionary<String, Any>?
@@ -73,18 +73,16 @@ class MusicLinksCAVC: UIViewController {
     @IBAction func continueButton(_ sender: Any) {
         var continueFine = true
         if let userAppleMusic = appleMusicField.text {
-            if let url = URL(string: userAppleMusic) {
+            if (userAppleMusic.contains(".") && userAppleMusic.count > 5) || userAppleMusic == "" {
                 userData!["appleMusic"] = userAppleMusic
-                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid Apple Music URL (optional)")
                 continueFine = false
             }
         }
         if let userSpotify = spotifyField.text {
-            if let url = URL(string: userSpotify) {
+            if (userSpotify.contains(".") && userSpotify.count > 5) || userSpotify == "" {
                 userData!["spotify"] = userSpotify
-                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid Spotify URL (optional)")
                 continueFine = false
@@ -106,33 +104,40 @@ class MusicLinksCAVC: UIViewController {
                         //Now log user in
                         AuthService.instance.loginUser(withEmail: self.email!, andPassword: self.password!, loginComplete: { (success, nil) in })
                         
-                        if let uid = Auth.auth().currentUser?.uid {
-                            //Upload the pic to cloud storage
-                            self.picUpload(uid: uid) { (returnedURL) in
-                                
-                                self.userData!["picURL"] = returnedURL.absoluteString
-                                
-                                DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
-                                    
-                                    if complete {
-                                        
-                                        self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
-                                        
-                                        //Update FCM Token for push notifications
-                                        InstanceID.instanceID().instanceID { (result, error) in
-                                            if let error = error {
-                                                print("Error fetching remote instance ID: \(error)")
-                                            } else if let result = result {
-                                                print("Remote instance ID token: \(result.token)")
-                                                deviceFCMToken = result.token
-                                            }
-                                        }
-                                    }
-                                }
+                        self.updateUserData()
+                    }
+                })
+            } else {
+                //User is editing their profile
+                self.updateUserData()
+            }
+        }
+    }
+    
+    func updateUserData(){
+        if let uid = Auth.auth().currentUser?.uid {
+            //Upload the pic to cloud storage
+            self.picUpload(uid: uid) { (returnedURL) in
+                
+                self.userData!["picURL"] = returnedURL.absoluteString
+                
+                DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
+                    
+                    if complete {
+                        
+                        self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
+                        
+                        //Update FCM Token for push notifications
+                        InstanceID.instanceID().instanceID { (result, error) in
+                            if let error = error {
+                                print("Error fetching remote instance ID: \(error)")
+                            } else if let result = result {
+                                print("Remote instance ID token: \(result.token)")
+                                deviceFCMToken = result.token
                             }
                         }
                     }
-                })
+                }
             }
         }
     }
@@ -143,6 +148,7 @@ class MusicLinksCAVC: UIViewController {
             
             let tabBarController = segue.destination as! TabBarController
             tabBarController.userGigs = self.userGigs
+            editingProfile = false
             
         }
     }

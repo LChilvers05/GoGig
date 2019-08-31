@@ -18,9 +18,7 @@ class SocialLinksCAVC: UIViewController {
     @IBOutlet weak var instagramField: MyTextField!
     @IBOutlet weak var twitterField: MyTextField!
     @IBOutlet weak var facebookField: MyTextField!
-    
-    //To decide if we need to update their account info or sign them up
-    var editingProfile = false
+
     var user: User?
     
     var userData: Dictionary<String, Any>?
@@ -87,9 +85,8 @@ class SocialLinksCAVC: UIViewController {
     @IBAction func continueButton(_ sender: Any) {
         var continueFine = true
         if let userWebsite = websiteField.text {
-            if let url = URL(string: userWebsite) {
+            if (userWebsite.contains(".") && userWebsite.count > 5) || userWebsite == "" {
                 userData!["website"] = userWebsite
-                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid website (optional)")
                 continueFine = false
@@ -149,33 +146,41 @@ class SocialLinksCAVC: UIViewController {
                             //Now log user in
                             AuthService.instance.loginUser(withEmail: self.email!, andPassword: self.password!, loginComplete: { (success, nil) in })
                             
-                            if let uid = Auth.auth().currentUser?.uid { //Maybe clean this?
-                                //Upload the pic to cloud storage
-                                self.picUpload(uid: uid) { (returnedURL) in
-                                    
-                                    self.userData!["picURL"] = returnedURL.absoluteString
-                                    
-                                    DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
-                                        
-                                        if complete {
-                                            
-                                            self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                                            
-                                            //Update FCM Token for push notifications
-                                            InstanceID.instanceID().instanceID { (result, error) in
-                                                if let error = error {
-                                                    print("Error fetching remote instance ID: \(error)")
-                                                } else if let result = result {
-                                                    print("Remote instance ID token: \(result.token)")
-                                                    deviceFCMToken = result.token
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
+                            self.updateUserData()
                         }
                     })
+                    
+                } else {
+                    //User is editing their profile, not creating an account
+                    self.updateUserData()
+                }
+            }
+        }
+    }
+    
+    func updateUserData(){
+        if let uid = Auth.auth().currentUser?.uid {
+            //Upload the pic to cloud storage
+            self.picUpload(uid: uid) { (returnedURL) in
+                
+                self.userData!["picURL"] = returnedURL.absoluteString
+                
+                DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
+                    
+                    if complete {
+                        
+                        self.performSegue(withIdentifier: TO_MAIN, sender: nil)
+                        
+                        //Update FCM Token for push notifications
+                        InstanceID.instanceID().instanceID { (result, error) in
+                            if let error = error {
+                                print("Error fetching remote instance ID: \(error)")
+                            } else if let result = result {
+                                print("Remote instance ID token: \(result.token)")
+                                deviceFCMToken = result.token
+                            }
+                        }
+                    }
                 }
             }
         }
@@ -195,13 +200,13 @@ class SocialLinksCAVC: UIViewController {
             musicLinksCAVC.userGigs = self.userGigs
             musicLinksCAVC.imageID = self.imageID
             musicLinksCAVC.profileImage = self.profileImage
-            musicLinksCAVC.editingProfile = self.editingProfile
             musicLinksCAVC.user = self.user
             
         } else if segue.identifier == TO_MAIN {
             
             let tabBarController = segue.destination as! TabBarController
             tabBarController.userGigs = self.userGigs
+            editingProfile = false
             
         }
     }

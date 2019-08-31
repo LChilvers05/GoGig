@@ -22,8 +22,8 @@ class CreateProfileCAVC: UIViewController {
     @IBOutlet weak var musicianIcon: UIImageView!
     @IBOutlet weak var organiserIcon: UIImageView!
     
-    var editingProfile = false
     var user: User?
+    var editingGate = true
     
     var userData: Dictionary<String, Any>?
     
@@ -41,6 +41,7 @@ class CreateProfileCAVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
+        
         usernameField.updateCharacterLimit(limit: 50)
         userBioTextView.updatePlaceholder(placeholder: placeholder)
         userBioTextView.text = placeholder
@@ -59,7 +60,7 @@ class CreateProfileCAVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
-        if editingProfile == true {
+        if editingProfile && editingGate {
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                     let returnedUserData = ["email": returnedUser.email, "bio": returnedUser.bio, "gigs": returnedUser.gigs, "name": returnedUser.name, "picURL": returnedUser.picURL, "website": returnedUser.getWebsite(), "phone": returnedUser.phone, "instagram": returnedUser.getInstagram(), "twitter": returnedUser.getTwitter(), "facebook": returnedUser.getFacebook(), "appleMusic": returnedUser.getAppleMusic(), "spotify": returnedUser.getSpotify()] as [String : Any]
@@ -79,6 +80,7 @@ class CreateProfileCAVC: UIViewController {
 //                    self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
 //                        self.profileImageView.image = returnedProfileImage
 //                    }
+                    self.editingGate = false
                 }
             }
         }
@@ -181,7 +183,6 @@ class CreateProfileCAVC: UIViewController {
             socialLinksCAVC.userGigs = self.userGigs
             socialLinksCAVC.imageID = self.imageID
             socialLinksCAVC.profileImage = self.profileImageView.image
-            socialLinksCAVC.editingProfile = self.editingProfile
             socialLinksCAVC.user = self.user
         }
     }

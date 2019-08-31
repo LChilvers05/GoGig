@@ -41,6 +41,8 @@ let LOGGED_IN_KEY = "loggedIn"
 let USER_EMAIL = "userEmail"
 
 
+//MARK: GLOBAL VARIABLES
+
 //Sign In/Out Gates
 var tabGateOpen = true
 var accountGateOpen = true
@@ -50,7 +52,9 @@ var observeGateOpen = true
 var paginationGateOpen = true
 var pushNotificationGateOpen = true
 
+
 var launchedFromNotification = false
+var editingProfile = false
 
 
 

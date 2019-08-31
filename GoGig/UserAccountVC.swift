@@ -74,6 +74,19 @@ class UserAccountVC: UITableViewController {
     @IBAction func settingsButton(_ sender: Any) {
         let settingsPopup = UIAlertController(title: "Settings", message: "What would you like to do?", preferredStyle: .actionSheet)
         let editProfileAction = UIAlertAction(title: "Edit profile", style: .default) { (buttonTapped) in
+            editingProfile = true
+            if let tabBarController = self.tabBarController {
+                tabBarController.viewControllers = tabs
+                tabGateOpen = true
+                accountGateOpen = true
+                cardGateOpen = true
+                feedGateOpen = true
+                observeGateOpen = true
+                paginationGateOpen = true
+                pushNotificationGateOpen = true
+                
+                DEFAULTS.set(nil, forKey: "gigs")
+            }
             self.performSegue(withIdentifier: TO_EDIT_PROFILE, sender: nil)
         }
         let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { (buttonTapped) in
@@ -143,6 +156,7 @@ class UserAccountVC: UITableViewController {
         cell.userEmailLabel.text = user?.email
         cell.userPhoneLabel.text = user?.phone
         
+        //Signing in and out doesn't bring back hidden icons
         if user?.getFacebook() == "" {
             cell.socialLinkStackView.insertArrangedSubview(cell.facebookLinkButton, at: 5)
             cell.facebookLinkButton.isEnabled = false
@@ -317,16 +331,6 @@ class UserAccountVC: UITableViewController {
             }
         } else {
             displayError(title: "", message: "Couldn't find Spotify profile")
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == TO_EDIT_PROFILE {
-            
-            let createProfileCAVC = segue.destination as! CreateProfileCAVC
-            createProfileCAVC.editingProfile = true
-            
         }
     }
 }
