@@ -20,6 +20,9 @@ import FirebaseDatabase
 
 class UserAccountVC: UITableViewController {
     
+    @IBOutlet weak var settingsBarButton: UIBarButtonItem!
+    @IBOutlet weak var addPortfolioBarButton: UIBarButtonItem!
+    
     var user: User?
     var uid: String?
     var portfolioPosts = [PortfolioPost]()
@@ -46,6 +49,12 @@ class UserAccountVC: UITableViewController {
         if uid == nil || accountGateOpen {
             accountGateOpen = false
             uid = Auth.auth().currentUser?.uid //^
+        //User is looking at another
+        } else {
+            //hide the settings
+            navigationItem.leftBarButtonItem = nil
+            //hide the add button
+            navigationItem.rightBarButtonItem = nil
         }
         
         DataService.instance.getDBUserProfile(uid: uid!) { (returnedUser) in
@@ -130,22 +139,34 @@ class UserAccountVC: UITableViewController {
         cell.userPhoneLabel.text = user?.phone
         
         if user?.getFacebook() == "" {
-            cell.facebookLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.facebookLinkButton, at: 5)
+            cell.facebookLinkButton.isEnabled = false
+            cell.facebookLinkButton.alpha = 0.0
         }
         if user?.getTwitter() == "" {
-            cell.twitterLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.twitterLinkButton, at: 5)
+            cell.twitterLinkButton.isEnabled = false
+            cell.twitterLinkButton.alpha = 0.0
         }
         if user?.getInstagram() == "" {
-            cell.instagramLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.instagramLinkButton, at: 5)
+            cell.instagramLinkButton.isEnabled = false
+            cell.instagramLinkButton.alpha = 0.0
         }
         if user?.getWebsite() == "" {
-            cell.websiteLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.websiteLinkButton, at: 5)
+            cell.websiteLinkButton.isEnabled = false
+            cell.websiteLinkButton.alpha = 0.0
         }
         if user?.getAppleMusic() == "" {
-            cell.appleMusicLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.appleMusicLinkButton, at: 5)
+            cell.appleMusicLinkButton.isEnabled = false
+            cell.appleMusicLinkButton.alpha = 0.0
         }
         if user?.getSpotify() == "" {
-            cell.spotifyLinkButton.isHidden = true
+            cell.socialLinkStackView.insertArrangedSubview(cell.spotifyLinkButton, at: 5)
+            cell.spotifyLinkButton.isEnabled = false
+            cell.spotifyLinkButton.alpha = 0.0
         }
     }
     
@@ -272,10 +293,26 @@ class UserAccountVC: UITableViewController {
         }
     }
     @IBAction func appleMusicLink(_ sender: Any) {
-        //Look into
+        let userStreaming = user?.getAppleMusic()
+        if let webURL = URL(string: userStreaming!) {
+            let application = UIApplication.shared
+            if application.canOpenURL(webURL) {
+                application.open(webURL)
+            }
+        } else {
+            displayError(title: "", message: "Couldn't find Apple Music profile")
+        }
     }
     @IBAction func spotifyLink(_ sender: Any) {
-        //Look into
+        let userStreaming = user?.getSpotify()
+        if let webURL = URL(string: userStreaming!) {
+            let application = UIApplication.shared
+            if application.canOpenURL(webURL) {
+                application.open(webURL)
+            }
+        } else {
+            displayError(title: "", message: "Couldn't find Spotify profile")
+        }
     }
     
 }

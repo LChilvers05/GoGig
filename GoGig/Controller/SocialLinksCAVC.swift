@@ -74,8 +74,9 @@ class SocialLinksCAVC: UIViewController {
     @IBAction func continueButton(_ sender: Any) {
         var continueFine = true
         if let userWebsite = websiteField.text {
-            if userWebsite.count >= 5 || userWebsite == "" {
+            if let url = URL(string: userWebsite) {
                 userData!["website"] = userWebsite
+                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid website (optional)")
                 continueFine = false

@@ -64,16 +64,18 @@ class MusicLinksCAVC: UIViewController {
     @IBAction func continueButton(_ sender: Any) {
         var continueFine = true
         if let userAppleMusic = appleMusicField.text {
-            if userAppleMusic.count >= 5 || userAppleMusic == "" {
+            if let url = URL(string: userAppleMusic) {
                 userData!["appleMusic"] = userAppleMusic
+                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid Apple Music URL (optional)")
                 continueFine = false
             }
         }
         if let userSpotify = spotifyField.text {
-            if userSpotify.count >= 5 || userSpotify == "" {
+            if let url = URL(string: userSpotify) {
                 userData!["spotify"] = userSpotify
+                print(url)
             } else {
                 displayError(title: "Oops", message: "Please enter a valid Spotify URL (optional)")
                 continueFine = false

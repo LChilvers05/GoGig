@@ -766,6 +766,7 @@
                                     <outlet property="instagramLinkButton" destination="Ops-X1-UfZ" id="fiV-ok-qq3"/>
                                     <outlet property="profilePicView" destination="l6n-Xk-GjJ" id="h4G-4i-uue"/>
                                     <outlet property="signOutButton" destination="ISZ-JJ-aF4" id="V3u-bb-qHk"/>
+                                    <outlet property="socialLinkStackView" destination="W2q-1F-ZCJ" id="fbC-Ee-IB5"/>
                                     <outlet property="spotifyLinkButton" destination="7Rm-L3-4Yk" id="g2M-9M-obd"/>
                                     <outlet property="twitterLinkButton" destination="fJ5-g8-i5l" id="MqO-G7-12a"/>
                                     <outlet property="userBioTextView" destination="kgI-bQ-CWk" id="qlR-Zx-yJA"/>
@@ -868,6 +869,10 @@
                         </barButtonItem>
                     </navigationItem>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="addPortfolioBarButton" destination="Wm5-Mf-Kp6" id="V4J-a2-Um6"/>
+                        <outlet property="settingsBarButton" destination="Wm5-Mf-Kp6" id="ahV-KU-zqQ"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieL-nt-n0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

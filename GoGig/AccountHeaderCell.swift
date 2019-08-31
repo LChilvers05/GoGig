@@ -21,6 +21,7 @@ class AccountHeaderCell: UITableViewCell {
     @IBOutlet weak var websiteLinkButton: UIButton!
     @IBOutlet weak var appleMusicLinkButton: UIButton!
     @IBOutlet weak var spotifyLinkButton: UIButton!
+    @IBOutlet weak var socialLinkStackView: UIStackView!
     
     @IBOutlet weak var signOutButton: UIButton!
     

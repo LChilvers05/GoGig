@@ -231,8 +231,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             let userAccountVC = segue.destination as! UserAccountVC
             
-            //userAccountVC.settingsButton.isHidden = true
             let backItem = UIBarButtonItem()
+            backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
             
