@@ -14,6 +14,7 @@ import FirebaseDatabase
 class TabBarController: UITabBarController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = false
     }
 
     //view did appear here means that view did appear in the profile view does not work

@@ -11,6 +11,7 @@ import Foundation
 //Segues
 
 let TO_CREATE_PROFILE = "toCreateProfile"
+let TO_EDIT_PROFILE = "toEditProfile"
 let TO_SOCIAL_LINKS = "toSocialLinks"
 let TO_MUSIC_LINKS = "toMusicLinks"
 let TO_MAIN = "toMain"

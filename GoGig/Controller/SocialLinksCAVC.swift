@@ -21,6 +21,7 @@ class SocialLinksCAVC: UIViewController {
     
     //To decide if we need to update their account info or sign them up
     var editingProfile = false
+    var user: User?
     
     var userData: Dictionary<String, Any>?
     
@@ -43,6 +44,18 @@ class SocialLinksCAVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        print("reached1")
+        if editingProfile == true && user != nil {
+            print("reached2")
+            websiteField.text = user?.getWebsite()
+            phoneNumberField.text = user?.phone
+            instagramField.text = user?.getInstagram()
+            twitterField.text = user?.getTwitter()
+            facebookField.text = user?.getFacebook()
+        }
     }
     
     //MARK: STAGE 4: UPLOAD PROFILE PICTURE (If event organiser)
@@ -183,6 +196,7 @@ class SocialLinksCAVC: UIViewController {
             musicLinksCAVC.imageID = self.imageID
             musicLinksCAVC.profileImage = self.profileImage
             musicLinksCAVC.editingProfile = self.editingProfile
+            musicLinksCAVC.user = self.user
             
         } else if segue.identifier == TO_MAIN {
             

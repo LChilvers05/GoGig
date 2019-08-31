@@ -74,7 +74,7 @@ class UserAccountVC: UITableViewController {
     @IBAction func settingsButton(_ sender: Any) {
         let settingsPopup = UIAlertController(title: "Settings", message: "What would you like to do?", preferredStyle: .actionSheet)
         let editProfileAction = UIAlertAction(title: "Edit profile", style: .default) { (buttonTapped) in
-            print("user edits profile")
+            self.performSegue(withIdentifier: TO_EDIT_PROFILE, sender: nil)
         }
         let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { (buttonTapped) in
             let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out of your account?", preferredStyle: .alert)
@@ -320,6 +320,15 @@ class UserAccountVC: UITableViewController {
         }
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == TO_EDIT_PROFILE {
+            
+            let createProfileCAVC = segue.destination as! CreateProfileCAVC
+            createProfileCAVC.editingProfile = true
+            
+        }
+    }
 }
 var deviceFCMToken: String?
 

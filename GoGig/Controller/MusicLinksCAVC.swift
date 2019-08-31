@@ -18,6 +18,7 @@ class MusicLinksCAVC: UIViewController {
     @IBOutlet weak var spotifyField: MyTextField!
     
     var editingProfile: Bool?
+    var user: User?
     
     var userData: Dictionary<String, Any>?
     
@@ -35,7 +36,15 @@ class MusicLinksCAVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
+    override func viewDidAppear(_ animated: Bool) {
+        if editingProfile == true && user != nil {
+            appleMusicField.text = user?.getAppleMusic()
+            spotifyField.text = user?.getSpotify()
+        }
+    }
+    
     
     //MARK: STAGE 6: UPLOAD PROFILE PICTURE (If musician)
     

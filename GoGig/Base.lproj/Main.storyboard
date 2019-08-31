@@ -866,6 +866,7 @@
                     <connections>
                         <outlet property="addPortfolioBarButton" destination="Wm5-Mf-Kp6" id="V4J-a2-Um6"/>
                         <outlet property="settingsBarButton" destination="Wm5-Mf-Kp6" id="ahV-KU-zqQ"/>
+                        <segue destination="drN-xZ-O1L" kind="show" identifier="toEditProfile" id="awe-2J-RZS"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieL-nt-n0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1897,6 +1898,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
+        <segue reference="awe-2J-RZS"/>
         <segue reference="jCN-0Y-7KK"/>
         <segue reference="viQ-FR-Ahs"/>
     </inferredMetricsTieBreakers>

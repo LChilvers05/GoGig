@@ -23,6 +23,7 @@ class CreateProfileCAVC: UIViewController {
     @IBOutlet weak var organiserIcon: UIImageView!
     
     var editingProfile = false
+    var user: User?
     
     var userData: Dictionary<String, Any>?
     
@@ -55,6 +56,32 @@ class CreateProfileCAVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if editingProfile == true {
+            if let uid = Auth.auth().currentUser?.uid {
+                DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
+                    let returnedUserData = ["email": returnedUser.email, "bio": returnedUser.bio, "gigs": returnedUser.gigs, "name": returnedUser.name, "picURL": returnedUser.picURL, "website": returnedUser.getWebsite(), "phone": returnedUser.phone, "instagram": returnedUser.getInstagram(), "twitter": returnedUser.getTwitter(), "facebook": returnedUser.getFacebook(), "appleMusic": returnedUser.getAppleMusic(), "spotify": returnedUser.getSpotify()] as [String : Any]
+                    self.user = returnedUser
+                    self.userData = returnedUserData
+                    self.usernameField.text = returnedUser.name
+                    self.userBioTextView.text = returnedUser.bio
+                    self.userGigs = returnedUser.gigs
+                    self.email = returnedUser.email
+                    self.password = ""
+                    if returnedUser.gigs {
+                        self.formatGigHireButtons(chosenButton: self.playGigsButton, ignoredButton: self.hireMusiciansButton)
+                    } else {
+                        self.formatGigHireButtons(chosenButton: self.hireMusiciansButton, ignoredButton: self.playGigsButton)
+                    }
+                    //Sort out the loading of Images!
+//                    self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
+//                        self.profileImageView.image = returnedProfileImage
+//                    }
+                }
+            }
+        }
     }
     
     //MARK: STAGE 1: TYPE OF USER
@@ -155,7 +182,7 @@ class CreateProfileCAVC: UIViewController {
             socialLinksCAVC.imageID = self.imageID
             socialLinksCAVC.profileImage = self.profileImageView.image
             socialLinksCAVC.editingProfile = self.editingProfile
-            
+            socialLinksCAVC.user = self.user
         }
     }
 }
