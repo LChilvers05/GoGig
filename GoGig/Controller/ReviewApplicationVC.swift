@@ -72,21 +72,6 @@ class ReviewApplicationVC: UIViewController {
         DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: application!.getRelatedEventId())
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == TO_CHECK_PORTFOLIO_2 {
-            
-            let userAccountVC = segue.destination as! UserAccountVC
-            
-            let backItem = UIBarButtonItem()
-            backItem.title = "Back"
-            navigationItem.backBarButtonItem = backItem
-            
-            userAccountVC.uid = uid
-            userAccountVC.refreshPortfolio()
-        }
-    }
-    
     func updateActivity(accepted: Bool) {
         //This line stops the button being pressed twice sending two activity updates
         self.view.isUserInteractionEnabled = false
@@ -130,5 +115,21 @@ class ReviewApplicationVC: UIViewController {
         }
         self.view.isUserInteractionEnabled = true
         self.navigationController?.popToRootViewController(animated: true)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == TO_CHECK_PORTFOLIO_2 {
+            
+            let userAccountVC = segue.destination as! UserAccountVC
+            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
+            userAccountVC.uid = uid
+            userAccountVC.observingPortfolio = true
+            userAccountVC.refreshPortfolio()
+        }
     }
 }

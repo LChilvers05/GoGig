@@ -237,6 +237,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             navigationItem.backBarButtonItem = backItem
             
             userAccountVC.uid = checkUid!
+            userAccountVC.observingPortfolio = true
             userAccountVC.refreshPortfolio()
             
         } else if segue.identifier == TO_REVIEW_APPLICATION {

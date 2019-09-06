@@ -23,6 +23,8 @@ class UserAccountVC: UITableViewController {
     @IBOutlet weak var settingsBarButton: UIBarButtonItem!
     @IBOutlet weak var addPortfolioBarButton: UIBarButtonItem!
     
+    var observingPortfolio = false
+    
     var user: User?
     var uid: String?
     var portfolioPosts = [PortfolioPost]()
@@ -50,7 +52,9 @@ class UserAccountVC: UITableViewController {
             accountGateOpen = false
             uid = Auth.auth().currentUser?.uid //^
         //User is looking at another
-        } else {
+        }
+        
+        if observingPortfolio {
             //hide the settings
             navigationItem.leftBarButtonItem = nil
             //hide the add button
@@ -137,9 +141,9 @@ class UserAccountVC: UITableViewController {
     //MARK: USER HEADER CELL
     var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
     func updateUserData(cell: AccountHeaderCell){
-        if uid != Auth.auth().currentUser?.uid {
-            cell.signOutButton.isHidden = true
-        }
+//        if uid != Auth.auth().currentUser?.uid {
+//            cell.signOutButton.isHidden = true
+//        }
         
         //Set the navigation bar title
         self.navigationController?.navigationBar.topItem?.title = user?.name

@@ -59,6 +59,7 @@ class EventDescriptionVC: UIViewController {
             navigationItem.backBarButtonItem = backItem
             
             userAccountVC.uid = checkUid!
+            userAccountVC.observingPortfolio = true
             userAccountVC.refreshPortfolio()
         }
     }
