@@ -10,6 +10,8 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
+//NEED TO FIX BUG WHERE USER CAN OBSERVE PORTFOLIO BY CLICKING ON DATE IN THE 'MY EVENTS' SECTION
+
 class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -109,6 +111,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
         cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
+        cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.eventNameButton.tag = row
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
         
@@ -123,9 +126,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         let row = sender.tag
         
-        checkUid = activityNotifications[row].getSenderUid()
+        if row > -1 {
+            checkUid = activityNotifications[row].getSenderUid()
         
-        performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
+            performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
+        }
     }
     
     //MARK: FETCH MORE DATA
@@ -173,10 +178,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: EVENT CELL
     
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
-        cell.notificationImage.isHidden = true
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
-        cell.eventNameButton.tag = row
+        cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        cell.eventNameButton.tag = -row
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
+        loadImageCache(url: usersEvents[row].getEventPhotoURL(), isImage: true) { (returnedImage) in
+            cell.notificationImage.image = returnedImage
+        }
     }
     
     //MARK: COMPARE TIME AND DATE

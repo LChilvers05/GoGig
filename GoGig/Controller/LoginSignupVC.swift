@@ -125,6 +125,9 @@ class LoginSignupVC: UIViewController {
                                     //Dismiss the LoginVC showing UserAccountVC
                                     self.dismiss(animated: true, completion: nil)
                                     
+                                    //Refresh the portfolio
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
+                                    
                                     InstanceID.instanceID().instanceID { (result, error) in
                                         if let error = error {
                                             print("Error fetching remote instance ID: \(error)")

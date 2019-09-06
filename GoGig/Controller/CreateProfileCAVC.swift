@@ -95,18 +95,22 @@ class CreateProfileCAVC: UIViewController {
         if chosenButton == playGigsButton {
             musicianIcon.alpha = 1
             organiserIcon.alpha = 0.5
+            
+            userGigs = true
         } else {
             musicianIcon.alpha = 0.5
             organiserIcon.alpha = 1
+            
+            userGigs = false
         }
     }
     
     @IBAction func userGigs(_ sender: Any) {
-        userGigs = true
+        
         formatGigHireButtons(chosenButton: playGigsButton, ignoredButton: hireMusiciansButton)
     }
     @IBAction func userHires(_ sender: Any) {
-        userGigs = false
+        
         formatGigHireButtons(chosenButton: hireMusiciansButton, ignoredButton: playGigsButton)
     }
     
