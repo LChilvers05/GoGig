@@ -866,7 +866,7 @@
                     <connections>
                         <outlet property="addPortfolioBarButton" destination="Wm5-Mf-Kp6" id="V4J-a2-Um6"/>
                         <outlet property="settingsBarButton" destination="Wm5-Mf-Kp6" id="ahV-KU-zqQ"/>
-                        <segue destination="drN-xZ-O1L" kind="show" identifier="toEditProfile" id="REX-Mh-cVF"/>
+                        <segue destination="6tE-Mh-nQI" kind="show" identifier="toEditProfile" id="F5m-Mk-d21"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ieL-nt-n0K" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1160,6 +1160,22 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1MK-ys-kz0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="737" y="1481"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="NXr-vd-jzl">
+            <objects>
+                <navigationController id="6tE-Mh-nQI" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Rd-sv-n3P">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="drN-xZ-O1L" kind="relationship" relationship="rootViewController" id="GhX-Ps-AxG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Prk-Aq-EYz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2324" y="-4"/>
         </scene>
         <!--Create ProfileCAVC-->
         <scene sceneID="7gw-lG-d1e">
@@ -1493,6 +1509,7 @@
         <!--Login SignupVC-->
         <scene sceneID="Ogz-Id-q3T">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2l6-ko-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginSignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SWT-Fj-wto" customClass="LoginView" customModule="GoGig" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1597,12 +1614,11 @@
                         <outlet property="passwordField" destination="XbA-eX-A8A" id="C78-3U-TZt"/>
                         <outlet property="switchPrompt" destination="9qm-at-6SB" id="eZR-DB-3nD"/>
                         <outlet property="topLSButton" destination="x7E-AN-OSt" id="iP2-z2-wnp"/>
-                        <segue destination="drN-xZ-O1L" kind="show" identifier="toCreateProfile" id="nMB-1X-77w"/>
+                        <segue destination="drN-xZ-O1L" kind="show" identifier="toCreateProfile" id="HG0-iB-Zja"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2l6-ko-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2430" y="0.0"/>
+            <point key="canvasLocation" x="-3031" y="-4"/>
         </scene>
     </scenes>
     <resources>
@@ -1642,7 +1658,7 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
-        <segue reference="REX-Mh-cVF"/>
+        <segue reference="HG0-iB-Zja"/>
         <segue reference="O7T-tK-dOO"/>
         <segue reference="viQ-FR-Ahs"/>
     </inferredMetricsTieBreakers>

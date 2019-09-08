@@ -44,6 +44,8 @@ class SocialLinksCAVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
+    
+    //Only reached if placed in navigation controller
     override func viewDidAppear(_ animated: Bool) {
         print("reached1")
         if editingProfile == true && user != nil {
@@ -170,8 +172,6 @@ class SocialLinksCAVC: UIViewController {
                     if complete {
                         
                         self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                        //Refresh the portfolio
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
                         
                         //Update FCM Token for push notifications
                         InstanceID.instanceID().instanceID { (result, error) in

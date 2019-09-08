@@ -31,7 +31,6 @@ class TabBarController: UITabBarController {
 
             //Remove the tabs that shouldn't be seen by musician/organiser
             if tabGateOpen {
-                print("TABS 1")
                 if userGigsDefaults == true {
                     self.viewControllers?.remove(at: 0)
                 } else {
@@ -52,7 +51,6 @@ class TabBarController: UITabBarController {
                     
                     //IF USER IS LOGGING IN
                     if userGigs == nil {
-                        print("TABS 2")
                         DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                             
                             self.setDefaults(userGigsCondition: returnedUser.gigs)
@@ -60,14 +58,13 @@ class TabBarController: UITabBarController {
                         
                     //IF THE USER IS SIGNING UP FOR THE FIRST TIME
                     } else {
-                        print("TABS 3")
                         self.setDefaults(userGigsCondition: userGigs!)
                     }
                 }
             }
         }
         
-        //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
     }
     
