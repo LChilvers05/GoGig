@@ -103,6 +103,18 @@ class CreateProfileCAVC: UIViewController {
             
             userGigs = false
         }
+        
+        if editingProfile {
+            playGigsButton.isHidden = true
+            musicianIcon.isHidden = true
+            hireMusiciansButton.isHidden = true
+            organiserIcon.isHidden = true
+        } else {
+            playGigsButton.isHidden = false
+            musicianIcon.isHidden = false
+            hireMusiciansButton.isHidden = false
+            organiserIcon.isHidden = false
+        }
     }
     
     @IBAction func userGigs(_ sender: Any) {
