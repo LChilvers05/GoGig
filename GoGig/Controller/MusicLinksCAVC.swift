@@ -125,6 +125,7 @@ class MusicLinksCAVC: UIViewController {
                     
                     if complete {
                         
+                        accountGateOpen = true
                         self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
                         
                         //Update FCM Token for push notifications

@@ -180,7 +180,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
-        cell.eventNameButton.tag = -row
+        cell.eventNameButton.isEnabled = false
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
         loadImageCache(url: usersEvents[row].getEventPhotoURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = returnedImage

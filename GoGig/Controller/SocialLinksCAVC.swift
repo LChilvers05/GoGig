@@ -171,6 +171,7 @@ class SocialLinksCAVC: UIViewController {
                     
                     if complete {
                         
+                        accountGateOpen = true
                         self.performSegue(withIdentifier: TO_MAIN, sender: nil)
                         
                         //Update FCM Token for push notifications

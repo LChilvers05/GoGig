@@ -39,7 +39,7 @@ class MyTextField: UITextField {
 //To allow access to the editing delegate methods
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
-    var characterLimit = 25
+    var characterLimit = 100
     
     //Put a limit on the number of characters allowed to be entered in the textField
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
