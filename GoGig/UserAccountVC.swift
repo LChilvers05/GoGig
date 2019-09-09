@@ -168,7 +168,6 @@ class UserAccountVC: UITableViewController {
             cell.facebookLinkButton.isEnabled = false
             cell.facebookLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.facebookLinkButton, at: 0)
             cell.facebookLinkButton.isEnabled = true
             cell.facebookLinkButton.alpha = 1.0
         }
@@ -177,7 +176,6 @@ class UserAccountVC: UITableViewController {
             cell.twitterLinkButton.isEnabled = false
             cell.twitterLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.twitterLinkButton, at: 1)
             cell.twitterLinkButton.isEnabled = true
             cell.twitterLinkButton.alpha = 1.0
         }
@@ -186,7 +184,6 @@ class UserAccountVC: UITableViewController {
             cell.instagramLinkButton.isEnabled = false
             cell.instagramLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.instagramLinkButton, at: 2)
             cell.instagramLinkButton.isEnabled = true
             cell.instagramLinkButton.alpha = 1.0
         }
@@ -195,7 +192,6 @@ class UserAccountVC: UITableViewController {
             cell.websiteLinkButton.isEnabled = false
             cell.websiteLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.websiteLinkButton, at: 3)
             cell.websiteLinkButton.isEnabled = true
             cell.websiteLinkButton.alpha = 1.0
         }
@@ -204,7 +200,6 @@ class UserAccountVC: UITableViewController {
             cell.appleMusicLinkButton.isEnabled = false
             cell.appleMusicLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.appleMusicLinkButton, at: 4)
             cell.appleMusicLinkButton.isEnabled = true
             cell.appleMusicLinkButton.alpha = 1.0
         }
@@ -213,7 +208,6 @@ class UserAccountVC: UITableViewController {
             cell.spotifyLinkButton.isEnabled = false
             cell.spotifyLinkButton.alpha = 0.0
         } else {
-            cell.socialLinkStackView.insertArrangedSubview(cell.spotifyLinkButton, at: 5)
             cell.spotifyLinkButton.isEnabled = true
             cell.spotifyLinkButton.alpha = 1.0
         }

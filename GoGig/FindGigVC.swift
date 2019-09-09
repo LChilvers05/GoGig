@@ -20,6 +20,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     @IBOutlet weak var phoneLabel: UILabel!
     @IBOutlet weak var currentGigEventView: GigEventView!
     @IBOutlet weak var nextGigEventView: GigEventView!
+    @IBOutlet weak var refreshButton: UIButton!
     
     
     var user: User?
@@ -36,6 +37,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         navigationController?.navigationBar.isHidden = true
         cardGateOpen = false
         
@@ -50,6 +52,9 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
         
+        refreshButton.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+        self.view.sendSubviewToBack(refreshButton)
+        
         nameLabel.isHidden = true
         emailLabel.isHidden = true
         phoneLabel.isHidden = true
@@ -58,6 +63,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         
         refresh()
         
+        setupView()
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.isHidden = true
@@ -71,7 +77,9 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         locationManager.stopUpdatingLocation()
     }
-    
+    @IBAction func refreshButton(_ sender: Any) {
+        refresh()
+    }
     func refresh() {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
@@ -136,6 +144,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         nameLabel.isHidden = false
         emailLabel.isHidden = false
         phoneLabel.isHidden = false
+        refreshButton.isHidden = true
         
         nextGigEventView.isHidden = true
         
@@ -202,8 +211,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
             nameLabel.text = "No Gigs Around"
             emailLabel.text = "Share GoGig"
             nextEventImage = nil
+            phoneLabel.isHidden = true
             currentGigEventView.isHidden = true
             nextGigEventView.isHidden = true
+            refreshButton.isHidden = false
         }
     }
     

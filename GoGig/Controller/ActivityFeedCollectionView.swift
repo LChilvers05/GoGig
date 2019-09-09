@@ -20,6 +20,7 @@ extension ActivityFeedVC {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cvCell", for: indexPath) as! ActivityCVCell
         
         //MAY NOT NEED THIS
+        setupView(tableview: cell.feedTableView)
         cell.feedTableView.reloadData()
         
         return cell

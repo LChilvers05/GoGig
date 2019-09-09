@@ -630,6 +630,14 @@
                                     <outlet property="titleLabel" destination="QGj-fV-rXN" id="WrN-Pj-7XT"/>
                                 </connections>
                             </view>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4YC-5i-MhO">
+                                <rect key="frame" x="161" y="588" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshButton:" destination="RZR-t2-qB5" eventType="touchUpInside" id="fLb-WU-mKf"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="YoL-Zk-6DJ"/>
@@ -644,6 +652,7 @@
                         <outlet property="nameLabel" destination="MkG-kJ-Exz" id="7qM-uY-veG"/>
                         <outlet property="nextGigEventView" destination="siD-DX-6PH" id="cGy-4h-wfT"/>
                         <outlet property="phoneLabel" destination="Zsu-QO-78w" id="qXq-jE-yAs"/>
+                        <outlet property="refreshButton" destination="4YC-5i-MhO" id="tpz-Lx-Kct"/>
                         <segue destination="c1N-ac-aRf" kind="show" identifier="toEventDescription" id="BGg-Yo-fr5"/>
                     </connections>
                 </viewController>
@@ -1509,7 +1518,6 @@
         <!--Login SignupVC-->
         <scene sceneID="Ogz-Id-q3T">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2l6-ko-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="LoginSignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SWT-Fj-wto" customClass="LoginView" customModule="GoGig" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -1617,6 +1625,7 @@
                         <segue destination="drN-xZ-O1L" kind="show" identifier="toCreateProfile" id="HG0-iB-Zja"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="2l6-ko-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-3031" y="-4"/>
         </scene>
@@ -1660,6 +1669,6 @@
         <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
         <segue reference="O7T-tK-dOO"/>
-        <segue reference="viQ-FR-Ahs"/>
+        <segue reference="BGg-Yo-fr5"/>
     </inferredMetricsTieBreakers>
 </document>
