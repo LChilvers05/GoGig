@@ -14,6 +14,7 @@ import FirebaseDatabase
 
 class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
     
+    @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
     var storedOffsets = [Int: CGFloat]()
@@ -119,6 +120,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = returnedImage
         }
+        
+        if editingNotifications {
+            cell.deleteNotificationButton.isHidden = false
+        } else {
+            cell.deleteNotificationButton.isHidden = true
+        }
     }
     
     //MARK: NOTIFICATION CELL ACTIONS
@@ -201,6 +208,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }
     
     //MARK: DELETE EVENTS
+    
+    var editingNotifications = false
+    @IBAction func editBarButtonItem(_ sender: Any) {
+        if editingNotifications {
+            editingNotifications = false
+            editBarButton.title = "Edit"
+            collectionView.reloadData()
+        } else {
+            editingNotifications = true
+            editBarButton.title = "Done"
+            collectionView.reloadData()
+        }
+    }
+    
+    @IBAction func deleteNotification(_ sender: Any) {
+        print("Deleted")
+    }
     
     //We cannot just delete from an array in firebase,
     //We need to upload a new modified array

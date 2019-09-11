@@ -13,6 +13,7 @@ class ActivityFeedCell: UITableViewCell {
     @IBOutlet weak var notificationImage: UIImageView!
     @IBOutlet weak var eventNameButton: UIButton!
     @IBOutlet weak var notificationDescriptionLabel: UILabel!
+    @IBOutlet weak var deleteNotificationButton: UIButton!
     
     override func awakeFromNib() {
         

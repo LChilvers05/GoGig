@@ -676,7 +676,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="214.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-Xk-GjJ">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-Xk-GjJ">
                                             <rect key="frame" x="16" y="11" width="100" height="100"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -999,24 +999,36 @@
                                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="113.5"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
-                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="fZA-it-IzC">
-                                                                        <rect key="frame" x="15" y="32" width="70" height="70"/>
+                                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="fZA-it-IzC">
+                                                                        <rect key="frame" x="15" y="22" width="70" height="70"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="70" id="EHk-xF-uu3"/>
                                                                             <constraint firstAttribute="width" constant="70" id="Hi5-fR-7SQ"/>
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-yu-SSp">
-                                                                        <rect key="frame" x="98" y="41" width="262" height="21.5"/>
+                                                                        <rect key="frame" x="91" y="42" width="229" height="51.5"/>
+                                                                        <constraints>
+                                                                            <constraint firstAttribute="width" constant="229" id="FDn-6c-3dM"/>
+                                                                        </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                                         <nil key="textColor"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-w6-nrR">
-                                                                        <rect key="frame" x="93" y="11" width="267" height="30"/>
+                                                                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6Q-gz-zCC">
+                                                                        <rect key="frame" x="332" y="42" width="31" height="30"/>
                                                                         <constraints>
-                                                                            <constraint firstAttribute="height" constant="30" id="FcY-Cb-a5x"/>
+                                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="8Dd-Tm-6zh"/>
+                                                                            <constraint firstAttribute="width" constant="31" id="Tb4-19-XCm"/>
+                                                                            <constraint firstAttribute="height" constant="30" id="oqv-9d-br5"/>
                                                                         </constraints>
+                                                                        <state key="normal" image="deleteMinus"/>
+                                                                        <connections>
+                                                                            <action selector="deleteNotification:" destination="cPb-Gz-tHJ" eventType="touchUpInside" id="Fsr-0j-D1Q"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-w6-nrR">
+                                                                        <rect key="frame" x="91" y="4" width="237" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <state key="normal" title="Name of User/Event Button"/>
                                                                         <connections>
@@ -1025,19 +1037,23 @@
                                                                     </button>
                                                                 </subviews>
                                                                 <constraints>
-                                                                    <constraint firstItem="fZA-it-IzC" firstAttribute="leading" secondItem="lbM-B7-IyM" secondAttribute="leadingMargin" id="JYO-YD-Hek"/>
-                                                                    <constraint firstItem="fZA-it-IzC" firstAttribute="top" secondItem="lbM-B7-IyM" secondAttribute="topMargin" constant="21" id="Oox-V7-AUl"/>
-                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="trailing" secondItem="lbM-B7-IyM" secondAttribute="trailingMargin" id="U0o-YS-sFg"/>
-                                                                    <constraint firstItem="mAK-w6-nrR" firstAttribute="leading" secondItem="fZA-it-IzC" secondAttribute="trailing" constant="8" id="ifz-AM-plj"/>
-                                                                    <constraint firstItem="mAK-w6-nrR" firstAttribute="trailing" secondItem="lbM-B7-IyM" secondAttribute="trailingMargin" id="oCt-38-v76"/>
-                                                                    <constraint firstItem="mAK-w6-nrR" firstAttribute="top" secondItem="lbM-B7-IyM" secondAttribute="topMargin" id="oXd-Dl-bcX"/>
-                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="leading" secondItem="fZA-it-IzC" secondAttribute="trailing" constant="13" id="pZw-YK-nni"/>
-                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="top" secondItem="mAK-w6-nrR" secondAttribute="bottom" id="q1D-jb-aAb"/>
-                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="bottom" secondItem="lbM-B7-IyM" secondAttribute="bottomMargin" id="wGe-J0-5Iz"/>
-                                                                    <constraint firstAttribute="bottomMargin" secondItem="fZA-it-IzC" secondAttribute="bottom" constant="23" id="z9A-bL-JrP"/>
+                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="top" secondItem="mAK-w6-nrR" secondAttribute="bottom" constant="8" id="3jB-l9-nWb"/>
+                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="leading" secondItem="fZA-it-IzC" secondAttribute="trailing" constant="6" id="9jn-1I-liB"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="Jvs-yu-SSp" secondAttribute="trailing" constant="55" id="CDk-je-sEh"/>
+                                                                    <constraint firstAttribute="trailingMargin" secondItem="s6Q-gz-zCC" secondAttribute="trailing" constant="-3" id="Lfm-vU-2Cl"/>
+                                                                    <constraint firstItem="fZA-it-IzC" firstAttribute="leading" secondItem="lbM-B7-IyM" secondAttribute="leading" constant="15" id="QZ7-9f-Nzu"/>
+                                                                    <constraint firstItem="fZA-it-IzC" firstAttribute="centerY" secondItem="lbM-B7-IyM" secondAttribute="centerY" id="T2S-U6-S8T"/>
+                                                                    <constraint firstItem="fZA-it-IzC" firstAttribute="centerY" secondItem="s6Q-gz-zCC" secondAttribute="centerY" id="VS6-Qb-Amw"/>
+                                                                    <constraint firstItem="s6Q-gz-zCC" firstAttribute="leading" secondItem="Jvs-yu-SSp" secondAttribute="trailing" constant="12" id="X8S-4l-RvG"/>
+                                                                    <constraint firstItem="Jvs-yu-SSp" firstAttribute="top" secondItem="lbM-B7-IyM" secondAttribute="top" constant="42" id="cMi-1q-RG2"/>
+                                                                    <constraint firstItem="mAK-w6-nrR" firstAttribute="leading" secondItem="lbM-B7-IyM" secondAttribute="leading" constant="91" id="cUQ-Sk-6Vk"/>
+                                                                    <constraint firstItem="mAK-w6-nrR" firstAttribute="top" secondItem="lbM-B7-IyM" secondAttribute="top" constant="4" id="ikM-pa-8td"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="Jvs-yu-SSp" secondAttribute="bottom" constant="20" id="wdf-Yp-y63"/>
+                                                                    <constraint firstAttribute="trailing" secondItem="mAK-w6-nrR" secondAttribute="trailing" constant="47" id="yz7-Xg-liJ"/>
                                                                 </constraints>
                                                             </tableViewCellContentView>
                                                             <connections>
+                                                                <outlet property="deleteNotificationButton" destination="s6Q-gz-zCC" id="esg-ek-5xr"/>
                                                                 <outlet property="eventNameButton" destination="mAK-w6-nrR" id="Xlc-tl-Ums"/>
                                                                 <outlet property="notificationDescriptionLabel" destination="Jvs-yu-SSp" id="6ER-ZR-3wV"/>
                                                                 <outlet property="notificationImage" destination="fZA-it-IzC" id="fao-69-oty"/>
@@ -1064,9 +1080,17 @@
                     <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="2Ub-Il-xmC">
                         <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
                     </tabBarItem>
-                    <navigationItem key="navigationItem" title="Activity" largeTitleDisplayMode="never" id="J56-jk-Ijl"/>
+                    <navigationItem key="navigationItem" title="Activity" largeTitleDisplayMode="never" id="J56-jk-Ijl">
+                        <barButtonItem key="rightBarButtonItem" title="Edit" id="4ti-zO-A8R">
+                            <color key="tintColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editBarButtonItem:" destination="cPb-Gz-tHJ" id="kMb-2l-Xzt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="collectionView" destination="jzV-zH-a4z" id="lTd-Kg-Oxk"/>
+                        <outlet property="editBarButton" destination="4ti-zO-A8R" id="6WQ-xl-yx4"/>
                         <segue destination="VvL-iR-0b6" kind="show" identifier="toCheckPortfolio" id="cyf-i8-fyk"/>
                         <segue destination="l7w-Ww-6a5" kind="show" identifier="toReviewApplication" id="6BM-Hp-p2w"/>
                         <segue destination="c1N-ac-aRf" kind="show" identifier="toEventDescription2" id="viQ-FR-Ahs"/>
@@ -1074,7 +1098,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1f4-hn-C2k" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1502" y="1480"/>
+            <point key="canvasLocation" x="1501.5999999999999" y="1479.3103448275863"/>
         </scene>
         <!--Review ApplicationVC-->
         <scene sceneID="CeH-V8-FQF">
@@ -1275,7 +1299,7 @@
                                     <action selector="addProfilePhoto:" destination="drN-xZ-O1L" eventType="touchUpInside" id="2uq-ip-SDw"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-pH-H4e">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="emptyProfile" translatesAutoresizingMaskIntoConstraints="NO" id="Vyx-pH-H4e">
                                 <rect key="frame" x="100" y="420" width="175" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -1642,6 +1666,7 @@
         <image name="continueButton-1" width="123" height="29.666666030883789"/>
         <image name="createEvent" width="40" height="40"/>
         <image name="createEventFilled" width="40" height="40"/>
+        <image name="deleteMinus" width="100" height="100"/>
         <image name="emptyProfile" width="200" height="200"/>
         <image name="facebookIcon" width="40" height="40"/>
         <image name="facebookLink" width="30" height="30"/>
@@ -1668,7 +1693,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
-        <segue reference="O7T-tK-dOO"/>
-        <segue reference="BGg-Yo-fr5"/>
+        <segue reference="cyf-i8-fyk"/>
+        <segue reference="viQ-FR-Ahs"/>
     </inferredMetricsTieBreakers>
 </document>

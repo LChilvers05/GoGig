@@ -24,7 +24,6 @@ class TabBarController: UITabBarController {
         //Set the original state of the tabs (all four)
         if tabGateOpen {
             tabs = self.viewControllers!
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         }
         
         //IF USER IS RESUMING
@@ -68,7 +67,7 @@ class TabBarController: UITabBarController {
             }
         }
         
-        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
     }
     
