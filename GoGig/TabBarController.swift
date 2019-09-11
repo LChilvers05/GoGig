@@ -24,6 +24,7 @@ class TabBarController: UITabBarController {
         //Set the original state of the tabs (all four)
         if tabGateOpen {
             tabs = self.viewControllers!
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         }
         
         //IF USER IS RESUMING
@@ -56,15 +57,18 @@ class TabBarController: UITabBarController {
                             self.setDefaults(userGigsCondition: returnedUser.gigs)
                         }
                         
-                    //IF THE USER IS SIGNING UP FOR THE FIRST TIME
+                    //IF THE USER IS SIGNING UP FOR THE FIRST TIME OR EDITING THEIR PROFILE
                     } else {
                         self.setDefaults(userGigsCondition: userGigs!)
+                        
+                        //If we edit an account and then log into another, it does not reset the correct tabs because userGigs is not reset to nil
+                        userGigs = nil
                     }
                 }
             }
         }
         
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
+        
         //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshActivityFeed"), object: nil)
     }
     
@@ -89,6 +93,7 @@ class TabBarController: UITabBarController {
         //Makes the initial tab the profile tab
         self.selectedIndex = 1;
     }
+    
     //
 }
 

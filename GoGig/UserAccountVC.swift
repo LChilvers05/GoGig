@@ -51,6 +51,7 @@ class UserAccountVC: UITableViewController {
         //User is looking at themself
         //Gate is needed incase user signs in and signs out again
         if uid == nil || accountGateOpen {
+            print("Got current Uid")
             accountGateOpen = false
             uid = Auth.auth().currentUser?.uid //^
         //User is looking at another
@@ -64,11 +65,13 @@ class UserAccountVC: UITableViewController {
         }
         
         DataService.instance.getDBUserProfile(uid: uid!) { (returnedUser) in
+            print("Got the current user")
             self.user = returnedUser
             self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                 self.profilePic = returnedProfileImage
                 DataService.instance.getDBPortfolioPosts(uid: self.uid!) { (returnedPosts) in
                     self.portfolioPosts = self.quickSort(array:returnedPosts)
+                    print("Got the posts")
                     //print(self.portfolioPosts)
                     //self.portfolioPosts = returnedPosts
                     self.tableView.reloadData()
@@ -122,6 +125,8 @@ class UserAccountVC: UITableViewController {
                         observeGateOpen = true
                         paginationGateOpen = true
                         pushNotificationGateOpen = true
+                        
+                        self.uid = nil
                         
                         DEFAULTS.set(nil, forKey: "gigs")
                     }

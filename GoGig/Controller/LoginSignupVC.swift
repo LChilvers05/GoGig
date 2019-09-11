@@ -126,7 +126,7 @@ class LoginSignupVC: UIViewController {
                                     self.dismiss(animated: true, completion: nil)
                                     
                                     //Refresh the portfolio
-                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
+                                    //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
                                     
                                     InstanceID.instanceID().instanceID { (result, error) in
                                         if let error = error {
