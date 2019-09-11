@@ -18,7 +18,7 @@ class ActivityCVCell: UICollectionViewCell {
         feedTableView.delegate = dataSourceDelegate
         feedTableView.dataSource = dataSourceDelegate
         
-        //Tag allows us to distinguish between the table views within the  cv cells for datasource
+        //Tag allows us to distinguish between the table views within the cv cells for datasource
         feedTableView.tag = row
         feedTableView.reloadData()
     }

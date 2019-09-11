@@ -148,13 +148,15 @@ extension ActivityFeedVC {
             let index = targetContentOffset.pointee.x / view.frame.width
             let indexPath = NSIndexPath(item: Int(index), section: 0)
             menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: false, scrollPosition: .centeredHorizontally)
+            //For selection of what button is pressed from what section
+            selectedCVCell = Int(index)
         }
-        
     }
     
     //Called when the menu bar is used to change the cells
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
         collectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
+        selectedCVCell = menuIndex
     }
 }

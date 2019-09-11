@@ -14,6 +14,7 @@ extension UserAccountVC {
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
+        self.tableView.separatorStyle = .none
         imageView.contentMode = .scaleAspectFit
         
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)

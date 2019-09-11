@@ -17,6 +17,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var selectedCVCell: Int = 0 //Initially Notifications
     var storedOffsets = [Int: CGFloat]()
     
     //Instantiation of menubar in a closure
@@ -93,6 +94,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 eventsHandle = DataService.instance.REF_USERS.child(uid).child("events").observe(.value) { (snapshot) in
                     DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
                         var eventListings = [GigEvent]()
+                        //HERE DO THE CHECK TO SEE IF THE EVENT STILL EXISTS
+                        //IF NOT THEN DELETE IT FROM THE USER EVENT LISTING
                         for eventID in returnedEventIDs {
                             DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
                                 
@@ -115,6 +118,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.eventNameButton.tag = row
+        cell.deleteNotificationButton.tag = row
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
         
         loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
@@ -131,13 +135,15 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL ACTIONS
     var checkUid: String?
     @IBAction func checkOut(_ sender: UIButton) {
-        
         let row = sender.tag
-        
-        if row > -1 {
+        //Notifications Section
+        if selectedCVCell == 0 {
+            
             checkUid = activityNotifications[row].getSenderUid()
-        
+            
             performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
+        } else {
+            //do nothing
         }
     }
     
@@ -189,8 +195,15 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
+        cell.deleteNotificationButton.tag = row
         loadImageCache(url: usersEvents[row].getEventPhotoURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = returnedImage
+        }
+        
+        if editingNotifications {
+            cell.deleteNotificationButton.isHidden = false
+        } else {
+            cell.deleteNotificationButton.isHidden = true
         }
     }
     
@@ -222,8 +235,39 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    @IBAction func deleteNotification(_ sender: Any) {
-        print("Deleted")
+    @IBAction func deleteNotification(_ sender: UIButton) {
+        let row = sender.tag
+        //If Organiser, then delete the public event from the database
+        if selectedCVCell == 0 {
+            activityNotifications.remove(at: row)
+            DataService.instance.deleteDBActivityFeed(uid: user!.uid, notificationID: activityNotifications[row].getId())
+            collectionView.reloadData()
+        //Delete an Event Listing
+        } else {
+            var title = ""
+            var message = ""
+            if user!.gigs {
+                title = "Delete this Gig"
+                message = "You will have no association with this event"
+            } else {
+                title = "Delete this Event"
+                message = "Your Event will no longer exist to all users"
+            }
+            //IMPROVE: The listings will not delete under the musician in database
+            //if the organiser deleted them first
+            let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
+            alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (buttonPressed) in
+                self.usersEvents.remove(at: row)
+                if self.user!.gigs == false {
+                    DataService.instance.deleteDBEvents(uid: self.user!.uid, eventID: self.eventIDs[row])
+                }
+                self.eventIDs.remove(at: row)
+                DataService.instance.deleteDBUserEvents(uid: self.user!.uid, eventIDs: self.eventIDs)
+                self.collectionView.reloadData()
+            }))
+            self.present(alertController, animated: true, completion: nil)
+        }
     }
     
     //We cannot just delete from an array in firebase,
