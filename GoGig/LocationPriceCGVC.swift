@@ -31,6 +31,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         hideKeyboard()
+        setupCGView()
         postcodeField.updateCharacterLimit(limit: 8)
         locationNameField.updateCharacterLimit(limit: 64)
         

@@ -29,6 +29,8 @@ Things to think about:
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        hideKeyboard()
+        setupCGView()
         
         //Setup placeholder of the description text view
         descriptionTextView.updatePlaceholder(placeholder: placeholder)
@@ -43,9 +45,7 @@ Things to think about:
         nameTextField.text = user?.name
         emailTextField.text = user?.email
         //Add later on
-        //phoneTextField.text = user?.phone
-        
-        hideKeyboard()
+        phoneTextField.text = user?.phone
     }
     override func viewDidAppear(_ animated: Bool) {
         print(eventData!)

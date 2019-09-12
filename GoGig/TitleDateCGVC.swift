@@ -20,12 +20,17 @@ class TitleDateCGVC: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     
     var user: User?
+    var editingGate = true
+    var editEventID = ""
     
     var eventData: Dictionary<String, Any>?
+    
+    let dateFormatter = DateFormatter()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        setupCGView()
         hideKeyboard()
         
         eventTitleField.updateCharacterLimit(limit: 50)
@@ -36,6 +41,8 @@ class TitleDateCGVC: UIViewController {
                 self.user = returnedUser
             }
         }
+        
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
         
         //Set restrictions on the Date Picker
         let calendar = Calendar(identifier: .gregorian)
@@ -57,6 +64,21 @@ class TitleDateCGVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if editingGigEvent && editingGate {
+            if let uid = Auth.auth().currentUser?.uid {
+                DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent) in
+                    let returnedGigEventData = ["uid": uid, "eventID": returnedGigEvent.getid(), "title": returnedGigEvent.getTitle(), "timestamp": returnedGigEvent.getTimestamp(), "latitude": returnedGigEvent.getLatitude(), "longitude": returnedGigEvent.getLongitude(), "locationName": returnedGigEvent.getLocationName(), "postcode": returnedGigEvent.getPostcode(), "payment": returnedGigEvent.getPayment(), "description": returnedGigEvent.getDescription(), "name": returnedGigEvent.getName(), "email": returnedGigEvent.getEmail(), "phone": returnedGigEvent.getPhone(), "eventPhotoURL": returnedGigEvent.getEventPhotoURL(), "appliedUsers": returnedGigEvent.getAppliedUsers()] as [String : Any]
+                    self.eventData = returnedGigEventData
+                    self.eventTitleField.text = returnedGigEvent.getTitle()
+                    var dateBehind = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
+                    let date = dateBehind?.addingTimeInterval(-3600)
+                    self.datePicker.setDate(date!, animated: false)
+                    self.editingGate = false
+                }
+            }
+        }
     }
     
     @IBAction func continueButton(_ sender: Any) {

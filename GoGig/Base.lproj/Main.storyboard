@@ -134,7 +134,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cew-jY-YT8">
                                 <rect key="frame" x="19" y="191" width="171" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Use My Current Location"/>
+                                <state key="normal" title="Use My Current Location">
+                                    <color key="titleColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="useCurrentLocation:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="DnT-ml-8LX"/>
                                 </connections>
@@ -203,7 +205,9 @@
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-Fu-owu">
                                 <rect key="frame" x="19" y="228" width="115" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Search Location"/>
+                                <state key="normal" title="Search Location">
+                                    <color key="titleColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="searchLocationName:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="I1v-EL-Wm6"/>
                                 </connections>
@@ -328,7 +332,9 @@
                                 <rect key="frame" x="133" y="545" width="109" height="48"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
-                                <state key="normal" title="Post Gig"/>
+                                <state key="normal" title="Post Gig">
+                                    <color key="titleColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="postEvent:" destination="7fQ-Hj-VGU" eventType="touchUpInside" id="Xrd-wd-KgM"/>
                                 </connections>
@@ -445,9 +451,18 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b0g-8r-QeL"/>
                     </view>
+                    <navigationItem key="navigationItem" id="sXV-LP-4Jh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="qjS-e0-rGj">
+                            <color key="tintColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="editGigEvent:" destination="c1N-ac-aRf" id="dAe-cT-5rY"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="dayDateLabel" destination="Y16-cP-euK" id="KPk-Ec-mS3"/>
                         <outlet property="descriptionTextView" destination="pbx-KI-U1X" id="5R7-uG-dut"/>
+                        <outlet property="editBarButtonItem" destination="qjS-e0-rGj" id="6XG-VW-LPY"/>
                         <outlet property="gigTitleLabel" destination="bvt-ck-yMp" id="IbA-z9-RNA"/>
                         <outlet property="locationLabel" destination="wR4-aW-VfM" id="oda-Na-BnZ"/>
                         <outlet property="monthYearDateLabel" destination="JeW-No-AIf" id="CGG-A7-3Yu"/>
@@ -455,6 +470,7 @@
                         <outlet property="paymentLabel" destination="WCS-9u-rDz" id="Y10-g0-Je7"/>
                         <outlet property="timeLabel" destination="BTX-DC-hhm" id="RpW-dm-ZT0"/>
                         <segue destination="VvL-iR-0b6" kind="show" identifier="toCheckPortfolio3" id="jCN-0Y-7KK"/>
+                        <segue destination="DVm-oM-9vJ" kind="show" identifier="toEditGigEvent" id="VRU-oQ-BGM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="olB-22-Ca2" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -1150,7 +1166,9 @@
                                 <rect key="frame" x="16" y="397" width="343" height="69"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Check John Appleseed"/>
+                                <state key="normal" title="Check John Appleseed">
+                                    <color key="titleColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
                                 <connections>
                                     <action selector="checkUid:" destination="l7w-Ww-6a5" eventType="touchUpInside" id="8U7-wb-WI1"/>
                                 </connections>
@@ -1693,7 +1711,8 @@
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
-        <segue reference="cyf-i8-fyk"/>
+        <segue reference="jCN-0Y-7KK"/>
         <segue reference="viQ-FR-Ahs"/>
+        <segue reference="VRU-oQ-BGM"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -25,6 +25,7 @@ class PhotoCGVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupCGView()
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self

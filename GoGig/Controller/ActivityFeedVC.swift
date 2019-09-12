@@ -328,6 +328,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
             let eventDescriptionVC = segue.destination as! EventDescriptionVC
             eventDescriptionVC.gigEvent = selectedListing
+            eventDescriptionVC.observingGigEvent = user!.gigs
         }
     }
 }

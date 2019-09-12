@@ -18,6 +18,8 @@ let imageCache = NSCache<NSString, UIImage>()
 //MARK: General
 extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    //MARK: HELPER METHODS
+    
     //To hide keyboard
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -199,6 +201,21 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             
             return UIImage(named: "second")!
         }
+    }
+    
+    //MARK: CREATE EVENT UI
+    func setupCGView() {
+        let background = UIImage(named: "Background2")
+        
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.5
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
 }
 

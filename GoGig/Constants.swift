@@ -8,7 +8,7 @@
 
 import Foundation
 
-//Segues
+//MARK: SEGUES
 
 let TO_CREATE_PROFILE = "toCreateProfile"
 let TO_EDIT_PROFILE = "toEditProfile"
@@ -18,6 +18,7 @@ let TO_MAIN = "toMain"
 let TO_MAIN_2 = "toMain2"
 
 let TO_CREATE_GIG = "toCreateGig"
+let TO_EDIT_GIG_EVENT = "toEditGigEvent"
 let TO_TITLE_DATE = "toTitleDate"
 let TO_LOCATION_PRICING = "toLocationPricing"
 let TO_INFO_CONTACT = "toInfoContact"
@@ -55,6 +56,7 @@ var pushNotificationGateOpen = true
 
 var launchedFromNotification = false
 var editingProfile = false
+var editingGigEvent = false
 
 
 

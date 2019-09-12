@@ -18,6 +18,9 @@ class EventDescriptionVC: UIViewController {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
     @IBOutlet weak var descriptionTextView: MyTextView!
+    @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
+    
+    var observingGigEvent = true
     
     var gigEvent: GigEvent?
 
@@ -29,6 +32,11 @@ class EventDescriptionVC: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if observingGigEvent {
+            navigationItem.rightBarButtonItem = nil
+        }
     }
     
     func refresh() {
@@ -49,6 +57,13 @@ class EventDescriptionVC: UIViewController {
         performSegue(withIdentifier: TO_CHECK_PORTFOLIO_3, sender: nil)
     }
     
+    @IBAction func editGigEvent(_ sender: Any) {
+        if observingGigEvent == false {
+            editingGigEvent = true
+            self.performSegue(withIdentifier: TO_EDIT_GIG_EVENT, sender: nil)
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == TO_CHECK_PORTFOLIO_3 {
             
@@ -61,6 +76,11 @@ class EventDescriptionVC: UIViewController {
             userAccountVC.uid = checkUid!
             userAccountVC.observingPortfolio = true
             userAccountVC.refreshPortfolio()
+            
+        } else if segue.identifier == TO_EDIT_GIG_EVENT {
+            
+            let titleDateCGVC = segue.destination as! TitleDateCGVC
+            titleDateCGVC.editEventID = gigEvent!.getid()
         }
     }
 }
