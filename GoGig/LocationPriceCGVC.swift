@@ -18,6 +18,10 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     @IBOutlet weak var postcodeField: MyTextField!
     @IBOutlet weak var paymentField: MyTextField!
     
+    //Editing
+    var editingGate = true
+    var gigEvent: GigEvent?
+    
     var user: User?
     var eventData: Dictionary<String, Any>?
     let locationManager: CLLocationManager = {
@@ -40,6 +44,18 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     override func viewDidDisappear(_ animated: Bool) {
         //stop updating when view dissapears to conserve battery life
         locationManager.stopUpdatingLocation()
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        if editingGate && editingGigEvent && gigEvent != nil {
+            if !(gigEvent?.getLongitude() == 0.00 && gigEvent?.getLatitude() == 0.00) {
+                useCurrentLocation(true)
+            }
+            locationNameField.text = gigEvent?.getLocationName()
+            postcodeField.text = gigEvent?.getPostcode()
+            paymentField.text = String(gigEvent!.getPayment())
+            
+            editingGate = false
+        }
     }
     
     //MARK: GET LOCATION
@@ -119,7 +135,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
             
             infoContactCGVC.user = user
             infoContactCGVC.eventData = eventData
-            
+            infoContactCGVC.gigEvent = gigEvent
         }
     }
 }

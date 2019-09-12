@@ -20,11 +20,18 @@ class CreateGigVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
     }
     
+    let eventData = ["uid": "", "eventID": "", "title": "", "timestamp": "", "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self] as [String : Any]
     
     @IBAction func continueButton(_ sender: Any) {
         
         performSegue(withIdentifier: TO_TITLE_DATE, sender: nil)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == TO_TITLE_DATE {
+            let titleDateCGVC = segue.destination as! TitleDateCGVC
+            titleDateCGVC.eventData = self.eventData
+        }
+    }
 }
 

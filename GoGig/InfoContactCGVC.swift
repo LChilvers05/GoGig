@@ -15,6 +15,8 @@ class InfoContactCGVC: UIViewController {
     @IBOutlet weak var emailTextField: MyTextField!
     @IBOutlet weak var phoneTextField: MyTextField!
     
+    var editingGate = true
+    var gigEvent: GigEvent?
     var user: User?
     var eventData: Dictionary<String, Any>?
     
@@ -48,9 +50,13 @@ Things to think about:
         phoneTextField.text = user?.phone
     }
     override func viewDidAppear(_ animated: Bool) {
-        print(eventData!)
+        if editingGigEvent && editingGate && gigEvent != nil {
+            descriptionTextView.text = gigEvent?.getDescription()
+            editingGate = false
+        }
     }
     
+    //Separate method because this is an optional method of contact
     func checkPhoneField() {
         //Less checks needed as number pad keyboard is used
         if let phone = phoneTextField.text {
@@ -113,7 +119,7 @@ Things to think about:
             
             photoCGVC.user = user
             photoCGVC.eventData = eventData
-            
+            photoCGVC.gigEvent = gigEvent
         }
     }
 }

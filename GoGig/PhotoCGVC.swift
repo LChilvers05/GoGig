@@ -12,6 +12,8 @@ class PhotoCGVC: UIViewController {
     
     @IBOutlet weak var eventPicView: UIImageView!
     
+    var editingGate = true
+    var gigEvent: GigEvent?
     var user: User?
     var eventData: Dictionary<String, Any>?
     var notificationData: Dictionary<String, Any>?
@@ -26,6 +28,7 @@ class PhotoCGVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupCGView()
+        setupView()
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
@@ -33,7 +36,13 @@ class PhotoCGVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        print(eventData!)
+        if editingGigEvent && editingGate && gigEvent != nil {
+            imageID = "\(gigEvent!.getid()).jpg"
+            downloadImage(url: gigEvent!.getEventPhotoURL()) { (returnedImage) in
+                self.eventPicView.image = returnedImage
+            }
+            editingGate = false
+        }
     }
     
     @IBAction func chooseImage(_ sender: Any) {
@@ -56,6 +65,11 @@ class PhotoCGVC: UIViewController {
     }
     
     func picUpload(uid: String, handler: @escaping (_ url: URL) -> ()) {
+        
+        //Delete the old event photo if editing
+        if editingGigEvent && gigEvent != nil {
+            DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEvent!.getid())
+        }
         
         if let eventPic = eventPicView.image {
             

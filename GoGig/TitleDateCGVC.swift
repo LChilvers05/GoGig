@@ -22,6 +22,7 @@ class TitleDateCGVC: UIViewController {
     var user: User?
     var editingGate = true
     var editEventID = ""
+    var gigEvent: GigEvent?
     
     var eventData: Dictionary<String, Any>?
     
@@ -71,9 +72,10 @@ class TitleDateCGVC: UIViewController {
                 DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent) in
                     let returnedGigEventData = ["uid": uid, "eventID": returnedGigEvent.getid(), "title": returnedGigEvent.getTitle(), "timestamp": returnedGigEvent.getTimestamp(), "latitude": returnedGigEvent.getLatitude(), "longitude": returnedGigEvent.getLongitude(), "locationName": returnedGigEvent.getLocationName(), "postcode": returnedGigEvent.getPostcode(), "payment": returnedGigEvent.getPayment(), "description": returnedGigEvent.getDescription(), "name": returnedGigEvent.getName(), "email": returnedGigEvent.getEmail(), "phone": returnedGigEvent.getPhone(), "eventPhotoURL": returnedGigEvent.getEventPhotoURL(), "appliedUsers": returnedGigEvent.getAppliedUsers()] as [String : Any]
                     self.eventData = returnedGigEventData
+                    self.gigEvent = returnedGigEvent
                     self.eventTitleField.text = returnedGigEvent.getTitle()
-                    var dateBehind = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
-                    let date = dateBehind?.addingTimeInterval(-3600)
+                    let setDate = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
+                    let date = setDate?.addingTimeInterval(-3600)
                     self.datePicker.setDate(date!, animated: false)
                     self.editingGate = false
                 }
@@ -95,7 +97,10 @@ class TitleDateCGVC: UIViewController {
             if eventTitle != "" && eventTitle.count <= 60 {
                 
                 
-                eventData = ["uid": self.user?.uid as Any, "eventID": "", "title": eventTitle, "timestamp": timestamp, "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self]
+                //eventData = ["uid": self.user?.uid as Any, "eventID": "", "title": eventTitle, "timestamp": timestamp, "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self]
+                self.eventData!["uid"] = self.user?.uid as Any
+                self.eventData!["title"] = eventTitle
+                self.eventData!["timestamp"] = timestamp
                 
                 performSegue(withIdentifier: TO_LOCATION_PRICING, sender: nil)
                 
@@ -117,6 +122,7 @@ class TitleDateCGVC: UIViewController {
             //Changes it
             locationPriceCGVC.user = user
             locationPriceCGVC.eventData = eventData
+            locationPriceCGVC.gigEvent = gigEvent
             
         }
     }

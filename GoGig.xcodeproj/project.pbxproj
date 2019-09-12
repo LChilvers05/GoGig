@@ -12,7 +12,6 @@
 		FE0141DF22E74A3A0012343A /* ActivityMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */; };
 		FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */; };
 		FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD722DDE6C00005E3AE /* MyTextField.swift */; };
-		FE1A731222F22B40001AD1A5 /* ReviewApplicationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */; };
 		FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2B049822EB4EE5001210FD /* ActivityNotification.swift */; };
 		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
 		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
@@ -27,8 +26,6 @@
 		FE8C069B2318290A00922FF2 /* SocialLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069A2318290A00922FF2 /* SocialLinksCAVC.swift */; };
 		FE8C069D23182E5500922FF2 /* MusicLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */; };
 		FE8C069F2318337E00922FF2 /* LoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */; };
-		FEB01D572326600E0062493A /* FindGigView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB01D562326600E0062493A /* FindGigView.swift */; };
-		FEB01D592326654F0062493A /* ActivityFeedUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEB01D582326654F0062493A /* ActivityFeedUI.swift */; };
 		FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */; };
 		FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */; };
 		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
@@ -71,7 +68,6 @@
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
 		FE1A544A2310416A00B95AE1 /* GoGig.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoGig.entitlements; sourceTree = "<group>"; };
-		FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewApplicationUI.swift; path = GoGig/Controller/ReviewApplicationUI.swift; sourceTree = SOURCE_ROOT; };
 		FE2B049822EB4EE5001210FD /* ActivityNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityNotification.swift; path = GoGig/ActivityNotification.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
 		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
@@ -88,8 +84,6 @@
 		FE8C069A2318290A00922FF2 /* SocialLinksCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SocialLinksCAVC.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Controller/SocialLinksCAVC.swift"; sourceTree = "<absolute>"; };
 		FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLinksCAVC.swift; sourceTree = "<group>"; };
 		FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupVC.swift; sourceTree = "<group>"; };
-		FEB01D562326600E0062493A /* FindGigView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FindGigView.swift; sourceTree = "<group>"; };
-		FEB01D582326654F0062493A /* ActivityFeedUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityFeedUI.swift; path = GoGig/Extensions/ActivityFeedUI.swift; sourceTree = SOURCE_ROOT; };
 		FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationExtensions.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Extensions/ApplicationExtensions.swift"; sourceTree = "<absolute>"; };
 		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
@@ -165,10 +159,7 @@
 			children = (
 				FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */,
 				FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */,
-				FEB01D582326654F0062493A /* ActivityFeedUI.swift */,
-				FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */,
 				FECCACC022D75E6300D617CB /* Extensions.swift */,
-				FEB01D562326600E0062493A /* FindGigView.swift */,
 				FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */,
 				FECCACC222D75EB800D617CB /* UserAccountTableView.swift */,
 				FE0141DC22E749370012343A /* ActivityFeedCollectionView.swift */,
@@ -427,7 +418,6 @@
 				FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */,
 				FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */,
 				FE8C069B2318290A00922FF2 /* SocialLinksCAVC.swift in Sources */,
-				FEB01D592326654F0062493A /* ActivityFeedUI.swift in Sources */,
 				FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
 				FE8C069723181FB900922FF2 /* CreateProfileCAVC.swift in Sources */,
@@ -435,7 +425,6 @@
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
 				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
 				FED01F1222F1CB9400E7CB4F /* ReviewApplicationVC.swift in Sources */,
-				FE1A731222F22B40001AD1A5 /* ReviewApplicationUI.swift in Sources */,
 				FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */,
 				FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */,
 				FE0141DD22E749370012343A /* ActivityFeedCollectionView.swift in Sources */,
@@ -460,7 +449,6 @@
 				FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */,
 				FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */,
 				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
-				FEB01D572326600E0062493A /* FindGigView.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
 				FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */,
 				FECCACDD22D761D700D617CB /* TabBarController.swift in Sources */,
