@@ -51,6 +51,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         feedGateOpen = false
         refreshActivityFeed()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAfterEdit), name: NSNotification.Name(rawValue: "refreshAfterEdit"), object: nil)
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         navigationController?.navigationBar.topItem?.title = "Activity"
@@ -69,6 +71,14 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             feedGateOpen = false
             refreshActivityFeed()
         }
+    }
+    @objc func refreshAfterEdit() {
+        print("=====================================")
+        print("Refreshed the activity after the edit")
+        activityNotifications.removeAll()
+        usersEvents.removeAll()
+        eventIDs.removeAll()
+        refreshActivityFeed()
     }
     
     //MARK: FETCH DATA
@@ -104,7 +114,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                 self.collectionView.reloadData()
                             }
                         }
-                        self.eventIDs = returnedEventIDs
+                        //One was getting appended, the other was getting inserted at 0.  Deleting didn't delete the correct gigEvent
+                        self.eventIDs = returnedEventIDs.reversed()
                     }
                 }
             }
@@ -258,11 +269,14 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (buttonPressed) in
-                self.usersEvents.remove(at: row)
+                //self.usersEvents.remove(at: row)
                 if self.user!.gigs == false {
+                    //print(self.eventIDs[row])
                     DataService.instance.deleteDBEvents(uid: self.user!.uid, eventID: self.eventIDs[row])
                 }
                 self.eventIDs.remove(at: row)
+                //print(self.usersEvents[row].getid())
+                self.usersEvents.remove(at: row)
                 DataService.instance.deleteDBUserEvents(uid: self.user!.uid, eventIDs: self.eventIDs)
                 self.collectionView.reloadData()
             }))

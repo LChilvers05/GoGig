@@ -81,6 +81,7 @@ class EventDescriptionVC: UIViewController {
             
             let titleDateCGVC = segue.destination as! TitleDateCGVC
             titleDateCGVC.editEventID = gigEvent!.getid()
+            titleDateCGVC.editingGate = true
         }
     }
 }

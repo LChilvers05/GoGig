@@ -40,6 +40,7 @@ class PhotoCGVC: UIViewController {
             imageID = "\(gigEvent!.getid()).jpg"
             downloadImage(url: gigEvent!.getEventPhotoURL()) { (returnedImage) in
                 self.eventPicView.image = returnedImage
+                self.imageAdded = true
             }
             editingGate = false
         }
@@ -58,7 +59,9 @@ class PhotoCGVC: UIViewController {
             imageContent = selectedImage
             imageAdded = true
             
-            imageID = "\(NSUUID().uuidString).jpg"
+            if !editingGigEvent {
+                imageID = "\(NSUUID().uuidString).jpg"
+            }
         }
         
         dismiss(animated: true, completion: nil)
@@ -113,24 +116,33 @@ class PhotoCGVC: UIViewController {
                 DataService.instance.updateDBEvents(uid: self.user!.uid, eventID: self.eventID, eventData: self.eventData!)
                 
                 //Add the event under user to the database
-                DataService.instance.updateDBUserEvents(uid: self.user!.uid, eventID: self.eventID)
+                //no need to update if the user is editing, otherwise we get a duplicate
+                if !editingGigEvent {
+                    DataService.instance.updateDBUserEvents(uid: self.user!.uid, eventID: self.eventID)
+                }
                 
-                self.updateActivity()
-                
-                //Update the activity feed in a completion handler so it updates correctly
-                DataService.instance.updateDBActivityFeed(uid: self.notificationData!["reciever"] as! String, notificationID: self.notificationData!["notificationID"] as! String, notificationData: self.notificationData!) { (complete) in
+                if !editingGigEvent {
+                    self.updateActivity()
                     
-                    if complete {
-                        //Take user to Activity tab to see their posted event
-                        //Without completion handler we were jumping to the view controller before the activity had updated
-                        self.tabBarController?.selectedIndex = 2
+                    //Update the activity feed in a completion handler so it updates correctly
+                    DataService.instance.updateDBActivityFeed(uid: self.notificationData!["reciever"] as! String, notificationID: self.notificationData!["notificationID"] as! String, notificationData: self.notificationData!) { (complete) in
                         
-                        //clear the event creation and pop to root of the navigation stack
-                        self.navigationController?.popToRootViewController(animated: true)
+                        if complete {
+                            //Take user to Activity tab to see their posted event
+                            //Without completion handler we were jumping to the view controller before the activity had updated
+                            self.tabBarController?.selectedIndex = 2
+                            
+                            //clear the event creation and pop to root of the navigation stack
+                            self.navigationController?.popToRootViewController(animated: true)
+                        }
                     }
+                } else {
+                    //clear the event creation and pop to root of the navigation stack
+                    self.navigationController?.popToRootViewController(animated: true)
+                    editingGigEvent = false
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAfterEdit"), object: nil)
                 }
             }
-            
         } else {
             
             displayError(title: "Oops", message: "Please take or add a photo of the venue to post event")

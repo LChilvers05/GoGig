@@ -67,6 +67,10 @@ class TitleDateCGVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = false
     }
     override func viewDidAppear(_ animated: Bool) {
+        //We are creating not editing, this causes crash if user starts editing, then decides to create
+        if self.tabBarController?.selectedIndex == 0 {
+            editingGigEvent = false
+        }
         if editingGigEvent && editingGate {
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent) in
@@ -123,6 +127,7 @@ class TitleDateCGVC: UIViewController {
             locationPriceCGVC.user = user
             locationPriceCGVC.eventData = eventData
             locationPriceCGVC.gigEvent = gigEvent
+            locationPriceCGVC.editingGate = true
             
         }
     }

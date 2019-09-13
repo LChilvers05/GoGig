@@ -120,6 +120,7 @@ Things to think about:
             photoCGVC.user = user
             photoCGVC.eventData = eventData
             photoCGVC.gigEvent = gigEvent
+            photoCGVC.editingGate = true
         }
     }
 }

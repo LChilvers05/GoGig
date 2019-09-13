@@ -136,6 +136,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
             infoContactCGVC.user = user
             infoContactCGVC.eventData = eventData
             infoContactCGVC.gigEvent = gigEvent
+            infoContactCGVC.editingGate = true
         }
     }
 }
