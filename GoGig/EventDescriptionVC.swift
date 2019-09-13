@@ -26,6 +26,7 @@ class EventDescriptionVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         navigationController?.navigationBar.isHidden = false
         
         refresh()

@@ -8,6 +8,35 @@
 
 import UIKit
 
+extension LoginSignupVC {
+    
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
+            tv.alpha = 0.7
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 320)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 30)
+            return tv
+        }()
+        
+        let background = UIImage(named: "Background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
 extension UserAccountVC {
     
     func setupView() {
@@ -47,7 +76,6 @@ extension FindGigVC {
     
     func setupView() {
         let background = UIImage(named: "Background2")
-        
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
@@ -89,5 +117,35 @@ extension PhotoCGVC {
         eventPicView.layer.shadowRadius = 10.0
         eventPicView.layer.shadowOpacity = 0.5
         eventPicView.layer.cornerRadius = 20.0
+    }
+}
+
+extension EventDescriptionVC {
+    
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
+            tv.alpha = 0.7
+            tv.layer.cornerRadius = 20
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 200)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
+            return tv
+        }()
+        
+        let background = UIImage(named: "Background4")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.5
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
     }
 }

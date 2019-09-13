@@ -30,6 +30,7 @@ class LoginSignupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
         emailField.updateCharacterLimit(limit: 62)
         passwordField.updateCharacterLimit(limit: 30)
