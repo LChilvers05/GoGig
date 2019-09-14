@@ -40,6 +40,7 @@ class CreateProfileCAVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
         
         usernameField.updateCharacterLimit(limit: 50)

@@ -33,6 +33,7 @@ class SocialLinksCAVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
         phoneNumberField.updateCharacterLimit(limit: 16)
         websiteField.updateCharacterLimit(limit: 64)

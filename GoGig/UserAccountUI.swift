@@ -9,18 +9,97 @@
 import UIKit
 
 extension LoginSignupVC {
-    
     func setupView() {
         let transparentView: UIView = {
             let tv = UIView()
-            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
-            tv.alpha = 0.7
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 320)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 30)
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 330)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 20)
             return tv
         }()
+        let background = UIImage(named: "Background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
         
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension CreateProfileCAVC {
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 170)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
+            return tv
+        }()
+        let background = UIImage(named: "Background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension SocialLinksCAVC {
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 190)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+            return tv
+        }()
+        let background = UIImage(named: "Background")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension MusicLinksCAVC {
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: (self.view.frame.height / 2) - 75)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 20)
+            return tv
+        }()
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -38,7 +117,6 @@ extension LoginSignupVC {
 }
 
 extension UserAccountVC {
-    
     func setupView() {
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
@@ -59,7 +137,6 @@ extension UserAccountVC {
 }
 
 extension ActivityFeedVC {
-    
     func setupView(tableview: UITableView){
         let backgroundImage = UIImage(named: "Background3")
         let imageView = UIImageView(image: backgroundImage)
@@ -67,13 +144,10 @@ extension ActivityFeedVC {
         tableview.separatorStyle = .none
         imageView.contentMode = .scaleAspectFit
         imageView.alpha = 0.5
-        
     }
-    
 }
 
 extension FindGigVC {
-    
     func setupView() {
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
@@ -89,9 +163,7 @@ extension FindGigVC {
 }
 
 extension ReviewApplicationVC {
-    
     func setupView() {
-        
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFit
@@ -106,12 +178,10 @@ extension ReviewApplicationVC {
         profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = profileImageView.frame.height/2
         profileImageView.clipsToBounds = true
-        
     }
 }
 
 extension PhotoCGVC {
-    
     func setupView() {
         eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         eventPicView.layer.shadowRadius = 10.0
@@ -121,7 +191,6 @@ extension PhotoCGVC {
 }
 
 extension EventDescriptionVC {
-    
     func setupView() {
         let transparentView: UIView = {
             let tv = UIView()
@@ -132,7 +201,6 @@ extension EventDescriptionVC {
             tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
             return tv
         }()
-        
         let background = UIImage(named: "Background4")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -146,6 +214,5 @@ extension EventDescriptionVC {
         
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
-        
     }
 }

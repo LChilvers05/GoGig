@@ -32,6 +32,7 @@ class MusicLinksCAVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
     }
     override func viewWillAppear(_ animated: Bool) {
