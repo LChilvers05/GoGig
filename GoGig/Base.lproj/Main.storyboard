@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="VvL-iR-0b6">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4g-g3-G9H">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -1580,42 +1580,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Background" translatesAutoresizingMaskIntoConstraints="NO" id="xy3-Wg-LLd">
+                                <rect key="frame" x="-3" y="0.0" width="378" height="667"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GoGig" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r4R-h2-QhT">
                                 <rect key="frame" x="80.5" y="20" width="214" height="96"/>
                                 <fontDescription key="fontDescription" name="AvenirNext-Regular" family="Avenir Next" pointSize="70"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="35" translatesAutoresizingMaskIntoConstraints="NO" id="uRn-MH-EIa">
-                                <rect key="frame" x="40" y="166" width="295" height="128"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="uRn-MH-EIa">
+                                <rect key="frame" x="40" y="166" width="295" height="154"/>
                                 <subviews>
-                                    <stackView autoresizesSubviews="NO" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="lel-8X-88H">
-                                        <rect key="frame" x="0.0" y="0.0" width="295" height="128"/>
-                                        <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T6i-98-DUA" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="0.0" width="295" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XbA-eX-A8A" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="49" width="295" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                            </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-Wx-kpn" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="98" width="295" height="30"/>
-                                                <nil key="textColor"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
-                                            </textField>
-                                        </subviews>
-                                    </stackView>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T6i-98-DUA" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XbA-eX-A8A" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="62" width="295" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-Wx-kpn" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="124" width="295" height="30"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
+                                    </textField>
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7E-AN-OSt">
-                                <rect key="frame" x="137.5" y="324" width="100" height="40"/>
+                                <rect key="frame" x="137.5" y="350" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="HUM-5o-icG"/>
                                     <constraint firstAttribute="height" constant="40" id="fad-i0-go9"/>
@@ -1626,7 +1625,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V9Q-xb-2qa">
-                                <rect key="frame" x="137.5" y="423" width="100" height="40"/>
+                                <rect key="frame" x="137.5" y="449" width="100" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="k0x-3Z-7hF"/>
                                     <constraint firstAttribute="width" constant="100" id="tec-7h-ddy"/>
@@ -1637,7 +1636,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New to GoGig?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qm-at-6SB">
-                                <rect key="frame" x="133" y="384" width="109" height="19"/>
+                                <rect key="frame" x="133" y="410" width="109" height="19"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="19" id="d3X-9F-t4T"/>
                                 </constraints>
@@ -1675,10 +1674,11 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2l6-ko-13E" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3031" y="-4"/>
+            <point key="canvasLocation" x="-3031.1999999999998" y="-4.0479760119940034"/>
         </scene>
     </scenes>
     <resources>
+        <image name="Background" width="156.33332824707031" height="224.66667175292969"/>
         <image name="acceptUser" width="100" height="100"/>
         <image name="activity" width="40" height="40"/>
         <image name="activityFilled" width="50" height="50"/>

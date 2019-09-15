@@ -30,11 +30,14 @@ class UserAccountVC: UITableViewController {
     var portfolioPosts = [PortfolioPost]()
     
     override func viewDidLoad() {
-        
         setupView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPortfolio), name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
-        refreshPortfolio()
+        
+        //So crash not on initial download??
+        if Auth.auth().currentUser != nil {
+            refreshPortfolio()
+        }
     }
     override func viewDidAppear(_ animated: Bool) {
         refreshFCMToken()
