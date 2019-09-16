@@ -15,8 +15,8 @@ extension LoginSignupVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 330)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 20)
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y + (topLSButton.frame.height * 1.2))
             return tv
         }()
         let background = UIImage(named: "Background")

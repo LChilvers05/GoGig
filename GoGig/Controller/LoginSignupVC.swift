@@ -14,6 +14,7 @@ import FirebaseInstanceID
 
 class LoginSignupVC: UIViewController {
     
+    @IBOutlet weak var fieldsStack: UIStackView!
     @IBOutlet weak var emailField: MyTextField!
     @IBOutlet weak var passwordField: MyTextField!
     @IBOutlet weak var confirmPasswordField: MyTextField!
@@ -81,6 +82,7 @@ class LoginSignupVC: UIViewController {
             
             return false
         }
+        
     }
     
     @IBAction func topLSButton(_ sender: Any) {
