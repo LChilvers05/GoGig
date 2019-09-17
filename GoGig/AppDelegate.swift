@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginSignupVC")
             window?.makeKeyAndVisible()
-            //window?.rootViewController?.present(loginVC, animated: true, completion: nil)
+            window?.rootViewController?.present(loginVC, animated: true, completion: nil)
         }
         
         //Push Notifications

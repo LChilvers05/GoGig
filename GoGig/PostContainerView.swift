@@ -68,6 +68,7 @@ class PostContainerView: UIView {
         } else {
             imageView = UIImageView(image: imageContent)
             layer.cornerRadius = 0
+        
         }
         
         imageView.isHidden = true
