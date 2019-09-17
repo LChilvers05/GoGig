@@ -13,6 +13,7 @@ import FirebaseInstanceID
 
 class SocialLinksCAVC: UIViewController {
     
+    @IBOutlet weak var fieldsStack: UIStackView!
     @IBOutlet weak var phoneNumberField: MyTextField!
     @IBOutlet weak var websiteField: MyTextField!
     @IBOutlet weak var instagramField: MyTextField!
@@ -33,7 +34,7 @@ class SocialLinksCAVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
+        
         hideKeyboard()
         phoneNumberField.updateCharacterLimit(limit: 16)
         websiteField.updateCharacterLimit(limit: 64)
@@ -48,6 +49,7 @@ class SocialLinksCAVC: UIViewController {
     
     //Only reached if placed in navigation controller
     override func viewDidAppear(_ animated: Bool) {
+        setupView()
         print("reached1")
         if editingProfile == true && user != nil {
             print("reached2")

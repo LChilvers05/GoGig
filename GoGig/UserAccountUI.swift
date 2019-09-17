@@ -15,7 +15,7 @@ extension LoginSignupVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.2
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
             tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y + (topLSButton.frame.height * 1.2))
             return tv
         }()
@@ -72,10 +72,10 @@ extension SocialLinksCAVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.4
+            tv.alpha = 0.2
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 190)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 10)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y)
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -99,10 +99,10 @@ extension MusicLinksCAVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.4
+            tv.alpha = 0.2
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: (self.view.frame.height / 2) - 75)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 - 20)
+            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 20)
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
             return tv
         }()
         let background = UIImage(named: "Background")
