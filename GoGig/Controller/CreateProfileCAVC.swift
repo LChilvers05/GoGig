@@ -14,6 +14,7 @@ import FirebaseDatabase
 
 class CreateProfileCAVC: UIViewController {
     
+    @IBOutlet weak var nameBioStack: UIStackView!
     @IBOutlet weak var playGigsButton: UIButton!
     @IBOutlet weak var hireMusiciansButton: UIButton!
     @IBOutlet weak var usernameField: MyTextField!
