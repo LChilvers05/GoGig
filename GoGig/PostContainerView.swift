@@ -23,6 +23,9 @@ class PostContainerView: UIView {
         
         dimensionHeight = self.frame.size.height
         dimensionWidth = self.frame.size.width
+        print("===")
+        print(dimensionWidth)
+        print(dimensionHeight)
         
         imageView = UIImageView()
         
@@ -72,7 +75,7 @@ class PostContainerView: UIView {
         }
         
         imageView.isHidden = true
-        
+    
         //Get ratio of how much to shrink the image by by using the width of the UIView
         //(width is set using constraints)
         //We haven't set a height, because that's what we're changing
@@ -85,6 +88,11 @@ class PostContainerView: UIView {
         
         self.addSubview(imageView)
         imageView.isHidden = false
+        
+        print("===")
+        print(imageView.frame.size.width)
+        print(imageView.frame.size.height)
+        
     }
     
     func addVideo(url: URL, fit: Bool){

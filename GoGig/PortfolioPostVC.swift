@@ -40,7 +40,10 @@ class PortfolioPostVC: AutoComplete {
     var dimensions: [String : CGFloat] = ["height": 0.00, "width": 0.00]
     func updateDimensions(image: UIImage){
         dimensions["height"] = image.size.height
+        print("===")
+        print(image.size.width)
         dimensions["width"] = image.size.width
+        print(image.size.height)
     }
     
     var height: CGFloat?

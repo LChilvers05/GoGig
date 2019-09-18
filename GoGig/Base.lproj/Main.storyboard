@@ -1001,23 +1001,23 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleAspectFit" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-aM-KVu" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
-                                <rect key="frame" x="16" y="278" width="288" height="218"/>
+                            <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-aM-KVu" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
+                                <rect key="frame" x="35" y="278" width="250" height="218"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="218" id="dtZ-tp-qze"/>
-                                    <constraint firstAttribute="width" constant="288" id="jhz-TV-cuV"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="jvQ-oP-xwM" firstAttribute="trailing" secondItem="Ymp-aM-KVu" secondAttribute="trailing" constant="35" id="4Nz-Dj-a0w"/>
+                            <constraint firstItem="Ymp-aM-KVu" firstAttribute="top" secondItem="jvQ-oP-xwM" secondAttribute="top" constant="258" id="6pb-1e-P56"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" constant="16" id="A7q-Cw-stQ"/>
                             <constraint firstItem="ftK-mm-Cld" firstAttribute="top" secondItem="GYM-Ql-atK" secondAttribute="bottom" constant="16" id="DUA-cn-e36"/>
                             <constraint firstItem="jvQ-oP-xwM" firstAttribute="trailing" secondItem="StU-vU-Iwl" secondAttribute="trailing" constant="16" id="KL3-6O-tyG"/>
+                            <constraint firstItem="Ymp-aM-KVu" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" constant="35" id="PgR-Fh-um1"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="centerX" secondItem="T7e-hM-L5F" secondAttribute="centerX" id="USk-Rr-wXY"/>
                             <constraint firstItem="jvQ-oP-xwM" firstAttribute="bottom" secondItem="qtQ-Bw-O5i" secondAttribute="bottom" constant="24" id="UWD-3h-tDQ"/>
                             <constraint firstItem="bqA-8p-fkh" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" id="bgE-OO-Awy"/>
+                            <constraint firstItem="jvQ-oP-xwM" firstAttribute="bottom" secondItem="Ymp-aM-KVu" secondAttribute="bottom" constant="72" id="ciX-ln-EBp"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="top" secondItem="PNC-xC-0Zx" secondAttribute="bottom" constant="16" id="iE0-rK-cmg"/>
                             <constraint firstItem="StU-vU-Iwl" firstAttribute="top" secondItem="bqA-8p-fkh" secondAttribute="bottom" constant="14" id="j6x-42-TEQ"/>
                             <constraint firstItem="qtQ-Bw-O5i" firstAttribute="centerX" secondItem="T7e-hM-L5F" secondAttribute="centerX" id="juI-RM-m3y"/>
