@@ -126,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pUn-GL-Lhs">
-                                <rect key="frame" x="0.0" y="287" width="508" height="140"/>
+                                <rect key="frame" x="0.0" y="287" width="414" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="mYb-Sb-1BT"/>
                                 </constraints>
@@ -391,7 +391,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vOl-ay-7Nz">
-                                <rect key="frame" x="145.66666666666666" y="759" width="122.99999999999997" height="30"/>
+                                <rect key="frame" x="145.66666666666666" y="767" width="122.99999999999997" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="123" id="8f2-na-zgy"/>
                                     <constraint firstAttribute="height" constant="30" id="Si0-y6-0j1"/>
@@ -404,7 +404,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="B3n-wQ-sAy" firstAttribute="bottom" secondItem="vOl-ay-7Nz" secondAttribute="bottom" constant="24" id="1vn-VR-ceR"/>
+                            <constraint firstItem="B3n-wQ-sAy" firstAttribute="bottom" secondItem="vOl-ay-7Nz" secondAttribute="bottom" constant="16" id="1vn-VR-ceR"/>
                             <constraint firstItem="vvV-5d-4hC" firstAttribute="top" secondItem="1G7-BE-mKk" secondAttribute="bottom" constant="32" id="H4m-Zb-9m2"/>
                             <constraint firstItem="vOl-ay-7Nz" firstAttribute="centerX" secondItem="L7j-Ox-32F" secondAttribute="centerX" id="HNE-ec-M1w"/>
                             <constraint firstItem="1G7-BE-mKk" firstAttribute="centerX" secondItem="L7j-Ox-32F" secondAttribute="centerX" id="UVe-WB-M4N"/>

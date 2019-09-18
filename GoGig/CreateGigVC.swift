@@ -21,6 +21,10 @@ class CreateGigVC: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
+    override func viewDidAppear(_ animated: Bool) {
+        //Bug after adding photo of the event and going back
+        self.navigationController?.navigationBar.isHidden = true
+    }
     
     let eventData = ["uid": "", "eventID": "", "title": "", "timestamp": "", "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self] as [String : Any]
     
