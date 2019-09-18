@@ -143,13 +143,16 @@ extension UserAccountVC {
 
 extension PortfolioPostVC {
     func setupView() {
-        for constraint in self.view.constraints {
-            if constraint.identifier = "postContainerHeight" {
-                
-            }
-            if constraint.identifier = "postContainerHeight" {
-            }
-        }
+        let background = UIImage(named: "Background5")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.7
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
     }
 }
 
