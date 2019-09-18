@@ -39,6 +39,25 @@ class PostContainerView: UIView {
         
     }
     
+    func fitImage() {
+        imageView.frame.size.height = dimensionHeight
+        imageView.frame.size.width = dimensionWidth
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFit
+        imageView.isHidden = true
+        
+        //Get ratio of how much to shrink the image by by using the width of the UIView
+        //(width is set using constraints)
+        //We haven't set a height, because that's what we're changing
+        let ratio = self.frame.size.width / imageView.frame.size.width
+        //Change the height of the UIView by setting it to the new height of the imageView
+        self.frame.size.height = imageView.frame.size.height * ratio
+        
+        //fill the UIView with the imageView
+        imageView.frame = self.bounds
+        imageView.isHidden = false
+    }
+    
     func clearView(fit: Bool){
         //Clear the container view if there is anything
         if avPlayer != nil {

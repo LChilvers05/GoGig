@@ -968,8 +968,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bqA-8p-fkh">
+                            <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqA-8p-fkh">
                                 <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Post" id="DVt-xr-CuL">
                                         <barButtonItem key="leftBarButtonItem" title="Back" id="7c5-Y9-rg7">
@@ -1001,7 +1002,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <view contentMode="scaleAspectFit" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-aM-KVu" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
+                            <view contentMode="scaleAspectFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ymp-aM-KVu" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
                                 <rect key="frame" x="37" y="287" width="300" height="300"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1009,21 +1010,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="StU-vU-Iwl" firstAttribute="top" secondItem="jvQ-oP-xwM" secondAttribute="top" constant="58" id="6Bx-aO-NvO"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" constant="16" id="A7q-Cw-stQ"/>
                             <constraint firstItem="ftK-mm-Cld" firstAttribute="top" secondItem="GYM-Ql-atK" secondAttribute="bottom" constant="16" id="DUA-cn-e36"/>
                             <constraint firstItem="jvQ-oP-xwM" firstAttribute="trailing" secondItem="StU-vU-Iwl" secondAttribute="trailing" constant="16" id="KL3-6O-tyG"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="centerX" secondItem="T7e-hM-L5F" secondAttribute="centerX" id="USk-Rr-wXY"/>
                             <constraint firstItem="jvQ-oP-xwM" firstAttribute="bottom" secondItem="qtQ-Bw-O5i" secondAttribute="bottom" constant="24" id="UWD-3h-tDQ"/>
-                            <constraint firstItem="bqA-8p-fkh" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" id="bgE-OO-Awy"/>
                             <constraint firstItem="GYM-Ql-atK" firstAttribute="top" secondItem="PNC-xC-0Zx" secondAttribute="bottom" constant="16" id="iE0-rK-cmg"/>
-                            <constraint firstItem="StU-vU-Iwl" firstAttribute="top" secondItem="bqA-8p-fkh" secondAttribute="bottom" constant="14" id="j6x-42-TEQ"/>
                             <constraint firstItem="qtQ-Bw-O5i" firstAttribute="centerX" secondItem="T7e-hM-L5F" secondAttribute="centerX" id="juI-RM-m3y"/>
                             <constraint firstItem="PNC-xC-0Zx" firstAttribute="leading" secondItem="jvQ-oP-xwM" secondAttribute="leading" constant="16" id="l8M-X5-oru"/>
-                            <constraint firstItem="PNC-xC-0Zx" firstAttribute="top" secondItem="bqA-8p-fkh" secondAttribute="bottom" constant="14" id="rAU-V8-JTu"/>
                             <constraint firstItem="StU-vU-Iwl" firstAttribute="leading" secondItem="PNC-xC-0Zx" secondAttribute="trailing" constant="28" id="rYv-iM-dOP"/>
-                            <constraint firstItem="jvQ-oP-xwM" firstAttribute="trailing" secondItem="bqA-8p-fkh" secondAttribute="trailing" id="rlA-Fw-TKa"/>
                             <constraint firstItem="ftK-mm-Cld" firstAttribute="centerX" secondItem="T7e-hM-L5F" secondAttribute="centerX" id="s8p-3G-1cg"/>
-                            <constraint firstItem="bqA-8p-fkh" firstAttribute="top" secondItem="jvQ-oP-xwM" secondAttribute="top" id="znJ-CY-7mS"/>
+                            <constraint firstItem="PNC-xC-0Zx" firstAttribute="top" secondItem="jvQ-oP-xwM" secondAttribute="top" constant="58" id="z4A-5N-60W"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jvQ-oP-xwM"/>
                     </view>
