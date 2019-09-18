@@ -31,7 +31,7 @@ class TitleDateCGVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
-        setupCGView()
+        setupView()
         hideKeyboard()
         
         eventTitleField.updateCharacterLimit(limit: 50)

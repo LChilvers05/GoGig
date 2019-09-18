@@ -34,8 +34,8 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
-        setupCGView()
         postcodeField.updateCharacterLimit(limit: 8)
         locationNameField.updateCharacterLimit(limit: 64)
         
@@ -65,14 +65,14 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
             currentLocationOn = true
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
-            confirmationImageView.image = UIImage(named: "acceptUser")
+            confirmationImageView.alpha = 1.0
             confirmationImageView.isHidden = false
         } else {
             currentLocationOn = false
             locationManager.stopUpdatingLocation()
             eventLatitude = 0.00
             eventLongitude = 0.00
-            confirmationImageView.image = UIImage(named: "rejectUser")
+            confirmationImageView.alpha = 0.3
         }
     }
     

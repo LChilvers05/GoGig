@@ -28,7 +28,8 @@ class MyTextField: UITextField {
         layer.cornerRadius = self.frame.size.height/2
         layer.borderWidth = 2.0
         layer.borderColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
-        backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
+        //backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
+        backgroundColor = UIColor.white.withAlphaComponent(0.7)
         font = .systemFont(ofSize: 15)
     }
     

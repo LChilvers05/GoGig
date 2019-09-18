@@ -17,7 +17,6 @@ class CreateGigVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        setupCGView()
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true

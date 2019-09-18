@@ -13,7 +13,7 @@ extension LoginSignupVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.2
+            tv.alpha = 0.4
             tv.layer.cornerRadius = 15
             tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
             tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y + (topLSButton.frame.height * 1.2))
@@ -168,6 +168,11 @@ extension CreateGigVC {
             return tv
         }()
         
+        let backItem = UIBarButtonItem()
+        backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+        
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -179,6 +184,96 @@ extension CreateGigVC {
         
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension TitleDateCGVC {
+    func setupView() {
+        let backItem = UIBarButtonItem()
+        backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+        
+        let background = UIImage(named: "Background2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.4
+        
+        datePicker.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        datePicker.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        datePicker.layer.shadowRadius = 10.0
+        datePicker.layer.shadowOpacity = 0.5
+        datePicker.layer.cornerRadius = 10.0
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension LocationPriceCGVC {
+    func setupView() {
+        let backItem = UIBarButtonItem()
+        backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+        
+        let background = UIImage(named: "Background2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.4
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension InfoContactCGVC {
+    func setupView() {
+        let backItem = UIBarButtonItem()
+        backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        backItem.title = "Back"
+        navigationItem.backBarButtonItem = backItem
+        
+        let background = UIImage(named: "Background2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.4
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
+extension PhotoCGVC {
+    func setupView() {
+        eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        eventPicView.layer.shadowRadius = 10.0
+        eventPicView.layer.shadowOpacity = 0.5
+        eventPicView.layer.cornerRadius = 20.0
+        
+        let background = UIImage(named: "Background2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.4
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -230,14 +325,7 @@ extension ReviewApplicationVC {
     }
 }
 
-extension PhotoCGVC {
-    func setupView() {
-        eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-        eventPicView.layer.shadowRadius = 10.0
-        eventPicView.layer.shadowOpacity = 0.5
-        eventPicView.layer.cornerRadius = 20.0
-    }
-}
+
 
 extension EventDescriptionVC {
     func setupView() {

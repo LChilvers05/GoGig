@@ -31,8 +31,8 @@ Things to think about:
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         hideKeyboard()
-        setupCGView()
         
         //Setup placeholder of the description text view
         descriptionTextView.updatePlaceholder(placeholder: placeholder)
