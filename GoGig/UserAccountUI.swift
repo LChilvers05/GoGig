@@ -141,6 +141,18 @@ extension UserAccountVC {
     }
 }
 
+extension PortfolioPostVC {
+    func setupView() {
+        for constraint in self.view.constraints {
+            if constraint.identifier = "postContainerHeight" {
+                
+            }
+            if constraint.identifier = "postContainerHeight" {
+            }
+        }
+    }
+}
+
 extension ActivityFeedVC {
     func setupView(tableview: UITableView){
         let backgroundImage = UIImage(named: "Background3")

@@ -23,9 +23,6 @@ class PostContainerView: UIView {
         
         dimensionHeight = self.frame.size.height
         dimensionWidth = self.frame.size.width
-        print("===")
-        print(dimensionWidth)
-        print(dimensionHeight)
         
         imageView = UIImageView()
         
@@ -37,25 +34,6 @@ class PostContainerView: UIView {
         
         self.backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
         
-    }
-    
-    func fitImage() {
-        imageView.frame.size.height = dimensionHeight
-        imageView.frame.size.width = dimensionWidth
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.isHidden = true
-        
-        //Get ratio of how much to shrink the image by by using the width of the UIView
-        //(width is set using constraints)
-        //We haven't set a height, because that's what we're changing
-        let ratio = self.frame.size.width / imageView.frame.size.width
-        //Change the height of the UIView by setting it to the new height of the imageView
-        self.frame.size.height = imageView.frame.size.height * ratio
-        
-        //fill the UIView with the imageView
-        imageView.frame = self.bounds
-        imageView.isHidden = false
     }
     
     func clearView(fit: Bool){
@@ -82,7 +60,7 @@ class PostContainerView: UIView {
         if fit {
             imageView.frame.size.height = dimensionHeight
             imageView.frame.size.width = dimensionWidth
-            imageView.translatesAutoresizingMaskIntoConstraints = false
+            imageView.translatesAutoresizingMaskIntoConstraints = true
             imageView.contentMode = .scaleAspectFit
             imageView.image = imageContent
         
@@ -107,10 +85,6 @@ class PostContainerView: UIView {
         
         self.addSubview(imageView)
         imageView.isHidden = false
-        
-        print("===")
-        print(imageView.frame.size.width)
-        print(imageView.frame.size.height)
         
     }
     
