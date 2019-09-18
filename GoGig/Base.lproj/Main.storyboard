@@ -19,35 +19,54 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Create Your Event." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHl-6c-feZ">
-                                <rect key="frame" x="48" y="178" width="279" height="123"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="45"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-8p-oMh">
-                                <rect key="frame" x="16" y="309" width="343" height="148"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">To start recieving music applicants for your event, you need to create a job description for musicians to see.  Don't worry, we'll walk you through the process</string>
-                                <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
-                                <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37P-uD-GkI">
-                                <rect key="frame" x="126" y="522" width="123" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="37P-uD-GkI">
+                                <rect key="frame" x="126" y="564" width="123" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="ohX-aI-pYO"/>
+                                    <constraint firstAttribute="width" constant="123" id="yGx-6C-eMx"/>
+                                </constraints>
                                 <state key="normal" title="Button" image="continueButton-1"/>
                                 <connections>
                                     <action selector="continueButton:" destination="xSx-cK-e8E" eventType="touchUpInside" id="B0l-hT-8ft"/>
                                 </connections>
                             </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="lwz-SS-toD">
+                                <rect key="frame" x="37.5" y="186" width="300" height="295"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Create Your Event." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yHl-6c-feZ">
+                                        <rect key="frame" x="0.0" y="0.0" width="300" height="123"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="UFf-nL-M2f"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="45"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLg-8p-oMh">
+                                        <rect key="frame" x="0.0" y="131" width="300" height="164"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="300" id="GHN-dg-1kU"/>
+                                        </constraints>
+                                        <string key="text">To start recieving music applicants for your event, you need to create a job description for musicians to see.  Don't worry, we'll walk you through the process</string>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="lwz-SS-toD" firstAttribute="centerX" secondItem="OL7-tR-Mes" secondAttribute="centerX" id="4TT-w9-axe"/>
+                            <constraint firstItem="lwz-SS-toD" firstAttribute="centerY" secondItem="OL7-tR-Mes" secondAttribute="centerY" id="QIJ-7A-t9N"/>
+                            <constraint firstItem="36C-JA-y6L" firstAttribute="bottom" secondItem="37P-uD-GkI" secondAttribute="bottom" constant="24" id="ifF-N1-iFi"/>
+                            <constraint firstItem="37P-uD-GkI" firstAttribute="centerX" secondItem="OL7-tR-Mes" secondAttribute="centerX" id="oAI-n6-NoG"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="36C-JA-y6L"/>
                     </view>
                     <navigationItem key="navigationItem" id="01U-8g-28D"/>
                     <connections>
+                        <outlet property="descriptionStack" destination="lwz-SS-toD" id="E4k-n5-IRG"/>
                         <segue destination="DVm-oM-9vJ" kind="show" identifier="toTitleDate" id="iyr-br-EAv"/>
                     </connections>
                 </viewController>
@@ -1860,7 +1879,7 @@
         <image name="websiteLink" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="iWv-Aw-Vme"/>
+        <segue reference="wFw-6j-rvQ"/>
         <segue reference="HG0-iB-Zja"/>
         <segue reference="jCN-0Y-7KK"/>
         <segue reference="viQ-FR-Ahs"/>

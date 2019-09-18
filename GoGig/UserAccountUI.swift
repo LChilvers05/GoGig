@@ -156,6 +156,35 @@ extension PortfolioPostVC {
     }
 }
 
+extension CreateGigVC {
+    func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: descriptionStack.frame.width + 20, height: descriptionStack.frame.height + 20)
+            tv.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
+            return tv
+        }()
+        
+        let background = UIImage(named: "Background2")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.7
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
+    }
+}
+
 extension ActivityFeedVC {
     func setupView(tableview: UITableView){
         let backgroundImage = UIImage(named: "Background3")

@@ -12,8 +12,11 @@ import UIKit
 
 class CreateGigVC: UIViewController {
     
+    @IBOutlet weak var descriptionStack: UIStackView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
         setupCGView()
     }
     override func viewWillAppear(_ animated: Bool) {
