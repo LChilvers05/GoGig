@@ -15,6 +15,7 @@ import FirebaseDatabase
 
 class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
+    @IBOutlet weak var contactStack: UIStackView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var emailLabel: UILabel!
     @IBOutlet weak var phoneLabel: UILabel!
@@ -48,10 +49,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         currentGigEventView.isUserInteractionEnabled = true
         currentGigEventView.addGestureRecognizer(dragGesture)
         
-        currentGigEventView.center = CGPoint(x: self.view.frame.width / 2, y: (self.view.frame.height / 2) + 30)
+        currentGigEventView.center = CGPoint(x: self.view.frame.width / 2, y: (self.view.frame.height / 2) + 60)
         self.view.sendSubviewToBack(currentGigEventView)
         
-        nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2))
+        nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
         nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
         
@@ -92,6 +93,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
                     self.gigEvents = self.setGigEventDistances(gigs: returnedGigEvents)
                     
                     self.updateCards()
+                    
                 }
             }
         }

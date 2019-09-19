@@ -290,6 +290,16 @@ extension ActivityFeedVC {
 
 extension FindGigVC {
     func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.4
+            tv.layer.cornerRadius = 15
+            tv.frame = CGRect.init(x: 0, y: 0, width: contactStack.frame.width + 20, height: contactStack.frame.height + 20)
+            tv.center = CGPoint.init(x: self.view.frame.width / 2, y: self.phoneLabel.center.y + 10)
+            return tv
+        }()
+        
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -300,6 +310,10 @@ extension FindGigVC {
         imageView.alpha = 0.5
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
+        
+        view.addSubview(transparentView)
+        self.view.insertSubview(transparentView, at: 4)
+        self.view.insertSubview(contactStack, at: 5)
     }
 }
 

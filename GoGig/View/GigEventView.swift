@@ -21,6 +21,14 @@ class GigEventView: UIView {
         layer.shadowRadius = 10.0
         layer.shadowOpacity = 0.5
         layer.cornerRadius = 10.0
-        backgroundColor = #colorLiteral(red: 0.9467699272, green: 0.9392132586, blue: 0.9901848033, alpha: 1)
+        //backgroundColor = #colorLiteral(red: 0.9467699272, green: 0.9392132586, blue: 0.9901848033, alpha: 1)
+        let gradient: CAGradientLayer = CAGradientLayer()
+        
+        gradient.colors = [UIColor(red: 255.0/255.0, green: 159.0/255.0, blue: 2.0/255.0, alpha: 0.5).cgColor, UIColor(red: 104.0/255.0, green: 35.0/255.0, blue: 128.0/255.0, alpha: 0.6).cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.frame.size.width, height: self.frame.size.height)
+        gradient.cornerRadius = 10.0
+        self.layer.insertSublayer(gradient, at: 0)
+        
     }
 }
