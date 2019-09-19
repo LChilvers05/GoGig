@@ -296,7 +296,7 @@ extension FindGigVC {
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
             tv.frame = CGRect.init(x: 0, y: 0, width: contactStack.frame.width + 20, height: contactStack.frame.height + 20)
-            tv.center = CGPoint.init(x: self.view.frame.width / 2, y: self.phoneLabel.center.y + 10)
+            tv.center = CGPoint.init(x: self.view.frame.width / 2, y: self.phoneLabel.center.y)
             return tv
         }()
         

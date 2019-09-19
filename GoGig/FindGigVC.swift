@@ -323,22 +323,47 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
             if theView.center.x < 40 {
                 
                 didChoose(applied: false)
+                confirmChoiceAnimation(applied: false)
                 
                 //return the view to the centre
                 rotation = CGAffineTransform(rotationAngle: 0)
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
                 theView.transform = stretchAndRotation
-                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 40)
+                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 60)
                 
             //dragged right
             } else if theView.center.x > self.view.bounds.width - 40 {
                 
                 didChoose(applied: true)
+                confirmChoiceAnimation(applied: true)
                 
                 rotation = CGAffineTransform(rotationAngle: 0)
                 stretchAndRotation = rotation.scaledBy(x: 1, y: 1)
                 theView.transform = stretchAndRotation
-                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 40)
+                theView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 60)
+            }
+        }
+    }
+    
+    func confirmChoiceAnimation(applied: Bool) {
+        var confirmationImageView: UIImageView?
+        if applied {
+            confirmationImageView = UIImageView(image: UIImage(named: "appliedGigEvent"))
+        } else {
+            confirmationImageView = UIImageView(image: UIImage(named: "ignoredGigEvent"))
+        }
+        confirmationImageView!.frame = CGRect.init(x: 0, y: 0, width: 100, height: 100)
+        confirmationImageView!.center = self.view.center
+        confirmationImageView!.alpha = 0.5
+        view.addSubview(confirmationImageView!)
+        //grow and fade
+        UIView.animate(withDuration: 0.2, animations: {
+            confirmationImageView!.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
+        }) { (complete) in
+            UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
+                confirmationImageView!.alpha = 0.0
+            }) { (complete) in
+                confirmationImageView!.removeFromSuperview()
             }
         }
     }
