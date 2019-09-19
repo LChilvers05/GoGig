@@ -6,7 +6,8 @@
 //  Copyright © 2019 ChillyDesigns. All rights reserved.
 //
 
-//  Now add UI to create a gig and upload to Firebase
+// BUG WHERE AFTER PICKING A PHOTO AND PRESSING TAB BUTTON TO GO BACK TO THIS VC
+// CAUSES CONSTRAINTS TO MESS UP
 
 import UIKit
 

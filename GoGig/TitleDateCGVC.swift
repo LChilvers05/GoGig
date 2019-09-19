@@ -31,6 +31,7 @@ class TitleDateCGVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.hidesBackButton = true
         setupView()
         hideKeyboard()
         

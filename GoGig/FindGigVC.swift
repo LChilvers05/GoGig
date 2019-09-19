@@ -48,7 +48,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         currentGigEventView.isUserInteractionEnabled = true
         currentGigEventView.addGestureRecognizer(dragGesture)
         
-        nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
+        currentGigEventView.center = CGPoint(x: self.view.frame.width / 2, y: (self.view.frame.height / 2) + 30)
+        self.view.sendSubviewToBack(currentGigEventView)
+        
+        nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2))
         nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
         

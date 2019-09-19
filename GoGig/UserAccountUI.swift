@@ -168,10 +168,7 @@ extension CreateGigVC {
             return tv
         }()
         
-        let backItem = UIBarButtonItem()
-        backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
-        backItem.title = "Back"
-        navigationItem.backBarButtonItem = backItem
+        //No back button
         
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
