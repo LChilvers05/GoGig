@@ -125,7 +125,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL
     
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
-        cell.notificationImage.isHidden = false
+        //cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.eventNameButton.tag = row
@@ -133,6 +133,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
         
         loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
+            cell.notificationImage.image = nil
             cell.notificationImage.image = returnedImage
         }
         
@@ -164,8 +165,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     var fetchingMore = false
     //If reached the end, don't bother fetching anymore posts
     var endReached = false
-    //Start loading notifications 3 cells in advance
-    var leadingScreensForBatching: CGFloat = 3.0
+    //Start loading notifications 1 cell in advance
+    var leadingScreensForBatching: CGFloat = 1.0
     
     func getMoreNotifications(){
         fetchingMore = true
@@ -203,6 +204,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: EVENT CELL
     
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
+        cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"

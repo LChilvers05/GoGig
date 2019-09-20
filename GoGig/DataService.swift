@@ -470,7 +470,6 @@ class DataService {
                     }
                 }
             }
-                
             handler(activityNotifications)
         })
     }
