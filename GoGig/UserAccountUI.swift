@@ -281,9 +281,11 @@ extension ActivityFeedVC {
     func setupView(tableview: UITableView){
         let backgroundImage = UIImage(named: "Background3")
         let imageView = UIImageView(image: backgroundImage)
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         tableview.backgroundView = imageView
         tableview.separatorStyle = .none
-        imageView.contentMode = .scaleAspectFit
+        
         imageView.alpha = 0.5
     }
 }

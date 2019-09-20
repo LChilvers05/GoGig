@@ -87,14 +87,14 @@ class ReviewApplicationVC: UIViewController {
         //We need to grab the event as well
         var notificationDescription: String?
         if accepted {
-            notificationDescription = "Hired you for the event: \(relatedEventTitle)"
+            notificationDescription = "hired you for the event: \(relatedEventTitle)"
             
             //Send a push notification to other user
             DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
                 DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "You got the gig!", body: "\(senderName) hired you for the event: \(relatedEventTitle)")
             }
         } else {
-            notificationDescription = "Declined you for the event: \(relatedEventTitle)"
+            notificationDescription = "declined you for the event: \(relatedEventTitle)"
         }
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "relatedEventID": relatedEventID, "type": "reply", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription!, "timestamp": timestamp]

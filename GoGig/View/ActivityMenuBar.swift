@@ -130,20 +130,22 @@ class MenuCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.font = UIFont(name: "Avenir-Medium", size: 20.0)
+        label.textColor = UIColor.lightGray
         return label
     }()
     
     //Becomes purple when active...
     override var isHighlighted: Bool {
         didSet {
-            title.textColor = isHighlighted ? UIColor.purple : UIColor.black
+            title.textColor = isHighlighted ? UIColor.purple : UIColor.lightGray
         }
     }
     
     //...and selected
     override var isSelected: Bool {
         didSet {
-            title.textColor = isSelected ? UIColor.purple : UIColor.black
+            title.textColor = isSelected ? UIColor.purple : UIColor.lightGray
         }
     }
     

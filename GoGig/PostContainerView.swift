@@ -32,7 +32,8 @@ class PostContainerView: UIView {
         layer.shadowOpacity = 0.5
         layer.cornerRadius = 30
         
-        self.backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
+        //self.backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
+        self.backgroundColor = UIColor.clear
         
     }
     

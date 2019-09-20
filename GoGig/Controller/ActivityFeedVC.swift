@@ -263,8 +263,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 title = "Delete this Gig"
                 message = "You will have no association with this event"
             } else {
-                title = "Delete this Event"
-                message = "Your Event will no longer exist to all users"
+                title = "Delete your Event"
+                message = "It will no longer exist to all users"
             }
             //IMPROVE: The listings will not delete under the musician in database
             //if the organiser deleted them first
