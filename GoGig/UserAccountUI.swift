@@ -340,27 +340,27 @@ extension ReviewApplicationVC {
 
 extension EventDescriptionVC {
     func setupView() {
-        let transparentView: UIView = {
-            let tv = UIView()
-            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
-            tv.alpha = 0.7
-            tv.layer.cornerRadius = 20
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 200)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
-            return tv
-        }()
-        let background = UIImage(named: "Background4")
-        var imageView : UIImageView!
-        imageView = UIImageView(frame: view.bounds)
-        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
-        imageView.clipsToBounds = true
-        imageView.image = background
-        imageView.center = view.center
-        imageView.alpha = 0.5
-        view.addSubview(imageView)
-        self.view.sendSubviewToBack(imageView)
+//        let transparentView: UIView = {
+//            let tv = UIView()
+//            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
+//            tv.alpha = 0.7
+//            tv.layer.cornerRadius = 20
+//            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 200)
+//            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
+//            return tv
+//        }()
+//
+//        view.addSubview(transparentView)
+//        self.view.sendSubviewToBack(transparentView)
         
-        view.addSubview(transparentView)
-        self.view.sendSubviewToBack(transparentView)
+        descriptionTextView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
+        
+        let gradient: CAGradientLayer = CAGradientLayer()
+        
+        gradient.colors = [UIColor(red: 255.0/255.0, green: 159.0/255.0, blue: 2.0/255.0, alpha: 0.5).cgColor, UIColor(red: 104.0/255.0, green: 35.0/255.0, blue: 128.0/255.0, alpha: 0.6).cgColor]
+        gradient.locations = [0.0 , 1.0]
+        gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
+        gradient.cornerRadius = 10.0
+        view.layer.insertSublayer(gradient, at: 0)
     }
 }

@@ -340,6 +340,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             
         } else if segue.identifier == TO_EVENT_DESCRIPTION_2 {
             
+            let backItem = UIBarButtonItem()
+            backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+            backItem.title = "Back"
+            navigationItem.backBarButtonItem = backItem
+            
             let eventDescriptionVC = segue.destination as! EventDescriptionVC
             eventDescriptionVC.gigEvent = selectedListing
             eventDescriptionVC.observingGigEvent = user!.gigs

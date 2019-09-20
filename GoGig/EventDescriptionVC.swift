@@ -10,7 +10,6 @@ import UIKit
 
 class EventDescriptionVC: UIViewController {
     
-    @IBOutlet weak var gigTitleLabel: UILabel!
     @IBOutlet weak var nameButton: UIButton!
     @IBOutlet weak var dayDateLabel: UILabel!
     @IBOutlet weak var monthYearDateLabel: UILabel!
@@ -41,13 +40,12 @@ class EventDescriptionVC: UIViewController {
     }
     
     func refresh() {
-        navigationController?.navigationBar.topItem?.title = gigEvent?.getName()
-        gigTitleLabel.text = gigEvent?.getTitle()
+        self.navigationItem.title = gigEvent?.getTitle()
         nameButton.setTitle("Check out \(gigEvent!.getName())", for: .normal)
         dayDateLabel.text = gigEvent?.getDayDate()
         monthYearDateLabel.text = gigEvent?.getLongMonthYearDate()
         timeLabel.text = gigEvent?.getTime()
-        locationLabel.text = gigEvent!.getLocationName() + " " + gigEvent!.getPostcode()
+        locationLabel.text = gigEvent!.getLocationName() + "  " + gigEvent!.getPostcode()
         paymentLabel.text = "For: £\(gigEvent!.getPayment())"
         descriptionTextView.text = gigEvent?.getDescription()
     }
@@ -71,6 +69,7 @@ class EventDescriptionVC: UIViewController {
             let userAccountVC = segue.destination as! UserAccountVC
             
             let backItem = UIBarButtonItem()
+            backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
             
