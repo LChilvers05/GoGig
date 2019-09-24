@@ -10,13 +10,14 @@ import UIKit
 
 extension LoginSignupVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
             tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y + (topLSButton.frame.height * 1.2))
+            tv.center = CGPoint(x: self.view.bounds.width / 2, y: 300)
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -37,6 +38,7 @@ extension LoginSignupVC {
 
 extension CreateProfileCAVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -69,6 +71,7 @@ extension CreateProfileCAVC {
 
 extension SocialLinksCAVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -96,6 +99,7 @@ extension SocialLinksCAVC {
 
 extension MusicLinksCAVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -121,8 +125,25 @@ extension MusicLinksCAVC {
     }
 }
 
+extension TabBarController {
+    func setupView(){
+        overrideUserInterfaceStyle = .light
+    }
+}
+
 extension UserAccountVC {
     func setupView() {
+        
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.75)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        overrideUserInterfaceStyle = .light
+        
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
@@ -143,6 +164,7 @@ extension UserAccountVC {
 
 extension PortfolioPostVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let background = UIImage(named: "Background5")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -158,6 +180,7 @@ extension PortfolioPostVC {
 
 extension CreateGigVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -189,6 +212,17 @@ extension CreateGigVC {
 
 extension TitleDateCGVC {
     func setupView() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        self.navigationItem.hidesBackButton = true
+        overrideUserInterfaceStyle = .light
+        
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
@@ -216,6 +250,16 @@ extension TitleDateCGVC {
 
 extension LocationPriceCGVC {
     func setupView() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        overrideUserInterfaceStyle = .light
+        
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
@@ -237,6 +281,16 @@ extension LocationPriceCGVC {
 
 extension InfoContactCGVC {
     func setupView() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        overrideUserInterfaceStyle = .light
+        
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
@@ -258,6 +312,16 @@ extension InfoContactCGVC {
 
 extension PhotoCGVC {
     func setupView() {
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        if #available(iOS 13.0, *) {
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.1)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+        overrideUserInterfaceStyle = .light
+        
         eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         eventPicView.layer.shadowRadius = 10.0
         eventPicView.layer.shadowOpacity = 0.5
@@ -279,6 +343,7 @@ extension PhotoCGVC {
 
 extension ActivityFeedVC {
     func setupView(tableview: UITableView){
+        overrideUserInterfaceStyle = .light
         let backgroundImage = UIImage(named: "Background3")
         let imageView = UIImageView(image: backgroundImage)
         imageView.clipsToBounds = true
@@ -292,6 +357,7 @@ extension ActivityFeedVC {
 
 extension FindGigVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -321,6 +387,7 @@ extension FindGigVC {
 
 extension ReviewApplicationVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFit
@@ -342,6 +409,7 @@ extension ReviewApplicationVC {
 
 extension EventDescriptionVC {
     func setupView() {
+        overrideUserInterfaceStyle = .light
 //        let transparentView: UIView = {
 //            let tv = UIView()
 //            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)

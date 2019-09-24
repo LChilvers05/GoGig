@@ -41,7 +41,7 @@ class CreateAccountVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.modalPresentationStyle = .overFullScreen
         hideKeyboard()
         
         imagePicker = UIImagePickerController()

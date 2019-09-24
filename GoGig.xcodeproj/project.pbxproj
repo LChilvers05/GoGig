@@ -608,6 +608,7 @@
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -629,6 +630,7 @@
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

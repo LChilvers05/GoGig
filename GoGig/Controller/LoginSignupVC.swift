@@ -31,6 +31,7 @@ class LoginSignupVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.modalPresentationStyle = .overFullScreen
         setupView()
         hideKeyboard()
         emailField.updateCharacterLimit(limit: 62)

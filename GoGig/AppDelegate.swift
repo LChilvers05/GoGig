@@ -30,8 +30,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             print("No current user")
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginSignupVC")
+            loginVC.modalPresentationStyle = .overFullScreen
             window?.makeKeyAndVisible()
-            window?.rootViewController?.present(loginVC, animated: true, completion: nil)
+            window?.rootViewController?.present(loginVC, animated: true)
         }
         
         //Push Notifications

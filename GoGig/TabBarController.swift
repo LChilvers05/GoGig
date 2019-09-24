@@ -12,6 +12,10 @@ import FirebaseStorage
 import FirebaseDatabase
 
 class TabBarController: UITabBarController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupView()
+    }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = false

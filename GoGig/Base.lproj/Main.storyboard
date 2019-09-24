@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4g-g3-G9H">
-    <device id="retina6_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="j4g-g3-G9H">
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -14,7 +11,7 @@
         <!--Create GigVC-->
         <scene sceneID="gsN-Rx-cG9">
             <objects>
-                <viewController id="xSx-cK-e8E" customClass="CreateGigVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="xSx-cK-e8E" customClass="CreateGigVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="OL7-tR-Mes">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -77,13 +74,13 @@
         <!--Create Gig-->
         <scene sceneID="cif-GR-ac4">
             <objects>
-                <viewController id="DVm-oM-9vJ" customClass="TitleDateCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="DVm-oM-9vJ" customClass="TitleDateCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="goc-ee-hql">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="23" translatesAutoresizingMaskIntoConstraints="NO" id="Fpw-Wq-32w">
-                                <rect key="frame" x="61.666666666666657" y="104" width="291" height="94"/>
+                                <rect key="frame" x="61.666666666666657" y="104" width="291" height="98"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What's Happening?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2UD-3C-Uht">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="41"/>
@@ -95,11 +92,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="State the name of this event" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QWx-GU-d9g" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="64" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="64" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="8i4-my-iR4"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -117,7 +113,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When's the Gig?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="okd-Aj-214">
-                                <rect key="frame" x="61.666666666666657" y="230" width="291" height="41"/>
+                                <rect key="frame" x="61.666666666666657" y="234" width="291" height="41"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="291" id="ows-bd-ujW"/>
                                 </constraints>
@@ -126,13 +122,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="pUn-GL-Lhs">
-                                <rect key="frame" x="0.0" y="287" width="414" height="140"/>
+                                <rect key="frame" x="0.0" y="291" width="414" height="140"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="140" id="mYb-Sb-1BT"/>
                                 </constraints>
-                                <date key="date" timeIntervalSinceReferenceDate="582459458.77109301">
-                                    <!--2019-06-17 10:17:38 +0000-->
-                                </date>
                             </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -166,7 +159,7 @@
         <!--Location and Pricing-->
         <scene sceneID="KQj-EL-w1P">
             <objects>
-                <viewController title="Location and Pricing" id="nUZ-Ea-k7H" customClass="LocationPriceCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Location and Pricing" interfaceStyle="light" id="nUZ-Ea-k7H" customClass="LocationPriceCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IVc-SO-Teh">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -201,7 +194,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="iNR-xM-pKQ">
-                                <rect key="frame" x="61.666666666666657" y="248.66666666666663" width="291" height="78"/>
+                                <rect key="frame" x="61.666666666666657" y="252.66666666666663" width="291" height="82"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Postcode " textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dpT-P0-4DU">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="41"/>
@@ -213,18 +206,17 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="e.g AB12 3CD" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QdM-wA-wLR" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="48.000000000000028" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="48.000000000000028" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="E8L-er-Qmg"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="postal-code"/>
                                     </textField>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How much are you paying them?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="klJ-D5-nSm">
-                                <rect key="frame" x="61.666666666666657" y="354.66666666666669" width="291" height="26"/>
+                                <rect key="frame" x="61.666666666666657" y="362.66666666666669" width="291" height="26"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="291" id="dPV-nd-Kib"/>
                                 </constraints>
@@ -233,7 +225,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7ez-xL-sE0">
-                                <rect key="frame" x="137.33333333333334" y="386.66666666666669" width="18.666666666666657" height="36"/>
+                                <rect key="frame" x="137.33333333333334" y="394.66666666666669" width="18.666666666666657" height="36"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -250,10 +242,10 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="IZb-bt-lYn">
-                                <rect key="frame" x="14" y="190.66666666666666" width="292" height="30"/>
+                                <rect key="frame" x="14" y="190.66666666666666" width="292" height="34"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="q4s-Fu-owu">
-                                        <rect key="frame" x="0.0" y="0.0" width="140" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="140" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="5Na-NK-8Bq"/>
                                         </constraints>
@@ -265,11 +257,10 @@
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="RQl-lZ-C6E" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="152" y="0.0" width="140" height="30"/>
+                                        <rect key="frame" x="152" y="0.0" width="140" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="140" id="1My-rT-9dS"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -283,11 +274,10 @@
                                 </constraints>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="100.00" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gyY-9x-36f" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                <rect key="frame" x="157" y="388.66666666666669" width="100" height="30"/>
+                                <rect key="frame" x="157" y="396.66666666666669" width="100" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="V7B-0Y-X8x"/>
                                 </constraints>
-                                <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
@@ -316,8 +306,9 @@
                         <viewLayoutGuide key="safeArea" id="lIW-GS-RSB"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="createEvent" selectedImage="createEventFilled" id="pQy-8b-jZT">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
                     </tabBarItem>
+                    <navigationItem key="navigationItem" title="Location and Pricing" largeTitleDisplayMode="always" id="xQT-zh-LeG"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="confirmationImageView" destination="qC0-Lr-PhK" id="m22-iA-bGC"/>
@@ -334,7 +325,7 @@
         <!--Tell me more...-->
         <scene sceneID="z8F-G0-1Rf">
             <objects>
-                <viewController title="Tell me more..." id="kh1-1W-972" customClass="InfoContactCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Tell me more..." interfaceStyle="light" id="kh1-1W-972" customClass="InfoContactCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="L7j-Ox-32F">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -350,7 +341,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="vvV-5d-4hC">
-                                <rect key="frame" x="61.666666666666657" y="264" width="291" height="134.66666666666663"/>
+                                <rect key="frame" x="61.666666666666657" y="264" width="291" height="146.66666666666663"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Happy with this contact information?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wRf-4b-Wpx">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="20.666666666666668"/>
@@ -362,29 +353,26 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x0y-qN-mkF" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28.666666666666686" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="28.666666666666686" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="8pO-Tb-r7j"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email@example.com" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMC-MW-Qgd" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="66.666666666666686" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="70.666666666666686" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="4FI-l5-uqK"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0dY-N1-fxL" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="104.66666666666669" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="112.66666666666669" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="aL5-4h-zRB"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="tel"/>
                                     </textField>
@@ -413,9 +401,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="B3n-wQ-sAy"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="createEvent" selectedImage="createEventFilled" id="pPY-1l-KU0">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="createEvent" selectedImage="createEventFilled" id="pPY-1l-KU0"/>
+                    <navigationItem key="navigationItem" title="Tell me more..." largeTitleDisplayMode="always" id="lUH-oZ-rrj"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="descriptionTextView" destination="1G7-BE-mKk" id="m4k-oX-shA"/>
@@ -432,7 +419,7 @@
         <!--Add a Photo-->
         <scene sceneID="BFt-Mi-x6c">
             <objects>
-                <viewController title="Add a Photo" id="7fQ-Hj-VGU" customClass="PhotoCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Add a Photo" interfaceStyle="light" id="7fQ-Hj-VGU" customClass="PhotoCGVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="DGt-Bw-dJZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -479,9 +466,8 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="mGT-hb-8Ja"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="icons8-add" selectedImage="createEventFilled" id="X7Z-eU-Dnb">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="icons8-add" selectedImage="createEventFilled" id="X7Z-eU-Dnb"/>
+                    <navigationItem key="navigationItem" title="Add a Photo" largeTitleDisplayMode="always" id="0gG-2N-B8H"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="eventPicView" destination="qWF-VL-Th2" id="lyJ-E9-KCy"/>
@@ -494,9 +480,8 @@
         <!--Navigation Controller-->
         <scene sceneID="0Ia-oI-PiG">
             <objects>
-                <navigationController id="dT1-hX-JIw" sceneMemberID="viewController">
+                <navigationController interfaceStyle="light" id="dT1-hX-JIw" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="" image="createEvent" selectedImage="createEventFilled" id="cux-u5-F00">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
                         <inset key="largeContentSizeImageInsets" minX="1" minY="1" maxX="1" maxY="1"/>
                     </tabBarItem>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ZXE-iT-LFH">
@@ -514,7 +499,7 @@
         <!--Event DescriptionVC-->
         <scene sceneID="crG-0D-buS">
             <objects>
-                <viewController id="c1N-ac-aRf" customClass="EventDescriptionVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="c1N-ac-aRf" customClass="EventDescriptionVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="rEH-lv-o8o">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -633,10 +618,8 @@
         <!--Navigation Controller-->
         <scene sceneID="W9P-J6-xtx">
             <objects>
-                <navigationController id="ofb-XK-5Gt" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="findGig" selectedImage="findGigFilled" id="yTh-Ci-Yy8">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
-                    </tabBarItem>
+                <navigationController modalPresentationStyle="fullScreen" interfaceStyle="light" id="ofb-XK-5Gt" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="findGig" selectedImage="findGigFilled" id="yTh-Ci-Yy8"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="syp-Ya-w1o">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -652,7 +635,7 @@
         <!--Find GigVC-->
         <scene sceneID="gGM-Mx-5gY">
             <objects>
-                <viewController id="RZR-t2-qB5" customClass="FindGigVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="RZR-t2-qB5" customClass="FindGigVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="G9O-x2-Zvl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -694,8 +677,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gez-Pe-Pxe">
-                                        <rect key="frame" x="92" y="8" width="193" height="53.333333333333336"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="92" y="8.0000000000000036" width="193" height="53.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="st January 2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDx-An-FRt">
                                                 <rect key="frame" x="0.0" y="0.0" width="193" height="27.333333333333332"/>
@@ -719,7 +701,6 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="Vpx-CO-1PY">
                                         <rect key="frame" x="4" y="76" width="281" height="64.333333333333329"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HoA-ye-AKn">
                                                 <rect key="frame" x="0.0" y="0.0" width="281" height="26"/>
@@ -791,8 +772,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="GMt-N5-15Q">
-                                        <rect key="frame" x="92" y="8" width="193" height="53.333333333333336"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <rect key="frame" x="92" y="8.0000000000000036" width="193" height="53.333333333333336"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="st January 2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nRl-cW-MBi">
                                                 <rect key="frame" x="0.0" y="0.0" width="193" height="27.333333333333332"/>
@@ -816,7 +796,6 @@
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="W9N-B4-yPI">
                                         <rect key="frame" x="4" y="76" width="281" height="64.333333333333329"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zoL-0Y-WVY">
                                                 <rect key="frame" x="0.0" y="0.0" width="281" height="26"/>
@@ -900,7 +879,7 @@
                         <viewLayoutGuide key="safeArea" id="YoL-Zk-6DJ"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="findGig" selectedImage="findGigFilled" id="WFJ-io-7wx">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-10"/>
+                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="1"/>
                     </tabBarItem>
                     <navigationItem key="navigationItem" id="c8l-RT-97h"/>
                     <connections>
@@ -921,7 +900,7 @@
         <!--User AccountVC-->
         <scene sceneID="8Me-lV-KGb">
             <objects>
-                <tableViewController id="VvL-iR-0b6" customClass="UserAccountVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController interfaceStyle="light" id="VvL-iR-0b6" customClass="UserAccountVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="bfg-s9-O7d">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -931,7 +910,7 @@
                                 <rect key="frame" x="0.0" y="28" width="414" height="215"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0iA-QQ-eAx" id="WyA-t8-Jf3">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="214.66666666666666"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="l6n-Xk-GjJ">
@@ -1066,11 +1045,11 @@
                                 <rect key="frame" x="0.0" y="243" width="414" height="315"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Gdh-VW-Jpl" id="JqI-Z3-PPd">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="314.66666666666669"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="315"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleAspectFit" translatesAutoresizingMaskIntoConstraints="NO" id="n54-To-5DT" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
-                                            <rect key="frame" x="16" y="35.999999999999986" width="382" height="223.66666666666663"/>
+                                            <rect key="frame" x="16" y="36" width="382" height="224"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="999" constant="284" identifier="containerHeight" id="Xa6-hv-jse"/>
@@ -1104,7 +1083,7 @@
                                             </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="WLg-PI-SZh" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
-                                            <rect key="frame" x="10" y="249.66666666666663" width="394" height="55"/>
+                                            <rect key="frame" x="10" y="250" width="394" height="55"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="55" id="WMt-OE-djj"/>
@@ -1171,13 +1150,13 @@
         <!--Post-->
         <scene sceneID="eDW-YH-bxA">
             <objects>
-                <viewController id="3vP-h1-AZd" customClass="PortfolioPostVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="3vP-h1-AZd" customClass="PortfolioPostVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="T7e-hM-L5F">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ftK-mm-Cld">
-                                <rect key="frame" x="187" y="426" width="40" height="40"/>
+                                <rect key="frame" x="187" y="372" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="40" id="1hJ-Sl-gSB"/>
                                     <constraint firstAttribute="width" priority="999" constant="40" id="fvy-HS-tMp"/>
@@ -1188,7 +1167,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PNC-xC-0Zx">
-                                <rect key="frame" x="16" y="105" width="123" height="29.666666666666657"/>
+                                <rect key="frame" x="16" y="73" width="123" height="29.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="123" id="fqX-w9-1Ce"/>
                                     <constraint firstAttribute="height" constant="29.5" id="qd0-PZ-nh0"/>
@@ -1201,7 +1180,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtQ-Bw-O5i">
-                                <rect key="frame" x="132" y="798" width="150" height="40"/>
+                                <rect key="frame" x="132" y="744" width="150" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" priority="999" constant="40" id="9vm-ce-dYL"/>
                                     <constraint firstAttribute="width" priority="999" constant="150" id="MHu-E3-DSF"/>
@@ -1212,7 +1191,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ts1-CN-Zj4" customClass="PostContainerView" customModule="GoGig" customModuleProvider="target">
-                                <rect key="frame" x="57" y="474" width="300" height="300"/>
+                                <rect key="frame" x="57" y="420" width="300" height="300"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" identifier="postContainerWidth" id="EgM-qf-uxL"/>
@@ -1220,7 +1199,7 @@
                                 </constraints>
                             </view>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Caption Goes Here" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="GYM-Ql-atK" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
-                                <rect key="frame" x="16" y="142" width="382" height="90"/>
+                                <rect key="frame" x="16" y="110" width="382" height="90"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="90" id="YvO-pW-PCY"/>
@@ -1229,7 +1208,7 @@
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Location" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="StU-vU-Iwl">
-                                <rect key="frame" x="207" y="108" width="191" height="20.666666666666657"/>
+                                <rect key="frame" x="207" y="76" width="191" height="20.666666666666671"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="191" id="hmq-I5-1c3"/>
                                 </constraints>
@@ -1279,7 +1258,7 @@
         <!--Activity-->
         <scene sceneID="Pua-SN-AgT">
             <objects>
-                <viewController title="Activity" id="cPb-Gz-tHJ" customClass="ActivityFeedVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Activity" modalPresentationStyle="fullScreen" interfaceStyle="light" id="cPb-Gz-tHJ" customClass="ActivityFeedVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7FV-jG-Ona">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1309,7 +1288,7 @@
                                                             <rect key="frame" x="0.0" y="28" width="375" height="114"/>
                                                             <autoresizingMask key="autoresizingMask"/>
                                                             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="0GT-5T-lOC" id="lbM-B7-IyM">
-                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="113.66666666666667"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="375" height="114"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="fZA-it-IzC">
@@ -1320,7 +1299,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Notification Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jvs-yu-SSp">
-                                                                        <rect key="frame" x="95" y="42" width="229" height="47.666666666666657"/>
+                                                                        <rect key="frame" x="95" y="42" width="220" height="48"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="229" id="FDn-6c-3dM"/>
                                                                         </constraints>
@@ -1329,7 +1308,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s6Q-gz-zCC">
-                                                                        <rect key="frame" x="332" y="42" width="30" height="30"/>
+                                                                        <rect key="frame" x="328" y="42" width="30" height="30"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="30" id="Tb4-19-XCm"/>
                                                                             <constraint firstAttribute="height" constant="30" id="oqv-9d-br5"/>
@@ -1340,7 +1319,7 @@
                                                                         </connections>
                                                                     </button>
                                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mAK-w6-nrR">
-                                                                        <rect key="frame" x="95" y="4" width="237" height="30"/>
+                                                                        <rect key="frame" x="95" y="4" width="233" height="30"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                                                         <state key="normal" title="Name of User/Event Button">
                                                                             <color key="titleColor" red="0.5334280133" green="0.24798929689999999" blue="0.62733912469999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1404,9 +1383,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kI2-Uv-yTN"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="2Ub-Il-xmC">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="2Ub-Il-xmC"/>
                     <navigationItem key="navigationItem" title="Activity" largeTitleDisplayMode="never" id="J56-jk-Ijl">
                         <barButtonItem key="rightBarButtonItem" title="Edit" id="4ti-zO-A8R">
                             <color key="tintColor" red="0.4942619801" green="0.1805444658" blue="0.5961503386" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1430,7 +1407,7 @@
         <!--Review ApplicationVC-->
         <scene sceneID="CeH-V8-FQF">
             <objects>
-                <viewController id="l7w-Ww-6a5" customClass="ReviewApplicationVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController interfaceStyle="light" id="l7w-Ww-6a5" customClass="ReviewApplicationVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="70Y-7G-BRP">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1455,7 +1432,6 @@
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" spacing="143" translatesAutoresizingMaskIntoConstraints="NO" id="s8P-tm-Uos">
                                 <rect key="frame" x="16" y="504" width="343" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NaY-eg-9rw">
                                         <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
@@ -1488,9 +1464,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="avB-e2-v94"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="m6A-UH-jxE">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
-                    </tabBarItem>
+                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="m6A-UH-jxE"/>
+                    <navigationItem key="navigationItem" id="uTh-Fg-GLQ"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="eventLabel" destination="wi1-UX-pWU" id="rDc-cT-ahi"/>
@@ -1507,10 +1482,8 @@
         <!--Navigation Controller-->
         <scene sceneID="Wf7-5i-w0H">
             <objects>
-                <navigationController id="dnJ-PS-LVF" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="ZjP-lF-SyT">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
-                    </tabBarItem>
+                <navigationController modalPresentationStyle="fullScreen" interfaceStyle="light" id="dnJ-PS-LVF" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="activity" selectedImage="activityFilled" id="ZjP-lF-SyT"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="E16-7V-Bxx">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1526,7 +1499,8 @@
         <!--Navigation Controller-->
         <scene sceneID="NXr-vd-jzl">
             <objects>
-                <navigationController id="6tE-Mh-nQI" sceneMemberID="viewController">
+                <navigationController wantsFullScreenLayout="YES" interfaceStyle="light" id="6tE-Mh-nQI" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="zGY-QY-qhh"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Rd-sv-n3P">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -1542,7 +1516,7 @@
         <!--Create ProfileCAVC-->
         <scene sceneID="7gw-lG-d1e">
             <objects>
-                <viewController id="drN-xZ-O1L" customClass="CreateProfileCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="drN-xZ-O1L" customClass="CreateProfileCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="nKB-25-fjb">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1566,7 +1540,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="HNM-OW-JJR">
-                                <rect key="frame" x="42" y="206.33333333333334" width="330" height="123.33333333333334"/>
+                                <rect key="frame" x="42" y="206.33333333333334" width="330" height="127.33333333333334"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What is your name?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p3w-9B-nvd">
                                         <rect key="frame" x="0.0" y="0.0" width="330" height="23.333333333333332"/>
@@ -1575,13 +1549,12 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="John Appleseed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arR-Xe-dVT" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="34.333333333333314" width="330" height="30"/>
-                                        <nil key="textColor"/>
+                                        <rect key="frame" x="0.0" y="34.333333333333314" width="330" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="MqP-aQ-Icm" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="75.333333333333343" width="330" height="48"/>
+                                        <rect key="frame" x="0.0" y="79.333333333333343" width="330" height="48"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="FJe-zW-Kow"/>
@@ -1695,7 +1668,7 @@
         <!--Social LinksCAVC-->
         <scene sceneID="V7z-3R-Dug">
             <objects>
-                <viewController id="z6T-aE-sX7" customClass="SocialLinksCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="z6T-aE-sX7" customClass="SocialLinksCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="bK5-0b-N5O">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1707,77 +1680,72 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7oX-7H-JXD">
-                                <rect key="frame" x="61.666666666666657" y="95.666666666666686" width="291" height="422.00000000000006"/>
+                                <rect key="frame" x="61.666666666666657" y="95.666666666666686" width="291" height="442.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="phoneIcon" translatesAutoresizingMaskIntoConstraints="NO" id="FAO-sS-h6W">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="40"/>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone number (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7DB-XA-Ucf" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="47.999999999999986" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="47.999999999999986" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="5w9-QM-qk5"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad" textContentType="name"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="websiteIcon" translatesAutoresizingMaskIntoConstraints="NO" id="h39-7h-s3a">
-                                        <rect key="frame" x="0.0" y="85.999999999999986" width="291" height="40"/>
+                                        <rect key="frame" x="0.0" y="89.999999999999986" width="291" height="40.000000000000014"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="M60-ty-ms2"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Website (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gk4-mb-Jix" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="134" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="138" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="1J4-d1-K2s"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="instaIcon" translatesAutoresizingMaskIntoConstraints="NO" id="rfb-Py-r20">
-                                        <rect key="frame" x="0.0" y="172" width="291" height="40"/>
+                                        <rect key="frame" x="0.0" y="180" width="291" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="WiR-bI-Qrz"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Instagram username (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Jmg-7z-eUj" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="220" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="228" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="KhA-V1-e2s"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="twitterIcon" translatesAutoresizingMaskIntoConstraints="NO" id="bmV-gO-M7f">
-                                        <rect key="frame" x="0.0" y="258" width="291" height="40"/>
+                                        <rect key="frame" x="0.0" y="270" width="291" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="zbV-FG-lCf"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Twitter username (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SYk-JN-025" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="306" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="318" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="9Sk-Vu-4gc"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" textContentType="username"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookIcon" translatesAutoresizingMaskIntoConstraints="NO" id="KAl-pj-o45">
-                                        <rect key="frame" x="0.0" y="344" width="291" height="40"/>
+                                        <rect key="frame" x="0.0" y="360" width="291" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="dMM-ps-7QO"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Facebook page ID (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Al4-h3-gVe" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="392" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="408" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="h9D-h7-prB"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
@@ -1807,6 +1775,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jJy-eo-Tu6"/>
                     </view>
+                    <navigationItem key="navigationItem" id="Tdh-ee-Xx6"/>
                     <connections>
                         <outlet property="facebookField" destination="Al4-h3-gVe" id="8hc-GI-wgM"/>
                         <outlet property="fieldsStack" destination="7oX-7H-JXD" id="Rui-Wa-dyX"/>
@@ -1825,7 +1794,8 @@
         <!--Tab Bar Controller-->
         <scene sceneID="53S-4b-hI7">
             <objects>
-                <tabBarController id="j4g-g3-G9H" customClass="TabBarController" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController modalPresentationStyle="fullScreen" interfaceStyle="light" id="j4g-g3-G9H" customClass="TabBarController" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="UJE-YT-hx7"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="RXc-Uq-Yfv">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
@@ -1850,10 +1820,8 @@
         <!--Navigation Controller-->
         <scene sceneID="hVv-CC-BQ9">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="pzi-eg-Sok" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="" image="profile" selectedImage="profileFilled" id="c5B-8c-TAP">
-                        <inset key="imageInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="-12"/>
-                    </tabBarItem>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" interfaceStyle="light" id="pzi-eg-Sok" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="" image="profile" selectedImage="profileFilled" id="c5B-8c-TAP"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ehk-UT-sN2">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -1871,7 +1839,7 @@
         <!--Music LinksCAVC-->
         <scene sceneID="bqh-5e-Vyt">
             <objects>
-                <viewController id="TzW-Fm-1QJ" customClass="MusicLinksCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="fullScreen" interfaceStyle="light" id="TzW-Fm-1QJ" customClass="MusicLinksCAVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="koe-4R-KBG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1898,7 +1866,7 @@
                                 </connections>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="29W-QI-6sc">
-                                <rect key="frame" x="61.666666666666657" y="335.66666666666669" width="291" height="225.00000000000006"/>
+                                <rect key="frame" x="61.666666666666657" y="331.66666666666669" width="291" height="233.00000000000006"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="appleMusicIcon" translatesAutoresizingMaskIntoConstraints="NO" id="yLz-l3-6uv">
                                         <rect key="frame" x="0.0" y="0.0" width="291" height="40"/>
@@ -1907,26 +1875,24 @@
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Apple Music link (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bSN-Gl-9Yh" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="65" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="65" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="Qg7-VC-6is"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                                     </textField>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="spotifyIcon" translatesAutoresizingMaskIntoConstraints="NO" id="2mg-Ft-P1N">
-                                        <rect key="frame" x="0.0" y="120" width="291" height="50"/>
+                                        <rect key="frame" x="0.0" y="124" width="291" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="kYA-ar-OBa"/>
                                         </constraints>
                                     </imageView>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Spotify link (optional)" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gEB-GU-gQZ" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="194.99999999999994" width="291" height="30"/>
+                                        <rect key="frame" x="0.0" y="198.99999999999994" width="291" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="291" id="pkH-St-rmk"/>
                                         </constraints>
-                                        <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="webSearch" textContentType="url"/>
                                     </textField>
@@ -1944,6 +1910,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="baz-Dj-WKC"/>
                     </view>
+                    <navigationItem key="navigationItem" id="zBP-xY-22T"/>
                     <connections>
                         <outlet property="appleMusicField" destination="bSN-Gl-9Yh" id="xyK-4M-IaA"/>
                         <outlet property="fieldsStack" destination="29W-QI-6sc" id="dwM-zn-JSt"/>
@@ -1958,7 +1925,7 @@
         <!--Login SignupVC-->
         <scene sceneID="Ogz-Id-q3T">
             <objects>
-                <viewController storyboardIdentifier="LoginSignupVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginSignupVC" modalPresentationStyle="fullScreen" useStoryboardIdentifierAsRestorationIdentifier="YES" interfaceStyle="light" id="zxw-op-RHA" customClass="LoginSignupVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="SWT-Fj-wto" customClass="LoginView" customModule="GoGig" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1970,22 +1937,22 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleAspectFit" axis="vertical" distribution="fillProportionally" spacing="32" translatesAutoresizingMaskIntoConstraints="NO" id="uRn-MH-EIa">
-                                <rect key="frame" x="40" y="189.66666666666663" width="334" height="154"/>
+                                <rect key="frame" x="40" y="189.66666666666663" width="334" height="166"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="T6i-98-DUA" customClass="LoginField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="0.0" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="334" height="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XbA-eX-A8A" customClass="LoginField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="62" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="66" width="334" height="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="confirm password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cbu-Wx-kpn" customClass="LoginField" customModule="GoGig" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="124.00000000000003" width="334" height="30"/>
+                                        <rect key="frame" x="0.0" y="132.00000000000003" width="334" height="34"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES" textContentType="password"/>
@@ -1993,7 +1960,7 @@
                                 </subviews>
                             </stackView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x7E-AN-OSt">
-                                <rect key="frame" x="132" y="375.66666666666669" width="150" height="40"/>
+                                <rect key="frame" x="132" y="387.66666666666669" width="150" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="150" id="CTk-7Y-K34"/>
                                     <constraint firstAttribute="height" constant="40" id="Jww-aZ-21Z"/>
@@ -2057,10 +2024,10 @@
         <!--Navigation Controller-->
         <scene sceneID="n3f-yf-bFa">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AI6-4O-rQO" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" interfaceStyle="light" id="AI6-4O-rQO" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="MFI-TA-9Mc">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -2119,9 +2086,9 @@
         <image name="websiteLink" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wFw-6j-rvQ"/>
+        <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
-        <segue reference="cyf-i8-fyk"/>
+        <segue reference="O7T-tK-dOO"/>
         <segue reference="viQ-FR-Ahs"/>
         <segue reference="VRU-oQ-BGM"/>
     </inferredMetricsTieBreakers>
