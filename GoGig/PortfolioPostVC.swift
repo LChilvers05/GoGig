@@ -227,6 +227,7 @@ class PortfolioPostVC: AutoComplete {
                     
                     self.view.isUserInteractionEnabled = true
                     self.dismiss(animated: true, completion: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
                 }
             }
             
