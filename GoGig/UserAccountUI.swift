@@ -376,15 +376,22 @@ extension FindGigVC {
 
 extension ReviewApplicationVC {
     func setupView() {
-        let backgroundImage = UIImage(named: "Background")
-        let imageView = UIImageView(image: backgroundImage)
-        imageView.contentMode = .scaleAspectFit
-        view.sendSubviewToBack(imageView)
+        let background = UIImage(named: "Background3")
+        var imageView : UIImageView!
+        imageView = UIImageView(frame: view.bounds)
+        imageView.contentMode =  UIView.ContentMode.scaleAspectFill
+        imageView.clipsToBounds = true
+        imageView.image = background
+        imageView.center = view.center
+        imageView.alpha = 0.4
         
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = imageView.bounds
         imageView.addSubview(blurView)
+        
+        view.addSubview(imageView)
+        self.view.sendSubviewToBack(imageView)
         
         profileImageView.layer.borderWidth = 0.1
         profileImageView.layer.masksToBounds = false

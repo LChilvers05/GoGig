@@ -52,7 +52,10 @@ class ReviewApplicationVC: UIViewController {
         }
     }
     
-
+    @IBAction func popView(_ sender: Any) {
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+    
     @IBAction func checkUid(_ sender: Any) {
         performSegue(withIdentifier: TO_CHECK_PORTFOLIO_2, sender: nil)
     }
@@ -124,6 +127,7 @@ class ReviewApplicationVC: UIViewController {
             let userAccountVC = segue.destination as! UserAccountVC
             
             let backItem = UIBarButtonItem()
+            backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
             
