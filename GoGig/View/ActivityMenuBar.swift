@@ -63,7 +63,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         addSubview(barView)
         
         barView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        barView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        barView.heightAnchor.constraint(equalToConstant: 3).isActive = true
         //multiplier 0.5 so takes half of device view
         barView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
