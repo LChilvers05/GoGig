@@ -1398,7 +1398,7 @@
                         <outlet property="collectionView" destination="jzV-zH-a4z" id="lTd-Kg-Oxk"/>
                         <outlet property="editBarButton" destination="4ti-zO-A8R" id="6WQ-xl-yx4"/>
                         <segue destination="VvL-iR-0b6" kind="show" identifier="toCheckPortfolio" id="cyf-i8-fyk"/>
-                        <segue destination="l7w-Ww-6a5" kind="show" identifier="toReviewApplication" id="6BM-Hp-p2w"/>
+                        <segue destination="l7w-Ww-6a5" kind="presentation" identifier="toReviewApplication" id="6BM-Hp-p2w"/>
                         <segue destination="c1N-ac-aRf" kind="show" identifier="toEventDescription2" id="viQ-FR-Ahs"/>
                     </connections>
                 </viewController>
@@ -1411,7 +1411,7 @@
             <objects>
                 <viewController interfaceStyle="light" id="l7w-Ww-6a5" customClass="ReviewApplicationVC" customModule="GoGig" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="70Y-7G-BRP">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Wants to play for Framlingham Beer Festival" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wi1-UX-pWU">
@@ -2090,7 +2090,7 @@
     <inferredMetricsTieBreakers>
         <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
-        <segue reference="jCN-0Y-7KK"/>
+        <segue reference="O7T-tK-dOO"/>
         <segue reference="viQ-FR-Ahs"/>
         <segue reference="VRU-oQ-BGM"/>
     </inferredMetricsTieBreakers>
