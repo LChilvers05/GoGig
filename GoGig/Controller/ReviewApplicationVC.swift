@@ -41,7 +41,7 @@ class ReviewApplicationVC: UIViewController {
                     self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                         self.profileImageView.image = returnedProfileImage
                         
-                        DataService.instance.getDBSingleEvent(uid: returnedCurrentUser.uid, eventID: self.application!.getRelatedEventId()) { (returnedGigEvent) in
+                        DataService.instance.getDBSingleEvent(uid: returnedCurrentUser.uid, eventID: self.application!.getRelatedEventId()) { (returnedGigEvent, sucess) in
                             
                             self.relatedEvent = returnedGigEvent
                             self.eventLabel.text = "Wants to play for \(returnedGigEvent.getTitle())"
@@ -109,7 +109,7 @@ class ReviewApplicationVC: UIViewController {
                 self.notificationData!["senderName"] = "You"
                 self.notificationData!["reciever"] = senderUid
                 self.notificationData!["type"] = "personal"
-                self.notificationData!["description"] = "Hired \(self.user!.name) for the event: \(relatedEventTitle)"
+                self.notificationData!["description"] = "hired \(self.user!.name) for the event: \(relatedEventTitle)"
                 DataService.instance.updateDBActivityFeed(uid: senderUid, notificationID: notificationID, notificationData: self.notificationData!) { (complete) in
                     if complete {
                     }

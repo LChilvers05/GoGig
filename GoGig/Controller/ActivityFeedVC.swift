@@ -104,18 +104,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 eventsHandle = DataService.instance.REF_USERS.child(uid).child("events").observe(.value) { (snapshot) in
                     DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
                         var eventListings = [GigEvent]()
-                        //HERE DO THE CHECK TO SEE IF THE EVENT STILL EXISTS
-                        //IF NOT THEN DELETE IT FROM THE USER EVENT LISTING
-                        for eventID in returnedEventIDs {
-                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent) in
-                                
-                                eventListings.insert(returnedGigEvent, at: 0)
-                                self.usersEvents = eventListings
-                                self.collectionView.reloadData()
-                            }
-                        }
                         //One was getting appended, the other was getting inserted at 0.  Deleting didn't delete the correct gigEvent
                         self.eventIDs = returnedEventIDs.reversed()
+                        for eventID in returnedEventIDs {
+                            DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent, success)  in
+                                if success {
+                                    eventListings.insert(returnedGigEvent, at: 0)
+                                    self.usersEvents = eventListings
+                                    self.collectionView.reloadData()
+                                } else {
+                                    print("exists one that doesn't exist")
+                                    if let index = self.eventIDs.firstIndex(of: eventID) {
+                                        self.eventIDs.remove(at: index)
+                                        DataService.instance.deleteDBUserEvents(uid: uid, eventIDs: self.eventIDs)
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -275,6 +280,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 if self.user!.gigs == false {
                     //print(self.eventIDs[row])
                     DataService.instance.deleteDBEvents(uid: self.user!.uid, eventID: self.eventIDs[row])
+                    DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "events", fileID: self.eventIDs[row])
                 }
                 self.eventIDs.remove(at: row)
                 //print(self.usersEvents[row].getid())

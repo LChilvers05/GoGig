@@ -150,7 +150,7 @@ class PortfolioPostVC: AutoComplete {
                 DataService.instance.updateSTVid(uid: uid, directory: "portfolioPost", vidContent: postVideo, imageID: imageID, uploadComplete: { (success, error) in
                     if error != nil {
                         
-                        self.displayError(title: "There was an Error", message: error!.localizedDescription)
+                        self.displayError(title: "There was an Error 1", message: error!.localizedDescription)
                         
                     } else {
                         
@@ -178,7 +178,7 @@ class PortfolioPostVC: AutoComplete {
         
         DataService.instance.updateSTPic(uid: uid, directory: "portfolioThumbnail", imageContent: videoThumbnail!, imageID: imageID, uploadComplete: { (success, error) in
             if error != nil {
-                self.displayError(title: "There was an Error", message: error!.localizedDescription)
+                self.displayError(title: "There was an Error 2", message: error!.localizedDescription)
             } else {
                 DataService.instance.getSTURL(uid: uid, directory: "portfolioThumbnail", imageID: self.imageID) { (returnedURL) in
                     

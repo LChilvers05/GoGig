@@ -72,7 +72,7 @@ class TitleDateCGVC: UIViewController {
         }
         if editingGigEvent && editingGate {
             if let uid = Auth.auth().currentUser?.uid {
-                DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent) in
+                DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent, success) in
                     let returnedGigEventData = ["uid": uid, "eventID": returnedGigEvent.getid(), "title": returnedGigEvent.getTitle(), "timestamp": returnedGigEvent.getTimestamp(), "latitude": returnedGigEvent.getLatitude(), "longitude": returnedGigEvent.getLongitude(), "locationName": returnedGigEvent.getLocationName(), "postcode": returnedGigEvent.getPostcode(), "payment": returnedGigEvent.getPayment(), "description": returnedGigEvent.getDescription(), "name": returnedGigEvent.getName(), "email": returnedGigEvent.getEmail(), "phone": returnedGigEvent.getPhone(), "eventPhotoURL": returnedGigEvent.getEventPhotoURL(), "appliedUsers": returnedGigEvent.getAppliedUsers()] as [String : Any]
                     self.eventData = returnedGigEventData
                     self.gigEvent = returnedGigEvent
