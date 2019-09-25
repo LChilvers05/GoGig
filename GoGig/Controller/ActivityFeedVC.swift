@@ -113,7 +113,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     self.usersEvents = eventListings
                                     self.collectionView.reloadData()
                                 } else {
-                                    print("exists one that doesn't exist")
+                                    //User (should be musician) has an eventID listed which the organiser has already deleted the event, clean up the DB
                                     if let index = self.eventIDs.firstIndex(of: eventID) {
                                         self.eventIDs.remove(at: index)
                                         DataService.instance.deleteDBUserEvents(uid: uid, eventIDs: self.eventIDs)
