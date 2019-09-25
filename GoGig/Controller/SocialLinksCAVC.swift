@@ -174,8 +174,14 @@ class SocialLinksCAVC: UIViewController {
                     if complete {
                         
                         accountGateOpen = true
-                        self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                        
+                        if !editingProfile {
+                            //creating account
+                            self.performSegue(withIdentifier: TO_MAIN, sender: nil)
+                        } else {
+                            self.dismiss(animated: true)
+                            editingProfile = false
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
+                        }
                         //Update FCM Token for push notifications
                         InstanceID.instanceID().instanceID { (result, error) in
                             if let error = error {

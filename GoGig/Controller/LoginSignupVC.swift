@@ -129,6 +129,8 @@ class LoginSignupVC: UIViewController {
                                     //Dismiss the LoginVC showing UserAccountVC
                                     self.dismiss(animated: true, completion: nil)
                                     
+                                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
+                                    
                                     //Refresh the portfolio
                                     //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
                                     

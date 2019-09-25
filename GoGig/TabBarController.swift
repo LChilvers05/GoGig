@@ -15,6 +15,7 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshTabs), name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -25,6 +26,12 @@ class TabBarController: UITabBarController {
     var userGigs: Bool?
 
     override func viewDidAppear(_ animated: Bool) {
+        if tabGateOpen {
+            refreshTabs()
+        }
+    }
+    @objc func refreshTabs(){
+        print("Tabs have been refreshed")
         //Set the original state of the tabs (all four)
         if tabGateOpen {
             tabs = self.viewControllers!
@@ -36,7 +43,9 @@ class TabBarController: UITabBarController {
             //Remove the tabs that shouldn't be seen by musician/organiser
             if tabGateOpen {
                 if userGigsDefaults == true {
+                    print("tabs reset as expected")
                     self.viewControllers?.remove(at: 0)
+                    print(self.viewControllers!)
                 } else {
                     self.viewControllers?.remove(at: 1)
                 }

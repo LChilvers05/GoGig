@@ -54,7 +54,6 @@ class UserAccountVC: UITableViewController {
         //User is looking at themself
         //Gate is needed incase user signs in and signs out again
         if uid == nil || accountGateOpen {
-            print("Got current Uid")
             accountGateOpen = false
             uid = Auth.auth().currentUser?.uid //^
         //User is looking at another
@@ -68,13 +67,11 @@ class UserAccountVC: UITableViewController {
         }
         
         DataService.instance.getDBUserProfile(uid: uid!) { (returnedUser) in
-            print("Got the current user")
             self.user = returnedUser
             self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                 self.profilePic = returnedProfileImage
                 DataService.instance.getDBPortfolioPosts(uid: self.uid!) { (returnedPosts) in
                     self.portfolioPosts = self.quickSort(array:returnedPosts)
-                    print("Got the posts")
                     //print(self.portfolioPosts)
                     //self.portfolioPosts = returnedPosts
                     self.tableView.reloadData()
@@ -97,7 +94,7 @@ class UserAccountVC: UITableViewController {
                 paginationGateOpen = true
                 pushNotificationGateOpen = true
                 
-                DEFAULTS.set(nil, forKey: "gigs")
+                //DEFAULTS.set(nil, forKey: "gigs")
             }
             self.performSegue(withIdentifier: TO_EDIT_PROFILE, sender: nil)
         }
@@ -266,7 +263,7 @@ class UserAccountVC: UITableViewController {
         
         let row = sender.tag
         
-        let morePopup = UIAlertController(title: "more", message: "", preferredStyle: .actionSheet)
+        let morePopup = UIAlertController(title: "More", message: "What would you like to do with your post?", preferredStyle: .actionSheet)
         let deletePostAction = UIAlertAction(title: "Delete Post", style: .destructive) { (buttonTapped) in
             
             //Delete the post from Database and from Storage
@@ -278,7 +275,7 @@ class UserAccountVC: UITableViewController {
             self.portfolioPosts.remove(at: row)
             self.refreshPortfolio()
         }
-        let cancelPostAction = UIAlertAction(title: "Cancel", style: .default) { (buttonTapped) in
+        let cancelPostAction = UIAlertAction(title: "Cancel", style: .cancel) { (buttonTapped) in
             print("operation aborted")
         }
         

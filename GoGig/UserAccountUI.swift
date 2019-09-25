@@ -10,7 +10,6 @@ import UIKit
 
 extension LoginSignupVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -38,7 +37,6 @@ extension LoginSignupVC {
 
 extension CreateProfileCAVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -71,7 +69,6 @@ extension CreateProfileCAVC {
 
 extension SocialLinksCAVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -99,7 +96,6 @@ extension SocialLinksCAVC {
 
 extension MusicLinksCAVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -127,7 +123,6 @@ extension MusicLinksCAVC {
 
 extension TabBarController {
     func setupView(){
-        overrideUserInterfaceStyle = .light
     }
 }
 
@@ -142,8 +137,6 @@ extension UserAccountVC {
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        overrideUserInterfaceStyle = .light
-        
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
@@ -164,7 +157,7 @@ extension UserAccountVC {
 
 extension PortfolioPostVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
+        navigationController?.navigationBar.barTintColor = UIColor.white.withAlphaComponent(0.90)
         let background = UIImage(named: "Background5")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -180,7 +173,6 @@ extension PortfolioPostVC {
 
 extension CreateGigVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -320,7 +312,6 @@ extension PhotoCGVC {
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        overrideUserInterfaceStyle = .light
         
         eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         eventPicView.layer.shadowRadius = 10.0
@@ -343,7 +334,6 @@ extension PhotoCGVC {
 
 extension ActivityFeedVC {
     func setupView(tableview: UITableView){
-        overrideUserInterfaceStyle = .light
         let backgroundImage = UIImage(named: "Background3")
         let imageView = UIImageView(image: backgroundImage)
         imageView.clipsToBounds = true
@@ -357,7 +347,6 @@ extension ActivityFeedVC {
 
 extension FindGigVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -387,7 +376,6 @@ extension FindGigVC {
 
 extension ReviewApplicationVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         imageView.contentMode = .scaleAspectFit
@@ -409,7 +397,6 @@ extension ReviewApplicationVC {
 
 extension EventDescriptionVC {
     func setupView() {
-        overrideUserInterfaceStyle = .light
 //        let transparentView: UIView = {
 //            let tv = UIView()
 //            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)

@@ -128,8 +128,16 @@ class MusicLinksCAVC: UIViewController {
                     if complete {
                         
                         accountGateOpen = true
-                        self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
                         
+                        //Now do a dismiss rather than a perform segue, this is because when performing a segue, we instantiate a new tab controller
+                        if !editingProfile {
+                            //creating account
+                            self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
+                        } else {
+                            self.dismiss(animated: true)
+                            editingProfile = false
+                            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
+                        }
                         //Update FCM Token for push notifications
                         InstanceID.instanceID().instanceID { (result, error) in
                             if let error = error {

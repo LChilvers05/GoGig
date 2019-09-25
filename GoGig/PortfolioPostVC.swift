@@ -59,7 +59,6 @@ class PortfolioPostVC: AutoComplete {
         
         imagePicker = UIImagePickerController()
         imagePicker?.delegate = self
-        
     }
     
     @IBAction func popView(_ sender: Any) {
