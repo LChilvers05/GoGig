@@ -12,14 +12,13 @@ import AVKit
 import AVFoundation
 import GoogleMaps
 import GooglePlaces
+import EventKit
 
 let imageCache = NSCache<NSString, UIImage>()
 
-//MARK: General
 extension UIViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
-    //MARK: HELPER METHODS
-    
+    //MARK: HIDE KEYBOARD
     //To hide keyboard
     func hideKeyboard() {
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -30,7 +29,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         view.endEditing(true)
     }
     
-    //Display Error Notification
+    //MARK: ERROR NOTIFICATION
     func displayError(title: String, message: String) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
@@ -38,6 +37,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         
     }
     
+    //MARK: GENERIC QUICK-SORT
     //Quick Sort an array of type generic
     func quickSort<T: Comparable>(array:[T]) -> [T] {
         if array.isEmpty { return [] }
@@ -50,7 +50,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         return quickSort(array: smallerOrEqual) + [first] + quickSort(array: larger)
     }
     
-    //ActionSheet for Before Image Picker
+    //MARK: IMAGE PICKER ACTION SHEET
     func openPhotoPopup(video: Bool, imagePicker: UIImagePickerController, title: String, message: String){
         
         let photoPopup = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
@@ -86,7 +86,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         present(photoPopup, animated: true, completion: nil)
     }
     
-    //The Image Picker
+    //MARK: IMAGE PICKER
     func openImagePicker(imagePicker: UIImagePickerController, source: UIImagePickerController.SourceType) {
         
         //imagepicker is the user Photo Library/Camera/Video Library
@@ -107,6 +107,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         picker.dismiss(animated: true, completion: nil)
     }
     
+    //MARK: DOWNLOAD IMAGE
     func downloadImage(url: URL, handler: @escaping (_ returnedImage: UIImage) -> ()) {
         //Get's the data of the URL
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
@@ -132,8 +133,8 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         
     }
     
+    //MARK: IMAGE CACHE
     //Storing images as chache reduces the network usage of the app
-    
     func loadImageCache(url: URL, isImage: Bool, handler: @escaping (_ returnedImage: UIImage) -> ()) {
         
         let urlString = url.absoluteString as NSString
@@ -184,7 +185,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     
     //SLOW LOADING!
     
-    //Creates a thumnail from a video url
+    //MARK: VIDEO THUMBNAIL
     func generateThumbnail(url: URL) -> UIImage {
         
         do {
@@ -201,6 +202,32 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             
             return UIImage(named: "second")!
         }
+    }
+    
+    
+    //MARK: ADD EVENT TO CALENDAR
+    func addEventToCalendar(title: String, description: String?, startDate: Date, endDate: Date, completion: ((_ success: Bool, _ error: NSError?) -> Void)? = nil) {
+        let eventStore = EKEventStore()
+
+        eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            if (granted) && (error == nil) {
+                let event = EKEvent(eventStore: eventStore)
+                event.title = title
+                event.startDate = startDate
+                event.endDate = endDate
+                event.notes = description
+                event.calendar = eventStore.defaultCalendarForNewEvents
+                do {
+                    try eventStore.save(event, span: .thisEvent)
+                } catch let e as NSError {
+                    completion?(false, e)
+                    return
+                }
+                completion?(true, nil)
+            } else {
+                completion?(false, error as NSError?)
+            }
+        })
     }
 }
 

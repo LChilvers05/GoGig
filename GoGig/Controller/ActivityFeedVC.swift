@@ -140,43 +140,6 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         self.collectionView.reloadData()
     }
     
-    //MARK: NOTIFICATION CELL
-    
-    func updateNotificationData(cell: ActivityFeedCell, row: Int) {
-        //cell.notificationImage.isHidden = false
-        cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
-        cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
-        cell.eventNameButton.tag = row
-        cell.deleteNotificationButton.tag = row
-        cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
-        
-        loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
-            cell.notificationImage.image = nil
-            cell.notificationImage.image = returnedImage
-        }
-        
-        if editingNotifications {
-            cell.deleteNotificationButton.isHidden = false
-        } else {
-            cell.deleteNotificationButton.isHidden = true
-        }
-    }
-    
-    //MARK: NOTIFICATION CELL ACTIONS
-    var checkUid: String?
-    @IBAction func checkOut(_ sender: UIButton) {
-        let row = sender.tag
-        //Notifications Section
-        if selectedCVCell == 0 {
-            
-            checkUid = activityNotifications[row].getSenderUid()
-            
-            performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
-        } else {
-            //do nothing
-        }
-    }
-    
     //MARK: FETCH MORE DATA
     //(Pagination)
     
@@ -218,6 +181,27 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
+    //MARK: NOTIFICATION CELL
+    
+    func updateNotificationData(cell: ActivityFeedCell, row: Int) {
+        //cell.notificationImage.isHidden = false
+        cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
+        cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
+        cell.eventNameButton.tag = row
+        cell.deleteNotificationButton.tag = row
+        cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
+        
+        loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
+            cell.notificationImage.image = nil
+            cell.notificationImage.image = returnedImage
+        }
+        
+        if editingNotifications {
+            cell.deleteNotificationButton.isHidden = false
+        } else {
+            cell.deleteNotificationButton.isHidden = true
+        }
+    }
     
     //MARK: EVENT CELL
     
@@ -236,11 +220,39 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             cell.deleteNotificationButton.isHidden = true
         }
+        
+        //If old event change the UI
+        if checkOld(gigEventToCompare: usersEvents[row]) == true {
+            cell.notificationImage.alpha = 0.5
+            cell.eventNameButton.isEnabled = false
+            cell.notificationDescriptionLabel.alpha = 0.5
+        }
+    }
+    
+    //MARK: NOTIFICATION CELL ACTIONS
+    var checkUid: String?
+    @IBAction func checkOut(_ sender: UIButton) {
+        let row = sender.tag
+        //Notifications Section
+        if selectedCVCell == 0 {
+            
+            checkUid = activityNotifications[row].getSenderUid()
+            
+            performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
+        
+        //My Events Section
+        } else {
+            
+            let calendarEvent = usersEvents[row]
+//            addEventToCalendar(title: calendarEvent.getTitle(), description: calendarEvent.getDescription(), startDate: calendarEvent.getDate(), endDate: calendarEvent.getDate().addingTimeInterval(3600))
+            print(calendarEvent.getTitle())
+            print("The date: \(calendarEvent.getDate())")
+        }
     }
     
     //MARK: COMPARE TIME AND DATE
     
-    func compareTime(gigEventToCompare: GigEvent) -> Bool {
+    func checkOld(gigEventToCompare: GigEvent) -> Bool {
         let dateObject = Date()
         let currentDate = dateObject.addingTimeInterval(3600) //hour behind
         
@@ -285,7 +297,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                 message = "It will no longer exist to all users"
             }
             //IMPROVE: The listings will not delete under the musician in database
-            //if the organiser deleted them first
+            //if the organiser deleted them first (fixed ^^)
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (buttonPressed) in
