@@ -132,7 +132,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //Needed so that the user profile pictures don't flash and display the wrong image
     var timer: Timer?
-    private func attemptReload() {
+    func attemptReload() {
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleReload), userInfo: nil, repeats: false) //Doesn't repeat
     }
@@ -201,6 +201,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             cell.deleteNotificationButton.isHidden = true
         }
+        
+        //Bug of cell repeat
+        cell.notificationImage.alpha = 1
+        cell.eventNameButton.isEnabled = true
+        cell.eventNameButton.alpha = 1
+        cell.notificationDescriptionLabel.alpha = 1
     }
     
     //MARK: EVENT CELL
@@ -210,6 +216,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
+        cell.eventNameButton.tag = row
         cell.deleteNotificationButton.tag = row
         loadImageCache(url: usersEvents[row].getEventPhotoURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = returnedImage
@@ -223,9 +230,10 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         //If old event change the UI
         if checkOld(gigEventToCompare: usersEvents[row]) == true {
-            cell.notificationImage.alpha = 0.5
+            cell.notificationImage.alpha = 0.3
             cell.eventNameButton.isEnabled = false
-            cell.notificationDescriptionLabel.alpha = 0.5
+            cell.eventNameButton.alpha = 0.3
+            cell.notificationDescriptionLabel.alpha = 0.3
         }
     }
     
@@ -235,18 +243,15 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         let row = sender.tag
         //Notifications Section
         if selectedCVCell == 0 {
-            
             checkUid = activityNotifications[row].getSenderUid()
             
             performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
         
         //My Events Section
         } else {
-            
             let calendarEvent = usersEvents[row]
-//            addEventToCalendar(title: calendarEvent.getTitle(), description: calendarEvent.getDescription(), startDate: calendarEvent.getDate(), endDate: calendarEvent.getDate().addingTimeInterval(3600))
-            print(calendarEvent.getTitle())
-            print("The date: \(calendarEvent.getDate())")
+            addEventToCalendar(title: calendarEvent.getTitle(), description: calendarEvent.getDescription(), startDate: calendarEvent.getDate().addingTimeInterval(-3600), endDate: calendarEvent.getDate())
+            displayError(title: "Added to Calendar", message: "This event was added to your device calendar")
         }
     }
     
