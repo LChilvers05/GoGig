@@ -278,12 +278,12 @@ class DataService {
         for (uid, _) in appliedUsers {
             if uid == Auth.auth().currentUser?.uid {
                 
-                print("denied access to gig")
+                //print("denied access to gig")
                 return false
             }
         }
         
-        print("granted access to gig")
+        //print("granted access to gig")
         return true
     }
     
@@ -416,7 +416,6 @@ class DataService {
     }
     
     func getDBActivityFeed(uid: String, currentActivity: [ActivityNotification], handler: @escaping (_ events: [ActivityNotification]) -> ()) {
-        print(currentActivity)
         let lastActivity = currentActivity.last
         var queryRef: DatabaseQuery
         

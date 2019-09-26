@@ -112,6 +112,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     eventListings.insert(returnedGigEvent, at: 0)
                                     self.usersEvents = eventListings
                                     self.collectionView.reloadData()
+                                    self.attemptReload()
+                                    
                                 } else {
                                     //User (should be musician) has an eventID listed which the organiser has already deleted the event, clean up the DB
                                     if let index = self.eventIDs.firstIndex(of: eventID) {
@@ -119,12 +121,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                         DataService.instance.deleteDBUserEvents(uid: uid, eventIDs: self.eventIDs)
                                     }
                                 }
+                                self.attemptReload()
                             }
                         }
                     }
                 }
             }
         }
+    }
+    
+    //Needed so that the user profile pictures don't flash and display the wrong image
+    var timer: Timer?
+    private func attemptReload() {
+        self.timer?.invalidate()
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleReload), userInfo: nil, repeats: false) //Doesn't repeat
+    }
+    @objc func handleReload(){
+        self.collectionView.reloadData()
     }
     
     //MARK: NOTIFICATION CELL
