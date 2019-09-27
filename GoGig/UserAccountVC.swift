@@ -297,10 +297,7 @@ class UserAccountVC: UITableViewController {
     //MARK: SOCIAL LINKS
     @IBAction func facebookLink(_ sender: Any) {
         let fbPageID = user?.getFacebook()
-//        UIApplication.tryURL(urls: [
-//            "fb://profile/1837812439827573", // App
-//            "http://www.facebook.com/1837812439827573" // Website if app fails
-//            ])
+        //Horham Baptist Church (Business account): 1837812439827573
         if let appURL = URL(string: "fb://profile/\(fbPageID!)") {
             let application = UIApplication.shared
 
