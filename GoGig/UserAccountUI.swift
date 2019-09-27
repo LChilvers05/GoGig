@@ -59,8 +59,8 @@ extension CreateProfileCAVC {
         imageView.image = background
         imageView.center = view.center
         
-        view.addSubview(transparentView)
-        self.view.sendSubviewToBack(transparentView)
+//        view.addSubview(transparentView)
+//        self.view.sendSubviewToBack(transparentView)
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -86,8 +86,8 @@ extension SocialLinksCAVC {
         imageView.image = background
         imageView.center = view.center
         
-        view.addSubview(transparentView)
-        self.view.sendSubviewToBack(transparentView)
+//        view.addSubview(transparentView)
+//        self.view.sendSubviewToBack(transparentView)
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -113,8 +113,8 @@ extension MusicLinksCAVC {
         imageView.image = background
         imageView.center = view.center
         
-        view.addSubview(transparentView)
-        self.view.sendSubviewToBack(transparentView)
+//        view.addSubview(transparentView)
+//        self.view.sendSubviewToBack(transparentView)
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -352,8 +352,8 @@ extension FindGigVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: contactStack.frame.width + 20, height: contactStack.frame.height + 20)
-            tv.center = CGPoint.init(x: self.view.frame.width / 2, y: self.phoneLabel.center.y)
+            //tv.frame = CGRect.init(x: 0, y: 0, width: contactStack.frame.width + 20, height: contactStack.frame.height + 20)
+            tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
         
@@ -371,6 +371,13 @@ extension FindGigVC {
         view.addSubview(transparentView)
         self.view.insertSubview(transparentView, at: 4)
         self.view.insertSubview(contactStack, at: 5)
+        
+        NSLayoutConstraint.activate([
+            transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: contactStack.frame.width),
+            transparentView.heightAnchor.constraint(equalToConstant: contactStack.frame.height)
+        ])
     }
 }
 
