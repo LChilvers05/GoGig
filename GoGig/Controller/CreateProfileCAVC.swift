@@ -17,6 +17,7 @@ class CreateProfileCAVC: UIViewController {
     @IBOutlet weak var nameBioStack: UIStackView!
     @IBOutlet weak var playGigsButton: UIButton!
     @IBOutlet weak var hireMusiciansButton: UIButton!
+    @IBOutlet weak var iWantToLabel: UILabel!
     @IBOutlet weak var usernameField: MyTextField!
     @IBOutlet weak var userBioTextView: MyTextView!
     @IBOutlet weak var profileImageView: UIImageView!
@@ -107,11 +108,13 @@ class CreateProfileCAVC: UIViewController {
         }
         
         if editingProfile {
+            iWantToLabel.isHidden = true
             playGigsButton.isHidden = true
             musicianIcon.isHidden = true
             hireMusiciansButton.isHidden = true
             organiserIcon.isHidden = true
         } else {
+            iWantToLabel.isHidden = false
             playGigsButton.isHidden = false
             musicianIcon.isHidden = false
             hireMusiciansButton.isHidden = false

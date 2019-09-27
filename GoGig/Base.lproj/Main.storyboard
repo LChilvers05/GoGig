@@ -1691,6 +1691,7 @@
                     <navigationItem key="navigationItem" id="s2y-ww-eBq"/>
                     <connections>
                         <outlet property="hireMusiciansButton" destination="BMY-ZA-nd9" id="FPU-Tw-AGQ"/>
+                        <outlet property="iWantToLabel" destination="2NN-JH-C13" id="1ui-yb-gAb"/>
                         <outlet property="musicianIcon" destination="1m2-U6-Sod" id="bzU-EA-HiP"/>
                         <outlet property="nameBioStack" destination="HNM-OW-JJR" id="jCI-eG-XiA"/>
                         <outlet property="organiserIcon" destination="L6c-Er-J4P" id="7CF-38-48e"/>
