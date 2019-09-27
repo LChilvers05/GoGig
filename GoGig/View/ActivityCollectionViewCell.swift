@@ -21,8 +21,28 @@ class ActivityCVCell: UICollectionViewCell {
         //Tag allows us to distinguish between the table views within the cv cells for datasource
         feedTableView.tag = row
         feedTableView.reloadData()
+        feedTableView.addSubview(refreshControl)
+        
+        //Tab to scroll to top
+        NotificationCenter.default.addObserver(self, selector: #selector(scrollToTop), name: NSNotification.Name(rawValue: "scrollToTop"), object: nil)
     }
     
+    //Pull to refresh
+    lazy var refreshControl: UIRefreshControl = {
+        let rc = UIRefreshControl()
+        rc.addTarget(self, action: #selector(pullToRefresh), for: .valueChanged)
+        rc.tintColor = UIColor.purple
+        return rc
+    }()
+    
+    @objc func pullToRefresh() {
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllActivity"), object: nil)
+        refreshControl.endRefreshing()
+    }
+    
+    @objc func scrollToTop() {
+        feedTableView.setContentOffset(.zero, animated: true)
+    }
     
     var tableViewOffset: CGFloat {
         get {

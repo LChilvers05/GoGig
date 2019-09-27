@@ -139,7 +139,7 @@ class PhotoCGVC: UIViewController {
                     //clear the event creation and pop to root of the navigation stack
                     self.navigationController?.popToRootViewController(animated: true)
                     editingGigEvent = false
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAfterEdit"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllActivity"), object: nil)
                 }
             }
         } else {

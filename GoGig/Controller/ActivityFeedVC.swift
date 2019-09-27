@@ -12,7 +12,7 @@ import FirebaseDatabase
 
 //NEED TO FIX BUG WHERE USER CAN OBSERVE PORTFOLIO BY CLICKING ON DATE IN THE 'MY EVENTS' SECTION
 
-class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource {
+class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
     
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -46,12 +46,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //setupView()
+        self.tabBarController?.delegate = self
         setupMenuBar()
         feedGateOpen = false
         refreshActivityFeed()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(refreshAfterEdit), name: NSNotification.Name(rawValue: "refreshAfterEdit"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(refreshAll), name: NSNotification.Name(rawValue: "refreshAllActivity"), object: nil)
         
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -72,7 +72,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             refreshActivityFeed()
         }
     }
-    @objc func refreshAfterEdit() {
+    @objc func refreshAll() {
         print("=====================================")
         print("Refreshed the activity after the edit")
         activityNotifications.removeAll()
@@ -184,6 +184,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL
     
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
+        //Bug of cell repeat
+        cell.notificationImage.alpha = 1
+        cell.eventNameButton.isEnabled = true
+        cell.eventNameButton.alpha = 1
+        cell.notificationDescriptionLabel.alpha = 1
+        
         //cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
@@ -201,17 +207,17 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         } else {
             cell.deleteNotificationButton.isHidden = true
         }
-        
-        //Bug of cell repeat
-        cell.notificationImage.alpha = 1
-        cell.eventNameButton.isEnabled = true
-        cell.eventNameButton.alpha = 1
-        cell.notificationDescriptionLabel.alpha = 1
     }
     
     //MARK: EVENT CELL
     
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
+        //Bug of cell repeat
+        cell.notificationImage.alpha = 1
+        cell.eventNameButton.isEnabled = true
+        cell.eventNameButton.alpha = 1
+        cell.notificationDescriptionLabel.alpha = 1
+        
         cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
@@ -320,6 +326,14 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             }))
             self.present(alertController, animated: true, completion: nil)
         }
+    }
+    
+    //Pressed the tab, scroll to the top of the table view
+    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+         let tabBarIndex = tabBarController.selectedIndex
+         if tabBarIndex == 2 {
+             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "scrollToTop"), object: nil)
+         }
     }
     
     //We cannot just delete from an array in firebase,

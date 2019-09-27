@@ -77,9 +77,10 @@ class TitleDateCGVC: UIViewController {
                     self.eventData = returnedGigEventData
                     self.gigEvent = returnedGigEvent
                     self.eventTitleField.text = returnedGigEvent.getTitle()
-                    let setDate = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
-                    let date = setDate?.addingTimeInterval(-3600)
-                    self.datePicker.setDate(date!, animated: false)
+//                    let setDate = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
+//                    let date = setDate?.addingTimeInterval(-3600)
+                    let date = returnedGigEvent.getDate().addingTimeInterval(-3600)
+                    self.datePicker.setDate(date, animated: false)
                     self.editingGate = false
                 }
             }
