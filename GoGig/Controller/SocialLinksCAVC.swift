@@ -40,7 +40,7 @@ class SocialLinksCAVC: UIViewController {
         websiteField.updateCharacterLimit(limit: 64)
         instagramField.updateCharacterLimit(limit: 30)
         twitterField.updateCharacterLimit(limit: 15)
-        //facebookField.updateCharacterLimit(limit: 20)
+        facebookField.updateCharacterLimit(limit: 20)
     }
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
@@ -120,14 +120,14 @@ class SocialLinksCAVC: UIViewController {
                 continueFine = false
             }
         }
-//        if let userFacebookID = facebookField.text {
-//            if userFacebookID.count > 10 {
-//                userData!["facebookID"] = userFacebookID
-//            } else {
-//                displayError(title: "Oops", message: "Please enter a valid Facebook page ID (optional)")
-//                continueFine = false
-//            }
-//        }
+        if let userFacebookID = facebookField.text {
+            if (userFacebookID.count > 10 && !userFacebookID.contains(" ")) || userFacebookID == "" {
+                userData!["facebook"] = userFacebookID
+            } else {
+                displayError(title: "Oops", message: "Please enter a valid Facebook page ID (optional)")
+                continueFine = false
+            }
+        }
         
         if continueFine {
             if userGigs! {

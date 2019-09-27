@@ -296,10 +296,26 @@ class UserAccountVC: UITableViewController {
     
     //MARK: SOCIAL LINKS
     @IBAction func facebookLink(_ sender: Any) {
+        let fbPageID = user?.getFacebook()
 //        UIApplication.tryURL(urls: [
 //            "fb://profile/1837812439827573", // App
 //            "http://www.facebook.com/1837812439827573" // Website if app fails
 //            ])
+        if let appURL = URL(string: "fb://profile/\(fbPageID!)") {
+            let application = UIApplication.shared
+
+            if application.canOpenURL(appURL) {
+                application.open(appURL)
+            } else {
+                // if Facebook app is not installed, open URL inside Safari
+                let webURL = URL(string: "http://www.facebook.com/\(fbPageID!)")!
+                if application.canOpenURL(webURL) {
+                    application.open(webURL)
+                } else {
+                    displayError(title: "", message: "Couldn't open Facebook account")
+                }
+            }
+        }
     }
     @IBAction func twitterLink(_ sender: Any) {
         let username =  user?.getTwitter()
@@ -310,8 +326,12 @@ class UserAccountVC: UITableViewController {
                 application.open(appURL)
             } else {
                 // if Instagram app is not installed, open URL inside Safari
-                let webURL = URL(string: "https://instagram.com/\(username!)")!
-                application.open(webURL)
+                let webURL = URL(string: "https://twitter.com/\(username!)")!
+                if application.canOpenURL(webURL){
+                    application.open(webURL)
+                } else {
+                    displayError(title: "", message: "Couldn't open Twitter account")
+                }
             }
         }
     }
@@ -325,7 +345,11 @@ class UserAccountVC: UITableViewController {
             } else {
                 // if Instagram app is not installed, open URL inside Safari
                 let webURL = URL(string: "https://instagram.com/\(username!)")!
-                application.open(webURL)
+                if application.canOpenURL(webURL){
+                    application.open(webURL)
+                } else {
+                    displayError(title: "", message: "Couldn't open Instagram account")
+                }
             }
         }
     }
