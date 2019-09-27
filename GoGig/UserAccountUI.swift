@@ -375,8 +375,8 @@ extension FindGigVC {
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            transparentView.widthAnchor.constraint(equalToConstant: contactStack.frame.width),
-            transparentView.heightAnchor.constraint(equalToConstant: contactStack.frame.height)
+            transparentView.widthAnchor.constraint(equalToConstant: contactStack.frame.width + 20),
+            transparentView.heightAnchor.constraint(equalToConstant: contactStack.frame.height + 20)
         ])
     }
 }
