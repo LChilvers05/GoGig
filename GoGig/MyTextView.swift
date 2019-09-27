@@ -24,7 +24,7 @@ class MyTextView: UITextView {
         clipsToBounds = true
         layer.cornerRadius = 15.0
         backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
-        font = .systemFont(ofSize: 15)
+        //font = .systemFont(ofSize: 15)
     }
     
     func updatePlaceholder(placeholder: String) {
