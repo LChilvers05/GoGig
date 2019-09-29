@@ -1419,7 +1419,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wants to play for ..." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wi1-UX-pWU">
                                 <rect key="frame" x="17" y="278" width="341" height="34.5"/>
                                 <fontDescription key="fontDescription" name="Avenir-Light" family="Avenir" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="profile" translatesAutoresizingMaskIntoConstraints="NO" id="dmX-Zt-IXx">
@@ -1445,7 +1445,7 @@
                                     <constraint firstAttribute="height" constant="60" id="bk9-Xd-Ajw"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="103" translatesAutoresizingMaskIntoConstraints="NO" id="ZLG-IB-iAt">
@@ -1590,7 +1590,7 @@
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="John Appleseed" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="arR-Xe-dVT" customClass="MyTextField" customModule="GoGig" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="34.5" width="291" height="34"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" textContentType="name"/>
                                     </textField>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="justified" translatesAutoresizingMaskIntoConstraints="NO" id="MqP-aQ-Icm" customClass="MyTextView" customModule="GoGig" customModuleProvider="target">
@@ -1599,7 +1599,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="48" id="FJe-zW-Kow"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="11"/>
+                                        <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="16"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences" textContentType="tel"/>
                                     </textView>
                                 </subviews>
@@ -2128,9 +2128,9 @@
         <image name="websiteLink" width="30" height="30"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="wFw-6j-rvQ"/>
+        <segue reference="iWv-Aw-Vme"/>
         <segue reference="HG0-iB-Zja"/>
-        <segue reference="cyf-i8-fyk"/>
+        <segue reference="ito-Xc-fxk"/>
         <segue reference="viQ-FR-Ahs"/>
         <segue reference="VRU-oQ-BGM"/>
     </inferredMetricsTieBreakers>

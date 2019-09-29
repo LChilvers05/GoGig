@@ -13,10 +13,11 @@ extension LoginSignupVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.4
+            tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: 300)
+            //tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
+            //tv.center = CGPoint(x: self.view.bounds.width / 2, y: 300)
+            tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -30,6 +31,14 @@ extension LoginSignupVC {
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
         
+        NSLayoutConstraint.activate([
+            transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
+            //transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 112)
+            transparentView.bottomAnchor.constraint(equalTo: topLSButton.bottomAnchor, constant: 16)
+        ])
+        
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
@@ -40,15 +49,16 @@ extension CreateProfileCAVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.2
+            tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-            if !editingProfile {
-                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: nameBioStack.frame.height * 2)
-                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y - (nameBioStack.center.y / 4))
-            } else {
-                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: nameBioStack.frame.height + 20)
-                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y)
-            }
+//            if !editingProfile {
+//                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: nameBioStack.frame.height * 2)
+//                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y - (nameBioStack.center.y / 4))
+//            } else {
+//                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: nameBioStack.frame.height + 20)
+//                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y)
+            tv.translatesAutoresizingMaskIntoConstraints = false
+//            }
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -59,8 +69,16 @@ extension CreateProfileCAVC {
         imageView.image = background
         imageView.center = view.center
         
-//        view.addSubview(transparentView)
-//        self.view.sendSubviewToBack(transparentView)
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        NSLayoutConstraint.activate([
+            transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: nameBioStack.frame.width + 56),
+            //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
+            transparentView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8)
+        ])
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -72,10 +90,11 @@ extension SocialLinksCAVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.2
+            tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 10)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y)
+            //tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 10)
+            //tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y)
+            tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -86,8 +105,16 @@ extension SocialLinksCAVC {
         imageView.image = background
         imageView.center = view.center
         
-//        view.addSubview(transparentView)
-//        self.view.sendSubviewToBack(transparentView)
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        NSLayoutConstraint.activate([
+            transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
+            //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
+            transparentView.bottomAnchor.constraint(equalTo: fieldsStack.bottomAnchor, constant: 16)
+        ])
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -99,10 +126,11 @@ extension MusicLinksCAVC {
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-            tv.alpha = 0.2
+            tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 20)
-            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+//            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 20)
+//            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
+            tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -113,8 +141,15 @@ extension MusicLinksCAVC {
         imageView.image = background
         imageView.center = view.center
         
-//        view.addSubview(transparentView)
-//        self.view.sendSubviewToBack(transparentView)
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        NSLayoutConstraint.activate([
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
+            transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 24)
+        ])
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
@@ -383,6 +418,15 @@ extension FindGigVC {
 
 extension ReviewApplicationVC {
     func setupView() {
+        let transparentView: UIView = {
+            let tv = UIView()
+            tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            tv.alpha = 0.3
+            tv.layer.cornerRadius = 15
+            tv.translatesAutoresizingMaskIntoConstraints = false
+            return tv
+        }()
+        
         let background = UIImage(named: "Background3")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -396,6 +440,16 @@ extension ReviewApplicationVC {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = imageView.bounds
         imageView.addSubview(blurView)
+        
+        view.addSubview(transparentView)
+        self.view.sendSubviewToBack(transparentView)
+        
+        NSLayoutConstraint.activate([
+            transparentView.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 8),
+            transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            transparentView.widthAnchor.constraint(equalToConstant: nameLabel.frame.width - 16),
+            transparentView.bottomAnchor.constraint(equalTo: eventLabel.bottomAnchor, constant: 8)
+        ])
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
