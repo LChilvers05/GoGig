@@ -19,6 +19,7 @@ class SocialLinksCAVC: UIViewController {
     @IBOutlet weak var instagramField: MyTextField!
     @IBOutlet weak var twitterField: MyTextField!
     @IBOutlet weak var facebookField: MyTextField!
+    let loadingSpinner = SpinnerViewController()
 
     var user: User?
     
@@ -69,7 +70,7 @@ class SocialLinksCAVC: UIViewController {
 
             DataService.instance.updateSTPic(uid: uid, directory: "profilePic", imageContent: userPic, imageID: imageID, uploadComplete: { (success, error) in
                 if error != nil {
-
+                    self.removeSpinnerView(self.loadingSpinner)
                     self.displayError(title: "There was an Error", message: error!.localizedDescription)
 
                 } else {
@@ -137,11 +138,12 @@ class SocialLinksCAVC: UIViewController {
             //Organiser is done
             } else {
                 
+                self.createSpinnerView(self.loadingSpinner)
                 if editingProfile == false {
                     //Sign the user up
                     AuthService.instance.registerUser(withEmail: email!, andPassword: password!, userCreationComplete: { (success, error) in
                         if error != nil {
-                            
+                            self.removeSpinnerView(self.loadingSpinner)
                             self.displayError(title: "There was an Error", message: error!.localizedDescription)
                             
                         } else {
@@ -174,6 +176,9 @@ class SocialLinksCAVC: UIViewController {
                     if complete {
                         
                         accountGateOpen = true
+                        
+                        self.removeSpinnerView(self.loadingSpinner)
+                        
                         if !editingProfile {
                             //creating account
                             self.performSegue(withIdentifier: TO_MAIN, sender: nil)

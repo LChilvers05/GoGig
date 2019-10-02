@@ -17,6 +17,7 @@ class MusicLinksCAVC: UIViewController {
     @IBOutlet weak var fieldsStack: UIStackView!
     @IBOutlet weak var appleMusicField: MyTextField!
     @IBOutlet weak var spotifyField: MyTextField!
+    let loadingSpinner = SpinnerViewController()
     
     //var editingProfile: Bool?
     var user: User?

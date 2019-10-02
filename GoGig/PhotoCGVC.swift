@@ -11,6 +11,7 @@ import UIKit
 class PhotoCGVC: UIViewController {
     
     @IBOutlet weak var eventPicView: UIImageView!
+    let loadingSpinner = SpinnerViewController()
     
     var editingGate = true
     var gigEvent: GigEvent?
@@ -78,6 +79,7 @@ class PhotoCGVC: UIViewController {
             DataService.instance.updateSTPic(uid: uid, directory: "events", imageContent: eventPic, imageID: imageID, uploadComplete: { (success, error) in
                 if error != nil {
                     
+                    self.removeSpinnerView(self.loadingSpinner)
                     self.displayError(title: "There was an Error", message: error!.localizedDescription)
                     
                 } else {
@@ -104,6 +106,7 @@ class PhotoCGVC: UIViewController {
             
             print(eventData!)
             
+            createSpinnerView(loadingSpinner)
             self.picUpload(uid: user!.uid) {
                 (returnedURL) in
                 
@@ -127,6 +130,7 @@ class PhotoCGVC: UIViewController {
                     DataService.instance.updateDBActivityFeed(uid: self.notificationData!["reciever"] as! String, notificationID: self.notificationData!["notificationID"] as! String, notificationData: self.notificationData!) { (complete) in
                         
                         if complete {
+                            self.removeSpinnerView(self.loadingSpinner)
                             //Take user to Activity tab to see their posted event
                             //Without completion handler we were jumping to the view controller before the activity had updated
                             self.tabBarController?.selectedIndex = 2
@@ -136,6 +140,7 @@ class PhotoCGVC: UIViewController {
                         }
                     }
                 } else {
+                    self.removeSpinnerView(self.loadingSpinner)
                     //clear the event creation and pop to root of the navigation stack
                     self.navigationController?.popToRootViewController(animated: true)
                     editingGigEvent = false
