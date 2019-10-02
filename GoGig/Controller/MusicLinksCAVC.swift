@@ -58,7 +58,7 @@ class MusicLinksCAVC: UIViewController {
             
             DataService.instance.updateSTPic(uid: uid, directory: "profilePic", imageContent: userPic, imageID: imageID, uploadComplete: { (success, error) in
                 if error != nil {
-                    
+                    self.removeSpinnerView(self.loadingSpinner)
                     self.displayError(title: "There was an Error", message: error!.localizedDescription)
                     
                 } else {
@@ -94,11 +94,13 @@ class MusicLinksCAVC: UIViewController {
         
         if continueFine {
             
+            createSpinnerView(self.loadingSpinner)
             if editingProfile == false {
                 //Sign the user up
                 AuthService.instance.registerUser(withEmail: email!, andPassword: password!, userCreationComplete: { (success, error) in
                     if error != nil {
                         
+                        self.removeSpinnerView(self.loadingSpinner)
                         self.displayError(title: "There was an Error", message: error!.localizedDescription)
                         
                     } else {
@@ -129,6 +131,8 @@ class MusicLinksCAVC: UIViewController {
                     if complete {
                         
                         accountGateOpen = true
+                        
+                        self.removeSpinnerView(self.loadingSpinner)
                         
                         //Now do a dismiss rather than a perform segue, this is because when performing a segue, we instantiate a new tab controller
                         if !editingProfile {
