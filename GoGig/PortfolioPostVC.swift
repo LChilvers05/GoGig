@@ -197,6 +197,7 @@ class PortfolioPostVC: AutoComplete {
             
             let range = imageID.index(imageID.endIndex, offsetBy: -4)..<imageID.endIndex
             imageID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
+            
             //postID needed for deletion
             postID = imageID
             
@@ -207,6 +208,9 @@ class PortfolioPostVC: AutoComplete {
             
             if let caption = captionContentView.text {
                 postData!["caption"] = caption
+                if caption == "Write a caption... |" {
+                    postData!["caption"] = ""
+                }
                 if let location = locationLabel.text {
                     postData!["location"] = location
                 }

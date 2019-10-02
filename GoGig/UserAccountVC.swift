@@ -225,7 +225,13 @@ class UserAccountVC: UITableViewController {
         }
         
         cell.postLocationLabel.text = portfolioPosts[row].location
-        cell.postCaptionTextView.text = portfolioPosts[row].caption
+        
+        if portfolioPosts[row].caption != "" {
+            cell.postCaptionTextView.isHidden = false
+            cell.postCaptionTextView.text = portfolioPosts[row].caption
+        } else {
+            cell.postCaptionTextView.isHidden = true
+        }
         cell.postMoreButton.tag = row
         
         if portfolioPosts[row].isImage {
