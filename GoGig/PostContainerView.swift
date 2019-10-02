@@ -19,6 +19,13 @@ class PostContainerView: UIView {
     private var avPlayer: AVPlayer!
     private var avPlayerLayer: AVPlayerLayer!
     
+    let playButton: UIImageView = {
+        let pb = UIImageView(image: UIImage(named: "playButton"))
+        //pb.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
+        pb.translatesAutoresizingMaskIntoConstraints = false
+        return pb
+    }()
+    
     override func awakeFromNib() {
         
         dimensionHeight = self.frame.size.height
@@ -103,6 +110,22 @@ class PostContainerView: UIView {
         avPlayerLayer.frame = self.bounds
         
         self.layer.insertSublayer(avPlayerLayer, at: 0)
+        
+        playButton.isHidden = true
+    }
+    
+    func addPlayButton(){
+        playButton.isHidden = false
+        self.addSubview(playButton)
+        NSLayoutConstraint.activate([
+            playButton.centerXAnchor.constraint(equalTo: self.centerXAnchor),
+            playButton.centerYAnchor.constraint(equalTo: self.centerYAnchor),
+            playButton.widthAnchor.constraint(equalToConstant: 60),
+            playButton.heightAnchor.constraint(equalToConstant: 60)
+        ])
+    }
+    func removePlayButton(){
+        playButton.removeFromSuperview()
     }
     
     func playPlayer(){
@@ -125,10 +148,15 @@ class PostContainerView: UIView {
         if let cachedImage = imageCache.object(forKey: urlString) {
             self.addPhoto(imageContent: cachedImage, fit: false)
             
+            if !isImage {
+                self.addPlayButton()
+            }
+            
         } else {
             
             //to avoid flashing of images
-            self.addPhoto(imageContent: UIImage(named: "blankSpace")!, fit: false)
+            //self.addPhoto(imageContent: UIImage(named: "blankSpace")!, fit: false)
+            self.clearView(fit: false)
             
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
@@ -141,6 +169,10 @@ class PostContainerView: UIView {
                             
                             if self.imageUrlString == urlString {
                                 self.addPhoto(imageContent: downloadedImage, fit: false)
+                            }
+                            
+                            if !isImage {
+                                self.addPlayButton()
                             }
                             
                             imageCache.setObject(downloadedImage, forKey: urlString)

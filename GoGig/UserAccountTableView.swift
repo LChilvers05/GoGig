@@ -32,6 +32,17 @@ extension UserAccountVC {
         if indexPath.section == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "AccountHeaderCell", for: indexPath) as! AccountHeaderCell
             
+            //On initial boot up of the app, clean the header
+            if hideForLoad {
+                headerCell.userBioTextView.isHidden = true
+                headerCell.userTypeLabel.isHidden = true
+                headerCell.socialLinkStackView.isHidden = true
+            } else {
+                headerCell.userBioTextView.isHidden = false
+                headerCell.userTypeLabel.isHidden = false
+                headerCell.socialLinkStackView.isHidden = false
+            }
+            
             updateUserData(cell: headerCell)
             
             return headerCell

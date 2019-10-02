@@ -24,6 +24,7 @@ class UserAccountVC: UITableViewController {
     @IBOutlet weak var addPortfolioBarButton: UIBarButtonItem!
     
     var observingPortfolio = false
+    var hideForLoad = true
     
     var user: User?
     var uid: String?
@@ -74,6 +75,7 @@ class UserAccountVC: UITableViewController {
                     self.portfolioPosts = self.quickSort(array:returnedPosts)
                     //print(self.portfolioPosts)
                     //self.portfolioPosts = returnedPosts
+                    self.hideForLoad = false
                     self.tableView.reloadData()
                 }
             }
@@ -236,6 +238,7 @@ class UserAccountVC: UITableViewController {
         
         if portfolioPosts[row].isImage {
             
+            cell.postContainerView.removePlayButton()
             cell.postContainerView.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage)
             
         } else {
