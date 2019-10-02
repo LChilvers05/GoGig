@@ -39,12 +39,14 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     //MARK: LOADING INDICATOR
     func createSpinnerView( _ child: SpinnerViewController) {
         // add the spinner view controller
+        self.view.isUserInteractionEnabled = false
         addChild(child)
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
     }
     func removeSpinnerView( _ child: SpinnerViewController) {
+        self.view.isUserInteractionEnabled = true
         child.willMove(toParent: nil)
         child.view.removeFromSuperview()
         child.removeFromParent()

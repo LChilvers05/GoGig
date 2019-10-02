@@ -78,6 +78,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         activityNotifications.removeAll()
         usersEvents.removeAll()
         eventIDs.removeAll()
+        self.collectionView.reloadData()
         refreshActivityFeed()
     }
     
