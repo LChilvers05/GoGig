@@ -728,7 +728,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Gez-Pe-Pxe">
-                                        <rect key="frame" x="81" y="14" width="193" height="53.5"/>
+                                        <rect key="frame" x="81" y="14.000000000000004" width="193" height="53.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="st January 2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rDx-An-FRt">
                                                 <rect key="frame" x="0.0" y="0.0" width="193" height="27.5"/>
@@ -825,7 +825,7 @@
                                         </constraints>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="wSj-0A-rgN">
-                                        <rect key="frame" x="81" y="14" width="193" height="53.5"/>
+                                        <rect key="frame" x="81" y="14.000000000000004" width="193" height="53.5"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="st January 2019" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xgx-9p-xRM">
                                                 <rect key="frame" x="0.0" y="0.0" width="193" height="27.5"/>
