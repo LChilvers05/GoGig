@@ -23,6 +23,7 @@ class PortfolioPostVC: AutoComplete {
     @IBOutlet weak var locationLabel: UILabel!
     @IBOutlet weak var postContainerView: PostContainerView!
     @IBOutlet weak var captionContentView: MyTextView!
+    let loadingSpinner = SpinnerViewController()
     
     var postData: Dictionary<String, Any>?
     
@@ -128,6 +129,7 @@ class PortfolioPostVC: AutoComplete {
                 DataService.instance.updateSTPic(uid: uid, directory: "portfolioPost", imageContent: postImage, imageID: imageID, uploadComplete: { (success, error) in
                     if error != nil {
                         
+                        self.removeSpinnerView(self.loadingSpinner)
                         self.displayError(title: "There was an Error", message: error!.localizedDescription)
                         
                     } else {
@@ -150,6 +152,7 @@ class PortfolioPostVC: AutoComplete {
                 DataService.instance.updateSTVid(uid: uid, directory: "portfolioPost", vidContent: postVideo, imageID: imageID, uploadComplete: { (success, error) in
                     if error != nil {
                         
+                        self.removeSpinnerView(self.loadingSpinner)
                         self.displayError(title: "There was an Error 1", message: error!.localizedDescription)
                         
                     } else {
@@ -178,6 +181,7 @@ class PortfolioPostVC: AutoComplete {
         
         DataService.instance.updateSTPic(uid: uid, directory: "portfolioThumbnail", imageContent: videoThumbnail!, imageID: imageID, uploadComplete: { (success, error) in
             if error != nil {
+                self.removeSpinnerView(self.loadingSpinner)
                 self.displayError(title: "There was an Error 2", message: error!.localizedDescription)
             } else {
                 DataService.instance.getSTURL(uid: uid, directory: "portfolioThumbnail", imageID: self.imageID) { (returnedURL) in
@@ -195,11 +199,14 @@ class PortfolioPostVC: AutoComplete {
         
         if imageAdded || videoAdded {
             
-            let range = imageID.index(imageID.endIndex, offsetBy: -4)..<imageID.endIndex
-            imageID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
-            
             //postID needed for deletion
             postID = imageID
+            
+//            let range = imageID.index(imageID.endIndex, offsetBy: -4)..<imageID.endIndex
+//            imageID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
+            
+            let range = postID.index(postID.endIndex, offsetBy: -4)..<postID.endIndex
+            postID.removeSubrange(range)//'remove the .jpg/.mov from the imageID
             
             //Get date and time posted (for feed sort)
             let timestamp = NSDate().timeIntervalSince1970
@@ -219,6 +226,7 @@ class PortfolioPostVC: AutoComplete {
             if let uid = Auth.auth().currentUser?.uid {
                 
                 //Upload the post content to cloud storage
+                createSpinnerView(loadingSpinner)
                 self.contentUpload(uid: uid) { (returnedURLs) in
                     
                     self.postData!["postURL"] = returnedURLs[0].absoluteString
@@ -230,6 +238,7 @@ class PortfolioPostVC: AutoComplete {
                     DataService.instance.updateDBPortfolioPosts(uid: uid, postID: self.postID, postData: self.postData!)
                     
                     self.view.isUserInteractionEnabled = true
+                    self.removeSpinnerView(self.loadingSpinner)
                     self.dismiss(animated: true, completion: nil)
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
                 }

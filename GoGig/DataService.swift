@@ -530,11 +530,13 @@ class DataService {
     
     func updateSTPic(uid: String, directory: String, imageContent: UIImage, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
         
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpeg"
         //Converting the imageData to JPEG to be stored
         if let imageData = imageContent.jpegData(compressionQuality: 0.1) {
             
             //Uploading the image with unique string ID
-            REF_ST.child(uid).child(directory).child(imageID).putData(imageData, metadata: nil, completion: { (metadata, error) in
+            REF_ST.child(uid).child(directory).child(imageID).putData(imageData, metadata: metadata, completion: { (metadata, error) in
                 if error != nil {
                     
                     uploadComplete(false, error)
@@ -549,14 +551,29 @@ class DataService {
         //Uploading the content with unique string ID
         
         //This time we use .putFile to upload the URL and not imageData
-        REF_ST.child(uid).child(directory).child(imageID).putFile(from: vidContent, metadata: nil, completion: { (metadata, error) in
-            if error != nil {
-                
-                uploadComplete(false, error)
-                return
-            }
-            uploadComplete(true, nil)
-        })
+//        REF_ST.child(uid).child(directory).child(imageID).putFile(from: vidContent, metadata: nil, completion: { (metadata, error) in
+//            if error != nil {
+//
+//                uploadComplete(false, error)
+//                return
+//            }
+//            uploadComplete(true, nil)
+//        })
+        
+        //Uploads the video, but not as a video. Therefore won't play when requested
+        //Therefore need to change the MIME type
+        let metadata = StorageMetadata()
+        metadata.contentType = "video/quicktime"
+        if let videoData = NSData(contentsOf: vidContent) as Data? {
+            REF_ST.child(uid).child(directory).child(imageID).putData(videoData, metadata: metadata, completion: { (metadata, error) in
+                if error != nil {
+                    
+                    uploadComplete(false, error)
+                    return
+                }
+                uploadComplete(true, nil)
+            })
+        }
     }
     
     //Now do user caching

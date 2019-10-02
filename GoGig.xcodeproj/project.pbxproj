@@ -15,6 +15,7 @@
 		FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2B049822EB4EE5001210FD /* ActivityNotification.swift */; };
 		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
 		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
+		FE4978212344AF4A00F1711F /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4978202344AF4A00F1711F /* SpinnerViewController.swift */; };
 		FE4AF5AA22F319C400D8ED7A /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */; };
 		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
@@ -71,6 +72,7 @@
 		FE2B049822EB4EE5001210FD /* ActivityNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityNotification.swift; path = GoGig/ActivityNotification.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
 		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
+		FE4978202344AF4A00F1711F /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpinnerViewController.swift; path = GoGig/View/SpinnerViewController.swift; sourceTree = SOURCE_ROOT; };
 		FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventDescriptionVC.swift; path = GoGig/EventDescriptionVC.swift; sourceTree = SOURCE_ROOT; };
 		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -216,6 +218,7 @@
 				FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */,
 				FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */,
 				FE339C6B22E626A400645419 /* ActivityFeedCell.swift */,
+				FE4978202344AF4A00F1711F /* SpinnerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
 				FECCACDB22D761A600D617CB /* LoadingCell.swift in Sources */,
 				FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */,
+				FE4978212344AF4A00F1711F /* SpinnerViewController.swift in Sources */,
 				FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */,
 				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,

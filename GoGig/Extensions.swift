@@ -36,6 +36,20 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         self.present(alertController, animated: true, completion: nil)
     }
     
+    //MARK: LOADING INDICATOR
+    func createSpinnerView( _ child: SpinnerViewController) {
+        // add the spinner view controller
+        addChild(child)
+        child.view.frame = view.frame
+        view.addSubview(child.view)
+        child.didMove(toParent: self)
+    }
+    func removeSpinnerView( _ child: SpinnerViewController) {
+        child.willMove(toParent: nil)
+        child.view.removeFromSuperview()
+        child.removeFromParent()
+    }
+    
     //MARK: GENERIC QUICK-SORT
     //Quick Sort an array of type generic
     func quickSort<T: Comparable>(array:[T]) -> [T] {
