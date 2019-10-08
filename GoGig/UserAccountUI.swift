@@ -10,6 +10,12 @@ import UIKit
 
 extension LoginSignupVC {
     func setupView() {
+        emailField.attributedPlaceholder = NSAttributedString(string: "email",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
+        passwordField.attributedPlaceholder = NSAttributedString(string: "password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
+        confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "confirm password",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
