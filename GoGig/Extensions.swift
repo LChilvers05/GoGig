@@ -224,24 +224,24 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     func addEventToCalendar(title: String, description: String?, startDate: Date, endDate: Date, completion: ((_ success: Bool, _ error: NSError?) -> Void)? = nil) {
         let eventStore = EKEventStore()
         
-        //Check to see if "GoGig" calendar has been created - First time only
-        if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
-            let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
-            newCalendar.title = "GoGig - My Gigs"
-            newCalendar.cgColor = UIColor.purple.cgColor
-            let sourcesInEventStore = eventStore.sources
-            newCalendar.source = sourcesInEventStore.filter {
-                (source: EKSource) -> Bool in
-                source.sourceType.rawValue == EKSourceType.local.rawValue
-            }.first!
-            do {
-               try eventStore.saveCalendar(newCalendar, commit: true)
-                DEFAULTS.set(newCalendar.calendarIdentifier, forKey: "GoGigCalendar")
-                print("new calendar created")
-            } catch {
-                displayError(title: "Oops", message: "Something went wrong")
-            }
-        }
+//        //Check to see if "GoGig" calendar has been created - First time only
+//        if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
+//            let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
+//            newCalendar.title = "GoGig - My Gigs"
+//            newCalendar.cgColor = UIColor.purple.cgColor
+//            let sourcesInEventStore = eventStore.sources
+//            newCalendar.source = sourcesInEventStore.filter {
+//                (source: EKSource) -> Bool in
+//                source.sourceType.rawValue == EKSourceType.local.rawValue
+//            }.first!
+//            do {
+//               try eventStore.saveCalendar(newCalendar, commit: true)
+//                DEFAULTS.set(newCalendar.calendarIdentifier, forKey: "GoGigCalendar")
+//                print("new calendar created")
+//            } catch {
+//                displayError(title: "Oops", message: "Something went wrong")
+//            }
+//        }
         
         //Add to event to calendar
         eventStore.requestAccess(to: .event, completion: { (granted, error) in
@@ -251,6 +251,26 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                 event.startDate = startDate
                 event.endDate = endDate
                 event.notes = description
+                
+                //Check to see if "GoGig" calendar has been created - First time only
+                if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
+                    let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
+                    newCalendar.title = "GoGig - My Gigs"
+                    newCalendar.cgColor = UIColor.purple.cgColor
+                    let sourcesInEventStore = eventStore.sources
+                    newCalendar.source = sourcesInEventStore.filter {
+                        (source: EKSource) -> Bool in
+                        source.sourceType.rawValue == EKSourceType.local.rawValue
+                    }.first!
+                    do {
+                       try eventStore.saveCalendar(newCalendar, commit: true)
+                        DEFAULTS.set(newCalendar.calendarIdentifier, forKey: "GoGigCalendar")
+                        print("new calendar created")
+                    } catch {
+                        self.displayError(title: "Oops", message: "Something went wrong")
+                    }
+                }
+                
                 event.calendar = eventStore.calendar(withIdentifier: DEFAULTS.object(forKey: "GoGigCalendar") as! String)
                 do {
                     try eventStore.save(event, span: .thisEvent)
