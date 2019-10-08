@@ -43,6 +43,12 @@ class UserAccountVC: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         refreshFCMToken()
     }
+    override func viewDidDisappear(_ animated: Bool) {
+        //playingAVPlayer?.closePlayer()
+        if playingAVPlayer != nil {
+            playingAVPlayer!.closePlayer()
+        }
+    }
     
     //MARK: FETCH DATA
     //We will reuse this VC when we want to look at someone else's profile
@@ -248,6 +254,7 @@ class UserAccountVC: UITableViewController {
     }
     
     //To play a video when cell is tapped
+    var playingAVPlayer: PostContainerView?
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section != 0 { //so no crash when profile tapped
@@ -262,6 +269,7 @@ class UserAccountVC: UITableViewController {
                 tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.section - 1].postURL, fit: false)
                 
                 tappedCell.postContainerView.playPlayer()
+                playingAVPlayer = tappedCell.postContainerView
                 
             }
         }
