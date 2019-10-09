@@ -67,14 +67,14 @@ class SocialLinksCAVC: UIViewController {
     func picUpload(uid: String, handler: @escaping (_ url: URL) -> ()) {
 
         if let userPic = profileImage {
-
+            //Upload the picture to Firebase
             DataService.instance.updateSTPic(uid: uid, directory: "profilePic", imageContent: userPic, imageID: imageID, uploadComplete: { (success, error) in
                 if error != nil {
                     self.removeSpinnerView(self.loadingSpinner)
                     self.displayError(title: "There was an Error", message: error!.localizedDescription)
 
                 } else {
-
+                    //Get the URL of the stored image, to store in the database
                     DataService.instance.getSTURL(uid: uid, directory: "profilePic", imageID: self.imageID) { (returnedURL) in
 
                         handler(returnedURL)
@@ -143,7 +143,9 @@ class SocialLinksCAVC: UIViewController {
                     //Sign the user up
                     AuthService.instance.registerUser(withEmail: email!, andPassword: password!, userCreationComplete: { (success, error) in
                         if error != nil {
+                            //Disable interaction to show loading
                             self.removeSpinnerView(self.loadingSpinner)
+                            //Display a UIAlertController if something goes wrong
                             self.displayError(title: "There was an Error", message: error!.localizedDescription)
                             
                         } else {
@@ -170,7 +172,7 @@ class SocialLinksCAVC: UIViewController {
             self.picUpload(uid: uid) { (returnedURL) in
                 
                 self.userData!["picURL"] = returnedURL.absoluteString
-                
+                print(self.userData!)
                 DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
                     
                     if complete {
