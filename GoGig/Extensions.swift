@@ -67,15 +67,16 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     
     //MARK: IMAGE PICKER ACTION SHEET
     func openPhotoPopup(video: Bool, imagePicker: UIImagePickerController, title: String, message: String){
-        
+        //The UIAlertController
         let photoPopup = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
+        //First Choice - Camera
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (buttonTapped) in
             
             do {
                 self.openImagePicker(imagePicker: imagePicker, source: .camera)
             }
         }
-        
+        //Second Choice - Photo Library
         let photoAction = UIAlertAction(title: "Photo Library", style: .default) {
             (buttonTapped) in
             
@@ -87,6 +88,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         //So choosing videos is only sometimes an option
         if video {
             
+            //Third Choice - Video Library
             let videoAction = UIAlertAction(title: "Video Library", style: .default) { (buttonTapped) in
                 
                 do {
