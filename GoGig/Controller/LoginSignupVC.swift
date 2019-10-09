@@ -53,16 +53,21 @@ class LoginSignupVC: UIViewController {
             
             emailField.text = ""
             passwordField.text = ""
+            //change from "create password"
             passwordField.placeholder = "password"
             confirmPasswordField.text = ""
             
             confirmPasswordField.isHidden = true
             
+            //Change the images of the top and bottom login and signup buttons
             topLSButton.setImage(UIImage(named: "loginButton"), for: .normal)
             bottomLSButton.setImage(UIImage(named: "signupButton"), for: .normal)
             
+            //Change the prompt so the user knows what the bottom button does
             switchPrompt.text = "New to GoGig? Create an account"
             
+            //Return the new logInMode
+            //logInMode = true is logging in state
             return true
             
             
@@ -83,7 +88,6 @@ class LoginSignupVC: UIViewController {
             
             return false
         }
-        
     }
     
     @IBAction func topLSButton(_ sender: Any) {
@@ -157,6 +161,7 @@ class LoginSignupVC: UIViewController {
     }
     
     @IBAction func bottomLSButton(_ sender: Any) {
+        //When bottom button pressed, the returned Bool value is the new state of view
         logInMode = switchMode(logInMode: logInMode)
     }
     
