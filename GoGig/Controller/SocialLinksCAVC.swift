@@ -78,7 +78,6 @@ class SocialLinksCAVC: UIViewController {
                     DataService.instance.getSTURL(uid: uid, directory: "profilePic", imageID: self.imageID) { (returnedURL) in
 
                         handler(returnedURL)
-
                     }
                 }
             })

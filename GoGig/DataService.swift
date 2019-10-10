@@ -583,7 +583,7 @@ class DataService {
         //Reference to the folder
         let ref = REF_ST.child(uid).child(directory).child(imageID)
         
-        //Get's the url of the profile pic
+        //Get's the url of the image or video file
         ref.downloadURL(completion: { (url, error) in
             if error != nil {
                 
