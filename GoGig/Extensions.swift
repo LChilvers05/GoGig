@@ -21,11 +21,14 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     //MARK: HIDE KEYBOARD
     //To hide keyboard
     func hideKeyboard() {
+        //Gesture recogniser so we call method when the screen is tapped
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        //if the user taps inside the keyboard, ignore
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
     }
     @objc func dismissKeyboard() {
+        //dismiss the keyboard (end editing)
         view.endEditing(true)
     }
     

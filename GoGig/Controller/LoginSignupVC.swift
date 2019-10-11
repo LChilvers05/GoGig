@@ -74,18 +74,22 @@ class LoginSignupVC: UIViewController {
         //Show everything for Sign up
         } else {
             
+            //Reset input when changing mode
             emailField.text = ""
             passwordField.text = ""
             passwordField.placeholder = "create password"
             confirmPasswordField.text = ""
             
+            //show the confirm password field
             confirmPasswordField.isHidden = false
             
+            //swap the images for the buttons
             topLSButton.setImage(UIImage(named: "signupButton"), for: .normal)
             bottomLSButton.setImage(UIImage(named: "loginButton"), for: .normal)
             
             switchPrompt.text = "Already have an account?"
             
+            //return logInMode as false
             return false
         }
     }
