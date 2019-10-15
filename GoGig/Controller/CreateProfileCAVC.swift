@@ -163,10 +163,12 @@ class CreateProfileCAVC: UIViewController {
         if let userName = usernameField.text {
             if userName.count >= 2 {
                 
-                //check bio
+                //Check Bio, it is optional
                 if let userBiography = userBioTextView.text {
                     var userBio = userBiography
+                    //So if the text is the default
                     if userBiography == "Write a bio... |" {
+                        //then just store in database as an empty string
                         userBio = ""
                     }
                     //check necessary data

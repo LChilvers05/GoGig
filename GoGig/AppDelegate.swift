@@ -30,6 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
             print("No current user")
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
             let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginSignupVC")
+            //Show fix for iOS 13!
             loginVC.modalPresentationStyle = .overFullScreen
             window?.makeKeyAndVisible()
             window?.rootViewController?.present(loginVC, animated: true)
