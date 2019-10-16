@@ -232,7 +232,6 @@ class PortfolioPostVC: AutoComplete {
                     if returnedURLs.count == 2 {
                         self.postData!["thumbnailURL"] = returnedURLs[1].absoluteString
                     }
-                    
                     //Add the vid theumbnail if there is one
                     DataService.instance.updateDBPortfolioPosts(uid: uid, postID: self.postID, postData: self.postData!)
                     

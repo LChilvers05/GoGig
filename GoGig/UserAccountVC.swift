@@ -228,14 +228,17 @@ class UserAccountVC: UITableViewController {
             cell.postMoreButton.isHidden = true
         }
         
+        //portfolioPosts[row] means the right post for that cell in the table
         cell.postLocationLabel.text = portfolioPosts[row].location
         
+        //If no caption, then hide the text view
         if portfolioPosts[row].caption != "" {
             cell.postCaptionTextView.isHidden = false
             cell.postCaptionTextView.text = portfolioPosts[row].caption
         } else {
             cell.postCaptionTextView.isHidden = true
         }
+        //Add a tag to the button so we know what cell the button belongs to when it is tapped
         cell.postMoreButton.tag = row
         
         if portfolioPosts[row].isImage {
