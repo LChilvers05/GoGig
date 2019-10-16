@@ -156,14 +156,10 @@ class UserAccountVC: UITableViewController {
     //MARK: USER HEADER CELL
     var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
     func updateUserData(cell: AccountHeaderCell){
-//        if uid != Auth.auth().currentUser?.uid {
-//            cell.signOutButton.isHidden = true
-//        }
-        
         //Set the navigation bar title
         self.navigationController?.navigationBar.topItem?.title = user?.name
         
-        //Set UI
+        //Set the account header cell outlets
         cell.userBioTextView.text = user?.bio
         if user?.gigs == true {
             cell.userTypeLabel.text = "Looking to play"

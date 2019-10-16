@@ -12,7 +12,6 @@ var uniqueID: String?
 
 class User {
     
-    //ref: MVC video, do we need private var??
     var uid: String
     var name: String
     var email: String

@@ -77,6 +77,7 @@ class DataService {
             
             //... and cast as a NSDictionary
             let profileData = profileSnapshot.value as? NSDictionary
+            //Get every value from every key of the dictionary
             if let currentUserName = profileData?["name"] as? String {
                 if let currentUserEmail = profileData?["email"] as? String {
                     if let currentUserGigs = profileData?["gigs"] as? Bool {
