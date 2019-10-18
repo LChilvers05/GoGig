@@ -46,9 +46,11 @@ class PostContainerView: UIView {
     
     func clearView(fit: Bool){
         //Clear the container view if there is anything
+        //If there is a video, close it
         if avPlayer != nil {
             closePlayer()
         }
+        //If there's an image remove it
         if self.subviews.count > 0 {
             imageView.removeFromSuperview()
         }

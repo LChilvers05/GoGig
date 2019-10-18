@@ -158,16 +158,12 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     func loadImageCache(url: URL, isImage: Bool, handler: @escaping (_ returnedImage: UIImage) -> ()) {
         
         let urlString = url.absoluteString as NSString
-        
         //Check for a chached image under that URL
         if let cachedImage = imageCache.object(forKey: urlString) {
             
             handler(cachedImage)
             
         } else {
-            
-            //if isImage {
-            
             //Get's the data of the URL
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error{
@@ -213,13 +209,14 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             let imageGenerator = AVAssetImageGenerator(asset: asset)
             imageGenerator.appliesPreferredTrackTransform = true
             
+            //Grab an image right at the start of the video
             let cgImage = try imageGenerator.copyCGImage(at: .zero,
                                                          actualTime: nil)
-            
+            //Return the image
             return UIImage(cgImage: cgImage)
         } catch {
             print(error.localizedDescription)
-            
+            //Return placeholder if there is an error
             return UIImage(named: "second")!
         }
     }
