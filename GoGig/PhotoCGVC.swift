@@ -121,6 +121,7 @@ class PhotoCGVC: UIViewController {
                 //no need to update if the user is editing, otherwise we get a duplicate
                 if !editingGigEvent {
                     DataService.instance.updateDBUserEvents(uid: self.user!.uid, eventID: self.eventID)
+                    print(self.eventData!)
                 }
                 
                 if !editingGigEvent {
