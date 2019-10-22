@@ -303,7 +303,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         //calculate distance of view from the centre
         let xFromCenter = theView.center.x - self.view.bounds.width / 2
         
-        //view will rotate more as it moved further from centre (radians)
+        //view will rotate as it moved further from centre (radians)
         var rotation = CGAffineTransform(rotationAngle: xFromCenter / 200)
         
         //will rotate less the further from centre is goes - view won't go upside down
