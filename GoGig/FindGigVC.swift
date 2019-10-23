@@ -173,13 +173,13 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
                 
                 //set the UI for the first in array
                 displayGigEventInfo(gigEventView: currentGigEventView, gigEvent: currentGigEvent)
-                
+
                 //get image from nextGigEventView or download one
                 if nextEventImage != nil {
                     currentGigEventView.eventPhotoImageView.image = nextEventImage
                 } else {
                     downloadImage(url: currentGigEvent.getEventPhotoURL()) { (returnedImage) in
-                        
+
                         self.currentGigEventView.eventPhotoImageView.image = returnedImage
                     }
                 }
@@ -201,10 +201,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
 //                nextGigEventView.paymentLabel.text = "For: £\(nextGigEvent.getPayment())"
                 
                 displayGigEventInfo(gigEventView: nextGigEventView, gigEvent: nextGigEvent)
-                
+
                 //this image is always downloaded
                 downloadImage(url: nextGigEvent.getEventPhotoURL()) { (returnedImage) in
-                    
+
                     self.nextGigEventView.eventPhotoImageView.image = returnedImage
                     self.nextEventImage = returnedImage
                 }
@@ -304,12 +304,13 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         let xFromCenter = theView.center.x - self.view.bounds.width / 2
         
         //view will rotate as it moved further from centre (radians)
+        //will rotate less the further from the centre it goes - view won't go upside down
         var rotation = CGAffineTransform(rotationAngle: xFromCenter / 200)
         
-        //will rotate less the further from centre is goes - view won't go upside down
+        //shrink the card as it reaches screen edge - set the scale
         let scale = min(abs(100 / xFromCenter), 1)
         
-        //the rotation effect set by the scale
+        //the stretch and rotation effect set by the scale
         var stretchAndRotation = rotation.scaledBy(x: scale, y: scale)
         
         //apply the rotation and stretch to the view

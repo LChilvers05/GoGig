@@ -408,11 +408,11 @@ extension FindGigVC {
         imageView.alpha = 0.5
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
-        
+
         view.addSubview(transparentView)
         self.view.insertSubview(transparentView, at: 4)
         self.view.insertSubview(contactStack, at: 5)
-        
+
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
