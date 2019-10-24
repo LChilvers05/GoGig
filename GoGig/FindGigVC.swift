@@ -30,7 +30,6 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     let locationManager: CLLocationManager = {
         let lm = CLLocationManager()
-        //To nearest hundred metres, to save battery
         lm.desiredAccuracy = kCLLocationAccuracyBest
         lm.requestWhenInUseAuthorization()
         return lm
@@ -88,6 +87,10 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
+                
+                self.locationManager.delegate = self
+                self.locationManager.startUpdatingLocation()
+                
                 DataService.instance.getDBEvents(uid: uid) { (returnedGigEvents) in
                     //self.gigEvents = returnedGigEvents
                     self.gigEvents = self.setGigEventDistances(gigs: returnedGigEvents)
@@ -103,7 +106,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     var userLatitude =  0.00
     var userLongitude = 0.00
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        //Grab the coordinates
         let userLocation: CLLocation = locations[0]
         userLatitude = userLocation.coordinate.latitude
         userLongitude = userLocation.coordinate.longitude
@@ -114,19 +117,21 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     //then use the distance to do a quick sort
     func setGigEventDistances(gigs: [GigEvent]) -> [GigEvent] {
         
-        locationManager.delegate = self
-        locationManager.startUpdatingLocation()
-        
+        //Instanitate a location out of coordinates
+        print("\(userLatitude), \(userLongitude)") //Prints correct coordinates
         let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
         
         for gig in gigs {
             
+            //Get the location of the GigEvent object
             let gigEventLocation = gig.getGigEventLocation()
+            //Find the distance between the two
             let distance = gigEventLocation.distance(from: userLocation) as Double
-            
+            //print(distance)
+            //Set the distance from user of the GigEvent object
             gig.setDistance(distanceFromUser: distance)
         }
-        
+        //Sort the objects by distance
         return quickSort(array: gigs)
     }
     

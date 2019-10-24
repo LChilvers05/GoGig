@@ -61,15 +61,19 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     //MARK: GET LOCATION
     var currentLocationOn = false
     @IBAction func useCurrentLocation(_ sender: Any) {
+        //Start updating location
         if currentLocationOn == false  {
             currentLocationOn = true
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
             confirmationImageView.alpha = 1.0
             confirmationImageView.isHidden = false
+        //Stop updating the location
         } else {
             currentLocationOn = false
             locationManager.stopUpdatingLocation()
+            //Set coordinates back to zero if they
+            //don't want to user location
             eventLatitude = 0.00
             eventLongitude = 0.00
             confirmationImageView.alpha = 0.3
@@ -79,8 +83,9 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     var eventLatitude =  0.00
     var eventLongitude = 0.00
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
+        //Grab the most up to date coordinates
         let userLocation: CLLocation = locations[0]
+        print(userLocation)
         eventLatitude = userLocation.coordinate.latitude
         eventLongitude = userLocation.coordinate.longitude
     }
