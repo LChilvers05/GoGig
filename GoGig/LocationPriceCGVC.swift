@@ -38,8 +38,6 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
         hideKeyboard()
         postcodeField.updateCharacterLimit(limit: 8)
         locationNameField.updateCharacterLimit(limit: 64)
-        
-        locationNameField.text = "Location_Name"
     }
     override func viewDidDisappear(_ animated: Bool) {
         //stop updating when view dissapears to conserve battery life
@@ -85,9 +83,12 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         //Grab the most up to date coordinates
         let userLocation: CLLocation = locations[0]
-        print(userLocation)
         eventLatitude = userLocation.coordinate.latitude
         eventLongitude = userLocation.coordinate.longitude
+    }
+    
+    @IBAction func locationInfoButton(_ sender: Any) {
+        displayError(title: "Using Current Location", message: "will make your event appear first to applicants nearby")
     }
     
     @IBAction func searchLocationName(_ sender: Any) {

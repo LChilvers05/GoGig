@@ -281,6 +281,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Exx-J8-oiC">
+                                <rect key="frame" x="329" y="109" width="30" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="30" id="Toq-6s-8FJ"/>
+                                    <constraint firstAttribute="height" constant="30" id="yQB-dt-XA0"/>
+                                </constraints>
+                                <state key="normal" image="infoButton"/>
+                                <connections>
+                                    <action selector="locationInfoButton:" destination="nUZ-Ea-k7H" eventType="touchUpInside" id="kJ0-Zd-hlP"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -294,6 +305,7 @@
                             <constraint firstItem="IZb-bt-lYn" firstAttribute="leading" secondItem="lIW-GS-RSB" secondAttribute="leading" constant="14" id="O6M-9p-tCR"/>
                             <constraint firstItem="7ez-xL-sE0" firstAttribute="top" secondItem="klJ-D5-nSm" secondAttribute="bottom" constant="6" id="R65-gD-0fD"/>
                             <constraint firstItem="IBz-ze-xXZ" firstAttribute="top" secondItem="lIW-GS-RSB" secondAttribute="top" constant="16" id="Td6-5a-eF2"/>
+                            <constraint firstItem="lIW-GS-RSB" firstAttribute="trailing" secondItem="Exx-J8-oiC" secondAttribute="trailing" constant="16" id="VeD-Ig-GET"/>
                             <constraint firstItem="qC0-Lr-PhK" firstAttribute="leading" secondItem="cew-jY-YT8" secondAttribute="trailing" constant="8" id="XRU-Rv-kQj"/>
                             <constraint firstItem="lIW-GS-RSB" firstAttribute="bottom" secondItem="UKD-eJ-EFk" secondAttribute="bottom" constant="24" id="gD6-Vo-1Hd"/>
                             <constraint firstItem="iNR-xM-pKQ" firstAttribute="top" secondItem="IZb-bt-lYn" secondAttribute="bottom" constant="28" id="gHj-wB-ZLE"/>
@@ -302,6 +314,7 @@
                             <constraint firstItem="IZb-bt-lYn" firstAttribute="top" secondItem="cew-jY-YT8" secondAttribute="bottom" constant="8" id="mcz-X7-geK"/>
                             <constraint firstItem="cew-jY-YT8" firstAttribute="top" secondItem="IBz-ze-xXZ" secondAttribute="bottom" constant="8" id="rSy-KQ-PSv"/>
                             <constraint firstItem="cew-jY-YT8" firstAttribute="leading" secondItem="lIW-GS-RSB" secondAttribute="leading" constant="14" id="wY0-nr-j2W"/>
+                            <constraint firstItem="Exx-J8-oiC" firstAttribute="top" secondItem="IBz-ze-xXZ" secondAttribute="bottom" constant="8" id="yhr-Hz-hlq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="lIW-GS-RSB"/>
                     </view>
@@ -2120,6 +2133,7 @@
         <image name="findGigFilled" width="40" height="40"/>
         <image name="hireMusiciansButton-1" width="123" height="29.666666030883789"/>
         <image name="icons8-add" width="16" height="16"/>
+        <image name="infoButton" width="100" height="100"/>
         <image name="instaIcon" width="40" height="40"/>
         <image name="instagramLink" width="30" height="30"/>
         <image name="locationUsed" width="40" height="40"/>
