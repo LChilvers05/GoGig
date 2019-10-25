@@ -113,7 +113,7 @@ class GigEvent: Comparable {
         return timestamp.substring(start: 8, end: 10)
     }
     func getMonthYearDate() -> String {
-        return timestamp.substring(start: 0, end: 8)
+        return timestamp.substring(start: 0, end: 7)
     }
     func getTime() -> String {
         return timestamp.substring(start: 11, end: 16)
@@ -144,9 +144,9 @@ class GigEvent: Comparable {
         case "10":
             return "October " + year
         case "11":
-            return "November" + year
-        case" 12":
-            return "December" + year
+            return "November " + year
+        case "12":
+            return "December " + year
         default:
             return "error getting month"
         }

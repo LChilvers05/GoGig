@@ -79,6 +79,7 @@ class TitleDateCGVC: UIViewController {
                     self.eventTitleField.text = returnedGigEvent.getTitle()
 //                    let setDate = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
 //                    let date = setDate?.addingTimeInterval(-3600)
+                    //MAY NOT NEED TO REMOVE HOUR NOW?
                     let date = returnedGigEvent.getDate().addingTimeInterval(-3600)
                     self.datePicker.setDate(date, animated: false)
                     self.editingGate = false
@@ -93,9 +94,10 @@ class TitleDateCGVC: UIViewController {
         //will make the eventID the same as the imageID
         
         //Raw value from picker - Hour behind, add an hour (3600s)
-        let chosenTime = datePicker.date.addingTimeInterval(3600)
+        //NOT NEEDED ANYMORE?
+        //let chosenTime = datePicker.date.addingTimeInterval(3600)
         //string for FIR
-        let timestamp = "\(chosenTime)"
+        let timestamp = "\(datePicker.date)"
         
         if let eventTitle = eventTitleField.text{
             if eventTitle != "" && eventTitle.count <= 60 {
