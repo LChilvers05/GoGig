@@ -157,6 +157,7 @@ class PhotoCGVC: UIViewController {
     func updateActivity() {
         let notificationID = NSUUID().uuidString
         let senderUid = user!.uid
+        //receiver is also the sender for a personal notification
         let recieverUid = senderUid
         let senderName = "You"
         let notificationPicURL = user!.picURL.absoluteString

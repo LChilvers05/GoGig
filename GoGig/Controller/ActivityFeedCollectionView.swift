@@ -13,6 +13,7 @@ extension ActivityFeedVC {
     //MARK: COLLECTION VIEW METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        //Each cv cell contains a table view
         return 2
     }
     
