@@ -484,10 +484,10 @@ class DataService {
     }
     
     func observeDBActivityFeed(uid: String, handler: @escaping (_ events: ActivityNotification) -> ()) {
-
+        //Will run this closure anytime a .childAdded to Database
         activityHandle = REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
 
-            //Grab an array of all posts in the database
+            //Grab an array of all notifications in the database
             if let activityData = snapshot.value as? NSDictionary {
 
                 if let notificationID = activityData["notificationID"] as? String {

@@ -107,6 +107,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                         var eventListings = [GigEvent]()
                         //One was getting appended, the other was getting inserted at 0.  Deleting didn't delete the correct gigEvent
                         self.eventIDs = returnedEventIDs.reversed()
+                        //Iterate through the list of eventIDs associated to user, get each one from public events
+                        //And insert at 0 of local array
                         for eventID in returnedEventIDs {
                             DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent, success)  in
                                 if success {

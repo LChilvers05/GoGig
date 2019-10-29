@@ -267,6 +267,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         let notificationID = NSUUID().uuidString
         let relatedEventID = interactedGigEvent!.getid()
         let senderUid = user!.uid
+        //Reciever is user that created gig
         let recieverUid = interactedGigEvent!.getuid()
         let senderName = user!.name
         let notificationPicURL = user!.picURL.absoluteString

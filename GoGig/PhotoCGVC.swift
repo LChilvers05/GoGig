@@ -160,8 +160,10 @@ class PhotoCGVC: UIViewController {
         //receiver is also the sender for a personal notification
         let recieverUid = senderUid
         let senderName = "You"
+        //Users profile picture
         let notificationPicURL = user!.picURL.absoluteString
         let notificationDescription = "Created the event: \((eventData!["title"])!)"
+        //For Quicksort
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "relatedEventID": eventID, "type": "personal", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
     }
