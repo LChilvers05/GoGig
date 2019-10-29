@@ -222,7 +222,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         cell.notificationDescriptionLabel.alpha = 1
         
         cell.notificationImage.isHidden = false
-        cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())\(usersEvents[row].getDayDate())", for: .normal)
+        cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())-\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.notificationDescriptionLabel.text = "\(usersEvents[row].getTitle())"
         cell.eventNameButton.tag = row
