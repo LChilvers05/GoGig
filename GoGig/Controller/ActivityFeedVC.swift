@@ -136,7 +136,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //Needed so that the user profile pictures don't flash and display the wrong image
     var timer: Timer?
     func attemptReload() {
+        //Stop the timer
         self.timer?.invalidate()
+        //Reload the collection view and all its data 0.1 seconds after timer has started
         self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleReload), userInfo: nil, repeats: false) //Doesn't repeat
     }
     @objc func handleReload(){
