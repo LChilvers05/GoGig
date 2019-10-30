@@ -45,9 +45,12 @@ class DataService {
     //MARK: OBSERVERS
     
     func removeObservers(uid: String) {
+        //Portfolio is the initial view so there will always be an observer
         REF_USERS.child(uid).child("posts").removeObserver(withHandle: postsHandle!)
+        //May not be an observer as user may not have clicked on those tabs since launch
+        //Store the closure under a global variable (handle) and only remove it if it has a value
+        //(is observing)
         if eventsHandle != nil && activityHandle != nil {
-            print("handle reached")
             REF_USERS.child(uid).child("events").removeObserver(withHandle: eventsHandle!)
             REF_USERS.child(uid).child("activity").removeObserver(withHandle: activityHandle!)
         }
