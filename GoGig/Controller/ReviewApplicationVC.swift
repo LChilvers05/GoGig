@@ -32,18 +32,23 @@ class ReviewApplicationVC: UIViewController {
     
     func refresh() {
         if let currentUserUid = Auth.auth().currentUser?.uid {
+            //Get the current user
             DataService.instance.getDBUserProfile(uid: currentUserUid) { (returnedCurrentUser) in
                 self.currentUser = returnedCurrentUser
+                //Get the musician that applied
                 DataService.instance.getDBUserProfile(uid: self.uid!) { (returnedUser) in
                     self.user = returnedUser
+                    //Change outlets
                     self.nameLabel.text = returnedUser.name
                     self.nameButton.setTitle("Check out \(returnedUser.name)", for: .normal)
+                    //Load the image
                     self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                         self.profileImageView.image = returnedProfileImage
-                        
+                        //Get the gig object
                         DataService.instance.getDBSingleEvent(uid: returnedCurrentUser.uid, eventID: self.application!.getRelatedEventId()) { (returnedGigEvent, sucess) in
                             
                             self.relatedEvent = returnedGigEvent
+                            //Update the UI
                             self.eventLabel.text = "Wants to play for \(returnedGigEvent.getTitle())"
                         }
                     }

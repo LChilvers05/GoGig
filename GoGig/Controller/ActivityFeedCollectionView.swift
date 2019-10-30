@@ -103,17 +103,18 @@ extension ActivityFeedVC {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        //activity notifications
+        //activity notifications section
         if tableView.tag == 0 {
             let selectedNotification = activityNotifications[indexPath.row]
             if user!.gigs == false && selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
                 
+                //So data is transfered when segue is performed
                 checkUid = activityNotifications[indexPath.row].getSenderUid()
                 selectedApplication = activityNotifications[indexPath.row]
                 performSegue(withIdentifier: TO_REVIEW_APPLICATION, sender: nil)
             }
             
-        //event listings
+        //event listings section
         } else {
             selectedListing = usersEvents[indexPath.row]
             performSegue(withIdentifier: TO_EVENT_DESCRIPTION_2, sender: nil)
