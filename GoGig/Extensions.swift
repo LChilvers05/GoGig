@@ -58,13 +58,15 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     //MARK: GENERIC QUICK-SORT
     //Quick Sort an array of type generic
     func quickSort<T: Comparable>(array:[T]) -> [T] {
+        //Base case for recursion (escape)
         if array.isEmpty { return [] }
-        
+        //Store the first element of the array to compare it with smaller or larger number
         let first = array.first!
-        
+        //first half = all values smaller or equal to first
         let smallerOrEqual = array.dropFirst().filter { $0 <= first }
+        //second half = values larger than first
         let larger         = array.dropFirst().filter { $0 > first }
-        
+        //First and secoond half are recursed and inserted either side of the first value
         return quickSort(array: smallerOrEqual) + [first] + quickSort(array: larger)
     }
     
@@ -113,8 +115,10 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         imagePicker.sourceType = source
         
         if source == .savedPhotosAlbum {
+            //Limit library to videos
             imagePicker.mediaTypes = ["public.movie"]
         } else {
+            //Limit library to photos
             imagePicker.mediaTypes = ["public.image"]
         }
         
@@ -178,6 +182,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                         //Converts the image data to a UIImage
                         if let downloadedImage = UIImage(data: data!) {
                             
+                            //set the cache for reused image
                             imageCache.setObject(downloadedImage, forKey: urlString)
                             
                             handler(downloadedImage)
@@ -256,6 +261,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                 
                 //Check to see if "GoGig" calendar has been created - First time only
                 if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
+                    //If new create the calendar
                     let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
                     newCalendar.title = "GoGig - My Gigs"
                     newCalendar.cgColor = UIColor.purple.cgColor
@@ -273,8 +279,10 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                     }
                 }
                 
+                //Get the calenar either created or got
                 event.calendar = eventStore.calendar(withIdentifier: DEFAULTS.object(forKey: "GoGigCalendar") as! String)
                 do {
+                    //Save the event with completion
                     try eventStore.save(event, span: .thisEvent)
                 } catch let e as NSError {
                     completion?(false, e)

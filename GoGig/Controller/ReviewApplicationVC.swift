@@ -84,6 +84,7 @@ class ReviewApplicationVC: UIViewController {
         //This line stops the button being pressed twice sending two activity updates
         self.view.isUserInteractionEnabled = false
         
+        //Set all the data for the notification
         let notificationID = NSUUID().uuidString
         guard let senderUid = currentUser?.uid else { return }
         guard let recieverUid = uid else { return }
@@ -110,7 +111,7 @@ class ReviewApplicationVC: UIViewController {
         //Notify Other User
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!) { (complete) in
             if complete && accepted {
-                //Notify Current User about their action (sender is themself to reciever themself)
+                //Notify Current User about their action (sender is themself to recieve themself)
                 self.notificationData!["senderName"] = "You"
                 self.notificationData!["reciever"] = senderUid
                 self.notificationData!["type"] = "personal"

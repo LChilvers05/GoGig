@@ -251,11 +251,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL ACTIONS
     var checkUid: String?
     @IBAction func checkOut(_ sender: UIButton) {
+        //Get the row of the cell with a tag
         let row = sender.tag
         //Notifications Section
         if selectedCVCell == 0 {
+            //and get the uid of user that sent the notification
             checkUid = activityNotifications[row].getSenderUid()
-            
+            //perform segue to observe portfolio refreshed with this uid
             performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
         
         //My Events Section
