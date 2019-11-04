@@ -43,8 +43,6 @@ class AuthService {
         }
     }
     
-    //Might not need these anymore?
-    
     //MARK: USER DEFAULTS
     //To keep user logged in
     

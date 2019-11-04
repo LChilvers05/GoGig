@@ -17,6 +17,7 @@ extension UserAccountVC {
     
     //Now each row of the table view is a section to allow padding
     override func numberOfSections(in tableView: UITableView) -> Int {
+        //+1 is AccountHeaderCell
         return portfolioPosts.count + 1
     }
     
