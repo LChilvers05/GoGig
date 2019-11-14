@@ -300,8 +300,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         let row = sender.tag
         //If Organiser, then delete the public event from the database
         if selectedCVCell == 0 {
-            activityNotifications.remove(at: row)
             DataService.instance.deleteDBActivityFeed(uid: user!.uid, notificationID: activityNotifications[row].getId())
+            activityNotifications.remove(at: row)
             collectionView.reloadData()
         //Delete an Event Listing
         } else {
