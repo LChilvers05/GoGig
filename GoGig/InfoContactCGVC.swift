@@ -104,6 +104,8 @@ Things to think about:
                             } else {
                                 displayError(title: "Event Description", message: "please enter a description of your event outlining the suggested points")
                             }
+                        } else {
+                            displayError(title: "Name", message: "please enter your name")
                         }
                     }
                 }
