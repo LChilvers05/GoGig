@@ -106,6 +106,7 @@ extension ActivityFeedVC {
         //activity notifications section
         if tableView.tag == 0 {
             let selectedNotification = activityNotifications[indexPath.row]
+            //Making sure only an organsier can navigate to review application
             if user!.gigs == false && selectedNotification.getType() != "personal" && selectedNotification.getType() == "applied" {
                 
                 //So data is transfered when segue is performed

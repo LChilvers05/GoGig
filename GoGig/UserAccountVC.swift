@@ -90,6 +90,7 @@ class UserAccountVC: UITableViewController {
     
     @IBAction func settingsButton(_ sender: Any) {
         let settingsPopup = UIAlertController(title: "Settings", message: "What would you like to do?", preferredStyle: .actionSheet)
+        //Go and edit the account
         let editProfileAction = UIAlertAction(title: "Edit profile", style: .default) { (buttonTapped) in
             editingProfile = true
             if let tabBarController = self.tabBarController {

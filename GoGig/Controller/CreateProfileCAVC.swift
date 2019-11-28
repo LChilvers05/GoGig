@@ -63,11 +63,15 @@ class CreateProfileCAVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
+        //if editing account
         if editingProfile && editingGate {
+            //get the current user data...
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
+                    //..as a dictionary
                     let returnedUserData = ["email": returnedUser.email, "bio": returnedUser.bio, "gigs": returnedUser.gigs, "name": returnedUser.name, "picURL": returnedUser.picURL, "website": returnedUser.getWebsite(), "phone": returnedUser.phone, "instagram": returnedUser.getInstagram(), "twitter": returnedUser.getTwitter(), "facebook": returnedUser.getFacebook(), "appleMusic": returnedUser.getAppleMusic(), "spotify": returnedUser.getSpotify()] as [String : Any]
                     self.user = returnedUser
+                    //userData is the returnedUserData until changed
                     self.userData = returnedUserData
                     self.usernameField.text = returnedUser.name
                     self.userBioTextView.text = returnedUser.bio
@@ -83,6 +87,8 @@ class CreateProfileCAVC: UIViewController {
 //                    self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
 //                        self.profileImageView.image = returnedProfileImage
 //                    }
+                    //Editing gate stops user going back in the navigation stack and
+                    //their information being automatically filled out again.
                     self.editingGate = false
                 }
             }

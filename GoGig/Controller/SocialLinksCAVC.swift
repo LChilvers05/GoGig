@@ -48,11 +48,10 @@ class SocialLinksCAVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    //Only reached if placed in navigation controller
+    //View Did Appear is only called when in a navigation controller
     override func viewDidAppear(_ animated: Bool) {
-        print("reached1")
+        //Autofill fields when editing
         if editingProfile == true && user != nil {
-            print("reached2")
             websiteField.text = user?.getWebsite()
             phoneNumberField.text = user?.phone
             instagramField.text = user?.getInstagram()
