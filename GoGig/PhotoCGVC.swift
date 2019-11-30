@@ -76,7 +76,7 @@ class PhotoCGVC: UIViewController {
         if editingGigEvent && gigEvent != nil {
             DataService.instance.deleteSTFile(uid: user!.uid, directory: "events", fileID: gigEvent!.getid())
         }
-        
+        //Upload the photo
         if let eventPic = eventPicView.image {
             
             DataService.instance.updateSTPic(uid: uid, directory: "events", imageContent: eventPic, imageID: imageID, uploadComplete: { (success, error) in

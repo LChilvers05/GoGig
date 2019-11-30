@@ -271,6 +271,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: COMPARE TIME AND DATE
     
     func checkOld(gigEventToCompare: GigEvent) -> Bool {
+        //Get current date...
         let dateObject = Date()
         let currentDate = dateObject.addingTimeInterval(3600) //hour behind
         
