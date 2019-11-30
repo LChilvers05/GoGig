@@ -95,12 +95,12 @@ class UserAccountVC: UITableViewController {
             editingProfile = true
             if let tabBarController = self.tabBarController {
                 tabBarController.viewControllers = tabs
-                tabGateOpen = true
-                accountGateOpen = true
-                cardGateOpen = true
-                feedGateOpen = true
-                observeGateOpen = true
-                paginationGateOpen = true
+                tabGateOpen = true //Reset tabs
+                accountGateOpen = true //Reset portfolio refresh
+                cardGateOpen = true //Reset find gig card refresh
+                feedGateOpen = true //Reset activity feed refresh
+                observeGateOpen = true //Reset feed observers
+                paginationGateOpen = true //Reset activity feed pagination
                 pushNotificationGateOpen = true
                 
                 //DEFAULTS.set(nil, forKey: "gigs")
