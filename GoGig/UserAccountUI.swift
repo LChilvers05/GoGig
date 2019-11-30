@@ -77,7 +77,7 @@ extension CreateProfileCAVC {
         
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
-        
+
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -85,7 +85,7 @@ extension CreateProfileCAVC {
             //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8)
         ])
-        
+
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
