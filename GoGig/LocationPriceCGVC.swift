@@ -44,10 +44,14 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     override func viewDidAppear(_ animated: Bool) {
+        //If editing
         if editingGate && editingGigEvent && gigEvent != nil {
+            //If the user chose to use the location services
             if !(gigEvent?.getLongitude() == 0.00 && gigEvent?.getLatitude() == 0.00) {
+                //Continue to use them
                 useCurrentLocation(true)
             }
+            //Auto fill from the object attributes
             locationNameField.text = gigEvent?.getLocationName()
             postcodeField.text = gigEvent?.getPostcode()
             paymentField.text = String(gigEvent!.getPayment())

@@ -70,15 +70,17 @@ class TitleDateCGVC: UIViewController {
         if self.tabBarController?.selectedIndex == 0 {
             editingGigEvent = false
         }
+        //If editing the GigEvent object
         if editingGigEvent && editingGate {
+            //Get all the data about it...
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent, success) in
+                    //...put it in a dictionary...
                     let returnedGigEventData = ["uid": uid, "eventID": returnedGigEvent.getid(), "title": returnedGigEvent.getTitle(), "timestamp": returnedGigEvent.getTimestamp(), "latitude": returnedGigEvent.getLatitude(), "longitude": returnedGigEvent.getLongitude(), "locationName": returnedGigEvent.getLocationName(), "postcode": returnedGigEvent.getPostcode(), "payment": returnedGigEvent.getPayment(), "description": returnedGigEvent.getDescription(), "name": returnedGigEvent.getName(), "email": returnedGigEvent.getEmail(), "phone": returnedGigEvent.getPhone(), "eventPhotoURL": returnedGigEvent.getEventPhotoURL(), "appliedUsers": returnedGigEvent.getAppliedUsers()] as [String : Any]
                     self.eventData = returnedGigEventData
                     self.gigEvent = returnedGigEvent
+                    //..auto fill the UI inputs
                     self.eventTitleField.text = returnedGigEvent.getTitle()
-//                    let setDate = self.dateFormatter.date(from: returnedGigEvent.getTimestamp())
-//                    let date = setDate?.addingTimeInterval(-3600)
                     //MAY NOT NEED TO REMOVE HOUR NOW?
                     let date = returnedGigEvent.getDate().addingTimeInterval(-3600)
                     self.datePicker.setDate(date, animated: false)

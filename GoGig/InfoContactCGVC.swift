@@ -50,6 +50,7 @@ Things to think about:
         phoneTextField.text = user?.phone
     }
     override func viewDidAppear(_ animated: Bool) {
+        //if editing, auto fill the description
         if editingGigEvent && editingGate && gigEvent != nil {
             descriptionTextView.text = gigEvent?.getDescription()
             editingGate = false

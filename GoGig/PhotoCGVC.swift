@@ -36,8 +36,11 @@ class PhotoCGVC: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        //If editing
         if editingGigEvent && editingGate && gigEvent != nil {
+            //Get the event image id
             imageID = "\(gigEvent!.getid()).jpg"
+            //Download the image and put it in the view
             downloadImage(url: gigEvent!.getEventPhotoURL()) { (returnedImage) in
                 self.eventPicView.image = returnedImage
                 self.imageAdded = true
@@ -141,8 +144,9 @@ class PhotoCGVC: UIViewController {
                         }
                     }
                 } else {
+                    //If editing only
                     self.removeSpinnerView(self.loadingSpinner)
-                    //clear the event creation and pop to root of the navigation stack
+                    //clear the event creation and pop to root of the navigation stack (which is the EventDescriptionVC this time)
                     self.navigationController?.popToRootViewController(animated: true)
                     editingGigEvent = false
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshAllActivity"), object: nil)

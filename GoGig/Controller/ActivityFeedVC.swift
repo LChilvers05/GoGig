@@ -298,35 +298,36 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func deleteNotification(_ sender: UIButton) {
         let row = sender.tag
-        //If Organiser, then delete the public event from the database
+        //Delete a notification
         if selectedCVCell == 0 {
             DataService.instance.deleteDBActivityFeed(uid: user!.uid, notificationID: activityNotifications[row].getId())
             activityNotifications.remove(at: row)
             collectionView.reloadData()
         //Delete an Event Listing
         } else {
+            //Provide a warning message
             var title = ""
             var message = ""
+            //Warn the musician
             if user!.gigs {
-                title = "Delete this Gig"
+                title = "Forget the Gig"
                 message = "You will have no association with this event"
+            //Warn the organiser
             } else {
                 title = "Delete your Event"
                 message = "It will no longer exist to all users"
             }
-            //IMPROVE: The listings will not delete under the musician in database
-            //if the organiser deleted them first (fixed ^^)
+            //Add the UIAlerts
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (buttonPressed) in
-                //self.usersEvents.remove(at: row)
+                //If organiser, delete the event object and the picture in Storage
                 if self.user!.gigs == false {
-                    //print(self.eventIDs[row])
                     DataService.instance.deleteDBEvents(uid: self.user!.uid, eventID: self.eventIDs[row])
                     DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "events", fileID: self.eventIDs[row])
                 }
+                //For everyone remove it from event listings under user in database
                 self.eventIDs.remove(at: row)
-                //print(self.usersEvents[row].getid())
                 self.usersEvents.remove(at: row)
                 DataService.instance.deleteDBUserEvents(uid: self.user!.uid, eventIDs: self.eventIDs)
                 self.collectionView.reloadData()
