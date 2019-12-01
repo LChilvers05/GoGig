@@ -116,7 +116,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     self.usersEvents = eventListings
                                     self.collectionView.reloadData()
                                     self.attemptReload()
-                                    
+                                
+                                    //Couldn't get GigEvent
                                 } else {
                                     //User (should be musician) has an eventID listed which the organiser has already deleted the event, clean up the DB
                                     if let index = self.eventIDs.firstIndex(of: eventID) {
