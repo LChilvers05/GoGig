@@ -38,7 +38,7 @@ class SocialLinksCAVC: UIViewController {
         setupView()
         hideKeyboard()
         phoneNumberField.updateCharacterLimit(limit: 16)
-        websiteField.updateCharacterLimit(limit: 64)
+        websiteField.updateCharacterLimit(limit: 100)
         instagramField.updateCharacterLimit(limit: 30)
         twitterField.updateCharacterLimit(limit: 15)
         facebookField.updateCharacterLimit(limit: 20)

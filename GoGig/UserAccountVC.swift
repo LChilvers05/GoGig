@@ -172,15 +172,22 @@ class UserAccountVC: UITableViewController {
         cell.userEmailLabel.text = user?.email
         cell.userPhoneLabel.text = user?.phone
         
-        //Signing in and out doesn't bring back hidden icons
+        //If user hasn't got Facebook
         if user?.getFacebook() == "" {
+            //Put it at the right of the horizontal stack
             cell.socialLinkStackView.insertArrangedSubview(cell.facebookLinkButton, at: 5)
+            //Disable the button
             cell.facebookLinkButton.isEnabled = false
+            //And hide it
             cell.facebookLinkButton.alpha = 0.0
+        //Has Facebook
         } else {
+            //Enable it
             cell.facebookLinkButton.isEnabled = true
+            //Show it
             cell.facebookLinkButton.alpha = 1.0
         }
+        //Same for Twitter etc
         if user?.getTwitter() == "" {
             cell.socialLinkStackView.insertArrangedSubview(cell.twitterLinkButton, at: 5)
             cell.twitterLinkButton.isEnabled = false
