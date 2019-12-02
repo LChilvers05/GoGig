@@ -657,28 +657,38 @@ class DataService {
     
     //Send a notification from a device to another device
     func sendPushNotification(to token: String, title: String, body: String) {
+        //URL to send notification
         let urlString = "https://fcm.googleapis.com/fcm/send"
         let url = NSURL(string: urlString)!
+        //Parameters of the notification
         let paramString: [String : Any] = ["to" : token,
                                            "notification" : ["title" : title, "body" : body],
-                                           "data" : ["user" : "test_id"]
-        ]
+                                           "data" : ["user" : "test_id"]]
+        //Create request object using url
         let request = NSMutableURLRequest(url: url as URL)
-        request.httpMethod = "POST"
+        request.httpMethod = "POST" //Http method is POST
+        //Convert paramString to JSON and set it as request body
         request.httpBody = try? JSONSerialization.data(withJSONObject:paramString, options: [.prettyPrinted])
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        //Server key
         request.setValue("key=AAAAjb8BHzs:APA91bEBkZ3IfE6dU4xclXlP4qGVqyFhMLQEuCTA8NtFjKC7WGN_L8LeuaH_t7142RWGLbuYqjSHozuiz7HtmAADhGEz67yMOjN416Z-EdbIE9FXJ-0uyI37mcQ6bcMzbohxSzF4nCUJ", forHTTPHeaderField: "Authorization")
+        //Data task, send the request to the server in a completion handler (executed when the request's response is returned to the app
         let task =  URLSession.shared.dataTask(with: request as URLRequest)  { (data, response, error) in
             do {
+                //If there is JSON data
                 if let jsonData = data {
+                    //Try and convert to a dictionary
                     if let jsonDataDict  = try JSONSerialization.jsonObject(with: jsonData, options: JSONSerialization.ReadingOptions.allowFragments) as? [String: AnyObject] {
                         NSLog("Received data:\n\(jsonDataDict))")
                     }
                 }
+            //If failed catch it
             } catch let err as NSError {
+                //Print the error
                 print(err.debugDescription)
             }
         }
+        //Resume the task
         task.resume()
     }
     
