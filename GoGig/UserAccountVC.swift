@@ -339,17 +339,21 @@ class UserAccountVC: UITableViewController {
         }
     }
     @IBAction func twitterLink(_ sender: Any) {
+        //get the username
         let username =  user?.getTwitter()
+        //make a url from username
         if let appURL = URL(string: "twitter://user?screen_name=\(username!)") {
             let application = UIApplication.shared
-
+            //if app installed...
             if application.canOpenURL(appURL) {
+                //...open in app
                 application.open(appURL)
             } else {
-                // if Instagram app is not installed, open URL inside Safari
+                //If not installed, open in Safari browser
                 let webURL = URL(string: "https://twitter.com/\(username!)")!
                 if application.canOpenURL(webURL){
                     application.open(webURL)
+                //URL doesn't work, display error
                 } else {
                     displayError(title: "", message: "Couldn't open Twitter account")
                 }
@@ -380,6 +384,8 @@ class UserAccountVC: UITableViewController {
             let application = UIApplication.shared
             if application.canOpenURL(webURL) {
                 application.open(webURL)
+            } else {
+                displayError(title: "", message: "Couldn't find website")
             }
         } else {
             displayError(title: "", message: "Couldn't find website")
@@ -391,18 +397,27 @@ class UserAccountVC: UITableViewController {
             let application = UIApplication.shared
             if application.canOpenURL(webURL) {
                 application.open(webURL)
+            } else {
+                displayError(title: "", message: "Couldn't find Apple Music profile")
             }
         } else {
             displayError(title: "", message: "Couldn't find Apple Music profile")
         }
     }
     @IBAction func spotifyLink(_ sender: Any) {
+        //get spotify string url
         let userStreaming = user?.getSpotify()
+        //instantiate a url object
         if let webURL = URL(string: userStreaming!) {
             let application = UIApplication.shared
+            //if can open in browser (or app)
             if application.canOpenURL(webURL) {
                 application.open(webURL)
+            //if can't open
+            } else {
+                displayError(title: "", message: "Couldn't find Spotify profile")
             }
+        //if instantiation failed
         } else {
             displayError(title: "", message: "Couldn't find Spotify profile")
         }
