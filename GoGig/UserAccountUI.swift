@@ -113,7 +113,7 @@ extension SocialLinksCAVC {
         
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
-        
+
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -121,7 +121,7 @@ extension SocialLinksCAVC {
             //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: fieldsStack.bottomAnchor, constant: 16)
         ])
-        
+
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
@@ -149,14 +149,14 @@ extension MusicLinksCAVC {
         
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
-        
+
         NSLayoutConstraint.activate([
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
             transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 24)
         ])
-        
+
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
     }
