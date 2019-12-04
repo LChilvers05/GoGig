@@ -103,7 +103,14 @@ class SocialLinksCAVC: UIViewController {
                 continueFine = false
             }
         }
-        if let userInstagram = instagramField.text {
+        if let userInstagramStr = instagramField.text {
+            //Make variable from constant
+            var userInstagram = userInstagramStr
+            //Check first char
+            if userInstagram[userInstagram.startIndex] == "@" {
+                //Make a substring (remove the @)
+                userInstagram = userInstagram.substring(start: 1, end: userInstagram.count)
+            }
             if (!userInstagram.contains("@") && !userInstagram.contains(" ")) || userInstagram == "" {
                 userData!["instagram"] = userInstagram
             } else {
@@ -111,7 +118,14 @@ class SocialLinksCAVC: UIViewController {
                 continueFine = false
             }
         }
-        if let userTwitter = twitterField.text {
+        if let userTwitterStr = twitterField.text {
+            //Make variable from constant
+            var userTwitter = userTwitterStr
+            //Check first char
+            if userTwitter[userTwitter.startIndex] == "@" {
+                //Make a substring (remove the @)
+                userTwitter = userTwitter.substring(start: 1, end: userTwitter.count)
+            }
             if (!userTwitter.contains("@") && !userTwitter.contains(" ")) || userTwitter == "" {
                 userData!["twitter"] = userTwitter
             } else {
