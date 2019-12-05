@@ -10,22 +10,26 @@ import UIKit
 
 extension LoginSignupVC {
     func setupView() {
+        //Change the colour of the textfield placeholders so it can be seen on background
         emailField.attributedPlaceholder = NSAttributedString(string: "email",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
         passwordField.attributedPlaceholder = NSAttributedString(string: "password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
         confirmPasswordField.attributedPlaceholder = NSAttributedString(string: "confirm password",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.systemGray3])
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+            //Transparent
             tv.alpha = 0.3
+            //Rounded corners
             tv.layer.cornerRadius = 15
-            //tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + topLSButton.frame.height + 75)
-            //tv.center = CGPoint(x: self.view.bounds.width / 2, y: 300)
+            //Can be autoresized by programmatic constaints
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -34,9 +38,11 @@ extension LoginSignupVC {
         imageView.image = background
         imageView.center = view.center
         
+        //Add the transparent view to view
         view.addSubview(transparentView)
         self.view.sendSubviewToBack(transparentView)
         
+        //Set transparent view constraints so it sits behind the fields stack
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -44,8 +50,9 @@ extension LoginSignupVC {
             //transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: topLSButton.bottomAnchor, constant: 16)
         ])
-        
+        //Add the background to view
         view.addSubview(imageView)
+        //Send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
