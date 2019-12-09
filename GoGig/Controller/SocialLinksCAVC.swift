@@ -107,7 +107,7 @@ class SocialLinksCAVC: UIViewController {
             //Make variable from constant
             var userInstagram = userInstagramStr
             //Check first char
-            if userInstagram[userInstagram.startIndex] == "@" {
+            if userInstagram != "" && userInstagram.count > 1 && userInstagram[userInstagram.startIndex] == "@" {
                 //Make a substring (remove the @)
                 userInstagram = userInstagram.substring(start: 1, end: userInstagram.count)
             }
@@ -122,7 +122,7 @@ class SocialLinksCAVC: UIViewController {
             //Make variable from constant
             var userTwitter = userTwitterStr
             //Check first char
-            if userTwitter[userTwitter.startIndex] == "@" {
+            if userTwitter != "" && userTwitter.count > 1 && userTwitter[userTwitter.startIndex] == "@" {
                 //Make a substring (remove the @)
                 userTwitter = userTwitter.substring(start: 1, end: userTwitter.count)
             }
