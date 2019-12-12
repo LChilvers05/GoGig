@@ -231,39 +231,26 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     func addEventToCalendar(title: String, description: String?, startDate: Date, endDate: Date, completion: ((_ success: Bool, _ error: NSError?) -> Void)? = nil) {
         let eventStore = EKEventStore()
         
-//        //Check to see if "GoGig" calendar has been created - First time only
-//        if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
-//            let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
-//            newCalendar.title = "GoGig - My Gigs"
-//            newCalendar.cgColor = UIColor.purple.cgColor
-//            let sourcesInEventStore = eventStore.sources
-//            newCalendar.source = sourcesInEventStore.filter {
-//                (source: EKSource) -> Bool in
-//                source.sourceType.rawValue == EKSourceType.local.rawValue
-//            }.first!
-//            do {
-//               try eventStore.saveCalendar(newCalendar, commit: true)
-//                DEFAULTS.set(newCalendar.calendarIdentifier, forKey: "GoGigCalendar")
-//                print("new calendar created")
-//            } catch {
-//                displayError(title: "Oops", message: "Something went wrong")
-//            }
-//        }
-        
         //Add to event to calendar
+        //Request calendar access
         eventStore.requestAccess(to: .event, completion: { (granted, error) in
+            //If given access
             if (granted) && (error == nil) {
+                //Create an event
                 let event = EKEvent(eventStore: eventStore)
+                //Set title, start and end, and any notes
                 event.title = title
                 event.startDate = startDate
                 event.endDate = endDate
-                event.notes = description
+                event.notes = description //Notes is the description of the event
                 
                 //Check to see if "GoGig" calendar has been created - First time only
                 if DEFAULTS.object(forKey: "GoGigCalendar") == nil {
                     //If new create the calendar
                     let newCalendar = EKCalendar(for: .event, eventStore: eventStore)
+                    //Calendar title
                     newCalendar.title = "GoGig - My Gigs"
+                    //Colour
                     newCalendar.cgColor = UIColor.purple.cgColor
                     let sourcesInEventStore = eventStore.sources
                     newCalendar.source = sourcesInEventStore.filter {
@@ -271,6 +258,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                         source.sourceType.rawValue == EKSourceType.local.rawValue
                     }.first!
                     do {
+                        //Create new calendar (first time only, then set identifier with UserDefaults)
                        try eventStore.saveCalendar(newCalendar, commit: true)
                         DEFAULTS.set(newCalendar.calendarIdentifier, forKey: "GoGigCalendar")
                         print("new calendar created")
@@ -279,11 +267,12 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
                     }
                 }
                 
-                //Get the calenar either created or got
+                //Set calendar event will be saved to
                 event.calendar = eventStore.calendar(withIdentifier: DEFAULTS.object(forKey: "GoGigCalendar") as! String)
                 do {
                     //Save the event with completion
                     try eventStore.save(event, span: .thisEvent)
+                //Process any errors
                 } catch let e as NSError {
                     completion?(false, e)
                     return

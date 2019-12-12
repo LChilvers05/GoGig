@@ -263,8 +263,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         
         //My Events Section
         } else {
+            //Get the GigEvent object
             let calendarEvent = usersEvents[row]
+            //Use it to add an event to the calendar
             addEventToCalendar(title: calendarEvent.getTitle(), description: calendarEvent.getDescription(), startDate: calendarEvent.getDate().addingTimeInterval(-3600), endDate: calendarEvent.getDate())
+            //Notifiy the user that it has been added
             displayError(title: "Added to Calendar", message: "This event was added to your device calendar")
         }
     }
