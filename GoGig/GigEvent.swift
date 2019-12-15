@@ -26,7 +26,6 @@ class GigEvent: Comparable {
     private var email: String
     private var phone: String
     private var eventPhotoURL: URL
-    
     private var appliedUsers: [String: Bool]
     
     init(uid: String, id: String, title: String, timestamp: String, description: String, latitude: Double, longitude: Double, locationName: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {

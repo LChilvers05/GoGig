@@ -204,17 +204,17 @@ class DataService {
     //MARK: DATABASE EVENTS
     
     func updateDBEvents(uid: String, eventID: String, eventData: Dictionary<String, Any>){
-        //We want to build an array of posts to grab and loop through in table view
+        //we want to build an array of events to grab and loop through in table view
         REF_EVENTS.child(eventID).updateChildValues(eventData)
     }
     
     func updateDBEventsInteractedUsers(uid: String, eventID: String, eventData: Dictionary<String, Bool>){
         
-        //Set Value because we are updating a new array with all the interacted users, therefore we want the array to replace each time, not update
+        //setValue because we are updating a new array with all the interacted users, therefore we want the array to replace each time, not update
         REF_EVENTS.child(eventID).child("appliedUsers").setValue(eventData)
     }
     
-    //TODO: delete an event if after refresh the timestamp is less than the current date and time (not relevant)
+    //delete the event from Database
     func deleteDBEvents(uid: String, eventID: String){
         REF_EVENTS.child(eventID).removeValue()
     }
@@ -397,18 +397,6 @@ class DataService {
         })
     }
     
-//    //To observe when an event recording is added under user in DB
-//    func observeDBUserEvents(uid: String, handler: @escaping (_ events: String) -> ()) {
-//
-//        eventsHandle = REF_USERS.child(uid).child("events").observe(.childAdded, with: { (snapshot) in
-//
-//            if let recordedEvent = snapshot.value as? String {
-//                print(recordedEvent)
-//                handler(recordedEvent)
-//            }
-//        })
-//    }
-    
     //MARK: DATABASE USER ACTIVITY
     
     //Using a completion handler now so the feed updates correctly
@@ -419,11 +407,13 @@ class DataService {
             if error != nil {
                 handler(false)
             } else {
+                //set activity in Database successfully
                 handler(true)
             }
         }
     }
     
+    //delete objects in Database
     func deleteDBActivityFeed(uid: String, notificationID: String) {
         
         REF_USERS.child(uid).child("activity").child(notificationID).removeValue()
@@ -497,10 +487,10 @@ class DataService {
     }
     
     func observeDBActivityFeed(uid: String, handler: @escaping (_ events: ActivityNotification) -> ()) {
-        //Will run this closure anytime a .childAdded to Database
+        //will run this closure anytime a .childAdded to Database
         activityHandle = REF_USERS.child(uid).child("activity").observe(.childAdded, with: { (snapshot) in
 
-            //Grab an array of all notifications in the database
+            //grab an array of all notifications in the database
             if let activityData = snapshot.value as? NSDictionary {
 
                 if let notificationID = activityData["notificationID"] as? String {
@@ -535,6 +525,7 @@ class DataService {
     
     //MARK: CLOUD STORAGE
     
+    //reference Storage location
     private var _REF_ST = ST_BASE
     
     var REF_ST: StorageReference {
@@ -543,7 +534,7 @@ class DataService {
     }
     
     func updateSTPic(uid: String, directory: String, imageContent: UIImage, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
-        
+        //specify MIME type
         let metadata = StorageMetadata()
         metadata.contentType = "image/jpeg"
         //Converting the imageData to JPEG to be stored
@@ -563,6 +554,8 @@ class DataService {
     
     func updateSTVid(uid: String, directory: String, vidContent: URL, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
         //Uploading the content with unique string ID
+        
+        //Upload Bug
         
         //This time we use .putFile to upload the URL and not imageData
 //        REF_ST.child(uid).child(directory).child(imageID).putFile(from: vidContent, metadata: nil, completion: { (metadata, error) in
@@ -590,8 +583,6 @@ class DataService {
             })
         }
     }
-    
-    //Now do user caching
     
     func getSTURL(uid: String, directory: String, imageID: String, handler: @escaping (_ returnedURL: URL) -> ()) {
         
@@ -622,43 +613,7 @@ class DataService {
             }
         })
     }
-    
-    
-    //    func updateSTProfilePic(uid: String, profileImage: UIImage, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
-    //
-    //        //Converting the imageData to JPEG to be stored
-    //        if let imageData = profileImage.jpegData(compressionQuality: 0.1) {
-    //
-    //            //Uploading the image with unique string ID
-    //            REF_ST.child(uid).child("profilePic").child(imageID).putData(imageData, metadata: nil, completion: { (metadata, error) in
-    //                if error != nil {
-    //
-    //                    uploadComplete(false, error)
-    //                    return
-    //                }
-    //                uploadComplete(true, nil)
-    //            })
-    //        }
-    //    }
-    //
-    //    func updateSTPostPic(uid: String, postImage: UIImage, imageID: String, uploadComplete: @escaping ( _ status: Bool, _ error: Error?) -> ()) {
-    //
-    //        //Converting the imageData to JPEG to be stored
-    //        if let imageData = postImage.jpegData(compressionQuality: 0.1) {
-    //
-    //            //Uploading the image with unique string ID
-    //            REF_ST.child(uid).child("portfolioPost").child(imageID).putData(imageData, metadata: nil, completion: { (metadata, error) in
-    //                if error != nil {
-    //
-    //                    uploadComplete(false, error)
-    //                    return
-    //                }
-    //                uploadComplete(true, nil)
-    //            })
-    //        }
-    //    }
-    
-    
+
     //MARK: CLOUD MESSAGING
     //(and database)
     
