@@ -34,22 +34,28 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     
     //MARK: ERROR NOTIFICATION
     func displayError(title: String, message: String) {
+        //alert conroller with a title and message and 'OK' dismiss button
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        //present the alert
         self.present(alertController, animated: true, completion: nil)
     }
     
     //MARK: LOADING INDICATOR
     func createSpinnerView( _ child: SpinnerViewController) {
         // add the spinner view controller
+        //user cannot interact with the view
         self.view.isUserInteractionEnabled = false
         addChild(child)
+        //fill screen and add to view
         child.view.frame = view.frame
         view.addSubview(child.view)
         child.didMove(toParent: self)
     }
     func removeSpinnerView( _ child: SpinnerViewController) {
+        //give user control again
         self.view.isUserInteractionEnabled = true
+        //and remove from view
         child.willMove(toParent: nil)
         child.view.removeFromSuperview()
         child.removeFromParent()
@@ -72,12 +78,13 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
     
     //MARK: IMAGE PICKER ACTION SHEET
     func openPhotoPopup(video: Bool, imagePicker: UIImagePickerController, title: String, message: String){
-        //The UIAlertController
+        //The UIAlertController with title and message
         let photoPopup = UIAlertController(title: title, message: message, preferredStyle: .actionSheet)
         //First Choice - Camera
         let cameraAction = UIAlertAction(title: "Camera", style: .default) { (buttonTapped) in
             
             do {
+                //open the camera
                 self.openImagePicker(imagePicker: imagePicker, source: .camera)
             }
         }
@@ -86,6 +93,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             (buttonTapped) in
             
             do {
+                //open the library of photos
                 self.openImagePicker(imagePicker: imagePicker, source: .photoLibrary)
             }
         }
@@ -97,6 +105,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             let videoAction = UIAlertAction(title: "Video Library", style: .default) { (buttonTapped) in
                 
                 do {
+                    //open the library of videos
                     self.openImagePicker(imagePicker: imagePicker, source: .savedPhotosAlbum)
                 }
             }
@@ -105,6 +114,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         
         photoPopup.addAction(cameraAction)
         photoPopup.addAction(photoAction)
+        //present the action sheet
         present(photoPopup, animated: true, completion: nil)
     }
     
@@ -136,7 +146,7 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
         //Get's the data of the URL
         let task = URLSession.shared.dataTask(with: url) { data, response, error in
             if let error = error{
-                
+                //print the error if one
                 print(error.localizedDescription)
                 
             } else {
@@ -193,6 +203,8 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             //Resumes the task after image is set
             task.resume()
             
+            //SLOW LOADING!
+            
             //            } else {
             //
             //                //If post is video, then generate a thumbnail to add
@@ -203,8 +215,6 @@ extension UIViewController: UIImagePickerControllerDelegate, UINavigationControl
             //            }
         }
     }
-    
-    //SLOW LOADING!
     
     //MARK: VIDEO THUMBNAIL
     func generateThumbnail(url: URL) -> UIImage {

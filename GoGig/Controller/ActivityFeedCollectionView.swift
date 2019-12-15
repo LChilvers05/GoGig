@@ -13,14 +13,13 @@ extension ActivityFeedVC {
     //MARK: COLLECTION VIEW METHODS
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //Each cv cell contains a table view
+        //Each collection view cell contains a table view
         return 2
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cvCell", for: indexPath) as! ActivityCVCell
-        
-        //MAY NOT NEED THIS
+        //give each collection view cell a background
         setupView(tableview: cell.feedTableView)
         cell.feedTableView.reloadData()
         
@@ -28,10 +27,11 @@ extension ActivityFeedVC {
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        //size of the collection view cells
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
     
-    //Called before the UICollectionViewCell appears to the view
+    //called before the UICollectionViewCell appears to the view
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let collectionViewCell = cell as? ActivityCVCell else { return }
@@ -40,7 +40,7 @@ extension ActivityFeedVC {
         collectionViewCell.tableViewOffset = storedOffsets[indexPath.row] ?? 0
     }
     
-    //Called after the UICollectionViewCell dissapears from the view
+    //called after the UICollectionViewCell dissapears from the view
     func collectionView(_ collectionView: UICollectionView, didEndDisplaying cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         
         guard let collectionViewCell = cell as? ActivityCVCell else { return }
@@ -66,6 +66,7 @@ extension ActivityFeedVC {
         if tableView.tag == 0 {
             //notifications section
             if section == 0 {
+                //amound of cells needed
                 return activityNotifications.count
                 
             //loading more section
@@ -81,26 +82,23 @@ extension ActivityFeedVC {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "NotificationCell", for: indexPath) as! ActivityFeedCell
-        
+        //set nil while loading (cleaner)
         cell.notificationImage.image = nil
-        
+        //if notifications section
         if tableView.tag == 0 {
-            
+            //update notifications
             updateNotificationData(cell: cell, row: indexPath.row)
-            
+        //if 'My Events' section
         } else {
-            
+            //update the event listings
             updateEventListingData(cell: cell, row: indexPath.row)
             
-//            cell.notificationDescriptionLabel.text = "Hello There From Lee"
-//            cell.eventNameButton.setTitle("Hello There", for: .normal)
-//            cell.notificationImage.image = UIImage(named: "findGigFilled")!
-            
         }
-
+        //return the changes
         return cell
     }
-
+    
+    //when cell has been tapped (selected)
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         //activity notifications section
@@ -124,23 +122,23 @@ extension ActivityFeedVC {
     
     //MARK: MENUBAR METHODS
     
-    //Change the purple bar position when scrolling
+    //change the purple bar position when scrolling
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         //Scrolled the collection view horizontally
         if scrollView == self.collectionView {
             menuBar.barLeftAnchorConstraint?.constant = scrollView.contentOffset.x / 2
         
-        //Scrolled the table view vertically
+        //scrolled the table view vertically
         } else {
             
-            //This is needed incase user has no data, causes a crash!
+            //this is needed incase user has no data, causes a crash!
             if activityNotifications.count != 0 {
                 
                 let offsetY = scrollView.contentOffset.y
                 let contentHeight = scrollView.contentSize.height
                 if offsetY > contentHeight - scrollView.frame.size.height * leadingScreensForBatching {
                     
-                    //If there is more activity to fetch
+                    //if there is more activity to fetch
                     if !fetchingMore && !endReached {
                         getMoreNotifications()
                     }
@@ -149,20 +147,22 @@ extension ActivityFeedVC {
         }
     }
     
-    //Change the state of menu bar when we finish dragging the large collection view cells
+    //change the state of menu bar when we finish dragging the large collection view cells
     func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
         if scrollView == self.collectionView {
             let index = targetContentOffset.pointee.x / view.frame.width
             let indexPath = NSIndexPath(item: Int(index), section: 0)
+            //go to the collection view cell at index
             menuBar.collectionView.selectItem(at: indexPath as IndexPath, animated: false, scrollPosition: .centeredHorizontally)
             //For selection of what button is pressed from what section
             selectedCVCell = Int(index)
         }
     }
     
-    //Called when the menu bar is used to change the cells
+    //called when the menu bar is used to change the cells
     func scrollToMenuIndex(menuIndex: Int) {
         let indexPath = NSIndexPath(item: menuIndex, section: 0)
+        //automatically scroll to that collection view cell
         collectionView.scrollToItem(at: indexPath as IndexPath, at: .centeredHorizontally, animated: true)
         selectedCVCell = menuIndex
     }

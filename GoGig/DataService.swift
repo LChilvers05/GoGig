@@ -11,22 +11,30 @@ import FirebaseAuth
 import FirebaseDatabase
 import FirebaseStorage
 
+//location references for Datbase and Storage
 let DB_BASE = Database.database().reference()
 let ST_BASE = Storage.storage().reference()
 
+//handles for observing Database changes
 var postsHandle: DatabaseHandle?
 var activityHandle: DatabaseHandle?
 var eventsHandle: DatabaseHandle?
 
 class DataService {
     
+    //using a singleton
     static let instance = DataService()
     
     //MARK: DATABASE
+    
+    //private for safety
+    //specific location references
     private var _REF_BASE = DB_BASE
     private var _REF_USERS = DB_BASE.child("users")
     private var _REF_EVENTS = DB_BASE.child("events")
     
+    //closures to get references and
+    //ensure we dont change values
     var REF_BASE: DatabaseReference {
         
         return _REF_BASE
@@ -45,10 +53,10 @@ class DataService {
     //MARK: OBSERVERS
     
     func removeObservers(uid: String) {
-        //Portfolio is the initial view so there will always be an observer
+        //portfolio is the initial view so there will always be an observer
         REF_USERS.child(uid).child("posts").removeObserver(withHandle: postsHandle!)
-        //May not be an observer as user may not have clicked on those tabs since launch
-        //Store the closure under a global variable (handle) and only remove it if it has a value
+        //may not be an observer as user may not have clicked on those tabs since launch
+        //store the closure under a global variable (handle) and only remove it if it has a value
         //(is observing)
         if eventsHandle != nil && activityHandle != nil {
             REF_USERS.child(uid).child("events").removeObserver(withHandle: eventsHandle!)
@@ -58,10 +66,11 @@ class DataService {
     
     //MARK: DATABASE USER PROFILE
     
+    //add the user under 'auth' to Database
     func createDBUser(uid: String, userData: Dictionary<String, Any>) {
         REF_USERS.child(uid).child("auth").updateChildValues(userData)
     }
-    
+    //add the user data under 'profile'
     func updateDBUserProfile(uid: String, userData: Dictionary<String, Any>, handler: @escaping (_ completion: Bool) -> ()) {
         REF_USERS.child(uid).child("profile").updateChildValues(userData) {
             (error:Error?, ref:DatabaseReference) in
@@ -72,10 +81,10 @@ class DataService {
             }
         }
     }
-    
+    //get the user data under 'profile'
     func getDBUserProfile(uid: String, handler: @escaping (_ user: User) -> ()) {
         
-        //Grab user profile data from the database...
+        //Grab user profile data from the database once...
         REF_USERS.child(uid).child("profile").observeSingleEvent(of: .value, with: { (profileSnapshot) in
             
             //... and cast as a NSDictionary
@@ -118,6 +127,7 @@ class DataService {
                     }
                 }
             }
+        //print error if there was a problem
         }) { (error) in
             print("Error Getting user profile")
             print(error.localizedDescription)
