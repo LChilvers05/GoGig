@@ -25,7 +25,7 @@ extension LoginSignupVC {
             tv.alpha = 0.3
             //Rounded corners
             tv.layer.cornerRadius = 15
-            //Can be autoresized by programmatic constaints
+            //can be autoresized by programmatic constaints
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
@@ -33,26 +33,28 @@ extension LoginSignupVC {
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
+        //scale the image so it fills the image view
         imageView.contentMode =  UIView.ContentMode.scaleAspectFill
         imageView.clipsToBounds = true
         imageView.image = background
+        //image view is in the center of the view and clip it to the edges of screen
         imageView.center = view.center
         
         //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
         
-        //Set transparent view constraints so it sits behind the fields stack
+        //Set transparent view constraints so it sits behind the fields stack with right dimensions
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 130),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
-            //transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: topLSButton.bottomAnchor, constant: 16)
         ])
-        //Add the background to view
+        //add the background to view
         view.addSubview(imageView)
-        //Send it to the back of all the subviews
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -64,14 +66,7 @@ extension CreateProfileCAVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-//            if !editingProfile {
-//                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: nameBioStack.frame.height * 2)
-//                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y - (nameBioStack.center.y / 4))
-//            } else {
-//                tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: nameBioStack.frame.height + 20)
-//                tv.center = CGPoint(x: self.view.bounds.width / 2, y: nameBioStack.center.y)
             tv.translatesAutoresizingMaskIntoConstraints = false
-//            }
             return tv
         }()
         let background = UIImage(named: "Background")
@@ -89,7 +84,6 @@ extension CreateProfileCAVC {
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: nameBioStack.frame.width + 56),
-            //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8)
         ])
 
@@ -105,8 +99,6 @@ extension SocialLinksCAVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-            //tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 10)
-            //tv.center = CGPoint(x: self.view.bounds.width / 2, y: fieldsStack.center.y)
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
@@ -125,7 +117,6 @@ extension SocialLinksCAVC {
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
-            //transparentView.heightAnchor.constraint(equalToConstant: nameBioStack.frame.height + 112)
             transparentView.bottomAnchor.constraint(equalTo: fieldsStack.bottomAnchor, constant: 16)
         ])
 
@@ -141,8 +132,6 @@ extension MusicLinksCAVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.3
             tv.layer.cornerRadius = 15
-//            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 40, height: fieldsStack.frame.height + 20)
-//            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
@@ -169,42 +158,44 @@ extension MusicLinksCAVC {
     }
 }
 
-extension TabBarController {
-    func setupView(){
-    }
-}
-
 extension UserAccountVC {
     func setupView() {
-        
+        //use a large title as the name at top of portfolio
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        //if iOS 13
         if #available(iOS 13.0, *) {
             let navBarAppearance = UINavigationBarAppearance()
+            //set the navigation bar as opaque...
             navBarAppearance.configureWithOpaqueBackground()
+            //...with a white colour
             navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.75)
+            //set this appearance when table view is still and scrolling
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
+        //background image will be the background of the table view
         let backgroundImage = UIImage(named: "Background")
         let imageView = UIImageView(image: backgroundImage)
         self.tableView.backgroundView = imageView
         self.tableView.separatorStyle = .none
         imageView.contentMode = .scaleAspectFit
         
+        //provide a blur effect over the feed background, light style
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = imageView.bounds
+        //add the image as background to table view
         imageView.addSubview(blurView)
-        
-        self.navigationController?.navigationBar.prefersLargeTitles = true
-        //self.navigationController?.navigationBar.topItem?.title = "Profile"
+        //automatically resize the cells depending on its content dimensions
         tableView.rowHeight = UITableView.automaticDimension
+        //if fails (or loading) provide estimate height
         tableView.estimatedRowHeight = 350
     }
 }
 
 extension PortfolioPostVC {
     func setupView() {
+        //make the navigation bar white with a opaque white colour
         navigationController?.navigationBar.barTintColor = UIColor.white.withAlphaComponent(0.90)
         let background = UIImage(named: "Background5")
         var imageView : UIImageView!
@@ -214,7 +205,9 @@ extension PortfolioPostVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.7
+        //set background image and pin to edges of view
         view.addSubview(imageView)
+        //send it behind all UI elements
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -226,13 +219,13 @@ extension CreateGigVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
+            //use frame for dimensions rather than constraints
             tv.frame = CGRect.init(x: 0, y: 0, width: descriptionStack.frame.width + 20, height: descriptionStack.frame.height + 20)
             tv.center = CGPoint(x: self.view.frame.width / 2, y: self.view.frame.height / 2)
             return tv
         }()
         
-        //No back button
-        
+        //set background
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -252,22 +245,26 @@ extension CreateGigVC {
 
 extension TitleDateCGVC {
     func setupView() {
+        //large title
         self.navigationController?.navigationBar.prefersLargeTitles = true
+        //if iOS 13
         if #available(iOS 13.0, *) {
+            //set the navigation bar with the large title as basically clear
             let navBarAppearance = UINavigationBarAppearance()
             navBarAppearance.configureWithOpaqueBackground()
             navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.1)
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
+        //Hide the default back button
         self.navigationItem.hidesBackButton = true
-        overrideUserInterfaceStyle = .light
-        
+        //Make our own back button
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
         
+        //set background
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -277,8 +274,11 @@ extension TitleDateCGVC {
         imageView.center = view.center
         imageView.alpha = 0.4
         
+        //make the datepicker opaque
         datePicker.backgroundColor = UIColor.white.withAlphaComponent(0.3)
+        //give it a shadow
         datePicker.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+        //set size and strength and shape of shadow
         datePicker.layer.shadowRadius = 10.0
         datePicker.layer.shadowOpacity = 0.5
         datePicker.layer.cornerRadius = 10.0
@@ -298,7 +298,6 @@ extension LocationPriceCGVC {
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        overrideUserInterfaceStyle = .light
         
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
@@ -360,7 +359,7 @@ extension PhotoCGVC {
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        
+        //give the eventPicView a shadow and set its size, shape and strength
         eventPicView.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
         eventPicView.layer.shadowRadius = 10.0
         eventPicView.layer.shadowOpacity = 0.5
@@ -388,7 +387,6 @@ extension ActivityFeedVC {
         imageView.contentMode = .scaleAspectFill
         //tableview.backgroundView = imageView
         tableview.separatorStyle = .none
-        
         imageView.alpha = 0.5
     }
 }
@@ -400,7 +398,6 @@ extension FindGigVC {
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
             tv.alpha = 0.4
             tv.layer.cornerRadius = 15
-            //tv.frame = CGRect.init(x: 0, y: 0, width: contactStack.frame.width + 20, height: contactStack.frame.height + 20)
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
@@ -415,9 +412,12 @@ extension FindGigVC {
         imageView.alpha = 0.5
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
-
+        
+        //add the transparent view
         view.addSubview(transparentView)
+        //set it at z index 4
         self.view.insertSubview(transparentView, at: 4)
+        //ensure the contact details are z index 5 (sits ontop)
         self.view.insertSubview(contactStack, at: 5)
 
         NSLayoutConstraint.activate([
@@ -448,7 +448,7 @@ extension ReviewApplicationVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.4
-        
+        //give the background a blur effect
         let blurEffect = UIBlurEffect(style: UIBlurEffect.Style.light)
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = imageView.bounds
@@ -466,7 +466,7 @@ extension ReviewApplicationVC {
         
         view.addSubview(imageView)
         self.view.sendSubviewToBack(imageView)
-        
+        //make the profile image view a circle and not a square
         profileImageView.layer.borderWidth = 0.1
         profileImageView.layer.masksToBounds = false
         profileImageView.layer.cornerRadius = profileImageView.frame.height/2
@@ -478,25 +478,16 @@ extension ReviewApplicationVC {
 
 extension EventDescriptionVC {
     func setupView() {
-//        let transparentView: UIView = {
-//            let tv = UIView()
-//            tv.backgroundColor = #colorLiteral(red: 0.3918413535, green: 0.3957209708, blue: 0.3957209708, alpha: 1)
-//            tv.alpha = 0.7
-//            tv.layer.cornerRadius = 20
-//            tv.frame = CGRect.init(x: 0, y: 0, width: self.view.frame.width - 50, height: self.view.frame.height - 200)
-//            tv.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2 + 20)
-//            return tv
-//        }()
-//
-//        view.addSubview(transparentView)
-//        self.view.sendSubviewToBack(transparentView)
-        
+        //make the background of text view white but see-through
         descriptionTextView.backgroundColor = UIColor.white.withAlphaComponent(0.4)
         
+        //create a gradient (rather than image) to use as background
         let gradient: CAGradientLayer = CAGradientLayer()
-        
+        //two stops, orange to purple
         gradient.colors = [UIColor(red: 255.0/255.0, green: 159.0/255.0, blue: 2.0/255.0, alpha: 0.5).cgColor, UIColor(red: 104.0/255.0, green: 35.0/255.0, blue: 128.0/255.0, alpha: 0.6).cgColor]
+        //from top to bottom
         gradient.locations = [0.0 , 1.0]
+        //full screen
         gradient.frame = CGRect(x: 0.0, y: 0.0, width: self.view.bounds.size.width, height: self.view.bounds.size.height)
         gradient.cornerRadius = 10.0
         view.layer.insertSublayer(gradient, at: 0)

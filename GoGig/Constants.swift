@@ -34,7 +34,7 @@ let TO_CHECK_PORTFOLIO_3 = "toCheckPortfolio3"
 let TO_REVIEW_APPLICATION = "toReviewApplication"
 
 
-// User Defaults
+//MARK: USER DEFAULTS
 
 let DEFAULTS = UserDefaults.standard
 

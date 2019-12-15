@@ -568,6 +568,7 @@ class DataService {
         //Therefore need to change the MIME type
         let metadata = StorageMetadata()
         metadata.contentType = "video/quicktime"
+        //Convert to data and upload the data to Storage
         if let videoData = NSData(contentsOf: vidContent) as Data? {
             REF_ST.child(uid).child(directory).child(imageID).putData(videoData, metadata: metadata, completion: { (metadata, error) in
                 if error != nil {
