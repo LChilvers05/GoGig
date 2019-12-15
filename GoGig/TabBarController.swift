@@ -14,7 +14,6 @@ import FirebaseDatabase
 class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
         NotificationCenter.default.addObserver(self, selector: #selector(refreshTabs), name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
     }
     override func viewWillAppear(_ animated: Bool) {

@@ -11,6 +11,7 @@ import CoreLocation
 
 class GigEvent: Comparable {
     
+    //attributes
     private var uid: String
     private var id: String
     private var title: String
@@ -28,6 +29,7 @@ class GigEvent: Comparable {
     private var eventPhotoURL: URL
     private var appliedUsers: [String: Bool]
     
+    //instantiate
     init(uid: String, id: String, title: String, timestamp: String, description: String, latitude: Double, longitude: Double, locationName: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {
         self.uid = uid
         self.id = id
@@ -47,6 +49,7 @@ class GigEvent: Comparable {
         self.appliedUsers = appliedUsers
     }
     
+    //getters and setters
     func getuid() -> String {
         return uid
     }
