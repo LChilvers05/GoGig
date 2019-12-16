@@ -19,7 +19,6 @@ class MusicLinksCAVC: UIViewController {
     @IBOutlet weak var spotifyField: MyTextField!
     let loadingSpinner = SpinnerViewController()
     
-    //var editingProfile: Bool?
     var user: User?
     
     var userData: Dictionary<String, Any>?
@@ -41,6 +40,7 @@ class MusicLinksCAVC: UIViewController {
         self.navigationController?.navigationBar.isHidden = true
         self.tabBarController?.tabBar.isHidden = true
     }
+    //auto-fill if editing
     override func viewDidAppear(_ animated: Bool) {
         if editingProfile == true && user != nil {
             appleMusicField.text = user?.getAppleMusic()
@@ -51,7 +51,7 @@ class MusicLinksCAVC: UIViewController {
     
     //MARK: STAGE 6: UPLOAD PROFILE PICTURE (If musician)
     
-    //Put the profile pic in firebase storage
+    //put the profile pic in firebase storage
     func picUpload(uid: String, handler: @escaping (_ url: URL) -> ()) {
         
         if let userPic = profileImage {
@@ -74,6 +74,7 @@ class MusicLinksCAVC: UIViewController {
     }
     
     @IBAction func continueButton(_ sender: Any) {
+        //check streaming links
         var continueFine = true
         if let userAppleMusic = appleMusicField.text {
             if (userAppleMusic.contains(".") && userAppleMusic.count > 5) || userAppleMusic == "" {
@@ -92,11 +93,12 @@ class MusicLinksCAVC: UIViewController {
             }
         }
         
+        //do same as we did for organiser
         if continueFine {
             
             createSpinnerView(self.loadingSpinner)
             if editingProfile == false {
-                //Sign the user up
+                //sign the user up
                 AuthService.instance.registerUser(withEmail: email!, andPassword: password!, userCreationComplete: { (success, error) in
                     if error != nil {
                         
@@ -105,15 +107,15 @@ class MusicLinksCAVC: UIViewController {
                         
                     } else {
                         
-                        //Successfuly registered and added to database
-                        //Now log user in
+                        //successfuly registered and added to database
+                        //now log user in
                         AuthService.instance.loginUser(withEmail: self.email!, andPassword: self.password!, loginComplete: { (success, nil) in })
                         
                         self.updateUserData()
                     }
                 })
             } else {
-                //User is editing their profile
+                //user is editing their profile
                 self.updateUserData()
             }
         }
@@ -121,7 +123,7 @@ class MusicLinksCAVC: UIViewController {
     
     func updateUserData(){
         if let uid = Auth.auth().currentUser?.uid {
-            //Upload the pic to cloud storage
+            //upload the pic to cloud storage
             self.picUpload(uid: uid) { (returnedURL) in
                 
                 self.userData!["picURL"] = returnedURL.absoluteString
@@ -134,16 +136,17 @@ class MusicLinksCAVC: UIViewController {
                         
                         self.removeSpinnerView(self.loadingSpinner)
                         
-                        //Now do a dismiss rather than a perform segue, this is because when performing a segue, we instantiate a new tab controller
+                        //now do a dismiss rather than a perform segue, this is because when performing a segue, we instantiate a new tab controller
                         if !editingProfile {
                             //creating account
                             self.performSegue(withIdentifier: TO_MAIN_2, sender: nil)
                         } else {
+                            //dismiss for editing
                             self.dismiss(animated: true)
                             editingProfile = false
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
                         }
-                        //Update FCM Token for push notifications
+                        //update FCM Token for push notifications
                         InstanceID.instanceID().instanceID { (result, error) in
                             if let error = error {
                                 print("Error fetching remote instance ID: \(error)")

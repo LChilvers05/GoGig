@@ -23,6 +23,7 @@ class UserAccountVC: UITableViewController {
     @IBOutlet weak var settingsBarButton: UIBarButtonItem!
     @IBOutlet weak var addPortfolioBarButton: UIBarButtonItem!
     
+    //keep track of user viewing someone else's portfolio or not
     var observingPortfolio = false
     var hideForLoad = true
     
@@ -35,53 +36,57 @@ class UserAccountVC: UITableViewController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(refreshPortfolio), name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
         
-        //So crash not on initial download??
+        //prevents crash if we get to this view without a logged in user
         if Auth.auth().currentUser != nil {
             refreshPortfolio()
         }
     }
+    //refresh token for push notifications
     override func viewDidAppear(_ animated: Bool) {
         refreshFCMToken()
     }
+    //had issue where audio was heard after a segue
     override func viewDidDisappear(_ animated: Bool) {
-        //playingAVPlayer?.closePlayer()
+        //close player when view dissapears
         if playingAVPlayer != nil {
             playingAVPlayer!.closePlayer()
         }
     }
     
     //MARK: FETCH DATA
-    //We will reuse this VC when we want to look at someone else's profile
-    //use did select row at to pass the user uid to this controller
+    //reuse this VC when we want to look at someone else's profile
     //if we didn't click on anything when the view appears, use the current user uid
     @objc func refreshPortfolio(){
         
-        print("portfolio refreshed")
-        
-        //User is looking at themself
-        //Gate is needed incase user signs in and signs out again
+        //user is looking at themself
+        //gate is needed incase user signs in and signs out again
         if uid == nil || accountGateOpen {
             accountGateOpen = false
-            uid = Auth.auth().currentUser?.uid //^
-        //User is looking at another
+            uid = Auth.auth().currentUser?.uid
+        //user is looking at another
         }
         
+        //when observing
         if observingPortfolio {
             //hide the settings
             navigationItem.leftBarButtonItem = nil
-            //hide the add button
+            //hide the add post button
             navigationItem.rightBarButtonItem = nil
         }
         
+        //get the profile data
         DataService.instance.getDBUserProfile(uid: uid!) { (returnedUser) in
+            //set the user who owns the portfolio
             self.user = returnedUser
+            //load profile picture (from cache or download)
             self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                 self.profilePic = returnedProfileImage
                 DataService.instance.getDBPortfolioPosts(uid: self.uid!) { (returnedPosts) in
+                    //quick sort the posts by reverse chronological
                     self.portfolioPosts = self.quickSort(array:returnedPosts)
-                    //print(self.portfolioPosts)
-                    //self.portfolioPosts = returnedPosts
+                    //show profile
                     self.hideForLoad = false
+                    //show all the data in table view
                     self.tableView.reloadData()
                 }
             }
@@ -90,7 +95,7 @@ class UserAccountVC: UITableViewController {
     
     @IBAction func settingsButton(_ sender: Any) {
         let settingsPopup = UIAlertController(title: "Settings", message: "What would you like to do?", preferredStyle: .actionSheet)
-        //Go and edit the account
+        //go and edit the account
         let editProfileAction = UIAlertAction(title: "Edit profile", style: .default) { (buttonTapped) in
             editingProfile = true
             if let tabBarController = self.tabBarController {
@@ -102,30 +107,32 @@ class UserAccountVC: UITableViewController {
                 observeGateOpen = true //Reset feed observers
                 paginationGateOpen = true //Reset activity feed pagination
                 pushNotificationGateOpen = true
-                
-                //DEFAULTS.set(nil, forKey: "gigs")
             }
             self.performSegue(withIdentifier: TO_EDIT_PROFILE, sender: nil)
         }
+        //go and log out of the account
         let logoutAction = UIAlertAction(title: "Log out", style: .destructive) { (buttonTapped) in
+            //provide a double check
             let alertController = UIAlertController(title: "Log out", message: "Are you sure you want to log out of your account?", preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
             alertController.addAction(UIAlertAction(title: "Log out", style: .destructive, handler: { (buttonPressed) in
                 do {
                     
                     if let uid = Auth.auth().currentUser?.uid {
-                        //So does not update account which is not theirs
+                        //so does not see things in account which is not theirs
                         DataService.instance.removeObservers(uid: uid)
-                        //Change the FCM token so the iPhone stops receiving notifications
+                        //change the FCM token so the iPhone stops receiving notifications
                         DataService.instance.updateDBUserFCMToken(uid: uid, token: "empty_token")
                     }
                     
+                    //sign them out and present the log in page
                     try Auth.auth().signOut()
                     let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginSignupVC") as? LoginSignupVC
                     self.present(loginVC!, animated: true, completion: nil)
                     
-                    //When the user logs out we need to return the tab bar to its original state ready for either type of user to log in
+                    //when the user logs out we need to return the tab bar to its original state ready for either type of user to log in
                     if let tabBarController = self.tabBarController {
+                        //reset tabs
                         tabBarController.viewControllers = tabs
                         tabGateOpen = true
                         accountGateOpen = true
@@ -136,7 +143,8 @@ class UserAccountVC: UITableViewController {
                         pushNotificationGateOpen = true
                         
                         self.uid = nil
-                        
+                        //set defaults back to normal
+                        //do not know what type of user will log in next
                         DEFAULTS.set(nil, forKey: "gigs")
                     }
                     
@@ -155,12 +163,12 @@ class UserAccountVC: UITableViewController {
     }
     
     //MARK: USER HEADER CELL
-    var profilePic = UIImage(named: "icons8-user") //Have a placeholder image
+    var profilePic = UIImage(named: "icons8-user") //have a placeholder image
     func updateUserData(cell: AccountHeaderCell){
-        //Set the navigation bar title
+        //set the navigation bar title to username
         self.navigationController?.navigationBar.topItem?.title = user?.name
         
-        //Set the account header cell outlets
+        //set the account header cell outlets
         cell.userBioTextView.text = user?.bio
         if user?.gigs == true {
             cell.userTypeLabel.text = "Looking to play"
@@ -172,22 +180,22 @@ class UserAccountVC: UITableViewController {
         cell.userEmailLabel.text = user?.email
         cell.userPhoneLabel.text = user?.phone
         
-        //If user hasn't got Facebook
+        //if user hasn't got Facebook
         if user?.getFacebook() == "" {
-            //Put it at the right of the horizontal stack
+            //put it at the right of the horizontal stack
             cell.socialLinkStackView.insertArrangedSubview(cell.facebookLinkButton, at: 5)
-            //Disable the button
+            //disable the button
             cell.facebookLinkButton.isEnabled = false
-            //And hide it
+            //and hide it
             cell.facebookLinkButton.alpha = 0.0
-        //Has Facebook
+        //has facebook
         } else {
-            //Enable it
+            //enable it
             cell.facebookLinkButton.isEnabled = true
-            //Show it
+            //show it
             cell.facebookLinkButton.alpha = 1.0
         }
-        //Same for Twitter etc
+        //same for Twitter etc
         if user?.getTwitter() == "" {
             cell.socialLinkStackView.insertArrangedSubview(cell.twitterLinkButton, at: 5)
             cell.twitterLinkButton.isEnabled = false
@@ -232,35 +240,38 @@ class UserAccountVC: UITableViewController {
     
     //MARK: PORTFOLIO POST CELLS
     func updatePostData(cell: AccountPostCell, row: Int) {
+        //if observing
         if uid != Auth.auth().currentUser?.uid {
+            //stop user deleting the post
             cell.postMoreButton.isHidden = true
         }
         
         //portfolioPosts[row] means the right post for that cell in the table
         cell.postLocationLabel.text = portfolioPosts[row].location
         
-        //If no caption, then hide the text view
+        //if no caption, then hide the text view
         if portfolioPosts[row].caption != "" {
             cell.postCaptionTextView.isHidden = false
             cell.postCaptionTextView.text = portfolioPosts[row].caption
         } else {
             cell.postCaptionTextView.isHidden = true
         }
-        //Add a tag to the button so we know what cell the button belongs to when it is tapped
+        //add a tag to the button so we know what cell the button belongs to when it is tapped
         cell.postMoreButton.tag = row
         
+        //load image from cache or download
         if portfolioPosts[row].isImage {
             
             cell.postContainerView.removePlayButton()
             cell.postContainerView.loadImageCache(url: portfolioPosts[row].postURL, isImage: portfolioPosts[row].isImage)
-            
+        //load video thumbnail from cache or download
         } else {
             
             cell.postContainerView.loadImageCache(url: portfolioPosts[row].thumbnailURL, isImage: portfolioPosts[row].isImage)
         }
     }
     
-    //To play a video when cell is tapped
+    //to play a video when cell is tapped
     var playingAVPlayer: PostContainerView?
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
@@ -268,10 +279,10 @@ class UserAccountVC: UITableViewController {
             
             let tappedCell = tableView.cellForRow(at: indexPath) as! AccountPostCell
             
-            //If it's a video and tapped
+            //if it's a video and tapped
             if !portfolioPosts[indexPath.section - 1].isImage {
                 
-                //Remove the thumbnail and play the video
+                //remove the thumbnail and play the video
                 
                 tappedCell.postContainerView.addVideo(url: portfolioPosts[indexPath.section - 1].postURL, fit: false)
                 
@@ -283,20 +294,23 @@ class UserAccountVC: UITableViewController {
     }
     
     //MARK: MORE (DELETION)
+    
     @IBAction func postMoreButton(_ sender: UIButton) {
-        
+        //learn cell row from the button pressed
         let row = sender.tag
-        
+        //ask user if they want to delete
         let morePopup = UIAlertController(title: "More", message: "What would you like to do with your post?", preferredStyle: .actionSheet)
         let deletePostAction = UIAlertAction(title: "Delete Post", style: .destructive) { (buttonTapped) in
             
-            //Delete the post from Database and from Storage
+            //delete the post from Database and from Storage
             DataService.instance.deleteDBPortfolioPosts(uid: self.user!.uid, postID: self.portfolioPosts[row].getid())
             DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "portfolioPost", fileID: self.portfolioPosts[row].getid())
             if !(self.portfolioPosts[row].isImage) {
                 DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "portfolioThumbnail", fileID: self.portfolioPosts[row].getid())
             }
+            //remove locally
             self.portfolioPosts.remove(at: row)
+            //reload table view to reflect the change
             self.refreshPortfolio()
         }
         let cancelPostAction = UIAlertAction(title: "Cancel", style: .cancel) { (buttonTapped) in
@@ -308,23 +322,24 @@ class UserAccountVC: UITableViewController {
         present(morePopup, animated: true, completion: nil)
     }
     
-    //Refresh the FCM Token for push notifications
+    //refresh the FCM Token for push notifications
     func refreshFCMToken() {
         if deviceFCMToken != nil && pushNotificationGateOpen == true {
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.updateDBUserFCMToken(uid: uid, token: deviceFCMToken!)
+                //so it does not update everytime this view appears
                 pushNotificationGateOpen = false
             }
         }
     }
     
     //MARK: SOCIAL LINKS
+    
     @IBAction func facebookLink(_ sender: Any) {
         let fbPageID = user?.getFacebook()
-        //Horham Baptist Church (Business account): 1837812439827573
+        
         if let appURL = URL(string: "fb://profile/\(fbPageID!)") {
             let application = UIApplication.shared
-
             if application.canOpenURL(appURL) {
                 application.open(appURL)
             } else {
@@ -332,6 +347,7 @@ class UserAccountVC: UITableViewController {
                 let webURL = URL(string: "http://www.facebook.com/\(fbPageID!)")!
                 if application.canOpenURL(webURL) {
                     application.open(webURL)
+                //something went wrong with the URL
                 } else {
                     displayError(title: "", message: "Couldn't open Facebook account")
                 }
@@ -349,7 +365,7 @@ class UserAccountVC: UITableViewController {
                 //...open in app
                 application.open(appURL)
             } else {
-                //If not installed, open in Safari browser
+                //if not installed, open in Safari browser
                 let webURL = URL(string: "https://twitter.com/\(username!)")!
                 if application.canOpenURL(webURL){
                     application.open(webURL)
@@ -368,7 +384,6 @@ class UserAccountVC: UITableViewController {
             if application.canOpenURL(appURL) {
                 application.open(appURL)
             } else {
-                // if Instagram app is not installed, open URL inside Safari
                 let webURL = URL(string: "https://instagram.com/\(username!)")!
                 if application.canOpenURL(webURL){
                     application.open(webURL)

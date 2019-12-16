@@ -48,9 +48,9 @@ class SocialLinksCAVC: UIViewController {
         self.tabBarController?.tabBar.isHidden = true
     }
     
-    //View Did Appear is only called when in a navigation controller
+    //view Did Appear is only called when in a navigation controller
     override func viewDidAppear(_ animated: Bool) {
-        //Autofill fields when editing
+        //autofill fields when editing
         if editingProfile == true && user != nil {
             websiteField.text = user?.getWebsite()
             phoneNumberField.text = user?.phone
@@ -62,18 +62,19 @@ class SocialLinksCAVC: UIViewController {
     
     //MARK: STAGE 4: UPLOAD PROFILE PICTURE (If event organiser)
     
-    //Put the profile pic in firebase storage
+    //put the profile pic in firebase storage
     func picUpload(uid: String, handler: @escaping (_ url: URL) -> ()) {
 
         if let userPic = profileImage {
-            //Upload the picture to Firebase
+            //upload the picture to Firebase
             DataService.instance.updateSTPic(uid: uid, directory: "profilePic", imageContent: userPic, imageID: imageID, uploadComplete: { (success, error) in
                 if error != nil {
+                    //allow user to interact with screen again
                     self.removeSpinnerView(self.loadingSpinner)
                     self.displayError(title: "There was an Error", message: error!.localizedDescription)
 
                 } else {
-                    //Get the URL of the stored image, to store in the database
+                    //get the URL of the stored image, to store in the database
                     DataService.instance.getSTURL(uid: uid, directory: "profilePic", imageID: self.imageID) { (returnedURL) in
 
                         handler(returnedURL)
@@ -86,11 +87,16 @@ class SocialLinksCAVC: UIViewController {
     //MARK: STAGE 5: SIGN UP IF ORGANISER, PROGRESS IF MUSICIAN
     
     @IBAction func continueButton(_ sender: Any) {
+        //all social links are optional inputs
+        //but flag if an input does not follow validation rules
         var continueFine = true
         if let userWebsite = websiteField.text {
+            //do checks
             if (userWebsite.contains(".") && userWebsite.count > 5) || userWebsite == "" {
+                //add to dictionary if okay
                 userData!["website"] = userWebsite
             } else {
+                //if not okay then cannot continue
                 displayError(title: "Oops", message: "Please enter a valid website (optional)")
                 continueFine = false
             }
@@ -104,11 +110,11 @@ class SocialLinksCAVC: UIViewController {
             }
         }
         if let userInstagramStr = instagramField.text {
-            //Make variable from constant
+            //make variable from constant
             var userInstagram = userInstagramStr
-            //Check first char
+            //check first char
             if userInstagram != "" && userInstagram.count > 1 && userInstagram[userInstagram.startIndex] == "@" {
-                //Make a substring (remove the @)
+                //make a substring (remove the @)
                 userInstagram = userInstagram.substring(start: 1, end: userInstagram.count)
             }
             if (!userInstagram.contains("@") && !userInstagram.contains(" ")) || userInstagram == "" {
@@ -119,11 +125,11 @@ class SocialLinksCAVC: UIViewController {
             }
         }
         if let userTwitterStr = twitterField.text {
-            //Make variable from constant
+            //make variable from constant
             var userTwitter = userTwitterStr
-            //Check first char
+            //check first char
             if userTwitter != "" && userTwitter.count > 1 && userTwitter[userTwitter.startIndex] == "@" {
-                //Make a substring (remove the @)
+                //make a substring (remove the @)
                 userTwitter = userTwitter.substring(start: 1, end: userTwitter.count)
             }
             if (!userTwitter.contains("@") && !userTwitter.contains(" ")) || userTwitter == "" {
@@ -141,37 +147,38 @@ class SocialLinksCAVC: UIViewController {
                 continueFine = false
             }
         }
-        
+        //if social links are okay
         if continueFine {
+            //if musician, allow them to add Spotify and Apple Music
             if userGigs! {
                 
                 self.performSegue(withIdentifier: TO_MUSIC_LINKS, sender: nil)
                 
-            //Organiser is done
+            //organiser is done
             } else {
-                
+                //stop user interaction
                 self.createSpinnerView(self.loadingSpinner)
                 if editingProfile == false {
-                    //Sign the user up
+                    //sign the user up
                     AuthService.instance.registerUser(withEmail: email!, andPassword: password!, userCreationComplete: { (success, error) in
                         if error != nil {
-                            //Disable interaction to show loading
+                            //allow user interaction again
                             self.removeSpinnerView(self.loadingSpinner)
-                            //Display a UIAlertController if something goes wrong
+                            //display a UIAlertController if something goes wrong
                             self.displayError(title: "There was an Error", message: error!.localizedDescription)
                             
                         } else {
                             
-                            //Successfuly registered and added to database
-                            //Now log user in
+                            //successfuly registered and added to database
+                            //now log user in
                             AuthService.instance.loginUser(withEmail: self.email!, andPassword: self.password!, loginComplete: { (success, nil) in })
-                            
+                            //send their profile data to Database
                             self.updateUserData()
                         }
                     })
                     
                 } else {
-                    //User is editing their profile, not creating an account
+                    //sser is editing their profile, not creating an account
                     self.updateUserData()
                 }
             }
@@ -180,11 +187,10 @@ class SocialLinksCAVC: UIViewController {
     
     func updateUserData(){
         if let uid = Auth.auth().currentUser?.uid {
-            //Upload the pic to cloud storage
+            //upload the pic to cloud storage
             self.picUpload(uid: uid) { (returnedURL) in
                 
                 self.userData!["picURL"] = returnedURL.absoluteString
-                print(self.userData!)
                 DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!) { (complete) in
                     
                     if complete {
@@ -198,10 +204,11 @@ class SocialLinksCAVC: UIViewController {
                             self.performSegue(withIdentifier: TO_MAIN, sender: nil)
                         } else {
                             self.dismiss(animated: true)
+                            //done with editing refresh the tab bar
                             editingProfile = false
                             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
                         }
-                        //Update FCM Token for push notifications
+                        //update FCM Token for push notifications
                         InstanceID.instanceID().instanceID { (result, error) in
                             if let error = error {
                                 print("Error fetching remote instance ID: \(error)")
@@ -220,10 +227,10 @@ class SocialLinksCAVC: UIViewController {
         
         if segue.identifier == TO_MUSIC_LINKS {
             
-            //Need this line to pass information between view controllers
+            //need this line to pass information between view controllers
             let musicLinksCAVC = segue.destination as! MusicLinksCAVC
             
-            //Changes it
+            //changes it
             musicLinksCAVC.userData = self.userData
             musicLinksCAVC.email = self.email
             musicLinksCAVC.password = self.password
@@ -236,6 +243,7 @@ class SocialLinksCAVC: UIViewController {
             
             let tabBarController = segue.destination as! TabBarController
             tabBarController.userGigs = self.userGigs
+            //done with editing
             editingProfile = false
             
         }

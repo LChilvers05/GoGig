@@ -26,11 +26,12 @@ class LoginSignupVC: UIViewController {
     
     var email: String?
     var password: String?
-    
+    //keep track of what state view is in
     var logInMode = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //for iOS 13
         self.modalPresentationStyle = .overFullScreen
         setupView()
         hideKeyboard()
@@ -39,7 +40,7 @@ class LoginSignupVC: UIViewController {
         confirmPasswordField.updateCharacterLimit(limit: 30)
         
         logInMode = false
-        //Initially will be Log In
+        //initially will be Log In
         logInMode = switchMode(logInMode: logInMode)
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -48,7 +49,7 @@ class LoginSignupVC: UIViewController {
     
     func switchMode(logInMode: Bool) -> Bool{
         
-        //Hide everything for Sign up
+        //hide everything for Sign up
         if logInMode == false {
             
             emailField.text = ""
@@ -59,22 +60,22 @@ class LoginSignupVC: UIViewController {
             
             confirmPasswordField.isHidden = true
             
-            //Change the images of the top and bottom login and signup buttons
+            //change the images of the top and bottom login and signup buttons
             topLSButton.setImage(UIImage(named: "loginButton"), for: .normal)
             bottomLSButton.setImage(UIImage(named: "signupButton"), for: .normal)
             
-            //Change the prompt so the user knows what the bottom button does
+            //change the prompt so the user knows what the bottom button does
             switchPrompt.text = "New to GoGig? Create an account"
             
-            //Return the new logInMode
+            //return the new logInMode
             //logInMode = true is logging in state
             return true
             
             
-        //Show everything for Sign up
+        //show everything for Sign up
         } else {
             
-            //Reset input when changing mode
+            //reset input when changing mode
             emailField.text = ""
             passwordField.text = ""
             passwordField.placeholder = "create password"
@@ -102,15 +103,13 @@ class LoginSignupVC: UIViewController {
                 //password
                 if let userPassword = passwordField.text {
                     if userPassword != "" {
-                        
-                        
-                        //user is signing up
+                        //USER IS SIGNING UP
                         if logInMode == false {
-                            //password security checks
+                            //password validation checks
                             if userPassword.count > 6 {
                                 if let confirmUserPassword = confirmPasswordField.text {
                                     if confirmUserPassword != "" && confirmUserPassword == userPassword {
-                                        
+                                        //data dictionary for Database
                                         userData = ["email": userEmail, "bio": "", "gigs": true, "name": "", "picURL": "", "website": "", "phone": "", "instagram": "", "twitter": "", "facebook": "", "appleMusic": "", "spotify": ""]
                                         
                                         self.performSegue(withIdentifier: TO_CREATE_PROFILE, sender: nil)
@@ -124,24 +123,22 @@ class LoginSignupVC: UIViewController {
                             }
                             
                         
-                        //user is logging in
+                        //USER IS LOGGING IN
                         } else {
-                            
+                            //log the user in
                             AuthService.instance.loginUser(withEmail: userEmail, andPassword: userPassword, loginComplete: {(user, error) in
                                 if error != nil {
-                                    
+                                    //if it goes wrong
                                     self.displayError(title: "Couldn't Log In", message: error!.localizedDescription)
                                     
                                 } else {
                                     
-                                    //Dismiss the LoginVC showing UserAccountVC
+                                    //dismiss the LoginVC showing UserAccountVC
                                     self.dismiss(animated: true, completion: nil)
-                                    
+                                    //call notification to refresh the tabs
                                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshTabs"), object: nil)
                                     
-                                    //Refresh the portfolio
-                                    //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "refreshPortfolio"), object: nil)
-                                    
+                                    //update the deviceFCMToken for push notifications
                                     InstanceID.instanceID().instanceID { (result, error) in
                                         if let error = error {
                                             print("Error fetching remote instance ID: \(error)")
@@ -165,19 +162,19 @@ class LoginSignupVC: UIViewController {
     }
     
     @IBAction func bottomLSButton(_ sender: Any) {
-        //When bottom button pressed, the returned Bool value is the new state of view
+        //when bottom button pressed, the returned Bool value is the new state of view
         logInMode = switchMode(logInMode: logInMode)
     }
     
-    //So prepare for CreateProfileCAVC
+    //prepare for CreateProfileCAVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == TO_CREATE_PROFILE {
             
-            //Need this line to pass information between view controllers
+            //need this line to pass information between view controllers
             let createProfileCAVC = segue.destination as! CreateProfileCAVC
             
-            //Changes it
+            //changes it
             createProfileCAVC.userData = self.userData
             createProfileCAVC.email = emailField.text
             createProfileCAVC.password = passwordField.text
