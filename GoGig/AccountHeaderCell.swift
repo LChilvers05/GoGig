@@ -23,15 +23,13 @@ class AccountHeaderCell: UITableViewCell {
     @IBOutlet weak var spotifyLinkButton: UIButton!
     @IBOutlet weak var socialLinkStackView: UIStackView!
     
-    @IBOutlet weak var signOutButton: UIButton!
-    
     override func awakeFromNib() {
-        
+        //Give the profile image a small border and make it round
         profilePicView.layer.borderWidth = 0.1
         profilePicView.layer.masksToBounds = false
         profilePicView.layer.cornerRadius = profilePicView.frame.height/2
         profilePicView.clipsToBounds = true
-        
+        //Set cell to be an opaque white colour
         self.backgroundColor = UIColor(white: 1, alpha: 0.75)
     }
 }

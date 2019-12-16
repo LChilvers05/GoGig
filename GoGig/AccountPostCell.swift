@@ -16,9 +16,9 @@ class AccountPostCell: UITableViewCell {
     @IBOutlet weak var postMoreButton: UIButton!
     
     override func awakeFromNib() {
+        //so user cannot edit the caption text view
         postCaptionTextView.isEditable = false
-        
-        layer.cornerRadius = 0
+        //slightly more opaque than the AccountHeaderCell
         self.backgroundColor = UIColor(white: 1, alpha: 0.5)
     }
     

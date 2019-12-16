@@ -14,7 +14,7 @@ class MyTextField: UITextField {
     var characterLimit: Int?
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+        //set delegate so that I can set a character limit
         self.smartInsertDeleteType = UITextSmartInsertDeleteType.no
         self.delegate = textFieldDelegate
         
@@ -32,17 +32,19 @@ class MyTextField: UITextField {
         backgroundColor = UIColor.white.withAlphaComponent(0.7)
         font = .systemFont(ofSize: 15)
     }
-    
+    //set a character limit
     func updateCharacterLimit(limit: Int) {
         textFieldDelegate.characterLimit = limit
     }
 }
-//To allow access to the editing delegate methods
+//to allow access to the editing delegate methods
 class TextFieldDelegate: NSObject, UITextFieldDelegate {
     
+    //default character limit (if not specified)
     var characterLimit = 100
     
-    //Put a limit on the number of characters allowed to be entered in the textField
+    //put a limit on the number of characters allowed to be entered in the textField
+    //called: when characters are being changed
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         guard let textFieldText = textField.text,
             let rangeOfTextToReplace = Range(range, in: textFieldText) else {
@@ -50,7 +52,7 @@ class TextFieldDelegate: NSObject, UITextFieldDelegate {
         }
         let substringToReplace = textFieldText[rangeOfTextToReplace]
         let count = textFieldText.count - substringToReplace.count + string.count
-        
+        //return if true (false means cannot edit anymore)
         return count <= characterLimit
     }
     

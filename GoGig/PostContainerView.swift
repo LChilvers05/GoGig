@@ -19,42 +19,41 @@ class PostContainerView: UIView {
     private var avPlayer: AVPlayer!
     private var avPlayerLayer: AVPlayerLayer!
     
+    //play button for videos (setup in a closure)
     let playButton: UIImageView = {
         let pb = UIImageView(image: UIImage(named: "playButton"))
-        //pb.frame = CGRect(x: 0, y: 0, width: 25, height: 25)
         pb.translatesAutoresizingMaskIntoConstraints = false
         return pb
     }()
     
     override func awakeFromNib() {
-        
+        //default dimensions
         dimensionHeight = self.frame.size.height
         dimensionWidth = self.frame.size.width
         
         imageView = UIImageView()
-        
+        //give a shadow, border and rounded edges
         layer.borderColor = #colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)
         layer.shadowColor = #colorLiteral(red: 0.6000000238, green: 0.6000000238, blue: 0.6000000238, alpha: 1)
         layer.shadowRadius = 10
         layer.shadowOpacity = 0.5
         layer.cornerRadius = 30
-        
-        //self.backgroundColor = #colorLiteral(red: 0.9652684959, green: 0.9729685758, blue: 1, alpha: 1)
+        //make the UIView clear
         self.backgroundColor = UIColor.clear
         
     }
     
     func clearView(fit: Bool){
-        //Clear the container view if there is anything
-        //If there is a video, close it
+        //clear the container view if there is anything
+        //if there is a video, close it
         if avPlayer != nil {
             closePlayer()
         }
-        //If there's an image remove it
+        //if there is an image remove it
         if self.subviews.count > 0 {
             imageView.removeFromSuperview()
         }
-        
+        //if choosing to fit, return to default dimensions
         if fit {
             self.frame.size.height = dimensionHeight
             self.frame.size.width = dimensionWidth
@@ -63,10 +62,11 @@ class PostContainerView: UIView {
     
     func addPhoto(imageContent: UIImage, fit: Bool){
         
-        //Clear the container view if there is anything
+        //clear the container view if there is anything
         clearView(fit: fit)
         
-        //fit ready for posting
+        //fit = true means UIView decides dimensions of post
+        //fit = false means post decides dimensions of UIView
         if fit {
             imageView.frame.size.height = dimensionHeight
             imageView.frame.size.width = dimensionWidth
@@ -80,19 +80,20 @@ class PostContainerView: UIView {
             layer.cornerRadius = 0
         
         }
-        
+        //hide until sizing is right
         imageView.isHidden = true
     
-        //Get ratio of how much to shrink the image by by using the width of the UIView
+        //get ratio of how much to shrink the image by by using the width of the UIView
         //(width is set using constraints)
-        //We haven't set a height, because that's what we're changing
+        //height is not set, because that is what is changing
         let ratio = self.frame.size.width / imageView.frame.size.width
-        //Change the height of the UIView by setting it to the new height of the imageView
+        //change the height of the UIView by setting it to the new height of the imageView
         self.frame.size.height = imageView.frame.size.height * ratio
         
         //fill the UIView with the imageView
         imageView.frame = self.bounds
         
+        //add image to view and show it
         self.addSubview(imageView)
         imageView.isHidden = false
         
@@ -100,23 +101,21 @@ class PostContainerView: UIView {
     
     func addVideo(url: URL, fit: Bool){
         
+        //clear
         clearView(fit: fit)
-        
+        //add a video player
         avPlayer = AVPlayer(playerItem: AVPlayerItem(url: url))
         avPlayerLayer = AVPlayerLayer(player: avPlayer)
-        
-        //May not work for video may cause crash??
-        //        let ratio = self.frame.size.width / avPlayerLayer.frame.size.width
-        //        self.frame.size.height = avPlayerLayer.frame.size.height * ratio
-        
+        //fill the UIView with the video player
         avPlayerLayer.frame = self.bounds
-        
+        //add it
         self.layer.insertSublayer(avPlayerLayer, at: 0)
-        
+        //show the play button
         playButton.isHidden = true
     }
     
     func addPlayButton(){
+        //add the playbutton in the middle of the UIView
         playButton.isHidden = false
         self.addSubview(playButton)
         NSLayoutConstraint.activate([
@@ -126,6 +125,7 @@ class PostContainerView: UIView {
             playButton.heightAnchor.constraint(equalToConstant: 60)
         ])
     }
+    
     func removePlayButton(){
         playButton.removeFromSuperview()
     }
@@ -133,33 +133,33 @@ class PostContainerView: UIView {
     func playPlayer(){
         avPlayer.play()
     }
-    
+    //remove the video player
     func closePlayer(){
         avPlayer.pause()
         avPlayer = nil
         avPlayerLayer.removeFromSuperlayer()
     }
     
-    //Load images from NSCache
+    //load images from NSCache
     var imageUrlString: NSString?
     func loadImageCache(url: URL, isImage: Bool) {
-        
+        //url as a string
         let urlString = url.absoluteString as NSString
         imageUrlString = urlString
-        
+        //check for a chached image
         if let cachedImage = imageCache.object(forKey: urlString) {
+            //if there is one, add it to UIView
             self.addPhoto(imageContent: cachedImage, fit: false)
-            
+            //if post is a video, add a playbutton too
             if !isImage {
                 self.addPlayButton()
             }
-            
+        //not cached, need to download
         } else {
             
             //to avoid flashing of images
-            //self.addPhoto(imageContent: UIImage(named: "blankSpace")!, fit: false)
             self.clearView(fit: false)
-            
+            //download task
             let task = URLSession.shared.dataTask(with: url) { data, response, error in
                 if let error = error {
                     print(error.localizedDescription)
@@ -176,7 +176,7 @@ class PostContainerView: UIView {
                             if !isImage {
                                 self.addPlayButton()
                             }
-                            
+                            //add it to cache once downloaded
                             imageCache.setObject(downloadedImage, forKey: urlString)
                         }
                     }

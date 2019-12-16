@@ -16,11 +16,12 @@ class ActivityFeedCell: UITableViewCell {
     @IBOutlet weak var deleteNotificationButton: UIButton!
     
     override func awakeFromNib() {
-        
+        //make the notification image a circle with a small border
         notificationImage.layer.borderWidth = 0.1
         notificationImage.layer.masksToBounds = false
         notificationImage.layer.cornerRadius = notificationImage.frame.height/2
         notificationImage.clipsToBounds = true
+        //cell itself is slightly opaque
         self.backgroundColor = UIColor(white: 1, alpha: 0.75)
     }
     
