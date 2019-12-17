@@ -10,17 +10,15 @@ import UIKit
 import FirebaseAuth
 import FirebaseDatabase
 
-//NEED TO FIX BUG WHERE USER CAN OBSERVE PORTFOLIO BY CLICKING ON DATE IN THE 'MY EVENTS' SECTION
-
 class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UITableViewDelegate, UITableViewDataSource, UITabBarControllerDelegate {
     
     @IBOutlet weak var editBarButton: UIBarButtonItem!
     @IBOutlet weak var collectionView: UICollectionView!
     
-    var selectedCVCell: Int = 0 //Initially Notifications
+    var selectedCVCell: Int = 0 //initially show notifications
     var storedOffsets = [Int: CGFloat]()
     
-    //Instantiation of menubar in a closure
+    //instantiation of menubar in a closure
     lazy var menuBar: MenuBar = {
         let mb = MenuBar()
         mb.translatesAutoresizingMaskIntoConstraints = false
@@ -29,9 +27,11 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     }()
     
     private func setupMenuBar() {
+        //dont show the scroll bar for horizontal scroll
         collectionView.showsHorizontalScrollIndicator = false
+        //so scroll will stop on either cell and not sit halfway between them
         collectionView.isPagingEnabled = true
-        
+        //constrain the menuBar to the top of the collectionview
         view.addSubview(menuBar)
         menuBar.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         menuBar.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -50,7 +50,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         setupMenuBar()
         feedGateOpen = false
         refreshActivityFeed()
-        
+        //to refresh activity in other classes
         NotificationCenter.default.addObserver(self, selector: #selector(refreshAll), name: NSNotification.Name(rawValue: "refreshAllActivity"), object: nil)
         
     }
@@ -58,12 +58,14 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         navigationController?.navigationBar.topItem?.title = "Activity"
     }
     override func viewDidAppear(_ animated: Bool) {
+        //so multiple observers aren't opened when view appears
         if observeGateOpen {
             observeGateOpen = false
             observeActivityNotifications()
         }
+        //so feed doesn't refresh everytime view appears
         if feedGateOpen {
-            //Need to remove all on sign in otherwise it doesn't refresh
+            //need to remove all on sign in otherwise it doesn't refresh
             //what has been 'observed' since view did load
             activityNotifications.removeAll()
             usersEvents.removeAll()
@@ -73,42 +75,46 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     @objc func refreshAll() {
-        print("=====================================")
-        print("Refreshed the activity after the edit")
+        //will be called after editing an event
+        //clear everything
         activityNotifications.removeAll()
         usersEvents.removeAll()
         eventIDs.removeAll()
+        //reload the collectionview
         self.collectionView.reloadData()
+        //and refresh it again
         refreshActivityFeed()
     }
     
     //MARK: FETCH DATA
     func refreshActivityFeed() {
+        //get the current user profile
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
                 
-                //Get the Activity Notifications
+                //get the Activity Notifications
                 self.fetchingMore = true
                 DataService.instance.getDBActivityFeed(uid: uid, currentActivity: self.activityNotifications) { (returnedActivityNotifications) in
                     self.activityNotifications = returnedActivityNotifications
+                    //keep track of how many new ones were added (pagination)
                     print("Got back \(self.activityNotifications.count)")
-                    
+                    //no more new notifications
                     self.endReached = (returnedActivityNotifications.count == 0)
+                    //stop fetching more
                     self.fetchingMore = false
-                    
+                    //reload the tables
                     self.collectionView.reloadData()
-                    
                 }
                     
-                //Get and Observe the User Event Recordings
+                //get and observe the events associate to that user
                 eventsHandle = DataService.instance.REF_USERS.child(uid).child("events").observe(.value) { (snapshot) in
                     DataService.instance.getDBUserEvents(uid: uid) { (returnedEventIDs) in
                         var eventListings = [GigEvent]()
-                        //One was getting appended, the other was getting inserted at 0.  Deleting didn't delete the correct gigEvent
+                        //one was getting appended, the other was getting inserted at 0.  deleting didn't delete the correct gigEvent
                         self.eventIDs = returnedEventIDs.reversed()
-                        //Iterate through the list of eventIDs associated to user, get each one from public events
-                        //And insert at 0 of local array
+                        //iterate through the list of eventIDs associated to user, get each one from public events
+                        //and insert at 0 of local array
                         for eventID in returnedEventIDs {
                             DataService.instance.getDBSingleEvent(uid: uid, eventID: eventID) { (returnedGigEvent, success)  in
                                 if success {
@@ -117,9 +123,9 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
                                     self.collectionView.reloadData()
                                     self.attemptReload()
                                 
-                                    //Couldn't get GigEvent
+                                //couldn't get GigEvent (been deleted)
                                 } else {
-                                    //User (should be musician) has an eventID listed which the organiser has already deleted the event, clean up the DB
+                                    //user (should be musician) has an eventID listed which the organiser has already deleted, clean up the DB
                                     if let index = self.eventIDs.firstIndex(of: eventID) {
                                         self.eventIDs.remove(at: index)
                                         DataService.instance.deleteDBUserEvents(uid: uid, eventIDs: self.eventIDs)
@@ -134,13 +140,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //Needed so that the user profile pictures don't flash and display the wrong image
+    //needed so that the user profile pictures don't flash and display the wrong image
     var timer: Timer?
     func attemptReload() {
-        //Stop the timer
+        //stop the timer
         self.timer?.invalidate()
-        //Reload the collection view and all its data 0.1 seconds after timer has started
-        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleReload), userInfo: nil, repeats: false) //Doesn't repeat
+        //reload the collection view and all its data 0.1 seconds after timer has started
+        self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(handleReload), userInfo: nil, repeats: false) //doesn't repeat
     }
     @objc func handleReload(){
         self.collectionView.reloadData()
@@ -148,28 +154,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: FETCH MORE DATA
     //(Pagination)
-    
     var fetchingMore = false
-    //If reached the end, don't bother fetching anymore posts
+    //if reached the end, don't bother fetching anymore posts
     var endReached = false
-    //Start loading notifications 1 cell in advance
+    //start loading notifications 1 cell in advance
     var leadingScreensForBatching: CGFloat = 1.0
     
     func getMoreNotifications(){
         fetchingMore = true
         
-        print(self.activityNotifications.count)
-        
         DataService.instance.getDBActivityFeed(uid: user!.uid, currentActivity: activityNotifications) { (returnedActivityNotifications) in
-            //We are appending the contents of the array, not the array itself
+            //we are appending the contents of the array, not the array itself
             self.activityNotifications.append(contentsOf: returnedActivityNotifications)
             
-            //If no more notifications, we have reached the end
+            //if no more notifications, we have reached the end
             self.endReached = (returnedActivityNotifications.count == 0)
             self.fetchingMore = false
             self.collectionView.reloadData()
-            
-            print(self.activityNotifications.count)
         }
     }
     
@@ -177,11 +178,13 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     func observeActivityNotifications(){
         if let uid = Auth.auth().currentUser?.uid {
-            //Observe Activity Notfications
+            //observe Activity Notfications
             DataService.instance.observeDBActivityFeed(uid: uid) { (returnedActivityNotification) in
+                //double check it is a new notification
                 if self.activityNotifications.contains(returnedActivityNotification) == false {
                     self.activityNotifications.insert(returnedActivityNotification, at: 0)
                 }
+                //reload to show new notification
                 self.collectionView.reloadData()
             }
         }
@@ -190,24 +193,23 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL
     
     func updateNotificationData(cell: ActivityFeedCell, row: Int) {
-        //Bug of cell repeat
+        //bug of cell repeat
         cell.notificationImage.alpha = 1
         cell.eventNameButton.isEnabled = true
         cell.eventNameButton.alpha = 1
         cell.notificationDescriptionLabel.alpha = 1
-        
-        //cell.notificationImage.isHidden = false
+        //set all the notification data in the cell
         cell.eventNameButton.setTitle(activityNotifications[row].getSenderName(), for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         cell.eventNameButton.tag = row
         cell.deleteNotificationButton.tag = row
         cell.notificationDescriptionLabel.text = activityNotifications[row].getNotificationDescription()
-        
+        //try load the image from cache
         loadImageCache(url: activityNotifications[row].getNotificationPicURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = nil
             cell.notificationImage.image = returnedImage
         }
-        
+        //if user clicked edit, show the 'minus' delete buttons
         if editingNotifications {
             cell.deleteNotificationButton.isHidden = false
         } else {
@@ -218,12 +220,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: EVENT CELL
     
     func updateEventListingData(cell: ActivityFeedCell, row: Int) {
-        //Bug of cell repeat
+        //bug of cell repeat
         cell.notificationImage.alpha = 1
         cell.eventNameButton.isEnabled = true
         cell.eventNameButton.alpha = 1
         cell.notificationDescriptionLabel.alpha = 1
-        
+        //set all the event listing data in the cell
         cell.notificationImage.isHidden = false
         cell.eventNameButton.setTitle("\(usersEvents[row].getMonthYearDate())-\(usersEvents[row].getDayDate())", for: .normal)
         cell.eventNameButton.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
@@ -233,16 +235,18 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         loadImageCache(url: usersEvents[row].getEventPhotoURL(), isImage: true) { (returnedImage) in
             cell.notificationImage.image = returnedImage
         }
-        
+        //only show delete if editing
         if editingNotifications {
             cell.deleteNotificationButton.isHidden = false
         } else {
             cell.deleteNotificationButton.isHidden = true
         }
         
-        //If old event change the UI
+        //if old event change the UI
         if checkOld(gigEventToCompare: usersEvents[row]) == true {
+            //faded - set alpha to 0.3
             cell.notificationImage.alpha = 0.3
+            //cannot iteract with the date button
             cell.eventNameButton.isEnabled = false
             cell.eventNameButton.alpha = 0.3
             cell.notificationDescriptionLabel.alpha = 0.3
@@ -252,30 +256,31 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     //MARK: NOTIFICATION CELL ACTIONS
     var checkUid: String?
     @IBAction func checkOut(_ sender: UIButton) {
-        //Get the row of the cell with a tag
+        //get the row of the cell with a tag from button
         let row = sender.tag
-        //Notifications Section
+        //notifications section
         if selectedCVCell == 0 {
             //and get the uid of user that sent the notification
             checkUid = activityNotifications[row].getSenderUid()
             //perform segue to observe portfolio refreshed with this uid
             performSegue(withIdentifier: TO_CHECK_PORTFOLIO, sender: nil)
         
-        //My Events Section
+        //'My Events' section
         } else {
-            //Get the GigEvent object
+            //get the GigEvent object
             let calendarEvent = usersEvents[row]
-            //Use it to add an event to the calendar
+            //use it to add an event to the calendar
             addEventToCalendar(title: calendarEvent.getTitle(), description: calendarEvent.getDescription(), startDate: calendarEvent.getDate().addingTimeInterval(-3600), endDate: calendarEvent.getDate())
-            //Notifiy the user that it has been added
+            //notifiy the user that it has been added
             displayError(title: "Added to Calendar", message: "This event was added to your device calendar")
         }
     }
     
     //MARK: COMPARE TIME AND DATE
     
+    //to decide if event listing should be faded or not
     func checkOld(gigEventToCompare: GigEvent) -> Bool {
-        //Get current date...
+        //get current date
         let dateObject = Date()
         let currentDate = dateObject.addingTimeInterval(3600) //hour behind
         
@@ -288,8 +293,10 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: DELETE EVENTS
     
+    //user chossing to delete table cells
     var editingNotifications = false
     @IBAction func editBarButtonItem(_ sender: Any) {
+        //change UI so user knows what is going on
         if editingNotifications {
             editingNotifications = false
             editBarButton.title = "Edit"
@@ -303,35 +310,35 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     @IBAction func deleteNotification(_ sender: UIButton) {
         let row = sender.tag
-        //Delete a notification
+        //delete a notification
         if selectedCVCell == 0 {
             DataService.instance.deleteDBActivityFeed(uid: user!.uid, notificationID: activityNotifications[row].getId())
             activityNotifications.remove(at: row)
             collectionView.reloadData()
-        //Delete an Event Listing
+        //delete an Event Listing
         } else {
-            //Provide a warning message
+            //provide a warning message
             var title = ""
             var message = ""
-            //Warn the musician
+            //warn the musician
             if user!.gigs {
                 title = "Forget the Gig"
                 message = "You will have no association with this event"
-            //Warn the organiser
+            //warn the organiser
             } else {
                 title = "Delete your Event"
                 message = "It will no longer exist to all users"
             }
-            //Add the UIAlerts
+            //add the UIAlerts
             let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
             alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel))
             alertController.addAction(UIAlertAction(title: "Delete", style: .destructive, handler: { (buttonPressed) in
-                //If organiser, delete the event object and the picture in Storage
+                //if organiser, delete the event object and the picture in Storage
                 if self.user!.gigs == false {
                     DataService.instance.deleteDBEvents(uid: self.user!.uid, eventID: self.eventIDs[row])
                     DataService.instance.deleteSTFile(uid: self.user!.uid, directory: "events", fileID: self.eventIDs[row])
                 }
-                //For everyone remove it from event listings under user in database
+                //for everyone remove it from event listings under user in Database
                 self.eventIDs.remove(at: row)
                 self.usersEvents.remove(at: row)
                 DataService.instance.deleteDBUserEvents(uid: self.user!.uid, eventIDs: self.eventIDs)
@@ -341,7 +348,7 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
         }
     }
     
-    //Pressed the tab, scroll to the top of the table view
+    //pressed the tab, scroll to the top of the table view
     func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
          let tabBarIndex = tabBarController.selectedIndex
          if tabBarIndex == 2 {
@@ -378,10 +385,12 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
     
     //MARK: SEGUES
     
+    //to keep track of what object belongs to the tapped cell
     var selectedApplication: ActivityNotification?
     var selectedListing: GigEvent?
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
+        //set up destination ready to observe portfolio
         if segue.identifier == TO_CHECK_PORTFOLIO {
             
             let userAccountVC = segue.destination as! UserAccountVC
@@ -394,7 +403,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             userAccountVC.uid = checkUid!
             userAccountVC.observingPortfolio = true
             userAccountVC.refreshPortfolio()
-            
+        
+        //setup destination ready to respond to application
         } else if segue.identifier == TO_REVIEW_APPLICATION {
             
             let reviewApplicationVC = segue.destination as! ReviewApplicationVC
@@ -402,7 +412,8 @@ class ActivityFeedVC: UIViewController, UICollectionViewDelegate, UICollectionVi
             reviewApplicationVC.uid = checkUid!
             reviewApplicationVC.application = selectedApplication
             reviewApplicationVC.refresh()
-            
+        
+        //setup destination ready to look at the GigEvent object in more detail
         } else if segue.identifier == TO_EVENT_DESCRIPTION_2 {
             
             let backItem = UIBarButtonItem()

@@ -32,23 +32,23 @@ class ReviewApplicationVC: UIViewController {
     
     func refresh() {
         if let currentUserUid = Auth.auth().currentUser?.uid {
-            //Get the current user
+            //get the current user
             DataService.instance.getDBUserProfile(uid: currentUserUid) { (returnedCurrentUser) in
                 self.currentUser = returnedCurrentUser
-                //Get the musician that applied
+                //get the musician that applied
                 DataService.instance.getDBUserProfile(uid: self.uid!) { (returnedUser) in
                     self.user = returnedUser
-                    //Change outlets
+                    //change outlets
                     self.nameLabel.text = returnedUser.name
                     self.nameButton.setTitle("Check out \(returnedUser.name)", for: .normal)
-                    //Load the image
+                    //load the image
                     self.loadImageCache(url: returnedUser.picURL, isImage: true) { (returnedProfileImage) in
                         self.profileImageView.image = returnedProfileImage
-                        //Get the gig object
+                        //get the gig object
                         DataService.instance.getDBSingleEvent(uid: returnedCurrentUser.uid, eventID: self.application!.getRelatedEventId()) { (returnedGigEvent, sucess) in
                             
                             self.relatedEvent = returnedGigEvent
-                            //Update the UI
+                            //update the UI
                             self.eventLabel.text = "Wants to play for \(returnedGigEvent.getTitle())"
                         }
                     }
@@ -57,23 +57,22 @@ class ReviewApplicationVC: UIViewController {
         }
     }
     
+    //back
     @IBAction func popView(_ sender: Any) {
         self.navigationController?.popToRootViewController(animated: true)
     }
-    
+    //look at musician's portfolio
     @IBAction func checkUid(_ sender: Any) {
         performSegue(withIdentifier: TO_CHECK_PORTFOLIO_2, sender: nil)
     }
     
     @IBAction func rejectUser(_ sender: Any) {
         updateActivity(accepted: false)
-        //Don't delete the notification on rejection because user may change their mind
+        //don't delete the notification on rejection because user may change their mind
     }
     @IBAction func acceptUser(_ sender: Any) {
         updateActivity(accepted: true)
-        //Need to delete the notification so that you cannot accept the user again and again
-        //MAY NEED TO OBSERVE THE DELETION SO THAT IT REMOVES THE ROW
-        
+        //need to delete the notification so that you cannot accept the user again and again
         DataService.instance.deleteDBActivityFeed(uid: currentUser!.uid, notificationID: application!.getId())
         
         //The user has been accepted, so add that to their 'My Events List'
@@ -81,10 +80,10 @@ class ReviewApplicationVC: UIViewController {
     }
     
     func updateActivity(accepted: Bool) {
-        //This line stops the button being pressed twice sending two activity updates
+        //this line stops the button being pressed twice sending two activity updates
         self.view.isUserInteractionEnabled = false
         
-        //Set all the data for the notification
+        //set all the data for the notification
         let notificationID = NSUUID().uuidString
         guard let senderUid = currentUser?.uid else { return }
         guard let recieverUid = uid else { return }
@@ -93,12 +92,12 @@ class ReviewApplicationVC: UIViewController {
         guard let relatedEventTitle = relatedEvent?.getTitle() else { return }
         guard let relatedEventID = relatedEvent?.getid() else { return }
         
-        //We need to grab the event as well
+        //grab the event as well
         var notificationDescription: String?
         if accepted {
             notificationDescription = "hired you for the event: \(relatedEventTitle)"
             
-            //Send a push notification to other user
+            //send a push notification musician
             DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
                 DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "You got the gig!", body: "\(senderName) hired you for the event: \(relatedEventTitle)")
             }
@@ -108,10 +107,10 @@ class ReviewApplicationVC: UIViewController {
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "relatedEventID": relatedEventID, "type": "reply", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription!, "timestamp": timestamp]
 
-        //Notify Other User
+        //notify musician
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!) { (complete) in
             if complete && accepted {
-                //Notify Current User about their action (sender is themself to recieve themself)
+                //notify Current User about their action (sender is themself to recieve themself)
                 self.notificationData!["senderName"] = "You"
                 self.notificationData!["reciever"] = senderUid
                 self.notificationData!["type"] = "personal"
@@ -122,12 +121,14 @@ class ReviewApplicationVC: UIViewController {
                 }
             }
         }
+        //allow interaction again
         self.view.isUserInteractionEnabled = true
+        //go back to activty feed
         self.navigationController?.popToRootViewController(animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //setup destination ready to observe musician's portfolio
         if segue.identifier == TO_CHECK_PORTFOLIO_2 {
             
             let userAccountVC = segue.destination as! UserAccountVC
