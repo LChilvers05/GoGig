@@ -60,7 +60,7 @@ class ActivityNotification: Comparable {
         return time
     }
     
-    //Quicksort to most recent notification first
+    //quicksort to most recent notification first (based from timestamp)
     static func < (lhs: ActivityNotification, rhs: ActivityNotification) -> Bool {
         //inverse so that quick sort of feed shows most recent first
         return rhs.getTime().compare(lhs.getTime() as Date) == .orderedAscending

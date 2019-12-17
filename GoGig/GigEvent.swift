@@ -160,7 +160,7 @@ class GigEvent: Comparable {
         return gigEventLocation
     }
     
-    //Quicksort based on location - nearest is first
+    //quicksort based on location - nearest is first
     static func < (lhs: GigEvent, rhs: GigEvent) -> Bool {
 
         return lhs.getDistance() < rhs.getDistance()

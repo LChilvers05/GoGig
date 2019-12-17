@@ -195,7 +195,7 @@ extension UserAccountVC {
 
 extension PortfolioPostVC {
     func setupView() {
-        //make the navigation bar white with a opaque white colour
+        //make the navigation bar white with set opacity and white colour
         navigationController?.navigationBar.barTintColor = UIColor.white.withAlphaComponent(0.90)
         let background = UIImage(named: "Background5")
         var imageView : UIImageView!
@@ -256,9 +256,9 @@ extension TitleDateCGVC {
             self.navigationController?.navigationBar.standardAppearance = navBarAppearance
             self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
         }
-        //Hide the default back button
+        //hide the default back button
         self.navigationItem.hidesBackButton = true
-        //Make our own back button
+        //make our own back button
         let backItem = UIBarButtonItem()
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
@@ -274,7 +274,7 @@ extension TitleDateCGVC {
         imageView.center = view.center
         imageView.alpha = 0.4
         
-        //make the datepicker opaque
+        //set opacity of datepicker
         datePicker.backgroundColor = UIColor.white.withAlphaComponent(0.3)
         //give it a shadow
         datePicker.layer.shadowColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)

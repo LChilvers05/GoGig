@@ -40,6 +40,7 @@ class PortfolioPost: Comparable {
         return time
     }
     
+    //quicksort based on timestamp
     static func < (lhs: PortfolioPost, rhs: PortfolioPost) -> Bool {
         //inverse so that quick sort of feed shows most recent first
         return rhs.getTime().compare(lhs.getTime() as Date) == .orderedAscending
