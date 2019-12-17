@@ -34,19 +34,18 @@ Things to think about:
         setupView()
         hideKeyboard()
         
-        //Setup placeholder of the description text view
+        //setup placeholder of the description text view
         descriptionTextView.updatePlaceholder(placeholder: placeholder)
         descriptionTextView.text = placeholder
         descriptionTextView.textColor = UIColor.lightGray
-        
+        //set restrictions on contact inputs
         nameTextField.updateCharacterLimit(limit: 50)
         emailTextField.updateCharacterLimit(limit: 62)
         phoneTextField.updateCharacterLimit(limit: 16)
         
-        //Auto-filled
+        //auto-filled
         nameTextField.text = user?.name
         emailTextField.text = user?.email
-        //Add later on
         phoneTextField.text = user?.phone
     }
     override func viewDidAppear(_ animated: Bool) {
@@ -57,12 +56,11 @@ Things to think about:
         }
     }
     
-    //Separate method because this is an optional method of contact
+    //separate function because this is an optional method of contact
     func checkPhoneField() {
-        //Less checks needed as number pad keyboard is used
+        //less checks needed as number pad keyboard is used
         if let phone = phoneTextField.text {
             if phone.count > 7 {
-                
                 eventData!["phone"] = phone
             }
         }
@@ -74,9 +72,11 @@ Things to think about:
             if let name = nameTextField.text {
                 if let email = emailTextField.text {
                     if let phone = phoneTextField.text {
+                        //validation checks
                         if name != "" {
                             if description.count > 10 && !(description.contains("Write a description... |")) {
                                 
+                                //add to inputs to dictionary
                                 eventData!["name"] = name
                                 eventData!["description"] = description
                                 
@@ -90,7 +90,7 @@ Things to think about:
                                     
                                     performSegue(withIdentifier: TO_ADD_PHOTO, sender: nil)
                                     
-                                    //Just Add Phone
+                                //just add phone
                                 } else if phone.count >= 7 {
                                     
                                     eventData!["phone"] = phone

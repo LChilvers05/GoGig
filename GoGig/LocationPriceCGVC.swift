@@ -9,8 +9,7 @@
 import UIKit
 import CoreLocation
 
-//TODO: AFTER CAMP, ADD LOCATION SERVICES TO SORT GIGS WHEN PRESENTED TO THE MUSICIAN
-
+//is subclass of AutoComplete to inherit function to present Google Places view
 class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     
     @IBOutlet weak var confirmationImageView: UIImageView!
@@ -18,7 +17,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     @IBOutlet weak var postcodeField: MyTextField!
     @IBOutlet weak var paymentField: MyTextField!
     
-    //Editing
+    //editing
     var editingGate = true
     var gigEvent: GigEvent?
     
@@ -26,7 +25,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     var eventData: Dictionary<String, Any>?
     let locationManager: CLLocationManager = {
         let lm = CLLocationManager()
-        //To nearest hundred metres, to save battery
+        //to nearest hundred metres to save battery
         lm.desiredAccuracy = kCLLocationAccuracyHundredMeters
         lm.requestWhenInUseAuthorization()
         return lm
@@ -36,6 +35,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
         super.viewDidLoad()
         setupView()
         hideKeyboard()
+        //input restrictions
         postcodeField.updateCharacterLimit(limit: 8)
         locationNameField.updateCharacterLimit(limit: 64)
     }
@@ -44,14 +44,14 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     override func viewDidAppear(_ animated: Bool) {
-        //If editing
+        //if editing
         if editingGate && editingGigEvent && gigEvent != nil {
-            //If the user chose to use the location services
+            //if the user chose to use the location services
             if !(gigEvent?.getLongitude() == 0.00 && gigEvent?.getLatitude() == 0.00) {
-                //Continue to use them
+                //continue to use them
                 useCurrentLocation(true)
             }
-            //Auto fill from the object attributes
+            //auto fill from the GigEvent object
             locationNameField.text = gigEvent?.getLocationName()
             postcodeField.text = gigEvent?.getPostcode()
             paymentField.text = String(gigEvent!.getPayment())
@@ -63,21 +63,23 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     //MARK: GET LOCATION
     var currentLocationOn = false
     @IBAction func useCurrentLocation(_ sender: Any) {
-        //Start updating location
+        //start updating location
         if currentLocationOn == false  {
             currentLocationOn = true
             locationManager.delegate = self
             locationManager.startUpdatingLocation()
+            //show it's being used
             confirmationImageView.alpha = 1.0
             confirmationImageView.isHidden = false
-        //Stop updating the location
+        //stop updating the location
         } else {
             currentLocationOn = false
             locationManager.stopUpdatingLocation()
-            //Set coordinates back to zero if they
-            //don't want to user location
+            //set coordinates back to zero if they
+            //don't want to use location
             eventLatitude = 0.00
             eventLongitude = 0.00
+            //show it's not being used
             confirmationImageView.alpha = 0.3
         }
     }
@@ -85,16 +87,18 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
     var eventLatitude =  0.00
     var eventLongitude = 0.00
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //Grab the most up to date coordinates
+        //grab the most up to date coordinates (first in array)
         let userLocation: CLLocation = locations[0]
         eventLatitude = userLocation.coordinate.latitude
         eventLongitude = userLocation.coordinate.longitude
     }
     
+    //info about user location usage
     @IBAction func locationInfoButton(_ sender: Any) {
         displayError(title: "Using Current Location", message: "will make your event appear first to applicants nearby")
     }
     
+    //search and return location String with Google Places API
     @IBAction func searchLocationName(_ sender: Any) {
         presentAutocompleteVC()
         locationNameField.text = locationResult
@@ -105,11 +109,12 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
         if let locationName = locationNameField.text {
             if let postcode = postcodeField.text {
                 if let strPayment = paymentField.text {
-                    
+                    //validation
                     if locationName.count > 2 {
                         if (postcode.count == 7 || postcode.count == 8) {
+                            //check payment can be made into a Double data type
                             if let payment = Double(strPayment) {
-                                
+                                //add inputs to dictionary
                                 self.eventData!["latitude"] = eventLatitude
                                 self.eventData!["longitude"] = eventLongitude
                                 self.eventData!["locationName"] = locationName
@@ -119,7 +124,7 @@ class LocationPriceCGVC: AutoComplete, CLLocationManagerDelegate {
                                 performSegue(withIdentifier: TO_INFO_CONTACT, sender: nil)
                                 
                             } else {
-                                
+                                //cannot be converted to Double
                                 displayError(title: "Payment", message: "Please enter the chosen amount in a suitable format")
                             }
                             

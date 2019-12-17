@@ -35,44 +35,46 @@ class TitleDateCGVC: UIViewController {
         
         eventTitleField.updateCharacterLimit(limit: 50)
         
-        //Get the user
+        //get the users profile
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
             }
         }
-        
+        //so user can pick, date/day and time from the picker
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss +zzzz"
         
-        //Set restrictions on the Date Picker
+        //set restrictions on the Date Picker
         let calendar = Calendar(identifier: .gregorian)
         let currentDate = Date()
         var components = DateComponents()
         components.calendar = calendar
         
-        //Can only choose a date up to 10 years in advance
+        //can only choose a date up to 10 years in advance
         components.year = 10
         components.month = 0
         let maxDate = calendar.date(byAdding: components, to: currentDate)!
         
-        //Cannot choose date or time before current time
+        //cannot choose date or time before current time
         components.year = 0
         let minDate = calendar.date(byAdding: components, to: currentDate)!
         
+        //assign these restrictions to the picker
         datePicker.minimumDate = minDate
         datePicker.maximumDate = maxDate
     }
+    //hidden navigation bar is inheritted, show it this time
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = false
     }
     override func viewDidAppear(_ animated: Bool) {
-        //We are creating not editing, this causes crash if user starts editing, then decides to create
+        //we are creating not editing, this causes crash if user starts editing, then decides to create by clicking on tab
         if self.tabBarController?.selectedIndex == 0 {
             editingGigEvent = false
         }
-        //If editing the GigEvent object
+        //if editing the GigEvent object
         if editingGigEvent && editingGate {
-            //Get all the data about it...
+            //get all the data about it...
             if let uid = Auth.auth().currentUser?.uid {
                 DataService.instance.getDBSingleEvent(uid: uid, eventID: editEventID) { (returnedGigEvent, success) in
                     //...put it in a dictionary...
@@ -81,9 +83,11 @@ class TitleDateCGVC: UIViewController {
                     self.gigEvent = returnedGigEvent
                     //..auto fill the UI inputs
                     self.eventTitleField.text = returnedGigEvent.getTitle()
-                    //MAY NOT NEED TO REMOVE HOUR NOW?
+                    //remove an hour from time (is an hour ahead)
                     let date = returnedGigEvent.getDate().addingTimeInterval(-3600)
+                    //set the date to be edited
                     self.datePicker.setDate(date, animated: false)
+                    //so doesn't auto-fill again
                     self.editingGate = false
                 }
             }
@@ -95,17 +99,16 @@ class TitleDateCGVC: UIViewController {
         //let eventID = NSUUID().uuidString
         //will make the eventID the same as the imageID
         
-        //Raw value from picker - Hour behind, add an hour (3600s)
+        //raw value from picker - Hour behind, add an hour (3600s)
         //NOT NEEDED ANYMORE?
         //let chosenTime = datePicker.date.addingTimeInterval(3600)
-        //string for FIR
+        //string for Database
         let timestamp = "\(datePicker.date)"
         
         if let eventTitle = eventTitleField.text{
+            //check valid
             if eventTitle != "" && eventTitle.count <= 60 {
-                
-                
-                //eventData = ["uid": self.user?.uid as Any, "eventID": "", "title": eventTitle, "timestamp": timestamp, "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self]
+                //add all the inputs to dictionary
                 self.eventData!["uid"] = self.user?.uid as Any
                 self.eventData!["title"] = eventTitle
                 self.eventData!["timestamp"] = timestamp
@@ -113,21 +116,21 @@ class TitleDateCGVC: UIViewController {
                 performSegue(withIdentifier: TO_LOCATION_PRICING, sender: nil)
                 
             } else {
-                // User not added wrote a title
+                // user not written a title
                 displayError(title: "Add a title", message: "Please add the title of your event to continue")
             }
         }
     }
     
-    //Take the eventDate through every view controller as user progresses
+    //take the eventDate through every view controller as user progresses
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if segue.identifier == TO_LOCATION_PRICING {
             
-            //Need this line to pass information between view controllers
+            //need this line to pass information between view controllers
             let locationPriceCGVC = segue.destination as! LocationPriceCGVC
             
-            //Changes it
+            //changes it
             locationPriceCGVC.user = user
             locationPriceCGVC.eventData = eventData
             locationPriceCGVC.gigEvent = gigEvent

@@ -27,7 +27,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     var user: User?
     var gigEvents = [GigEvent]()
     var notificationData: Dictionary<String, Any>?
-    
+    //create a location manager for sorting events
     let locationManager: CLLocationManager = {
         let lm = CLLocationManager()
         lm.desiredAccuracy = kCLLocationAccuracyBest
@@ -37,27 +37,26 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         navigationController?.navigationBar.isHidden = true
         cardGateOpen = false
         
-        //Function is called when gesture is recognised
+        //function is called when gesture is recognised
         let dragGesture = UIPanGestureRecognizer(target: self, action: #selector(self.gigEventWasDragged(gestureRecogniser:)))
         
-        //Assign the drag gesture to the view
+        //assign the drag gesture to the view
         currentGigEventView.isUserInteractionEnabled = true
         currentGigEventView.addGestureRecognizer(dragGesture)
-        
+        //front card is in the centre of the view
         currentGigEventView.center = CGPoint(x: self.view.frame.width / 2, y: (self.view.frame.height / 2) + 60)
         self.view.sendSubviewToBack(currentGigEventView)
-        
+        //back card will be slightly above the front card (looks like stack)
         nextGigEventView.center = CGPoint(x: self.view.bounds.width / 2, y: (self.view.bounds.height / 2) + 30)
         nextGigEventView.alpha = 0.6
         self.view.sendSubviewToBack(nextGigEventView)
-        
+        //refresh button for when there are no more cards
         refreshButton.center = CGPoint(x: self.view.bounds.width / 2, y: self.view.bounds.height / 2)
         self.view.sendSubviewToBack(refreshButton)
-        
+        //hide everything before refreshing
         nameLabel.isHidden = true
         emailLabel.isHidden = true
         phoneLabel.isHidden = true
@@ -72,29 +71,32 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         navigationController?.navigationBar.isHidden = true
     }
     override func viewDidAppear(_ animated: Bool) {
+        //so it doesn't refresh everytime view appears (only once)
         if cardGateOpen {
             cardGateOpen = false
             refresh()
         }
     }
     override func viewDidDisappear(_ animated: Bool) {
+        //stop using location to save battery
         locationManager.stopUpdatingLocation()
     }
     @IBAction func refreshButton(_ sender: Any) {
         refresh()
     }
     func refresh() {
+        //get the current user profile
         if let uid = Auth.auth().currentUser?.uid {
             DataService.instance.getDBUserProfile(uid: uid) { (returnedUser) in
                 self.user = returnedUser
-                
+                //and start updating location if they have authorised it
                 self.locationManager.delegate = self
                 self.locationManager.startUpdatingLocation()
-                
+                //get all the GigEvents in an array...
                 DataService.instance.getDBEvents(uid: uid) { (returnedGigEvents) in
-                    //self.gigEvents = returnedGigEvents
+                    //...and sort them by locality
                     self.gigEvents = self.setGigEventDistances(gigs: returnedGigEvents)
-                    
+                    //show the cards to musician
                     self.updateCards()
                     
                 }
@@ -106,42 +108,41 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     var userLatitude =  0.00
     var userLongitude = 0.00
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        //Grab the coordinates
+        //grab the coordinates of the current user
         let userLocation: CLLocation = locations[0]
         userLatitude = userLocation.coordinate.latitude
         userLongitude = userLocation.coordinate.longitude
     }
     
-    //We compare the two coordinates of the gig and the user
+    //compare the two coordinates of the gig and the user
     //update the distance attrribute
     //then use the distance to do a quick sort
     func setGigEventDistances(gigs: [GigEvent]) -> [GigEvent] {
         
-        //Instanitate a location out of coordinates
-        print("\(userLatitude), \(userLongitude)") //Prints correct coordinates
+        //instanitate a location out of coordinates
         let userLocation = CLLocation(latitude: userLatitude, longitude: userLongitude)
-        
+        //for each gig there is...
         for gig in gigs {
-            
-            //Get the location of the GigEvent object
+            //...get the location of the GigEvent object
             let gigEventLocation = gig.getGigEventLocation()
-            //Find the distance between the two
+            //find the distance between the two
             let distance = gigEventLocation.distance(from: userLocation) as Double
-            //print(distance)
-            //Set the distance from user of the GigEvent object
+            //set the distance from user of the GigEvent object
             gig.setDistance(distanceFromUser: distance)
         }
-        //Sort the objects by distance
+        //sort the objects by distance and return the new array
         return quickSort(array: gigs)
     }
     
     //MARK: GIG EVENT CARDS
     
+    //keep track of what object has been swiped
     var interactedGigEvent: GigEvent?
+    //keep track of what object is next
     var nextEventImage: UIImage?
     
     func displayGigEventInfo(gigEventView: GigEventView, gigEvent: GigEvent) {
-        
+        //show data about the event on the card
         gigEventView.dayDateLabel.text = gigEvent.getDayDate()
         gigEventView.monthYearDateLabel.text = gigEvent.getLongMonthYearDate()
         gigEventView.timeLabel.text = gigEvent.getTime()
@@ -150,46 +151,40 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     }
     
     func updateCards() {
-        
+        //show the contact information
         nameLabel.isHidden = false
         emailLabel.isHidden = false
         phoneLabel.isHidden = false
         refreshButton.isHidden = true
-        
         nextGigEventView.isHidden = true
         
         //if there are gigs to apply for
         if gigEvents.count >= 1 {
             
-            //The gig upfront
+            //the gig upfront
             if let currentGigEvent = gigEvents.first {
-                
+                //will be interacted with
                 interactedGigEvent = currentGigEvent
                 
                 nameLabel.text = currentGigEvent.getName()
                 emailLabel.text = currentGigEvent.getEmail()
                 phoneLabel.text = currentGigEvent.getPhone()
                 
-//                currentGigEventView.dayDateLabel.text = currentGigEvent.getDayDate()
-//                currentGigEventView.monthYearDateLabel.text = currentGigEvent.getLongMonthYearDate()
-//                currentGigEventView.timeLabel.text = currentGigEvent.getTime()
-//                currentGigEventView.titleLabel.text = currentGigEvent.getTitle()
-//                currentGigEventView.paymentLabel.text = "For: £\(currentGigEvent.getPayment())"
-                
                 //set the UI for the first in array
                 displayGigEventInfo(gigEventView: currentGigEventView, gigEvent: currentGigEvent)
 
                 //get image from nextGigEventView or download one
                 if nextEventImage != nil {
+                    //reuse the image from card behind
                     currentGigEventView.eventPhotoImageView.image = nextEventImage
                 } else {
+                    //download one if its first time loading array
                     downloadImage(url: currentGigEvent.getEventPhotoURL()) { (returnedImage) in
-
                         self.currentGigEventView.eventPhotoImageView.image = returnedImage
                     }
                 }
             }
-                
+            //show the card upfront
             currentGigEventView.isHidden = false
             
             //if more than one gigEvent
@@ -198,12 +193,6 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
                 //display the nextGigEventView behind with the next gigEvent in line
                 nextGigEventView.isHidden = false
                 let nextGigEvent = gigEvents[1]
-                
-//                nextGigEventView.dayDateLabel.text = nextGigEvent.getDayDate()
-//                nextGigEventView.monthYearDateLabel.text = nextGigEvent.getLongMonthYearDate()
-//                nextGigEventView.timeLabel.text = nextGigEvent.getTime()
-//                nextGigEventView.titleLabel.text = nextGigEvent.getTitle()
-//                nextGigEventView.paymentLabel.text = "For: £\(nextGigEvent.getPayment())"
                 
                 displayGigEventInfo(gigEventView: nextGigEventView, gigEvent: nextGigEvent)
 
@@ -217,7 +206,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
             }
             
         } else {
-            //No gigs to apply for
+            //no gigs to apply for, tell user
             nameLabel.text = "No Gigs Around"
             emailLabel.text = "Share GoGig"
             nextEventImage = nil
@@ -238,7 +227,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     
     func didChoose(applied: Bool){
         
-        //Get the interacted users of that event
+        //get the interacted users of that event
         var gigEventAppliedUsers = interactedGigEvent?.getAppliedUsers()
         //and add a new key with the current users uid
         gigEventAppliedUsers![user!.uid] = applied
@@ -247,12 +236,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         DataService.instance.updateDBEventsInteractedUsers(uid: user!.uid, eventID: interactedGigEvent!.getid(), eventData: gigEventAppliedUsers!)
         
         if applied {
-            
-            //Add the event under user to the database
-            //THIS ISNT RIGHT
-            //This should only happen when an organiser accepts a users application
-            //DataService.instance.updateDBUserEvents(uid: user!.uid, eventID: interactedGigEvent!.getid())
-            
+            //tell musician that they have applied with a notification
             updateActivity()
         }
         
@@ -267,7 +251,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         let notificationID = NSUUID().uuidString
         let relatedEventID = interactedGigEvent!.getid()
         let senderUid = user!.uid
-        //Reciever is user that created gig
+        //reciever is user that created gig
         let recieverUid = interactedGigEvent!.getuid()
         let senderName = user!.name
         let notificationPicURL = user!.picURL.absoluteString
@@ -275,14 +259,14 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         let timestamp = NSDate().timeIntervalSince1970
         notificationData = ["notificationID": notificationID, "relatedEventID": relatedEventID, "type": "applied", "sender": senderUid, "reciever": recieverUid, "senderName": senderName, "picURL": notificationPicURL, "description": notificationDescription, "timestamp": timestamp]
         
-        //Send a push notification to other user
+        //send a push notification to event creator
         DataService.instance.getDBUserProfile(uid: recieverUid) { (returnedUser) in
             DataService.instance.sendPushNotification(to: returnedUser.getFCMToken(), title: "Application pending", body: "\(senderName) has applied for your event")
         }
-        //Notify Other User
+        //notify creator
         DataService.instance.updateDBActivityFeed(uid: recieverUid, notificationID: notificationID, notificationData: notificationData!) { (complete) in
             if complete {
-                //Notify Current User about their action (sender is themself to reciever themself)
+                //notify current user about their action (sender is themself to reciever themself)
                 self.notificationData!["senderName"] = "You"
                 self.notificationData!["reciever"] = senderUid
                 self.notificationData!["type"] = "personal"
@@ -298,7 +282,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     //Pan Gesture - swipe across screen
     @objc func gigEventWasDragged(gestureRecogniser: UIPanGestureRecognizer) {
 
-        //Returns a vector of where user drags to
+        //returns a vector of where user drags to
         let translation = gestureRecogniser.translation(in: view)
         
         let theView = gestureRecogniser.view!
@@ -328,8 +312,9 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
             //the area at which a definite choice has been made:
             //dragged left
             if theView.center.x < 40 {
-                
+                //call function to do actions based on their choice
                 didChoose(applied: false)
+                //call function to show confirmation (musician knows what they have done)
                 confirmChoiceAnimation(applied: false)
                 
                 //return the view to the centre
@@ -355,21 +340,28 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     func confirmChoiceAnimation(applied: Bool) {
         var confirmationImageView: UIImageView?
         if applied {
+            //will be a tick image
             confirmationImageView = UIImageView(image: UIImage(named: "appliedGigEvent"))
         } else {
+            //will be a cross image
             confirmationImageView = UIImageView(image: UIImage(named: "ignoredGigEvent"))
         }
+        //
         confirmationImageView!.frame = CGRect.init(x: 0, y: 0, width: 100, height: 100)
         confirmationImageView!.center = self.view.center
+        //subtle confirmation
         confirmationImageView!.alpha = 0.5
         view.addSubview(confirmationImageView!)
         //grow and fade
         UIView.animate(withDuration: 0.2, animations: {
+            //grow x1.3
             confirmationImageView!.transform = CGAffineTransform(scaleX: 1.3, y: 1.3)
         }) { (complete) in
+            //fade in 0.2 seconds from 0.5 opacity to 0.0
             UIView.animate(withDuration: 0.2, delay: 0.2, options: .curveEaseOut, animations: {
                 confirmationImageView!.alpha = 0.0
             }) { (complete) in
+                //after animation, remove it from the view
                 confirmationImageView!.removeFromSuperview()
             }
         }
@@ -380,7 +372,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
         if segue.identifier == TO_EVENT_DESCRIPTION {
             
             let eventDescriptionVC = segue.destination as! EventDescriptionVC
-            
+            //make sure there is a purple back button
             let backItem = UIBarButtonItem()
             backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"

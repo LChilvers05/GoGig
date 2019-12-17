@@ -19,6 +19,7 @@ class CreateGigVC: UIViewController {
         super.viewDidLoad()
         setupView()
     }
+    //Is in a navigation stack, hide bar as this is the root
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.isHidden = true
     }
@@ -26,14 +27,14 @@ class CreateGigVC: UIViewController {
         //Bug after adding photo of the event and going back
         self.navigationController?.navigationBar.isHidden = true
     }
-    
+    //event data dictionary for Database
     let eventData = ["uid": "", "eventID": "", "title": "", "timestamp": "", "latitude": 0.00, "longitude": 0.00, "locationName": "", "postcode": "", "payment": 0.00, "description": "", "name": "", "email": "", "phone": "", "eventPhotoURL": "", "appliedUsers": [String: Bool].self] as [String : Any]
     
     @IBAction func continueButton(_ sender: Any) {
         
         performSegue(withIdentifier: TO_TITLE_DATE, sender: nil)
     }
-    
+    //take the dictionary and fill it from the forms and inputs
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == TO_TITLE_DATE {
             let titleDateCGVC = segue.destination as! TitleDateCGVC
