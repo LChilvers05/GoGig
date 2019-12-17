@@ -19,6 +19,7 @@ class EventDescriptionVC: UIViewController {
     @IBOutlet weak var descriptionTextView: MyTextView!
     @IBOutlet weak var editBarButtonItem: UIBarButtonItem!
     
+    //observing description (creator will have an edit button)
     var observingGigEvent = true
     
     var gigEvent: GigEvent?
@@ -26,20 +27,25 @@ class EventDescriptionVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        //show the navigation bar
         navigationController?.navigationBar.isHidden = false
         
         refresh()
     }
     override func viewWillAppear(_ animated: Bool) {
+        //specifiy that large title is not wanted
         navigationController?.navigationBar.prefersLargeTitles = false
     }
     override func viewDidAppear(_ animated: Bool) {
+        //if musician observing event
         if observingGigEvent {
+            //hide the edit button
             navigationItem.rightBarButtonItem = nil
         }
     }
     
     func refresh() {
+        //set all outlets with information about the gig
         self.navigationItem.title = gigEvent?.getTitle()
         nameButton.setTitle("Check out \(gigEvent!.getName())", for: .normal)
         dayDateLabel.text = gigEvent?.getDayDate()
@@ -50,15 +56,20 @@ class EventDescriptionVC: UIViewController {
         descriptionTextView.text = gigEvent?.getDescription()
     }
     
+    //look at the portfolio of the event creator
     var checkUid: String?
     @IBAction func checkUid(_ sender: Any) {
+        //uid is to refresh portfolio of that user
         checkUid = gigEvent?.getuid()
         performSegue(withIdentifier: TO_CHECK_PORTFOLIO_3, sender: nil)
     }
     
     @IBAction func editGigEvent(_ sender: Any) {
+        //if creator wants to edit
         if observingGigEvent == false {
+            //globally declare that user is editing event
             editingGigEvent = true
+            //and go back to create event navigation stack to edit the event
             self.performSegue(withIdentifier: TO_EDIT_GIG_EVENT, sender: nil)
         }
     }
@@ -67,18 +78,20 @@ class EventDescriptionVC: UIViewController {
         if segue.identifier == TO_CHECK_PORTFOLIO_3 {
             
             let userAccountVC = segue.destination as! UserAccountVC
-            
+            //add a back button in place of 'settings' in portfolio view
             let backItem = UIBarButtonItem()
             backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
-            
+            //uid needed to refresh portfolio for that user
             userAccountVC.uid = checkUid!
+            //mark a user is observing that portfolio
             userAccountVC.observingPortfolio = true
+            //refresh the portfolio ready for the segue
             userAccountVC.refreshPortfolio()
             
         } else if segue.identifier == TO_EDIT_GIG_EVENT {
-            
+            //set the create event views ready to edit the event
             let titleDateCGVC = segue.destination as! TitleDateCGVC
             titleDateCGVC.editEventID = gigEvent!.getid()
             titleDateCGVC.editingGate = true
