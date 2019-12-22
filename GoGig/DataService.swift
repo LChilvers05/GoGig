@@ -454,7 +454,7 @@ class DataService {
                                 if let relatedEventID = activityData["relatedEventID"] as? String {
                                     if let notificationType = activityData["type"] as? String {
                                         if let senderUid = activityData["sender"] as? String {
-                                            if let recieverUid = activityData["reciever"] as? String {
+                                            if let receiverUid = activityData["reciever"] as? String {
                                                 if let senderName = activityData["senderName"] as? String {
                                                     if let notificationPhotoURLStr = activityData["picURL"] as? String {
                                                         if let notificationDescription = activityData["description"] as? String {
@@ -464,7 +464,7 @@ class DataService {
                                                                 
                                                                 let notificationTime = NSDate(timeIntervalSince1970: timeInterval)
                                                                 
-                                                                let activityNotification = ActivityNotification(id: notificationID, relatedEventId: relatedEventID, type: notificationType, senderUid: senderUid, recieverUid: recieverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
+                                                                let activityNotification = ActivityNotification(id: notificationID, relatedEventId: relatedEventID, type: notificationType, senderUid: senderUid, recieverUid: receiverUid, senderName: senderName, picURL: notificationPhotoURL!, description: notificationDescription, time: notificationTime)
                                                                 
                                                                 //Insert at 0 (not append) to be in correct order
                                                                 activityNotifications.insert(activityNotification, at: 0)
