@@ -17,18 +17,17 @@
 		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
 		FE4978212344AF4A00F1711F /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4978202344AF4A00F1711F /* SpinnerViewController.swift */; };
 		FE4AF5AA22F319C400D8ED7A /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */; };
-		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
 		FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */; };
-		FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */ = {isa = PBXBuildFile; fileRef = FE701C0522D737EC00FC06CE /* LogInVCUI */; };
 		FE72535623D6145C00379553 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535523D6145C00379553 /* Constants.swift */; };
 		FE72535823D614A000379553 /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535723D614A000379553 /* ApplicationExtensions.swift */; };
 		FE72535A23D614BC00379553 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535923D614BC00379553 /* GigEventView.swift */; };
 		FE8C069723181FB900922FF2 /* CreateProfileCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069623181FB900922FF2 /* CreateProfileCAVC.swift */; };
 		FE8C069D23182E5500922FF2 /* MusicLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */; };
 		FE8C069F2318337E00922FF2 /* LoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */; };
+		FE8FFD6423DA485300255975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE8FFD6323DA485300255975 /* GoogleService-Info.plist */; };
 		FE98764923D5CD6800BE5E37 /* SocialLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98764823D5CD6800BE5E37 /* SocialLinksCAVC.swift */; };
 		FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */; };
 		FECCACC122D75E6300D617CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC022D75E6300D617CB /* Extensions.swift */; };
@@ -74,20 +73,19 @@
 		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
 		FE4978202344AF4A00F1711F /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpinnerViewController.swift; path = GoGig/View/SpinnerViewController.swift; sourceTree = SOURCE_ROOT; };
 		FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventDescriptionVC.swift; path = GoGig/EventDescriptionVC.swift; sourceTree = SOURCE_ROOT; };
-		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE701BFA22D7364600FC06CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE701BFD22D7364600FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FE701C0522D737EC00FC06CE /* LogInVCUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogInVCUI; path = "../../../../Documents/Swift Applications/GoGig6/LogInVCUI"; sourceTree = "<group>"; };
 		FE72535523D6145C00379553 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = GoGig/Constants.swift; sourceTree = SOURCE_ROOT; };
 		FE72535723D614A000379553 /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
 		FE72535923D614BC00379553 /* GigEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigEventView.swift; sourceTree = "<group>"; };
 		FE8C069623181FB900922FF2 /* CreateProfileCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileCAVC.swift; sourceTree = "<group>"; };
 		FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLinksCAVC.swift; sourceTree = "<group>"; };
 		FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupVC.swift; sourceTree = "<group>"; };
+		FE8FFD6323DA485300255975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE98764823D5CD6800BE5E37 /* SocialLinksCAVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLinksCAVC.swift; sourceTree = "<group>"; };
 		FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
 		FECCACC022D75E6300D617CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GoGig/Extensions.swift; sourceTree = SOURCE_ROOT; };
@@ -265,10 +263,9 @@
 				FE639D7B22D73BEE00DCE58B /* View */,
 				FE639D7A22D73BE600DCE58B /* Controller */,
 				FE701BFA22D7364600FC06CE /* Assets.xcassets */,
-				FE701C0522D737EC00FC06CE /* LogInVCUI */,
 				FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */,
 				FE639DB922D744C600DCE58B /* Info.plist */,
-				FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */,
+				FE8FFD6323DA485300255975 /* GoogleService-Info.plist */,
 			);
 			path = GoGig;
 			sourceTree = "<group>";
@@ -343,10 +340,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */,
-				FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */,
-				FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */,
 				FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */,
 				FE701BF922D7364300FC06CE /* Main.storyboard in Resources */,
+				FE8FFD6423DA485300255975 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
