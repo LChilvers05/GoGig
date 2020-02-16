@@ -346,7 +346,7 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
             //will be a cross image
             confirmationImageView = UIImageView(image: UIImage(named: "ignoredGigEvent"))
         }
-        //
+        //frame of the image view
         confirmationImageView!.frame = CGRect.init(x: 0, y: 0, width: 100, height: 100)
         confirmationImageView!.center = self.view.center
         //subtle confirmation
@@ -368,16 +368,16 @@ class FindGigVC: UIViewController, CLLocationManagerDelegate {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        //the segue defined in storyboard
         if segue.identifier == TO_EVENT_DESCRIPTION {
-            
+            //destination
             let eventDescriptionVC = segue.destination as! EventDescriptionVC
             //make sure there is a purple back button
             let backItem = UIBarButtonItem()
             backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
             backItem.title = "Back"
             navigationItem.backBarButtonItem = backItem
-            
+            //so data for that event is displayed in destination
             eventDescriptionVC.gigEvent = interactedGigEvent
         }
     }
