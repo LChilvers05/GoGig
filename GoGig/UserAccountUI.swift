@@ -61,6 +61,7 @@ extension LoginSignupVC {
 
 extension CreateProfileCAVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -69,6 +70,7 @@ extension CreateProfileCAVC {
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -76,24 +78,27 @@ extension CreateProfileCAVC {
         imageView.clipsToBounds = true
         imageView.image = background
         imageView.center = view.center
-        
+        //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
-
+        //Set transparent view constraints so it sits behind the fields stack with right dimensions
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 64),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: nameBioStack.frame.width + 56),
             transparentView.bottomAnchor.constraint(equalTo: profileImageView.bottomAnchor, constant: 8)
         ])
-
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
 
 extension SocialLinksCAVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -102,6 +107,7 @@ extension SocialLinksCAVC {
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -109,24 +115,27 @@ extension SocialLinksCAVC {
         imageView.clipsToBounds = true
         imageView.image = background
         imageView.center = view.center
-        
+        //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
-
+        //Set transparent view constraints so it sits behind with right dimensions
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 48),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
             transparentView.bottomAnchor.constraint(equalTo: fieldsStack.bottomAnchor, constant: 16)
         ])
-
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
 
 extension MusicLinksCAVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -135,6 +144,7 @@ extension MusicLinksCAVC {
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -142,18 +152,20 @@ extension MusicLinksCAVC {
         imageView.clipsToBounds = true
         imageView.image = background
         imageView.center = view.center
-        
+        //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
-
+        //Set transparent view constraints so it sits behind with right dimensions
         NSLayoutConstraint.activate([
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: fieldsStack.frame.width + 56),
             transparentView.heightAnchor.constraint(equalToConstant: fieldsStack.frame.height + 24)
         ])
-
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -197,6 +209,7 @@ extension PortfolioPostVC {
     func setupView() {
         //make the navigation bar white with set opacity and white colour
         navigationController?.navigationBar.barTintColor = UIColor.white.withAlphaComponent(0.90)
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background5")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -214,6 +227,7 @@ extension PortfolioPostVC {
 
 extension CreateGigVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -225,7 +239,7 @@ extension CreateGigVC {
             return tv
         }()
         
-        //set background
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -234,11 +248,13 @@ extension CreateGigVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.7
-        
+        //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -282,8 +298,9 @@ extension TitleDateCGVC {
         datePicker.layer.shadowRadius = 10.0
         datePicker.layer.shadowOpacity = 0.5
         datePicker.layer.cornerRadius = 10.0
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -303,7 +320,7 @@ extension LocationPriceCGVC {
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -312,8 +329,9 @@ extension LocationPriceCGVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.4
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -334,7 +352,7 @@ extension InfoContactCGVC {
         backItem.tintColor = #colorLiteral(red: 0.4942619801, green: 0.1805444658, blue: 0.5961503386, alpha: 1)
         backItem.title = "Back"
         navigationItem.backBarButtonItem = backItem
-        
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -343,8 +361,9 @@ extension InfoContactCGVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.4
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -364,7 +383,7 @@ extension PhotoCGVC {
         eventPicView.layer.shadowRadius = 10.0
         eventPicView.layer.shadowOpacity = 0.5
         eventPicView.layer.cornerRadius = 20.0
-        
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -373,8 +392,9 @@ extension PhotoCGVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.4
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
     }
 }
@@ -393,6 +413,7 @@ extension ActivityFeedVC {
 
 extension FindGigVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -401,7 +422,7 @@ extension FindGigVC {
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
-        
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background2")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -410,7 +431,9 @@ extension FindGigVC {
         imageView.image = background
         imageView.center = view.center
         imageView.alpha = 0.5
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
         
         //add the transparent view
@@ -419,7 +442,7 @@ extension FindGigVC {
         self.view.insertSubview(transparentView, at: 4)
         //ensure the contact details are z index 5 (sits ontop)
         self.view.insertSubview(contactStack, at: 5)
-
+        //Set transparent view constraints so it sits behind with right dimensions
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 4),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -431,6 +454,7 @@ extension FindGigVC {
 
 extension ReviewApplicationVC {
     func setupView() {
+        //Closure to instantiate transparent uiview object
         let transparentView: UIView = {
             let tv = UIView()
             tv.backgroundColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
@@ -439,7 +463,7 @@ extension ReviewApplicationVC {
             tv.translatesAutoresizingMaskIntoConstraints = false
             return tv
         }()
-        
+        //Set up a background image and stretch it to all edges of the screens
         let background = UIImage(named: "Background3")
         var imageView : UIImageView!
         imageView = UIImageView(frame: view.bounds)
@@ -453,18 +477,20 @@ extension ReviewApplicationVC {
         let blurView = UIVisualEffectView(effect: blurEffect)
         blurView.frame = imageView.bounds
         imageView.addSubview(blurView)
-        
+        //Add the transparent view to view
         view.addSubview(transparentView)
+        //send it to the back of all UI elements
         self.view.sendSubviewToBack(transparentView)
-        
+        //Set transparent view constraints so it sits behind with right dimensions
         NSLayoutConstraint.activate([
             transparentView.topAnchor.constraint(equalTo: nameLabel.topAnchor, constant: 8),
             transparentView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             transparentView.widthAnchor.constraint(equalToConstant: nameLabel.frame.width - 16),
             transparentView.bottomAnchor.constraint(equalTo: eventLabel.bottomAnchor, constant: 8)
         ])
-        
+        //add the background to view
         view.addSubview(imageView)
+        //send it to the back of all the subviews
         self.view.sendSubviewToBack(imageView)
         //make the profile image view a circle and not a square
         profileImageView.layer.borderWidth = 0.1
