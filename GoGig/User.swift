@@ -12,14 +12,14 @@ var uniqueID: String?
 
 class User {
     
-    var uid: String
-    var name: String
-    var email: String
-    var phone: String
-    var bio: String
-    var gigs: Bool
-    var picURL: URL
-    private var facebook: String
+    var uid: String                 //unique user identifier
+    var name: String                //users name
+    var email: String               //users email
+    var phone: String               //users phone number
+    var bio: String                 //biography for portfolio
+    var gigs: Bool                  //musician = true, organiser = false
+    var picURL: URL                 //profile image download URL
+    private var facebook: String    //social link URLs...
     private var twitter: String
     private var instagram: String
     private var website: String

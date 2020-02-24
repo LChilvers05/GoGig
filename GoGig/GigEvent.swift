@@ -12,24 +12,24 @@ import CoreLocation
 class GigEvent: Comparable {
     
     //attributes
-    private var uid: String
-    private var id: String
-    private var title: String
-    private var timestamp: String
-    private var description: String
-    private var latitude: Double
-    private var longitude: Double
-    private var distance: Double
-    private var locationName: String
-    private var postcode: String
-    private var payment: Double
-    private var name: String
-    private var email: String
-    private var phone: String
-    private var eventPhotoURL: URL
-    private var appliedUsers: [String: Bool]
+    private var uid: String                    //user who created event
+    private var id: String                     //unique id of the event
+    private var title: String                  //events title/name
+    private var timestamp: String              //time of event
+    private var description: String            //event in detail
+    private var latitude: Double               //lat coordinate for sort
+    private var longitude: Double              //long coordinate for sort
+    private var distance: Double               //distance from musician to sort by
+    private var locationName: String           //name of location of event
+    private var postcode: String               //postcode of event
+    private var payment: Double                //musicians payment for gig
+    private var name: String                   //name of organiser
+    private var email: String                  //email of organiser
+    private var phone: String                  //phone no of organiser
+    private var eventPhotoURL: URL             //event image download URL
+    private var appliedUsers: [String: Bool]   //to keep track of what musicians have seen event
     
-    //instantiate
+    //instantiate GigEvent object
     init(uid: String, id: String, title: String, timestamp: String, description: String, latitude: Double, longitude: Double, locationName: String, postcode: String, payment: Double, name: String, email: String, phone: String, eventPhotoURL: URL, appliedUsers: [String: Bool]) {
         self.uid = uid
         self.id = id

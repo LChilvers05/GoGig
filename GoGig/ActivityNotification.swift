@@ -10,16 +10,16 @@ import Foundation
 
 class ActivityNotification: Comparable {
     
-    private var id: String
-    private var relatedEventId: String
-    private var type: String
-    private var senderUid: String
-    private var recieverUid: String
-    private var senderName: String
-    private var picURL: URL
-    private var description: String
-    private var time: NSDate
-    
+    private var id: String              //unique id of notification
+    private var relatedEventId: String  //event notification concerns
+    private var type: String            //personal, applied or reply
+    private var senderUid: String       //user id of notification sender
+    private var recieverUid: String     //user id of notification receiver
+    private var senderName: String      //senders account name
+    private var picURL: URL             //notification image download URL
+    private var description: String     //contents of the notification
+    private var time: NSDate            //to sort in reverse chronological order
+    //instantiate a ActivityNotification object
     init(id: String, relatedEventId: String, type: String, senderUid: String, recieverUid: String, senderName: String, picURL: URL, description: String, time: NSDate) {
         self.id = id
         self.relatedEventId = relatedEventId
