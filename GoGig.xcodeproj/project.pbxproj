@@ -606,6 +606,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
@@ -630,6 +631,7 @@
 				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
