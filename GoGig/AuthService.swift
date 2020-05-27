@@ -52,28 +52,28 @@ class AuthService {
     
     //MARK: USER DEFAULTS
     //To keep user logged in
-    let defaults = UserDefaults.standard
-    
-    var isLoggedIn: Bool {
-        get {
-            //get the Boolean of logged in
-            return defaults.bool(forKey: LOGGED_IN_KEY)
-        }
-        set {
-            //set the Boolean of logged in
-            defaults.set(newValue, forKey: LOGGED_IN_KEY)
-        }
-    }
-    
-    var userEmail: Bool {
-        get {
-            
-            return defaults.bool(forKey: USER_EMAIL)
-        }
-        set {
-            
-            defaults.set(newValue, forKey: USER_EMAIL)
-        }
-    }
+//    let defaults = UserDefaults.standard
+//
+//    var isLoggedIn: Bool {
+//        get {
+//            //get the Boolean of logged in
+//            return defaults.bool(forKey: LOGGED_IN_KEY)
+//        }
+//        set {
+//            //set the Boolean of logged in
+//            defaults.set(newValue, forKey: LOGGED_IN_KEY)
+//        }
+//    }
+//
+//    var userEmail: Bool {
+//        get {
+//
+//            return defaults.bool(forKey: USER_EMAIL)
+//        }
+//        set {
+//
+//            defaults.set(newValue, forKey: USER_EMAIL)
+//        }
+//    }
 }
 
