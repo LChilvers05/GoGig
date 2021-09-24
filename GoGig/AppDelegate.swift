@@ -22,16 +22,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
+        //Configure app with Firebase
         FirebaseApp.configure()
+        //Googe Places API Key
         GMSPlacesClient.provideAPIKey("AIzaSyDtabGvbeAPg-FjUWaRQFEg2B86a3dr_gg")
         
         //If we are logged out, then present the LoginVC
         if Auth.auth().currentUser == nil {
+            print("No current user")
             let storyboard = UIStoryboard(name: "Main", bundle: Bundle.main)
-            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+            let loginVC = storyboard.instantiateViewController(withIdentifier: "LoginSignupVC")
+            //Full screen for iOS 13
+            loginVC.modalPresentationStyle = .overFullScreen
             window?.makeKeyAndVisible()
-            window?.rootViewController?.present(loginVC, animated: true, completion: nil)
-            
+            window?.rootViewController?.present(loginVC, animated: true)
         }
         
         //Push Notifications
@@ -66,6 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     
     //MARK: PUSH NOTIFICATIONS
     
+    //Request push notifications of type alert, with sounds and a badge
     func registerForPushNotifications() {
         UNUserNotificationCenter.current()
             .requestAuthorization(options: [.alert, .sound, .badge]) {
@@ -76,6 +81,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
                 //guard is for when permission was not granted
                 //it returns so user does not get notifications
                 guard granted else { return }
+                //if granted, call to get the notification settings
                 self?.getNotificationSettings()
         }
     }
@@ -83,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
     func getNotificationSettings() {
         UNUserNotificationCenter.current().getNotificationSettings { settings in
             print("Notification settings: \(settings)")
-
+            //Checks authorised
             guard settings.authorizationStatus == .authorized else { return }
             DispatchQueue.main.async {
                 //Triggers the registration to get device token
@@ -99,7 +105,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, MessagingDelegate {
         ) {
         Messaging.messaging().apnsToken = deviceToken
     }
-
+    //Failed to register device for notifications
     func application(
         _ application: UIApplication,
         didFailToRegisterForRemoteNotificationsWithError error: Error) {

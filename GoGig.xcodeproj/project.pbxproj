@@ -12,20 +12,24 @@
 		FE0141DF22E74A3A0012343A /* ActivityMenuBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */; };
 		FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */; };
 		FE16DBD822DDE6C00005E3AE /* MyTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE16DBD722DDE6C00005E3AE /* MyTextField.swift */; };
-		FE1A731222F22B40001AD1A5 /* ReviewApplicationUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */; };
 		FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE2B049822EB4EE5001210FD /* ActivityNotification.swift */; };
 		FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6922E625D200645419 /* ActivityFeedVC.swift */; };
 		FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE339C6B22E626A400645419 /* ActivityFeedCell.swift */; };
+		FE4978212344AF4A00F1711F /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4978202344AF4A00F1711F /* SpinnerViewController.swift */; };
 		FE4AF5AA22F319C400D8ED7A /* EventDescriptionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */; };
-		FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */; };
 		FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE701BF322D7364300FC06CE /* AppDelegate.swift */; };
 		FE701BF922D7364300FC06CE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BF722D7364300FC06CE /* Main.storyboard */; };
 		FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFA22D7364600FC06CE /* Assets.xcassets */; };
 		FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */; };
-		FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */ = {isa = PBXBuildFile; fileRef = FE701C0522D737EC00FC06CE /* LogInVCUI */; };
+		FE72535623D6145C00379553 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535523D6145C00379553 /* Constants.swift */; };
+		FE72535823D614A000379553 /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535723D614A000379553 /* ApplicationExtensions.swift */; };
+		FE72535A23D614BC00379553 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE72535923D614BC00379553 /* GigEventView.swift */; };
+		FE8C069723181FB900922FF2 /* CreateProfileCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069623181FB900922FF2 /* CreateProfileCAVC.swift */; };
+		FE8C069D23182E5500922FF2 /* MusicLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */; };
+		FE8C069F2318337E00922FF2 /* LoginSignupVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */; };
+		FE8FFD6423DA485300255975 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = FE8FFD6323DA485300255975 /* GoogleService-Info.plist */; };
+		FE98764923D5CD6800BE5E37 /* SocialLinksCAVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FE98764823D5CD6800BE5E37 /* SocialLinksCAVC.swift */; };
 		FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */; };
-		FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */; };
-		FECCACBF22D75DED00D617CB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACBE22D75DED00D617CB /* Constants.swift */; };
 		FECCACC122D75E6300D617CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC022D75E6300D617CB /* Extensions.swift */; };
 		FECCACC322D75EB800D617CB /* UserAccountTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC222D75EB800D617CB /* UserAccountTableView.swift */; };
 		FECCACC522D75F0000D617CB /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACC422D75F0000D617CB /* AuthService.swift */; };
@@ -52,7 +56,6 @@
 		FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */; };
 		FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FECCACF022D763E900D617CB /* FindGigVC.swift */; };
 		FED01F1222F1CB9400E7CB4F /* ReviewApplicationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = FED01F1122F1CB9400E7CB4F /* ReviewApplicationVC.swift */; };
-		FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEE922BA22DF5338003E7E69 /* GigEventView.swift */; };
 		FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */; };
 /* End PBXBuildFile section */
 
@@ -65,22 +68,26 @@
 		FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountUI.swift; path = GoGig/UserAccountUI.swift; sourceTree = SOURCE_ROOT; };
 		FE16DBD722DDE6C00005E3AE /* MyTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MyTextField.swift; path = GoGig/MyTextField.swift; sourceTree = SOURCE_ROOT; };
 		FE1A544A2310416A00B95AE1 /* GoGig.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GoGig.entitlements; sourceTree = "<group>"; };
-		FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ReviewApplicationUI.swift; path = GoGig/Controller/ReviewApplicationUI.swift; sourceTree = SOURCE_ROOT; };
 		FE2B049822EB4EE5001210FD /* ActivityNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityNotification.swift; path = GoGig/ActivityNotification.swift; sourceTree = SOURCE_ROOT; };
 		FE339C6922E625D200645419 /* ActivityFeedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedVC.swift; sourceTree = "<group>"; };
 		FE339C6B22E626A400645419 /* ActivityFeedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityFeedCell.swift; sourceTree = "<group>"; };
+		FE4978202344AF4A00F1711F /* SpinnerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SpinnerViewController.swift; path = GoGig/View/SpinnerViewController.swift; sourceTree = SOURCE_ROOT; };
 		FE4AF5A922F319C300D8ED7A /* EventDescriptionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = EventDescriptionVC.swift; path = GoGig/EventDescriptionVC.swift; sourceTree = SOURCE_ROOT; };
-		FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		FE639DB922D744C600DCE58B /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FE701BF022D7364300FC06CE /* GoGig.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GoGig.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FE701BF322D7364300FC06CE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FE701BF822D7364300FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		FE701BFA22D7364600FC06CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FE701BFD22D7364600FC06CE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		FE701C0522D737EC00FC06CE /* LogInVCUI */ = {isa = PBXFileReference; lastKnownFileType = folder; name = LogInVCUI; path = "../../../../Documents/Swift Applications/GoGig6/LogInVCUI"; sourceTree = "<group>"; };
+		FE72535523D6145C00379553 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = GoGig/Constants.swift; sourceTree = SOURCE_ROOT; };
+		FE72535723D614A000379553 /* ApplicationExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationExtensions.swift; sourceTree = "<group>"; };
+		FE72535923D614BC00379553 /* GigEventView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GigEventView.swift; sourceTree = "<group>"; };
+		FE8C069623181FB900922FF2 /* CreateProfileCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateProfileCAVC.swift; sourceTree = "<group>"; };
+		FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLinksCAVC.swift; sourceTree = "<group>"; };
+		FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginSignupVC.swift; sourceTree = "<group>"; };
+		FE8FFD6323DA485300255975 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		FE98764823D5CD6800BE5E37 /* SocialLinksCAVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SocialLinksCAVC.swift; sourceTree = "<group>"; };
 		FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityCollectionViewCell.swift; sourceTree = "<group>"; };
-		FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ApplicationExtensions.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Extensions/ApplicationExtensions.swift"; sourceTree = "<absolute>"; };
-		FECCACBE22D75DED00D617CB /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/Constants.swift"; sourceTree = "<absolute>"; };
 		FECCACC022D75E6300D617CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = GoGig/Extensions.swift; sourceTree = SOURCE_ROOT; };
 		FECCACC222D75EB800D617CB /* UserAccountTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserAccountTableView.swift; path = GoGig/UserAccountTableView.swift; sourceTree = SOURCE_ROOT; };
 		FECCACC422D75F0000D617CB /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthService.swift; path = GoGig/AuthService.swift; sourceTree = SOURCE_ROOT; };
@@ -107,7 +114,6 @@
 		FECCACEE22D763BC00D617CB /* PhotoCGVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoCGVC.swift; path = GoGig/PhotoCGVC.swift; sourceTree = SOURCE_ROOT; };
 		FECCACF022D763E900D617CB /* FindGigVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FindGigVC.swift; path = GoGig/FindGigVC.swift; sourceTree = SOURCE_ROOT; };
 		FED01F1122F1CB9400E7CB4F /* ReviewApplicationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewApplicationVC.swift; sourceTree = "<group>"; };
-		FEE922BA22DF5338003E7E69 /* GigEventView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GigEventView.swift; path = "/Users/leechilvers/Documents/Coursework/Suffolk One/GoGig/GoGig/View/GigEventView.swift"; sourceTree = "<absolute>"; };
 		FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = GoGig/StringExtensions.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -143,7 +149,7 @@
 		FE639D7722D73B9700DCE58B /* Utilities  */ = {
 			isa = PBXGroup;
 			children = (
-				FECCACBE22D75DED00D617CB /* Constants.swift */,
+				FE72535523D6145C00379553 /* Constants.swift */,
 			);
 			path = "Utilities ";
 			sourceTree = "<group>";
@@ -151,9 +157,8 @@
 		FE639D7822D73BB900DCE58B /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				FEC8F4EA2316D7A8001CBC3D /* ApplicationExtensions.swift */,
+				FE72535723D614A000379553 /* ApplicationExtensions.swift */,
 				FE16DBD522DDE2E70005E3AE /* UserAccountUI.swift */,
-				FE1A731122F22B40001AD1A5 /* ReviewApplicationUI.swift */,
 				FECCACC022D75E6300D617CB /* Extensions.swift */,
 				FEFEB6A422E086C00094CFC9 /* StringExtensions.swift */,
 				FECCACC222D75EB800D617CB /* UserAccountTableView.swift */,
@@ -176,6 +181,10 @@
 			children = (
 				FECCACDE22D7622200D617CB /* LoginViewController.swift */,
 				FECCACE022D7625500D617CB /* CreateAccountVC.swift */,
+				FE8C069E2318337E00922FF2 /* LoginSignupVC.swift */,
+				FE8C069623181FB900922FF2 /* CreateProfileCAVC.swift */,
+				FE98764823D5CD6800BE5E37 /* SocialLinksCAVC.swift */,
+				FE8C069C23182E5500922FF2 /* MusicLinksCAVC.swift */,
 				FECCACE222D7628700D617CB /* UserAccountVC.swift */,
 				FECCACE422D762BE00D617CB /* PortfolioPostVC.swift */,
 				FECCACE622D762F600D617CB /* CreateGigVC.swift */,
@@ -202,11 +211,12 @@
 				FECCACD622D7614500D617CB /* MyTextView.swift */,
 				FE16DBD722DDE6C00005E3AE /* MyTextField.swift */,
 				FECCACD822D7617800D617CB /* PostContainerView.swift */,
-				FEE922BA22DF5338003E7E69 /* GigEventView.swift */,
+				FE72535923D614BC00379553 /* GigEventView.swift */,
 				FECCACDA22D761A600D617CB /* LoadingCell.swift */,
 				FEC8C6BD22EA40240068C43D /* ActivityCollectionViewCell.swift */,
 				FE0141DE22E74A3A0012343A /* ActivityMenuBar.swift */,
 				FE339C6B22E626A400645419 /* ActivityFeedCell.swift */,
+				FE4978202344AF4A00F1711F /* SpinnerViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -253,10 +263,9 @@
 				FE639D7B22D73BEE00DCE58B /* View */,
 				FE639D7A22D73BE600DCE58B /* Controller */,
 				FE701BFA22D7364600FC06CE /* Assets.xcassets */,
-				FE701C0522D737EC00FC06CE /* LogInVCUI */,
 				FE701BFC22D7364600FC06CE /* LaunchScreen.storyboard */,
 				FE639DB922D744C600DCE58B /* Info.plist */,
-				FE639DB122D73E1A00DCE58B /* GoogleService-Info.plist */,
+				FE8FFD6323DA485300255975 /* GoogleService-Info.plist */,
 			);
 			path = GoGig;
 			sourceTree = "<group>";
@@ -331,10 +340,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FE701BFE22D7364600FC06CE /* LaunchScreen.storyboard in Resources */,
-				FE701C0622D737EC00FC06CE /* LogInVCUI in Resources */,
-				FE639DB222D73E1A00DCE58B /* GoogleService-Info.plist in Resources */,
 				FE701BFB22D7364600FC06CE /* Assets.xcassets in Resources */,
 				FE701BF922D7364300FC06CE /* Main.storyboard in Resources */,
+				FE8FFD6423DA485300255975 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -407,34 +415,38 @@
 				FECCACE722D762F600D617CB /* CreateGigVC.swift in Sources */,
 				FECCACDF22D7622200D617CB /* LoginViewController.swift in Sources */,
 				FE2B049922EB4EE5001210FD /* ActivityNotification.swift in Sources */,
+				FE72535A23D614BC00379553 /* GigEventView.swift in Sources */,
 				FECCACCB22D75FEC00D617CB /* PortfolioPost.swift in Sources */,
 				FECCACD922D7617800D617CB /* PostContainerView.swift in Sources */,
 				FE701BF422D7364300FC06CE /* AppDelegate.swift in Sources */,
+				FE8C069723181FB900922FF2 /* CreateProfileCAVC.swift in Sources */,
 				FECCACE322D7628700D617CB /* UserAccountVC.swift in Sources */,
 				FECCACC922D75FA000D617CB /* GigEvent.swift in Sources */,
 				FECCACF122D763E900D617CB /* FindGigVC.swift in Sources */,
 				FED01F1222F1CB9400E7CB4F /* ReviewApplicationVC.swift in Sources */,
-				FE1A731222F22B40001AD1A5 /* ReviewApplicationUI.swift in Sources */,
 				FE16DBD622DDE2E70005E3AE /* UserAccountUI.swift in Sources */,
 				FE339C6A22E625D300645419 /* ActivityFeedVC.swift in Sources */,
 				FE0141DD22E749370012343A /* ActivityFeedCollectionView.swift in Sources */,
 				FECCACE922D7632A00D617CB /* TitleDateCGVC.swift in Sources */,
-				FECCACBF22D75DED00D617CB /* Constants.swift in Sources */,
 				FECCACD122D7609100D617CB /* AccountPostCell.swift in Sources */,
 				FECCACEF22D763BC00D617CB /* PhotoCGVC.swift in Sources */,
 				FE339C6C22E626A400645419 /* ActivityFeedCell.swift in Sources */,
-				FEE922BB22DF5338003E7E69 /* GigEventView.swift in Sources */,
+				FE8C069F2318337E00922FF2 /* LoginSignupVC.swift in Sources */,
+				FE8C069D23182E5500922FF2 /* MusicLinksCAVC.swift in Sources */,
 				FECCACED22D7638900D617CB /* InfoContactCGVC.swift in Sources */,
+				FE72535623D6145C00379553 /* Constants.swift in Sources */,
 				FECCACD322D760CD00D617CB /* AutoComplete.swift in Sources */,
+				FE98764923D5CD6800BE5E37 /* SocialLinksCAVC.swift in Sources */,
 				FECCACE522D762BE00D617CB /* PortfolioPostVC.swift in Sources */,
 				FECCACC722D75F5300D617CB /* DataService.swift in Sources */,
 				FECCACCF22D7605E00D617CB /* AccountHeaderCell.swift in Sources */,
+				FE72535823D614A000379553 /* ApplicationExtensions.swift in Sources */,
 				FECCACD722D7614500D617CB /* MyTextView.swift in Sources */,
 				FE4AF5AA22F319C400D8ED7A /* EventDescriptionVC.swift in Sources */,
 				FECCACE122D7625500D617CB /* CreateAccountVC.swift in Sources */,
 				FECCACCD22D7601700D617CB /* User.swift in Sources */,
 				FECCACDB22D761A600D617CB /* LoadingCell.swift in Sources */,
-				FEC8F4EB2316D7A8001CBC3D /* ApplicationExtensions.swift in Sources */,
+				FE4978212344AF4A00F1711F /* SpinnerViewController.swift in Sources */,
 				FEC8C6BE22EA40240068C43D /* ActivityCollectionViewCell.swift in Sources */,
 				FEFEB6A522E086C00094CFC9 /* StringExtensions.swift in Sources */,
 				FECCACD522D760FF00D617CB /* LoginField.swift in Sources */,
@@ -592,16 +604,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChillyDesigns.GoGig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = GoGigTestFlight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -613,16 +629,20 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = GoGig/GoGig.entitlements;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = SCZ5X2T8PZ;
 				INFOPLIST_FILE = GoGig/Info.plist;
 				INFOPLIST_OTHER_PREPROCESSOR_FLAGS = GoGig/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ChillyDesigns.GoGig;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = GoGigTestFlight;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

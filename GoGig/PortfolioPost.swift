@@ -11,12 +11,12 @@ import UIKit
 
 class PortfolioPost: Comparable {
     
-    var uid: String
-    private var id: String
-    var location: String
-    var caption: String
-    var isImage: Bool
-    var postURL: URL
+    var uid: String             //user that owns post
+    private var id: String      //unique identifier of post
+    var location: String        //name of posts location
+    var caption: String         //caption of post
+    var isImage: Bool           //decide if post is image/video
+    var postURL: URL            //image download URL
     var thumbnailURL: URL
     private var time: NSDate
     var dimensions: Dictionary<String, Any>
@@ -40,6 +40,7 @@ class PortfolioPost: Comparable {
         return time
     }
     
+    //quicksort based on timestamp
     static func < (lhs: PortfolioPost, rhs: PortfolioPost) -> Bool {
         //inverse so that quick sort of feed shows most recent first
         return rhs.getTime().compare(lhs.getTime() as Date) == .orderedAscending

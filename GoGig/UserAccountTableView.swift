@@ -17,6 +17,7 @@ extension UserAccountVC {
     
     //Now each row of the table view is a section to allow padding
     override func numberOfSections(in tableView: UITableView) -> Int {
+        //+1 is AccountHeaderCell
         return portfolioPosts.count + 1
     }
     
@@ -25,6 +26,7 @@ extension UserAccountVC {
         return 1
     }
     
+    //set the appearance of each cell
     //We access the row using indexPath.section instead of indexPath.row
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
@@ -32,18 +34,28 @@ extension UserAccountVC {
         if indexPath.section == 0 {
             let headerCell = tableView.dequeueReusableCell(withIdentifier: "AccountHeaderCell", for: indexPath) as! AccountHeaderCell
             
+            //On initial launch of the app, clean the header
+            if hideForLoad {
+                headerCell.userBioTextView.isHidden = true
+                headerCell.userTypeLabel.isHidden = true
+                headerCell.socialLinkStackView.isHidden = true
+            } else {
+                headerCell.userBioTextView.isHidden = false
+                headerCell.userTypeLabel.isHidden = false
+                headerCell.socialLinkStackView.isHidden = false
+            }
+            //update the cell with the user data
             updateUserData(cell: headerCell)
             
             return headerCell
             
-            //OTHER CELLS ARE PORTFOLIO POSTS
-            //need to create VC to put posts into storage
+        //OTHER CELLS ARE PORTFOLIO POSTS
         } else {
-            
+            //instantiate a reusable post cell
             let postCell = tableView.dequeueReusableCell(withIdentifier: "AccountPostCell", for: indexPath)
                 as! AccountPostCell
             
-            
+            //add post data to the cell
             updatePostData(cell: postCell, row: indexPath.section - 1)
             
             return postCell
@@ -53,12 +65,13 @@ extension UserAccountVC {
     
     //To update the height of the row depending on the post
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        //Account Header is always same height
         if indexPath.section == 0 {
             return 215
         } else {
-            
+            //this is the ratio of feed with to post width
             let ratio = (tableView.frame.size.width - 32) / ((portfolioPosts[indexPath.section-1].dimensions["width"] as? CGFloat)!)
-            
+            //set the height of the cell based off ratio
             return ((portfolioPosts[indexPath.section-1].dimensions["height"] as? CGFloat)! * ratio) + 92
         }
     }
@@ -69,6 +82,7 @@ extension UserAccountVC {
         if section != 0 {
             return 20
         }
+        //No top padding for top cell
         return 0
     }
     
@@ -77,6 +91,29 @@ extension UserAccountVC {
         let headerView = UIView()
         headerView.backgroundColor = UIColor.clear
         return headerView
+    }
+    
+    //when scrolling the feed
+    override func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if #available(iOS 13.0, *) {
+            //give the navigation bar an opaque white colour
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.95)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
+    }
+    //when stopped scrolling feed
+    override func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if #available(iOS 13.0, *) {
+            //give the navigation bar an opaque white colour
+            let navBarAppearance = UINavigationBarAppearance()
+            navBarAppearance.configureWithOpaqueBackground()
+            navBarAppearance.backgroundColor = UIColor.white.withAlphaComponent(0.75)
+            self.navigationController?.navigationBar.standardAppearance = navBarAppearance
+            self.navigationController?.navigationBar.scrollEdgeAppearance = navBarAppearance
+        }
     }
 }
 

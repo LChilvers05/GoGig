@@ -11,7 +11,7 @@ import UIKit
 
 class LoadingCell: UITableViewCell {
     
-    //Closure of the loading spinner
+    //create loading spinner in a closure
     let loadingSpinner: UIActivityIndicatorView = {
         let loadingSpinner = UIActivityIndicatorView(style: .white)
         loadingSpinner.translatesAutoresizingMaskIntoConstraints = false
@@ -24,7 +24,6 @@ class LoadingCell: UITableViewCell {
     }
     
     func setupLoadingSpinner() {
-        
         addSubview(loadingSpinner)
         loadingSpinner.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         loadingSpinner.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

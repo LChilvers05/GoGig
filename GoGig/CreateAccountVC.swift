@@ -41,7 +41,7 @@ class CreateAccountVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.modalPresentationStyle = .overFullScreen
         hideKeyboard()
         
         imagePicker = UIImagePickerController()
@@ -153,20 +153,20 @@ class CreateAccountVC: UIViewController {
                                     
                                     self.userData = ["email": self.email, "name": userName, "bio": userBio, "picURL": returnedURL.absoluteString, "gigs": self.userGigs!] //HERE
                                     
-                                    DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!)
-                                    
-                                    self.performSegue(withIdentifier: TO_MAIN, sender: nil)
-                                    
-                                    
-                                    //
-                                    InstanceID.instanceID().instanceID { (result, error) in
-                                        if let error = error {
-                                            print("Error fetching remote instance ID: \(error)")
-                                        } else if let result = result {
-                                            print("Remote instance ID token: \(result.token)")
-                                            deviceFCMToken = result.token
-                                        }
-                                    }
+//                                    DataService.instance.updateDBUserProfile(uid: uid, userData: self.userData!)
+//
+//                                    self.performSegue(withIdentifier: TO_MAIN, sender: nil)
+//
+//
+//                                    //
+//                                    InstanceID.instanceID().instanceID { (result, error) in
+//                                        if let error = error {
+//                                            print("Error fetching remote instance ID: \(error)")
+//                                        } else if let result = result {
+//                                            print("Remote instance ID token: \(result.token)")
+//                                            deviceFCMToken = result.token
+//                                        }
+//                                    }
                                 }
                             }
                         }

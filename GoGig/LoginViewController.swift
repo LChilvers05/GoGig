@@ -78,7 +78,7 @@ class LoginViewController: UIViewController {
                                     
                                     //Prepare for segue override changes attributes of email and password in
                                     //CreateAccountVC class
-                                    self.clearForSegue(segueID: TO_CREATE_ACCOUNT)
+                                    //self.clearForSegue(segueID: TO_CREATE_ACCOUNT)
                                     
                                 }
                             }
@@ -186,7 +186,7 @@ class LoginViewController: UIViewController {
     //So signup in CreateAccountVC
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
-        if segue.identifier == TO_CREATE_ACCOUNT {
+        if segue.identifier == "" {
             
             //Need this line to pass information between view controllers
             let createAccountVC = segue.destination as! CreateAccountVC

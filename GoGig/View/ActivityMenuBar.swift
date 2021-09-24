@@ -17,16 +17,17 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        //collection view is the titles
         setupCollectionView()
+        //horizontal bar is the purple slider
         setupHorizontalBar()
-        
+        //to keep track of what cell is selected
         let selectedIndexPath = NSIndexPath(item: 0, section: 0)
         collectionView.selectItem(at: selectedIndexPath as IndexPath, animated: false, scrollPosition: .left)
     }
     
-    //When user taps that one, then take to another table view
-    //This moves the large collection view
+    //when user taps that one, then take to another table view
+    //this moves the large collection view
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         activityFeedVC?.scrollToMenuIndex(menuIndex: indexPath.item)
     }
@@ -52,7 +53,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         return view
     }()
     
-    //This changes to create animation
+    //this changes to create animation
     var barLeftAnchorConstraint: NSLayoutConstraint?
     
     func setupHorizontalBar() {
@@ -63,7 +64,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         addSubview(barView)
         
         barView.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        barView.heightAnchor.constraint(equalToConstant: 2).isActive = true
+        barView.heightAnchor.constraint(equalToConstant: 3).isActive = true
         //multiplier 0.5 so takes half of device view
         barView.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.5).isActive = true
         
@@ -89,11 +90,11 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
     
     //MAKR: MENU BAR COLLECTION VIEW
     
-    //Two titles needed
+    //two titles needed
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return 2
     }
-    
+    //set appearance of each menubar cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellID, for: indexPath) as! MenuCell
         
@@ -101,7 +102,7 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
         
         return cell
     }
-    
+    //set size of cell
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: frame.width / 2, height: frame.height)
@@ -120,38 +121,40 @@ class MenuBar: UIView, UICollectionViewDelegate, UICollectionViewDataSource, UIC
 
 class MenuCell: UICollectionViewCell {
     
+    //add the title
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         addTitle()
     }
-    
+    //set appearance of titles
     let title: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
+        label.font = UIFont(name: "Avenir-Medium", size: 20.0)
+        label.textColor = UIColor.lightGray
         return label
     }()
     
-    //Becomes purple when active...
+    //becomes purple when active...
     override var isHighlighted: Bool {
         didSet {
-            title.textColor = isHighlighted ? UIColor.purple : UIColor.black
+            title.textColor = isHighlighted ? UIColor.purple : UIColor.lightGray
         }
     }
     
     //...and selected
     override var isSelected: Bool {
         didSet {
-            title.textColor = isSelected ? UIColor.purple : UIColor.black
+            title.textColor = isSelected ? UIColor.purple : UIColor.lightGray
         }
     }
-    
+    //add the title to the cell
     func addTitle() {
         addSubview(title)
         title.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
         title.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        //title.widthAnchor.constraint(equalToConstant: ).isActive = true
         title.heightAnchor.constraint(equalToConstant: 28).isActive = true
     }
     

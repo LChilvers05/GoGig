@@ -15,6 +15,8 @@ class InfoContactCGVC: UIViewController {
     @IBOutlet weak var emailTextField: MyTextField!
     @IBOutlet weak var phoneTextField: MyTextField!
     
+    var editingGate = true
+    var gigEvent: GigEvent?
     var user: User?
     var eventData: Dictionary<String, Any>?
     
@@ -29,33 +31,36 @@ Things to think about:
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupView()
+        hideKeyboard()
         
-        //Setup placeholder of the description text view
+        //setup placeholder of the description text view
         descriptionTextView.updatePlaceholder(placeholder: placeholder)
         descriptionTextView.text = placeholder
         descriptionTextView.textColor = UIColor.lightGray
-        
+        //set restrictions on contact inputs
         nameTextField.updateCharacterLimit(limit: 50)
         emailTextField.updateCharacterLimit(limit: 62)
         phoneTextField.updateCharacterLimit(limit: 16)
         
-        //Auto-filled
+        //auto-filled
         nameTextField.text = user?.name
         emailTextField.text = user?.email
-        //Add later on
-        //phoneTextField.text = user?.phone
-        
-        hideKeyboard()
+        phoneTextField.text = user?.phone
     }
     override func viewDidAppear(_ animated: Bool) {
-        print(eventData!)
+        //if editing, auto fill the description
+        if editingGigEvent && editingGate && gigEvent != nil {
+            descriptionTextView.text = gigEvent?.getDescription()
+            editingGate = false
+        }
     }
     
+    //separate function because this is an optional method of contact
     func checkPhoneField() {
-        //Less checks needed as number pad keyboard is used
+        //less checks needed as number pad keyboard is used
         if let phone = phoneTextField.text {
             if phone.count > 7 {
-                
                 eventData!["phone"] = phone
             }
         }
@@ -67,9 +72,11 @@ Things to think about:
             if let name = nameTextField.text {
                 if let email = emailTextField.text {
                     if let phone = phoneTextField.text {
+                        //validation checks
                         if name != "" {
                             if description.count > 10 && !(description.contains("Write a description... |")) {
                                 
+                                //add to inputs to dictionary
                                 eventData!["name"] = name
                                 eventData!["description"] = description
                                 
@@ -83,7 +90,7 @@ Things to think about:
                                     
                                     performSegue(withIdentifier: TO_ADD_PHOTO, sender: nil)
                                     
-                                    //Just Add Phone
+                                //just add phone
                                 } else if phone.count >= 7 {
                                     
                                     eventData!["phone"] = phone
@@ -98,6 +105,8 @@ Things to think about:
                             } else {
                                 displayError(title: "Event Description", message: "please enter a description of your event outlining the suggested points")
                             }
+                        } else {
+                            displayError(title: "Name", message: "please enter your name")
                         }
                     }
                 }
@@ -113,7 +122,8 @@ Things to think about:
             
             photoCGVC.user = user
             photoCGVC.eventData = eventData
-            
+            photoCGVC.gigEvent = gigEvent
+            photoCGVC.editingGate = true
         }
     }
 }
